@@ -54,9 +54,9 @@ const SpeechEvaluation = () => {
   const [speakingAttemptCount, setSpeakingAttemptCount] = useState(0)
   const [speakingHasAudio, setSpeakingHasAudio] = useState(false)
   const [showSpeakingResult, setShowSpeakingResult] = useState(false)
-  const recordingInterval = useRef<NodeJS.Timeout | null>(null)
-  const audioLevelInterval = useRef<NodeJS.Timeout | null>(null)
-  const playbackInterval = useRef<NodeJS.Timeout | null>(null)
+  const recordingInterval = useRef<ReturnType<typeof setInterval> | null>(null)
+  const audioLevelInterval = useRef<ReturnType<typeof setInterval> | null>(null)
+  const playbackInterval = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const languages = [
     { value: "english-india", label: "English (India)" },
