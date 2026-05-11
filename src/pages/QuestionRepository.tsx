@@ -95,7 +95,7 @@ const QuestionRepository = () => {
         <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="flex h-16 items-center justify-between px-6">
             <div className="flex items-center gap-4">
-              <h1 className="text-xl font-semibold">Question Repository</h1>
+              <h1 className="text-xl font-medium">Question Repository</h1>
             </div>
             <ProfileDropdown />
           </div>
@@ -112,7 +112,7 @@ const QuestionRepository = () => {
                     <div className="flex items-center justify-between">
                       <div className="space-y-2">
                         <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
-                        <p className="text-2xl font-bold" style={{ color: stat.valueColor, fontSize: '1.25rem' }}>
+                        <p className="text-2xl font-medium" style={{ color: stat.valueColor, fontSize: '1.25rem' }}>
                           {stat.value}
                         </p>
                         <p className="text-xs text-muted-foreground">{stat.change}</p>

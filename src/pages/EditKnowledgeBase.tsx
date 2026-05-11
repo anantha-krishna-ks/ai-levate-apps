@@ -115,7 +115,7 @@ const EditKnowledgeBase = () => {
                 <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
               <div className="flex flex-col">
-                <h2 className="text-base sm:text-lg font-semibold text-gray-900">
+                <h2 className="text-base sm:text-lg font-medium text-gray-900">
                   Edit Knowledge Base
                 </h2>
                 <p className="text-sm text-gray-600">ID: {id}</p>
@@ -131,7 +131,7 @@ const EditKnowledgeBase = () => {
             <Card className="border-2 border-purple-100 bg-purple-50">
               <CardContent className="p-6">
                 <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-purple-800">Select Knowledge Base Type</h3>
+                  <h3 className="text-lg font-medium text-purple-800">Select Knowledge Base Type</h3>
                   <p className="text-sm text-purple-600 mt-1">Choose how you want to organize your knowledge base</p>
                 </div>
                 
@@ -154,7 +154,7 @@ const EditKnowledgeBase = () => {
                         <Library className="h-5 w-5" />
                       </div>
                       <div className="flex-1">
-                        <h4 className={`font-semibold transition-colors ${
+                        <h4 className={`font-medium transition-colors ${
                           levelType === "book" ? "text-purple-900" : "text-gray-900"
                         }`}>
                           Book Level
@@ -190,7 +190,7 @@ const EditKnowledgeBase = () => {
                         <GraduationCap className="h-5 w-5" />
                       </div>
                       <div className="flex-1">
-                        <h4 className={`font-semibold transition-colors ${
+                        <h4 className={`font-medium transition-colors ${
                           levelType === "study" ? "text-purple-900" : "text-gray-900"
                         }`}>
                           Study Level
@@ -218,7 +218,7 @@ const EditKnowledgeBase = () => {
                   <div className="p-2 bg-blue-600 text-white rounded-lg">
                     <FileText className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-semibold text-blue-800">Basic Information</h3>
+                  <h3 className="text-lg font-medium text-blue-800">Basic Information</h3>
                 </div>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -279,7 +279,7 @@ const EditKnowledgeBase = () => {
                   <div className="p-2 bg-teal-600 text-white rounded-lg">
                     <FileText className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-semibold text-teal-800">File Uploads</h3>
+                  <h3 className="text-lg font-medium text-teal-800">File Uploads</h3>
                 </div>
                 
                 <div className={`grid ${levelType === "book" ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"} gap-6`}>
@@ -393,7 +393,7 @@ const EditKnowledgeBase = () => {
                   <div className="p-2 bg-orange-600 text-white rounded-lg">
                     <Search className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-semibold text-orange-800">Processing Settings</h3>
+                  <h3 className="text-lg font-medium text-orange-800">Processing Settings</h3>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -241,7 +241,7 @@ Assessment (10 minutes):
                 <CardContent className="p-3 flex items-center gap-3">
                   <Badge className="bg-purple-600 text-white">{chapter.id}</Badge>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900 text-sm">{chapter.title}</h3>
+                    <h3 className="font-medium text-gray-900 text-sm">{chapter.title}</h3>
                     <p className="text-xs text-gray-600">Pages {chapter.pages}</p>
                   </div>
                 </CardContent>
@@ -255,7 +255,7 @@ Assessment (10 minutes):
     if (message.type === "summary" && message.data) {
       return (
         <div className="space-y-3">
-          <p className="text-sm font-semibold mb-2">{message.content}</p>
+          <p className="text-sm font-medium mb-2">{message.content}</p>
           <div className="bg-white border border-purple-200 rounded-lg p-4">
             <pre className="whitespace-pre-wrap text-xs font-sans text-gray-800">{message.data}</pre>
           </div>
@@ -324,7 +324,7 @@ Assessment (10 minutes):
     if (message.type === "lesson-plan" && message.data) {
       return (
         <div className="space-y-3">
-          <p className="text-sm font-semibold mb-2">{message.content}</p>
+          <p className="text-sm font-medium mb-2">{message.content}</p>
           <div className="bg-white border border-pink-200 rounded-lg p-4">
             <pre className="whitespace-pre-wrap text-xs font-sans text-gray-800">{message.data}</pre>
           </div>
@@ -362,7 +362,7 @@ Assessment (10 minutes):
           <BookOpen className="h-4 w-4" />
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-gray-900">Book Information</h2>
+          <h2 className="text-sm font-medium text-gray-900">Book Information</h2>
           <p className="text-xs text-gray-600">NCERT Textbook</p>
         </div>
       </div>
@@ -375,33 +375,33 @@ Assessment (10 minutes):
       {/* Book Details */}
       <div className="space-y-3">
         <div>
-          <h3 className="text-base font-bold text-gray-900 mb-0.5">Biology</h3>
+          <h3 className="text-base font-medium text-gray-900 mb-0.5">Biology</h3>
           <p className="text-xs text-gray-600">Textbook for Class XI</p>
         </div>
 
         <div className="space-y-1.5">
           <div className="flex items-start gap-2">
-            <span className="text-xs font-semibold text-gray-700 min-w-[70px]">Publisher:</span>
+            <span className="text-xs font-medium text-gray-700 min-w-[70px]">Publisher:</span>
             <span className="text-xs text-gray-600">NCERT, New Delhi</span>
           </div>
           <div className="flex items-start gap-2">
-            <span className="text-xs font-semibold text-gray-700 min-w-[70px]">Subject:</span>
+            <span className="text-xs font-medium text-gray-700 min-w-[70px]">Subject:</span>
             <span className="text-xs text-gray-600">Biology</span>
           </div>
           <div className="flex items-start gap-2">
-            <span className="text-xs font-semibold text-gray-700 min-w-[70px]">Class:</span>
+            <span className="text-xs font-medium text-gray-700 min-w-[70px]">Class:</span>
             <span className="text-xs text-gray-600">XI (Eleventh)</span>
           </div>
           <div className="flex items-start gap-2">
-            <span className="text-xs font-semibold text-gray-700 min-w-[70px]">Edition:</span>
+            <span className="text-xs font-medium text-gray-700 min-w-[70px]">Edition:</span>
             <span className="text-xs text-gray-600">2024-25</span>
           </div>
           <div className="flex items-start gap-2">
-            <span className="text-xs font-semibold text-gray-700 min-w-[70px]">Total Pages:</span>
+            <span className="text-xs font-medium text-gray-700 min-w-[70px]">Total Pages:</span>
             <span className="text-xs text-gray-600">368 pages</span>
           </div>
           <div className="flex items-start gap-2">
-            <span className="text-xs font-semibold text-gray-700 min-w-[70px]">Chapters:</span>
+            <span className="text-xs font-medium text-gray-700 min-w-[70px]">Chapters:</span>
             <span className="text-xs text-gray-600">22 Chapters</span>
           </div>
         </div>
@@ -436,7 +436,7 @@ Assessment (10 minutes):
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-gray-900">Doc Chat - NCERT</h1>
+              <h1 className="text-lg font-medium text-gray-900">Doc Chat - NCERT</h1>
               <p className="text-xs text-gray-500 hidden sm:block">Interactive AI-powered textbook assistant</p>
             </div>
           </div>
@@ -471,7 +471,7 @@ Assessment (10 minutes):
                 <MessageSquare className="h-4 w-4" />
               </div>
               <div>
-                <h2 className="text-sm font-semibold text-gray-900">Chat with NCERT Textbook</h2>
+                <h2 className="text-sm font-medium text-gray-900">Chat with NCERT Textbook</h2>
                 <p className="text-xs text-gray-600">Ask questions, generate summaries, or create study materials</p>
               </div>
             </div>

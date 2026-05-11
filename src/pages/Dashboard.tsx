@@ -295,7 +295,7 @@ const Dashboard = () => {
         <SheetContent side="top" className="h-auto max-h-[80vh] flex flex-col">
           <div className="space-y-4 pt-6 flex-shrink-0">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold">Search AI Tools</h2>
+              <h2 className="text-lg font-medium">Search AI Tools</h2>
               {searchQuery && (
                 <Button
                   variant="ghost"
@@ -385,7 +385,7 @@ const Dashboard = () => {
                 <Menu className="h-5 w-5" />
               </Button>
               <div className="min-w-0 flex items-center gap-3 flex-1">
-                <h1 className="text-base sm:text-xl font-semibold text-gray-900 truncate">Welcome Back, Robert Jones!</h1>
+                <h1 className="text-base sm:text-xl font-medium text-gray-900 truncate">Welcome Back, Robert Jones!</h1>
               </div>
             </div>
             
@@ -465,7 +465,7 @@ const Dashboard = () => {
                 </div>
                 <span className="font-medium text-xs sm:text-base text-gray-700 leading-tight">Available Tools</span>
               </div>
-              <div className="text-lg sm:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">16</div>
+              <div className="text-lg sm:text-2xl font-medium text-gray-900 mb-0.5 sm:mb-1">16</div>
               <div className="text-[10px] sm:text-sm font-medium text-blue-600 leading-tight">AI-Powered</div>
             </Card>
 
@@ -476,7 +476,7 @@ const Dashboard = () => {
                 </div>
                 <span className="font-medium text-xs sm:text-base text-gray-700 leading-tight">Active Access</span>
               </div>
-              <div className="text-lg sm:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">12</div>
+              <div className="text-lg sm:text-2xl font-medium text-gray-900 mb-0.5 sm:mb-1">12</div>
               <div className="text-[10px] sm:text-sm font-medium text-green-600 leading-tight">Subscribed</div>
             </Card>
 
@@ -487,7 +487,7 @@ const Dashboard = () => {
                 </div>
                 <span className="font-medium text-xs sm:text-base text-gray-700 leading-tight">Explore More</span>
               </div>
-              <div className="text-lg sm:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">4</div>
+              <div className="text-lg sm:text-2xl font-medium text-gray-900 mb-0.5 sm:mb-1">4</div>
               <div className="text-[10px] sm:text-sm font-medium text-purple-600 leading-tight">Features</div>
             </Card>
 
@@ -498,7 +498,7 @@ const Dashboard = () => {
                 </div>
                 <span className="font-medium text-xs sm:text-base text-gray-700 leading-tight">Today's Usage</span>
               </div>
-              <div className="text-lg sm:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">847</div>
+              <div className="text-lg sm:text-2xl font-medium text-gray-900 mb-0.5 sm:mb-1">847</div>
               <div className="text-[10px] sm:text-sm font-medium text-orange-600 leading-tight">Tokens</div>
             </Card>
           </div>
@@ -582,7 +582,7 @@ const Dashboard = () => {
                     </div>
                     
                     <CardContent className="p-6">
-                      <h3 className="font-semibold text-gray-900 mb-2 line-clamp-1">{tool.title}</h3>
+                      <h3 className="font-medium text-gray-900 mb-2 line-clamp-1">{tool.title}</h3>
                       <p className="text-sm text-gray-600 mb-4 line-clamp-2">{tool.description}</p>
                       
                       <Link to={tool.path}>
@@ -620,7 +620,7 @@ const Dashboard = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
                 <Search className="h-8 w-8 text-muted-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">No tools found</h3>
+              <h3 className="text-lg font-medium mb-2">No tools found</h3>
               <p className="text-muted-foreground mb-4">
                 We couldn't find any tools matching your search
               </p>

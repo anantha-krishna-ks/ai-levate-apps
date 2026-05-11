@@ -234,7 +234,7 @@ const Register = () => {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-4xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-4xl font-medium text-gray-900 leading-tight">
                 Join the Future of
                 <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent"> AI Innovation</span>
               </h2>
@@ -270,7 +270,7 @@ const Register = () => {
                       Sign in
                     </button>
                   </div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h2>
+                  <h2 className="text-3xl font-medium text-gray-900 mb-2">Create Account</h2>
                   <p className="text-gray-600">Join the AI-powered platform</p>
                 </div>
 
@@ -478,7 +478,7 @@ const Register = () => {
 
                   <Button 
                     type="submit"
-                    className="w-full h-12 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-semibold rounded-lg transform transition-all duration-200 hover:scale-[1.02]"
+                    className="w-full h-12 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-medium rounded-lg transform transition-all duration-200 hover:scale-[1.02]"
                   >
                     Create Account
                   </Button>

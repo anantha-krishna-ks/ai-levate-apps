@@ -88,7 +88,7 @@ const ItemGeneration = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AL</span>
+                <span className="text-white font-medium text-sm">AL</span>
               </div>
               <img 
                 src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
@@ -120,7 +120,7 @@ const ItemGeneration = () => {
       <div className="p-6 max-w-7xl mx-auto">
         {/* Page Title */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Select Knowledge Base</h1>
+          <h1 className="text-2xl font-medium text-gray-900 mb-2">Select Knowledge Base</h1>
           <p className="text-gray-600">Choose a knowledge base to start generating intelligent questions</p>
         </div>
 
@@ -136,7 +136,7 @@ const ItemGeneration = () => {
               </div>
               
               <div className="mb-4">
-                <div className="text-2xl font-bold text-gray-900 mb-2">{stat.total}</div>
+                <div className="text-2xl font-medium text-gray-900 mb-2">{stat.total}</div>
                 <div className="text-sm font-medium text-gray-600">{stat.subtitle}</div>
               </div>
               
@@ -144,7 +144,7 @@ const ItemGeneration = () => {
                 {stat.items.map((item, idx) => (
                   <div key={idx} className="text-left">
                     <div className="text-sm text-gray-600 font-medium">{item.label}</div>
-                    <div className={`text-lg font-semibold ${item.color}`}>{item.value}</div>
+                    <div className={`text-lg font-medium ${item.color}`}>{item.value}</div>
                   </div>
                 ))}
               </div>
@@ -188,7 +188,7 @@ const ItemGeneration = () => {
               <div className="p-6">
                 <div className="mb-3">
                   <div className="text-sm text-gray-500 mb-1">{base.category}</div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{base.title}</h3>
+                  <h3 className="font-medium text-gray-900 mb-2">{base.title}</h3>
                   <p className="text-sm text-gray-600">{base.description}</p>
                 </div>
 

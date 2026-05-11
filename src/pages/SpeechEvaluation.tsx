@@ -224,7 +224,7 @@ const SpeechEvaluation = () => {
                 <Headphones className="w-5 h-5 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="font-semibold text-gray-900">Speech Evaluation</span>
+                <span className="font-medium text-gray-900">Speech Evaluation</span>
                 <span className="text-xs text-gray-500">AI-Powered Speech Analysis</span>
               </div>
             </div>
@@ -255,7 +255,7 @@ const SpeechEvaluation = () => {
             <Headphones className="w-4 h-4" />
             Speech Analysis Platform
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-medium bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
             Speech Evaluation System
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -290,10 +290,10 @@ const SpeechEvaluation = () => {
               <Card className="bg-white/90 backdrop-blur-sm border border-gray-200/60 shadow-xl">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                    <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-medium text-sm shadow-lg">
                       1
                     </div>
-                    <span className="text-lg font-semibold text-gray-900">Choose a Language</span>
+                    <span className="text-lg font-medium text-gray-900">Choose a Language</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -325,10 +325,10 @@ const SpeechEvaluation = () => {
                 <Card className="bg-white/90 backdrop-blur-sm border border-gray-200/60 shadow-xl">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                      <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-medium text-sm shadow-lg">
                         2
                       </div>
-                      <span className="text-lg font-semibold text-gray-900">Select or Enter Text</span>
+                      <span className="text-lg font-medium text-gray-900">Select or Enter Text</span>
                     </CardTitle>
                     <p className="text-sm text-gray-600 mt-2">
                       Pick one of the sample texts below or type your own. This text will be used for the Speaking activity.
@@ -336,7 +336,7 @@ const SpeechEvaluation = () => {
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="space-y-3">
-                      <h4 className="font-semibold text-sm text-gray-800">Sample Texts</h4>
+                      <h4 className="font-medium text-sm text-gray-800">Sample Texts</h4>
                       <div className="space-y-2">
                         {sampleTexts.map((text, index) => (
                           <div 
@@ -363,7 +363,7 @@ const SpeechEvaluation = () => {
                     </div>
 
                     <div className="border-t border-gray-200 pt-6">
-                      <h4 className="font-semibold text-sm mb-3 text-gray-800">Or Enter Your Own Text</h4>
+                      <h4 className="font-medium text-sm mb-3 text-gray-800">Or Enter Your Own Text</h4>
                       <div className="space-y-3">
                         <Textarea
                           placeholder="Enter your own text here..."
@@ -390,10 +390,10 @@ const SpeechEvaluation = () => {
                 <Card className="bg-white/90 backdrop-blur-sm border border-gray-200/60 shadow-xl">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                      <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-medium text-sm shadow-lg">
                         3
                       </div>
-                      <span className="text-lg font-semibold text-gray-900">Record or Upload Audio</span>
+                      <span className="text-lg font-medium text-gray-900">Record or Upload Audio</span>
                     </CardTitle>
                     <div className="flex items-center gap-4 mt-3">
                       <Badge className="bg-blue-100 text-blue-800 border-blue-200">
@@ -407,10 +407,10 @@ const SpeechEvaluation = () => {
                        {/* Enhanced Option A: Record Audio */}
                        <div className="space-y-4">
                          <div className="flex items-center gap-2 mb-4">
-                           <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                           <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-xs font-medium">
                              A
                            </div>
-                           <h4 className="font-semibold text-gray-800">Record Audio</h4>
+                           <h4 className="font-medium text-gray-800">Record Audio</h4>
                          </div>
                          
                          <div className="bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-200 rounded-xl p-6 min-h-[480px] flex flex-col">
@@ -532,10 +532,10 @@ const SpeechEvaluation = () => {
                        {/* Enhanced Option B: Upload Audio */}
                        <div className="space-y-4">
                          <div className="flex items-center gap-2 mb-4">
-                           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-medium">
                              B
                            </div>
-                           <h4 className="font-semibold text-gray-800">Upload Audio File</h4>
+                           <h4 className="font-medium text-gray-800">Upload Audio File</h4>
                          </div>
 
                          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 min-h-[480px] flex flex-col">
@@ -585,7 +585,7 @@ const SpeechEvaluation = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <BarChart3 className="h-6 w-6 text-indigo-600" />
-                    <span className="text-lg font-semibold text-gray-900">Attempts & Results</span>
+                    <span className="text-lg font-medium text-gray-900">Attempts & Results</span>
                   </CardTitle>
                   <p className="text-sm text-gray-600 mt-2">
                     Track your speech evaluation attempts and view detailed analysis results
@@ -596,11 +596,11 @@ const SpeechEvaluation = () => {
                     <Table>
                       <TableHeader>
                         <TableRow className="bg-gradient-to-r from-gray-50 to-gray-100">
-                          <TableHead className="font-semibold text-gray-700">Question Text</TableHead>
-                          <TableHead className="font-semibold text-gray-700">Language</TableHead>
-                          <TableHead className="font-semibold text-gray-700">Created Date</TableHead>
-                          <TableHead className="font-semibold text-gray-700">Status</TableHead>
-                          <TableHead className="font-semibold text-gray-700">Result</TableHead>
+                          <TableHead className="font-medium text-gray-700">Question Text</TableHead>
+                          <TableHead className="font-medium text-gray-700">Language</TableHead>
+                          <TableHead className="font-medium text-gray-700">Created Date</TableHead>
+                          <TableHead className="font-medium text-gray-700">Status</TableHead>
+                          <TableHead className="font-medium text-gray-700">Result</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -652,7 +652,7 @@ const SpeechEvaluation = () => {
                           <BarChart3 className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <CardTitle className="text-2xl font-bold bg-gradient-to-r from-indigo-700 to-purple-800 bg-clip-text text-transparent">
+                          <CardTitle className="text-2xl font-medium bg-gradient-to-r from-indigo-700 to-purple-800 bg-clip-text text-transparent">
                             Assessment Result
                           </CardTitle>
                           <p className="text-sm text-gray-600 mt-1">Detailed analysis of your speech performance</p>
@@ -676,7 +676,7 @@ const SpeechEvaluation = () => {
                           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-md flex items-center justify-center shadow-sm">
                             <Headphones className="w-3 h-3 text-white" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-900">Audio Analysis</h3>
+                          <h3 className="text-lg font-medium text-gray-900">Audio Analysis</h3>
                         </div>
                         <div className="flex items-center gap-3">
                           <Button
@@ -723,7 +723,7 @@ const SpeechEvaluation = () => {
                       <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-3 border border-gray-200">
                         <div className="flex items-center gap-2 mb-2">
                           <Volume2 className="w-4 h-4 text-indigo-600" />
-                          <span className="font-semibold text-gray-800">Speech Transcript</span>
+                          <span className="font-medium text-gray-800">Speech Transcript</span>
                         </div>
                         <p className="text-base leading-relaxed">
                           <span className="text-gray-900 px-1 py-0.5 rounded bg-green-100">We </span>
@@ -751,7 +751,7 @@ const SpeechEvaluation = () => {
                           <div className="w-6 h-6 bg-gradient-to-br from-orange-500 to-red-600 rounded-md flex items-center justify-center shadow-sm">
                             <Target className="w-3 h-3 text-white" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-900">Error Analysis</h3>
+                          <h3 className="text-lg font-medium text-gray-900">Error Analysis</h3>
                         </div>
                         <div className="space-y-2">
                           {[
@@ -780,12 +780,12 @@ const SpeechEvaluation = () => {
                             <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-md flex items-center justify-center shadow-sm">
                               <CheckCircle className="w-3 h-3 text-white" />
                             </div>
-                            <h4 className="text-sm font-semibold text-gray-900">Pronunciation Score</h4>
+                            <h4 className="text-sm font-medium text-gray-900">Pronunciation Score</h4>
                           </div>
                           
                           {/* Score Display */}
                           <div className="text-center mb-4">
-                            <span className="text-2xl font-bold text-green-600">93%</span>
+                            <span className="text-2xl font-medium text-green-600">93%</span>
                             <p className="text-xs text-gray-600">Overall Pronunciation</p>
                           </div>
                           
@@ -823,7 +823,7 @@ const SpeechEvaluation = () => {
                           <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-md flex items-center justify-center shadow-sm">
                             <Sparkles className="w-3 h-3 text-white" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-900">Performance Breakdown</h3>
+                          <h3 className="text-lg font-medium text-gray-900">Performance Breakdown</h3>
                         </div>
                         <div className="space-y-3">
                           {[
@@ -838,7 +838,7 @@ const SpeechEvaluation = () => {
                                   <div className={`w-2 h-2 bg-gradient-to-r ${item.color} rounded-full`}></div>
                                   <span className="text-sm font-medium text-gray-800">{item.label}</span>
                                 </div>
-                                <span className={`text-sm font-semibold ${item.textColor} bg-white px-2 py-1 rounded`}>
+                                <span className={`text-sm font-medium ${item.textColor} bg-white px-2 py-1 rounded`}>
                                   {item.score}/{item.maxScore}
                                 </span>
                               </div>
@@ -868,10 +868,10 @@ const SpeechEvaluation = () => {
               <Card className="bg-white/90 backdrop-blur-sm border border-gray-200/60 shadow-xl">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                    <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center text-white font-medium text-sm shadow-lg">
                       1
                     </div>
-                    <span className="text-lg font-semibold text-gray-900">Choose Language & Topic</span>
+                    <span className="text-lg font-medium text-gray-900">Choose Language & Topic</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -934,10 +934,10 @@ const SpeechEvaluation = () => {
                 <Card className="bg-white/90 backdrop-blur-sm border border-gray-200/60 shadow-xl">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                      <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center text-white font-medium text-sm shadow-lg">
                         2
                       </div>
-                      <span className="text-lg font-semibold text-gray-900">Record or Upload Audio</span>
+                      <span className="text-lg font-medium text-gray-900">Record or Upload Audio</span>
                     </CardTitle>
                     <div className="flex items-center gap-4 mt-3">
                       <Badge className="bg-blue-100 text-blue-800 border-blue-200">
@@ -951,10 +951,10 @@ const SpeechEvaluation = () => {
                        {/* Enhanced Option A: Record Audio */}
                        <div className="space-y-4">
                          <div className="flex items-center gap-2 mb-4">
-                           <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                           <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-xs font-medium">
                              A
                            </div>
-                           <h4 className="font-semibold text-gray-800">Record Audio</h4>
+                           <h4 className="font-medium text-gray-800">Record Audio</h4>
                          </div>
                          
                          <div className="bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-200 rounded-xl p-6 min-h-[480px] flex flex-col">
@@ -1076,10 +1076,10 @@ const SpeechEvaluation = () => {
                        {/* Enhanced Option B: Upload Audio */}
                        <div className="space-y-4">
                          <div className="flex items-center gap-2 mb-4">
-                           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-medium">
                              B
                            </div>
-                           <h4 className="font-semibold text-gray-800">Upload Audio File</h4>
+                           <h4 className="font-medium text-gray-800">Upload Audio File</h4>
                          </div>
 
                          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 min-h-[480px] flex flex-col">
@@ -1130,7 +1130,7 @@ const SpeechEvaluation = () => {
                             <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-md flex items-center justify-center shadow-sm">
                               <Headphones className="w-3 h-3 text-white" />
                             </div>
-                            <h3 className="text-lg font-semibold text-gray-900">Recorded Audio</h3>
+                            <h3 className="text-lg font-medium text-gray-900">Recorded Audio</h3>
                           </div>
                           <div className="flex items-center gap-3">
                             <Button
@@ -1173,17 +1173,17 @@ const SpeechEvaluation = () => {
               {selectedTopic && (
                 <Card className="bg-white/90 backdrop-blur-sm border border-gray-200/60 shadow-xl">
                   <CardHeader>
-                    <CardTitle className="text-lg font-semibold text-gray-900">Attempts & Results</CardTitle>
+                    <CardTitle className="text-lg font-medium text-gray-900">Attempts & Results</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <Table>
                       <TableHeader>
                         <TableRow className="border-gray-200">
-                          <TableHead className="text-blue-600 font-semibold">QUESTION TEXT</TableHead>
-                          <TableHead className="text-blue-600 font-semibold">LANGUAGE</TableHead>
-                          <TableHead className="text-blue-600 font-semibold">CREATED DATE</TableHead>
-                          <TableHead className="text-blue-600 font-semibold">STATUS</TableHead>
-                          <TableHead className="text-blue-600 font-semibold">RESULT</TableHead>
+                          <TableHead className="text-blue-600 font-medium">QUESTION TEXT</TableHead>
+                          <TableHead className="text-blue-600 font-medium">LANGUAGE</TableHead>
+                          <TableHead className="text-blue-600 font-medium">CREATED DATE</TableHead>
+                          <TableHead className="text-blue-600 font-medium">STATUS</TableHead>
+                          <TableHead className="text-blue-600 font-medium">RESULT</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -1226,7 +1226,7 @@ const SpeechEvaluation = () => {
                           <BarChart3 className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <CardTitle className="text-2xl font-bold bg-gradient-to-r from-indigo-700 to-purple-800 bg-clip-text text-transparent">
+                          <CardTitle className="text-2xl font-medium bg-gradient-to-r from-indigo-700 to-purple-800 bg-clip-text text-transparent">
                             Assessment Result
                           </CardTitle>
                           <p className="text-sm text-gray-600 mt-1">Detailed analysis of your speech performance</p>
@@ -1252,7 +1252,7 @@ const SpeechEvaluation = () => {
                             <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-md flex items-center justify-center shadow-sm">
                               <Headphones className="w-3 h-3 text-white" />
                             </div>
-                            <h3 className="text-lg font-semibold text-gray-900">Audio Analysis</h3>
+                            <h3 className="text-lg font-medium text-gray-900">Audio Analysis</h3>
                           </div>
                           <div className="flex items-center gap-3">
                             <Button
@@ -1277,7 +1277,7 @@ const SpeechEvaluation = () => {
                         <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-3 border border-gray-200">
                           <div className="flex items-center gap-2 mb-2">
                             <Volume2 className="w-4 h-4 text-indigo-600" />
-                            <span className="font-semibold text-gray-800">Speech Transcript</span>
+                            <span className="font-medium text-gray-800">Speech Transcript</span>
                           </div>
                           <p className="text-base leading-relaxed">
                             <span className="text-gray-900 px-1 py-0.5 rounded bg-green-100">Today </span>
@@ -1302,7 +1302,7 @@ const SpeechEvaluation = () => {
                           <div className="w-6 h-6 bg-gradient-to-br from-orange-500 to-red-600 rounded-md flex items-center justify-center shadow-sm">
                             <Target className="w-3 h-3 text-white" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-900">Error Analysis</h3>
+                          <h3 className="text-lg font-medium text-gray-900">Error Analysis</h3>
                         </div>
                         <div className="space-y-2">
                           {[
@@ -1335,12 +1335,12 @@ const SpeechEvaluation = () => {
                           <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-md flex items-center justify-center shadow-sm">
                             <CheckCircle className="w-3 h-3 text-white" />
                           </div>
-                          <h4 className="text-sm font-semibold text-gray-900">Pronunciation Score</h4>
+                          <h4 className="text-sm font-medium text-gray-900">Pronunciation Score</h4>
                         </div>
                         
                         {/* Score Display */}
                         <div className="text-center mb-4">
-                          <span className="text-2xl font-bold text-green-600">86%</span>
+                          <span className="text-2xl font-medium text-green-600">86%</span>
                           <p className="text-xs text-gray-600">Overall Score</p>
                         </div>
                         
@@ -1372,7 +1372,7 @@ const SpeechEvaluation = () => {
 
                         {/* Score Breakdown */}
                         <div className="mt-4 space-y-2 border-t border-gray-200 pt-3">
-                          <h5 className="text-sm font-semibold text-gray-800 mb-2">Score Breakdown</h5>
+                          <h5 className="text-sm font-medium text-gray-800 mb-2">Score Breakdown</h5>
                            {[
                              { label: "Accuracy Score", score: 95, maxScore: 100, color: "from-green-500 to-emerald-600" },
                              { label: "Fluency Score", score: 79, maxScore: 100, color: "from-blue-500 to-indigo-600" },
@@ -1381,7 +1381,7 @@ const SpeechEvaluation = () => {
                              <div key={index} className="space-y-2">
                                <div className="flex items-center justify-between text-sm">
                                  <span className="text-gray-700 font-medium">{item.label}</span>
-                                 <span className="font-bold text-gray-900">{item.score}/{item.maxScore}</span>
+                                 <span className="font-medium text-gray-900">{item.score}/{item.maxScore}</span>
                                </div>
                                <div className="relative">
                                  <Progress value={item.score} className="h-2" />
@@ -1399,12 +1399,12 @@ const SpeechEvaluation = () => {
                           <div className="w-6 h-6 bg-gradient-to-br from-orange-500 to-red-600 rounded-md flex items-center justify-center shadow-sm">
                             <FileText className="w-3 h-3 text-white" />
                           </div>
-                          <h4 className="text-sm font-semibold text-gray-900">Content Score</h4>
+                          <h4 className="text-sm font-medium text-gray-900">Content Score</h4>
                         </div>
                         
                         {/* Score Display */}
                         <div className="text-center mb-4">
-                          <span className="text-2xl font-bold text-orange-600">31%</span>
+                          <span className="text-2xl font-medium text-orange-600">31%</span>
                           <p className="text-xs text-gray-600">Overall Score</p>
                         </div>
                         
@@ -1436,7 +1436,7 @@ const SpeechEvaluation = () => {
 
                         {/* Score Breakdown */}
                         <div className="space-y-2 border-t border-gray-200 pt-3">
-                          <h5 className="text-sm font-semibold text-gray-800 mb-2">Score Breakdown</h5>
+                          <h5 className="text-sm font-medium text-gray-800 mb-2">Score Breakdown</h5>
                            {[
                              { label: "Vocabulary Score", score: 50, maxScore: 100, color: "from-orange-500 to-yellow-600" },
                              { label: "Grammar Score", score: 44, maxScore: 100, color: "from-red-500 to-pink-600" },
@@ -1445,7 +1445,7 @@ const SpeechEvaluation = () => {
                              <div key={index} className="space-y-2">
                                <div className="flex items-center justify-between text-sm">
                                  <span className="text-gray-700 font-medium">{item.label}</span>
-                                 <span className="font-bold text-gray-900">{item.score}/{item.maxScore}</span>
+                                 <span className="font-medium text-gray-900">{item.score}/{item.maxScore}</span>
                                </div>
                                <div className="relative">
                                  <Progress value={item.score} className="h-2" />

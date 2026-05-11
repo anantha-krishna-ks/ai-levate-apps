@@ -144,7 +144,7 @@ const Collaboration = () => {
                 <UsersIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
               <div className="flex flex-col">
-                <h2 className="text-base sm:text-lg font-semibold text-gray-900">
+                <h2 className="text-base sm:text-lg font-medium text-gray-900">
                   Collaboration
                 </h2>
               </div>
@@ -166,7 +166,7 @@ const Collaboration = () => {
         }}>
           <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-gray-900">
+              <DialogTitle className="text-2xl font-medium text-gray-900">
                 {editingUserId ? "Edit User" : "Create User"}
               </DialogTitle>
             </DialogHeader>
@@ -176,7 +176,7 @@ const Collaboration = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-gray-200">
                   <div className="w-1 h-5 bg-blue-600 rounded-full"></div>
-                  <h3 className="text-lg font-semibold text-gray-900">Personal Information</h3>
+                  <h3 className="text-lg font-medium text-gray-900">Personal Information</h3>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -218,7 +218,7 @@ const Collaboration = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-gray-200">
                   <div className="w-1 h-5 bg-green-600 rounded-full"></div>
-                  <h3 className="text-lg font-semibold text-gray-900">Account Information</h3>
+                  <h3 className="text-lg font-medium text-gray-900">Account Information</h3>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -253,7 +253,7 @@ const Collaboration = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-gray-200">
                   <div className="w-1 h-5 bg-purple-600 rounded-full"></div>
-                  <h3 className="text-lg font-semibold text-gray-900">Security</h3>
+                  <h3 className="text-lg font-medium text-gray-900">Security</h3>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -299,7 +299,7 @@ const Collaboration = () => {
                 </Button>
                 <Button 
                   onClick={handleSaveUser}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white h-11 text-base font-semibold"
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white h-11 text-base font-medium"
                 >
                   {editingUserId ? "Update User" : "Save User"}
                 </Button>
@@ -312,7 +312,7 @@ const Collaboration = () => {
         <Dialog open={subscriptionDialogOpen} onOpenChange={setSubscriptionDialogOpen}>
           <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-gray-900">Subscription Details</DialogTitle>
+              <DialogTitle className="text-2xl font-medium text-gray-900">Subscription Details</DialogTitle>
             </DialogHeader>
             
             <div className="space-y-6 py-4">
@@ -324,9 +324,9 @@ const Collaboration = () => {
                       <TableHead className="w-12">
                         <input type="checkbox" className="rounded border-gray-300" />
                       </TableHead>
-                      <TableHead className="font-semibold text-gray-900">App Name</TableHead>
-                      <TableHead className="font-semibold text-gray-900">App Status</TableHead>
-                      <TableHead className="font-semibold text-gray-900">Actions</TableHead>
+                      <TableHead className="font-medium text-gray-900">App Name</TableHead>
+                      <TableHead className="font-medium text-gray-900">App Status</TableHead>
+                      <TableHead className="font-medium text-gray-900">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -342,12 +342,12 @@ const Collaboration = () => {
               {/* Action Buttons */}
               <div className="flex justify-end gap-3">
                 <Button 
-                  className="bg-blue-600 hover:bg-blue-700 text-white h-11 px-8 text-base font-semibold"
+                  className="bg-blue-600 hover:bg-blue-700 text-white h-11 px-8 text-base font-medium"
                 >
                   Tag Apps
                 </Button>
                 <Button 
-                  className="bg-blue-600 hover:bg-blue-700 text-white h-11 px-8 text-base font-semibold"
+                  className="bg-blue-600 hover:bg-blue-700 text-white h-11 px-8 text-base font-medium"
                 >
                   Untag Apps
                 </Button>
@@ -365,9 +365,9 @@ const Collaboration = () => {
                 <p>Are you sure you want to delete this user? This action cannot be undone.</p>
                 {deletingUser && (
                   <div className="mt-4 p-4 bg-gray-50 rounded-lg space-y-2 text-gray-900">
-                    <p><span className="font-semibold">Name:</span> {deletingUser.firstName} {deletingUser.lastName}</p>
-                    <p><span className="font-semibold">Login Name:</span> {deletingUser.loginName}</p>
-                    <p><span className="font-semibold">Email:</span> {deletingUser.emailId}</p>
+                    <p><span className="font-medium">Name:</span> {deletingUser.firstName} {deletingUser.lastName}</p>
+                    <p><span className="font-medium">Login Name:</span> {deletingUser.loginName}</p>
+                    <p><span className="font-medium">Email:</span> {deletingUser.emailId}</p>
                   </div>
                 )}
               </AlertDialogDescription>
@@ -406,11 +406,11 @@ const Collaboration = () => {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-gray-50">
-                    <TableHead className="font-semibold text-gray-900">First Name</TableHead>
-                    <TableHead className="font-semibold text-gray-900">Last Name</TableHead>
-                    <TableHead className="font-semibold text-gray-900">Login Name</TableHead>
-                    <TableHead className="font-semibold text-gray-900">Email Id</TableHead>
-                    <TableHead className="font-semibold text-gray-900">Actions</TableHead>
+                    <TableHead className="font-medium text-gray-900">First Name</TableHead>
+                    <TableHead className="font-medium text-gray-900">Last Name</TableHead>
+                    <TableHead className="font-medium text-gray-900">Login Name</TableHead>
+                    <TableHead className="font-medium text-gray-900">Email Id</TableHead>
+                    <TableHead className="font-medium text-gray-900">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

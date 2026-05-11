@@ -783,7 +783,7 @@ const OCREvaluation = () => {
               <ScanLine className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-base sm:text-lg font-semibold text-gray-900">OCR Evaluation</h1>
+              <h1 className="text-base sm:text-lg font-medium text-gray-900">OCR Evaluation</h1>
               <p className="text-xs text-gray-500 hidden sm:block">AI-powered OCR accuracy assessment</p>
             </div>
           </div>
@@ -826,7 +826,7 @@ const OCREvaluation = () => {
                         <Layers className="h-5 w-5" />
                       </div>
                       <div>
-                        <h2 className="text-lg font-semibold text-slate-800">Workspaces</h2>
+                        <h2 className="text-lg font-medium text-slate-800">Workspaces</h2>
                         <p className="text-sm text-slate-500">Select or create a workspace to start evaluation</p>
                       </div>
                     </div>
@@ -932,7 +932,7 @@ const OCREvaluation = () => {
                       <div className="flex items-center gap-4 flex-wrap">
                         {/* Subject Dropdown */}
                         <div className="flex items-center bg-white rounded-lg border border-slate-200 overflow-hidden">
-                          <span className="px-3 py-2.5 text-xs font-semibold text-slate-500 bg-slate-50 border-r border-slate-200 uppercase tracking-wide">Subject</span>
+                          <span className="px-3 py-2.5 text-xs font-medium text-slate-500 bg-slate-50 border-r border-slate-200 uppercase tracking-wide">Subject</span>
                           <select
                             value={selectedSubject}
                             onChange={(e) => setSelectedSubject(e.target.value)}
@@ -949,7 +949,7 @@ const OCREvaluation = () => {
                         
                         {/* Workspace Dropdown */}
                         <div className="flex items-center bg-white rounded-lg border border-slate-200 overflow-hidden">
-                          <span className="px-3 py-2.5 text-xs font-semibold text-slate-500 bg-slate-50 border-r border-slate-200 uppercase tracking-wide">Workspace</span>
+                          <span className="px-3 py-2.5 text-xs font-medium text-slate-500 bg-slate-50 border-r border-slate-200 uppercase tracking-wide">Workspace</span>
                           <select
                             value={selectedWorkspace.id}
                             onChange={(e) => {
@@ -1058,7 +1058,7 @@ const OCREvaluation = () => {
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">Total</p>
-                  <p className="text-sm font-semibold text-slate-700">
+                  <p className="text-sm font-medium text-slate-700">
                     {candidates.length} / {candidates.length}
                   </p>
                 </div>
@@ -1071,7 +1071,7 @@ const OCREvaluation = () => {
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">Segmentation</p>
-                  <p className="text-sm font-semibold text-blue-700">
+                  <p className="text-sm font-medium text-blue-700">
                     {candidates.filter(c => c.phase1 === "completed" || c.phase1 === "approved").length} / {candidates.length}
                   </p>
                 </div>
@@ -1084,7 +1084,7 @@ const OCREvaluation = () => {
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">OCR</p>
-                  <p className="text-sm font-semibold text-purple-700">
+                  <p className="text-sm font-medium text-purple-700">
                     {candidates.filter(c => c.phase2 === "completed" || c.phase2 === "approved").length} / {candidates.length}
                   </p>
                 </div>
@@ -1097,7 +1097,7 @@ const OCREvaluation = () => {
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">Evaluation</p>
-                  <p className="text-sm font-semibold text-teal-700">
+                  <p className="text-sm font-medium text-teal-700">
                     {candidates.filter(c => c.phase3 === "completed" || c.phase3 === "approved").length} / {candidates.length}
                   </p>
                 </div>
@@ -1114,7 +1114,7 @@ const OCREvaluation = () => {
                     <div className="p-1.5 sm:p-2 bg-slate-500 text-white rounded-lg shrink-0">
                       <ScanLine className="h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
-                    <h2 className="text-lg sm:text-2xl font-semibold text-slate-700">Evaluation Results</h2>
+                    <h2 className="text-lg sm:text-2xl font-medium text-slate-700">Evaluation Results</h2>
                   </div>
                   
                   {/* Search and Filters */}
@@ -1325,12 +1325,12 @@ const OCREvaluation = () => {
                                   className="data-[state=checked]:bg-teal-600 data-[state=checked]:border-teal-600"
                                 />
                               </TableHead>
-                              <TableHead className="font-semibold text-slate-700 py-3 sm:py-4 w-12 sm:w-16 text-xs sm:text-sm text-left">Sl. No</TableHead>
-                              <TableHead className="font-semibold text-slate-700 py-3 sm:py-4 text-xs sm:text-sm text-left">Candidate Name</TableHead>
-                              <TableHead className="font-semibold text-slate-700 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap text-left">Segmentation Indexing</TableHead>
-                              <TableHead className="font-semibold text-slate-700 py-3 sm:py-4 text-xs sm:text-sm text-left">OCR</TableHead>
-                              <TableHead className="font-semibold text-slate-700 py-3 sm:py-4 text-xs sm:text-sm text-left">Evaluation</TableHead>
-                              <TableHead className="font-semibold text-slate-700 py-3 sm:py-4 text-xs sm:text-sm text-center whitespace-nowrap">Quick Approve</TableHead>
+                              <TableHead className="font-medium text-slate-700 py-3 sm:py-4 w-12 sm:w-16 text-xs sm:text-sm text-left">Sl. No</TableHead>
+                              <TableHead className="font-medium text-slate-700 py-3 sm:py-4 text-xs sm:text-sm text-left">Candidate Name</TableHead>
+                              <TableHead className="font-medium text-slate-700 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap text-left">Segmentation Indexing</TableHead>
+                              <TableHead className="font-medium text-slate-700 py-3 sm:py-4 text-xs sm:text-sm text-left">OCR</TableHead>
+                              <TableHead className="font-medium text-slate-700 py-3 sm:py-4 text-xs sm:text-sm text-left">Evaluation</TableHead>
+                              <TableHead className="font-medium text-slate-700 py-3 sm:py-4 text-xs sm:text-sm text-center whitespace-nowrap">Quick Approve</TableHead>
                             </TableRow>
                           </TableHeader>
                           <TableBody>
@@ -2085,7 +2085,7 @@ const OCREvaluation = () => {
                             }
                           }}
                           disabled={!isClickable}
-                          className={`flex items-center justify-center h-8 w-8 rounded-full text-xs font-bold shrink-0 transition-all ${
+                          className={`flex items-center justify-center h-8 w-8 rounded-full text-xs font-medium shrink-0 transition-all ${
                             isCurrentQuestion
                               ? 'bg-teal-600 text-white shadow-sm'
                               : phase2VisitedQuestions.has(index)
@@ -2140,7 +2140,7 @@ const OCREvaluation = () => {
                 <div className="hidden md:flex w-64 lg:w-72 border-r border-slate-200 bg-slate-50 flex-col shrink-0">
                   <div className="px-3 lg:px-4 py-2.5 lg:py-3 border-b border-slate-200 bg-white shrink-0">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xs lg:text-sm font-semibold text-slate-700">Questions</h4>
+                      <h4 className="text-xs lg:text-sm font-medium text-slate-700">Questions</h4>
                       <span className={`text-[10px] lg:text-xs font-medium px-2 py-0.5 rounded-full ${
                         phase2VisitedQuestions.size === mockQuestionsList.length 
                           ? 'bg-teal-100 text-teal-700' 
@@ -2189,7 +2189,7 @@ const OCREvaluation = () => {
                             }`}
                           >
                             <div className="flex items-start gap-2">
-                              <span className={`relative flex items-center justify-center h-5 w-5 lg:h-6 lg:w-6 rounded-full text-[10px] lg:text-xs font-bold shrink-0 ${
+                              <span className={`relative flex items-center justify-center h-5 w-5 lg:h-6 lg:w-6 rounded-full text-[10px] lg:text-xs font-medium shrink-0 ${
                                 isCurrentQuestion
                                   ? 'bg-white/20 text-white'
                                   : phase2VisitedQuestions.has(index)
@@ -2224,7 +2224,7 @@ const OCREvaluation = () => {
                     <div className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 bg-gradient-to-r from-teal-50 to-slate-50">
                       <div className="flex items-start gap-2 sm:gap-3 md:gap-4 p-2.5 sm:p-3 md:p-4 rounded-xl bg-white border border-teal-100">
                         <div className="flex items-center justify-center h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded-full bg-teal-600 text-white shrink-0">
-                          <span className="text-[10px] sm:text-xs md:text-sm font-bold">Q{mockQuestionsList[ocrActiveQuestionIndex]?.id}</span>
+                          <span className="text-[10px] sm:text-xs md:text-sm font-medium">Q{mockQuestionsList[ocrActiveQuestionIndex]?.id}</span>
                         </div>
                         <div className="flex-1 min-w-0 space-y-1.5 sm:space-y-2">
                           <p className="text-[11px] sm:text-xs md:text-sm text-slate-800 leading-relaxed font-medium">
@@ -2233,7 +2233,7 @@ const OCREvaluation = () => {
                           <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-[10px] sm:text-xs text-slate-500">
                             <span className="flex items-center gap-1">
                               <Target className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-teal-600" />
-                              Max Score: <span className="font-semibold text-teal-700">{mockQuestionsList[ocrActiveQuestionIndex]?.maxScore}</span>
+                              Max Score: <span className="font-medium text-teal-700">{mockQuestionsList[ocrActiveQuestionIndex]?.maxScore}</span>
                             </span>
                           </div>
                         </div>
@@ -2252,7 +2252,7 @@ const OCREvaluation = () => {
                             <div className="px-3 sm:px-4 py-2 sm:py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                               <div className="flex items-center gap-2">
                                 <div className="flex items-center justify-center h-6 w-6 rounded-full bg-indigo-100 text-indigo-700">
-                                  <span className="text-xs font-bold">{segment.id}</span>
+                                  <span className="text-xs font-medium">{segment.id}</span>
                                 </div>
                                 <span className="text-xs sm:text-sm font-medium text-slate-700">{segment.label}</span>
                               </div>
@@ -2452,7 +2452,7 @@ const OCREvaluation = () => {
                             }
                           }}
                           disabled={!isClickable}
-                          className={`relative flex items-center justify-center h-8 w-8 rounded-full text-xs font-bold shrink-0 transition-all ${
+                          className={`relative flex items-center justify-center h-8 w-8 rounded-full text-xs font-medium shrink-0 transition-all ${
                             isCurrentQuestion
                               ? 'bg-teal-600 text-white shadow-sm'
                               : phase1VisitedQuestions.has(index)
@@ -2507,7 +2507,7 @@ const OCREvaluation = () => {
                 <div className="hidden md:flex w-64 lg:w-72 border-r border-slate-200 bg-slate-50 flex-col shrink-0">
                   <div className="px-3 lg:px-4 py-2.5 lg:py-3 border-b border-slate-200 bg-white shrink-0">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xs lg:text-sm font-semibold text-slate-700">Questions</h4>
+                      <h4 className="text-xs lg:text-sm font-medium text-slate-700">Questions</h4>
                       <span className={`text-[10px] lg:text-xs font-medium px-2 py-0.5 rounded-full ${
                         phase1VisitedQuestions.size === mockQuestionsList.length 
                           ? 'bg-teal-100 text-teal-700' 
@@ -2556,7 +2556,7 @@ const OCREvaluation = () => {
                             }`}
                           >
                             <div className="flex items-start gap-2">
-                              <span className={`relative flex items-center justify-center h-5 w-5 lg:h-6 lg:w-6 rounded-full text-[10px] lg:text-xs font-bold shrink-0 ${
+                              <span className={`relative flex items-center justify-center h-5 w-5 lg:h-6 lg:w-6 rounded-full text-[10px] lg:text-xs font-medium shrink-0 ${
                                 isCurrentQuestion
                                   ? 'bg-white/20 text-white'
                                   : phase1VisitedQuestions.has(index)
@@ -2592,7 +2592,7 @@ const OCREvaluation = () => {
                       <div className="flex flex-col gap-2 sm:gap-3">
                         {/* Candidate Info Row */}
                         <div className="flex items-center gap-2 sm:gap-3">
-                          <h3 className="text-xs sm:text-sm md:text-lg font-semibold text-slate-800 truncate">{phase1ReviewCandidate.candidateName}</h3>
+                          <h3 className="text-xs sm:text-sm md:text-lg font-medium text-slate-800 truncate">{phase1ReviewCandidate.candidateName}</h3>
                           <span className="text-[10px] sm:text-xs md:text-sm text-slate-500 bg-white/70 px-1.5 sm:px-2 py-0.5 rounded shrink-0">
                             {phase1ReviewCandidate.registrationName}
                           </span>
@@ -2638,7 +2638,7 @@ const OCREvaluation = () => {
                     <div className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 bg-white">
                       <div className="flex items-start gap-2 sm:gap-3 md:gap-4 p-2.5 sm:p-3 md:p-4 rounded-xl bg-gradient-to-r from-teal-50 to-slate-50 border border-teal-100">
                         <div className="flex items-center justify-center h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded-full bg-teal-600 text-white shrink-0">
-                          <span className="text-[10px] sm:text-xs md:text-sm font-bold">Q{mockQuestionsList[activeQuestionIndex]?.id}</span>
+                          <span className="text-[10px] sm:text-xs md:text-sm font-medium">Q{mockQuestionsList[activeQuestionIndex]?.id}</span>
                         </div>
                         <div className="flex-1 min-w-0 space-y-1.5 sm:space-y-2">
                           <p className="text-[11px] sm:text-xs md:text-sm text-slate-800 leading-relaxed font-medium">
@@ -2647,7 +2647,7 @@ const OCREvaluation = () => {
                           <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-[10px] sm:text-xs text-slate-500 flex-wrap">
                             <span className="flex items-center gap-1">
                               <Target className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-teal-600" />
-                              Max Score: <span className="font-semibold text-teal-700">{mockQuestionsList[activeQuestionIndex]?.maxScore}</span>
+                              Max Score: <span className="font-medium text-teal-700">{mockQuestionsList[activeQuestionIndex]?.maxScore}</span>
                             </span>
                           </div>
                         </div>
@@ -2822,7 +2822,7 @@ const OCREvaluation = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-72 p-3">
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-sm text-slate-800">Evaluation Details</h4>
+                    <h4 className="font-medium text-sm text-slate-800">Evaluation Details</h4>
                     <div className="space-y-2 text-xs">
                       <div className="flex justify-between">
                         <span className="text-slate-500">Model Used:</span>
@@ -2910,7 +2910,7 @@ const OCREvaluation = () => {
                             }
                           }}
                           disabled={!isClickable}
-                          className={`flex items-center justify-center h-8 w-8 rounded-full text-xs font-bold shrink-0 transition-all ${
+                          className={`flex items-center justify-center h-8 w-8 rounded-full text-xs font-medium shrink-0 transition-all ${
                             isCurrentQuestion
                               ? 'bg-teal-600 text-white shadow-sm'
                               : phase3VisitedQuestions.has(index)
@@ -2964,7 +2964,7 @@ const OCREvaluation = () => {
                 {/* Desktop: Left Sidebar Question List */}
                 <div className="hidden md:flex w-64 lg:w-72 border-r border-slate-200 bg-slate-50 flex-col shrink-0">
                   <div className="px-3 lg:px-4 py-2.5 lg:py-3 border-b border-slate-200 bg-white shrink-0">
-                    <h4 className="text-xs lg:text-sm font-semibold text-slate-700">Questions</h4>
+                    <h4 className="text-xs lg:text-sm font-medium text-slate-700">Questions</h4>
                     <p className="text-[10px] lg:text-xs text-slate-500 mt-0.5">{mockQuestionsList.length} questions</p>
                     <div className="mt-2 h-1.5 bg-slate-200 rounded-full overflow-hidden">
                       <div 
@@ -3002,7 +3002,7 @@ const OCREvaluation = () => {
                             }`}
                           >
                             <div className="flex items-start gap-2">
-                              <span className={`relative flex items-center justify-center h-5 w-5 lg:h-6 lg:w-6 rounded-full text-[10px] lg:text-xs font-bold shrink-0 ${
+                              <span className={`relative flex items-center justify-center h-5 w-5 lg:h-6 lg:w-6 rounded-full text-[10px] lg:text-xs font-medium shrink-0 ${
                                 isCurrentQuestion
                                   ? 'bg-white/20 text-white'
                                   : phase3VisitedQuestions.has(index)
@@ -3042,7 +3042,7 @@ const OCREvaluation = () => {
                           <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4 md:gap-6 p-2.5 sm:p-3 md:p-4 rounded-xl bg-white border border-teal-100">
                             <div className="flex items-start gap-2 sm:gap-3 md:gap-4 flex-1 min-w-0">
                               <div className="flex items-center justify-center h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded-full bg-teal-600 text-white shrink-0">
-                                <span className="text-[10px] sm:text-xs md:text-sm font-bold">Q{activeQuestion?.id}</span>
+                                <span className="text-[10px] sm:text-xs md:text-sm font-medium">Q{activeQuestion?.id}</span>
                               </div>
                               <div className="space-y-1 flex-1 min-w-0">
                                 <p className="text-[11px] sm:text-xs md:text-sm text-slate-800 leading-relaxed font-medium">
@@ -3054,7 +3054,7 @@ const OCREvaluation = () => {
                               <p className="text-[10px] sm:text-xs font-medium text-slate-500 uppercase tracking-wide mb-1">Max Score</p>
                               <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-lg bg-teal-50 border border-teal-200">
                                 <Target className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-teal-600" />
-                                <span className="text-lg sm:text-xl md:text-2xl font-bold text-teal-700">{activeQuestion?.maxScore}</span>
+                                <span className="text-lg sm:text-xl md:text-2xl font-medium text-teal-700">{activeQuestion?.maxScore}</span>
                               </div>
                             </div>
                           </div>
@@ -3067,7 +3067,7 @@ const OCREvaluation = () => {
                             <div className="px-4 sm:px-5 md:px-6 py-4 sm:py-5 md:py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
                               <div className="flex items-center gap-2 sm:gap-3">
                                 <Award className="w-5 h-5 sm:w-6 sm:h-6 text-teal-600" />
-                                <h3 className="text-sm sm:text-base font-semibold text-slate-800">Evaluation Score</h3>
+                                <h3 className="text-sm sm:text-base font-medium text-slate-800">Evaluation Score</h3>
                               </div>
                               <div className="flex items-center gap-3 sm:gap-4">
                                 <div className="flex items-baseline gap-1.5 sm:gap-2">
@@ -3088,7 +3088,7 @@ const OCREvaluation = () => {
                                       }
                                     }}
                                     disabled={!manualMarkingEnabled}
-                                    className={`w-16 sm:w-20 md:w-24 text-3xl sm:text-4xl md:text-5xl font-bold bg-transparent border-b-2 focus:outline-none text-center ${
+                                    className={`w-16 sm:w-20 md:w-24 text-3xl sm:text-4xl md:text-5xl font-medium bg-transparent border-b-2 focus:outline-none text-center ${
                                       manualMarkingEnabled 
                                         ? 'text-teal-600 border-teal-300 focus:border-teal-500 cursor-text' 
                                         : 'text-slate-400 border-slate-200 cursor-not-allowed'
@@ -3129,7 +3129,7 @@ const OCREvaluation = () => {
                                   Confirm Score Update
                                 </DialogTitle>
                                 <DialogDescription>
-                                  Are you sure you want to update the evaluation score to <span className="font-semibold text-teal-600">{pendingSaveScore}</span> out of <span className="font-semibold">{activeQuestion?.maxScore}</span>?
+                                  Are you sure you want to update the evaluation score to <span className="font-medium text-teal-600">{pendingSaveScore}</span> out of <span className="font-medium">{activeQuestion?.maxScore}</span>?
                                 </DialogDescription>
                               </DialogHeader>
                               <DialogFooter className="gap-2 sm:gap-0">
@@ -3185,7 +3185,7 @@ const OCREvaluation = () => {
                             <div className="rounded-lg sm:rounded-xl border border-slate-200 bg-white overflow-hidden">
                               <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-indigo-50 border-b border-slate-200 flex items-center gap-2">
                                 <FileText className="w-4 h-4 text-indigo-600" />
-                                <h3 className="text-xs sm:text-sm font-semibold text-slate-800">OCR Data</h3>
+                                <h3 className="text-xs sm:text-sm font-medium text-slate-800">OCR Data</h3>
                               </div>
                               <div className="p-3 sm:p-4">
                                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -3198,7 +3198,7 @@ const OCREvaluation = () => {
                             <div className="rounded-lg sm:rounded-xl border border-slate-200 bg-white overflow-hidden">
                               <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-emerald-50 border-b border-slate-200 flex items-center gap-2">
                                 <ListChecks className="w-4 h-4 text-emerald-600" />
-                                <h3 className="text-xs sm:text-sm font-semibold text-slate-800">Keypoints</h3>
+                                <h3 className="text-xs sm:text-sm font-medium text-slate-800">Keypoints</h3>
                               </div>
                               <div className="p-3 sm:p-4">
                                 <ul className="space-y-2">
@@ -3216,7 +3216,7 @@ const OCREvaluation = () => {
                             <div className="rounded-lg sm:rounded-xl border border-slate-200 bg-white overflow-hidden">
                               <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 border-b border-slate-200 flex items-center gap-2">
                                 <AlertTriangle className="w-4 h-4 text-amber-600" />
-                                <h3 className="text-xs sm:text-sm font-semibold text-slate-800">Missing Items</h3>
+                                <h3 className="text-xs sm:text-sm font-medium text-slate-800">Missing Items</h3>
                               </div>
                               <div className="p-3 sm:p-4">
                                 <ul className="space-y-2">
@@ -3234,7 +3234,7 @@ const OCREvaluation = () => {
                             <div className="rounded-lg sm:rounded-xl border border-slate-200 bg-white overflow-hidden">
                               <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-purple-50 border-b border-slate-200 flex items-center gap-2">
                                 <MessageSquare className="w-4 h-4 text-purple-600" />
-                                <h3 className="text-xs sm:text-sm font-semibold text-slate-800">Rationale</h3>
+                                <h3 className="text-xs sm:text-sm font-medium text-slate-800">Rationale</h3>
                               </div>
                               <div className="p-3 sm:p-4">
                                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -3324,15 +3324,15 @@ const OCREvaluation = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-4 pt-2 border-t border-teal-200">
                   {/* <div className="text-center">
-                    <p className="text-xl font-bold text-teal-700">{pendingUploadData.candidates.length}</p>
+                    <p className="text-xl font-medium text-teal-700">{pendingUploadData.candidates.length}</p>
                     <p className="text-xs text-slate-500">Candidates</p>
                   </div> */}
                   <div className="text-center">
-                    <p className="text-xl font-bold text-teal-700">{pendingUploadData.fileCount}</p>
+                    <p className="text-xl font-medium text-teal-700">{pendingUploadData.fileCount}</p>
                     <p className="text-xs text-slate-500">Files</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xl font-bold text-teal-700">{formatFileSize(pendingUploadData.totalSize)}</p>
+                    <p className="text-xl font-medium text-teal-700">{formatFileSize(pendingUploadData.totalSize)}</p>
                     <p className="text-xs text-slate-500">Total Size</p>
                   </div>
                 </div>
@@ -3451,7 +3451,7 @@ const OCREvaluation = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] sm:text-xs text-slate-500">Files Added</p>
-                    <p className="text-base sm:text-lg font-semibold text-slate-800">{addedFilesInfo.files.length}</p>
+                    <p className="text-base sm:text-lg font-medium text-slate-800">{addedFilesInfo.files.length}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
@@ -3460,7 +3460,7 @@ const OCREvaluation = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] sm:text-xs text-slate-500">Total Size</p>
-                    <p className="text-base sm:text-lg font-semibold text-slate-800 truncate">{formatFileSize(addedFilesInfo.totalSize)}</p>
+                    <p className="text-base sm:text-lg font-medium text-slate-800 truncate">{formatFileSize(addedFilesInfo.totalSize)}</p>
                   </div>
                 </div>
               </div>

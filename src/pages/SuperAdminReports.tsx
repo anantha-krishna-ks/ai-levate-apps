@@ -37,7 +37,7 @@ const SuperAdminReports = () => {
                 <Menu className="h-5 w-5" />
               </Button>
               <div className="min-w-0 flex items-center gap-3 flex-1">
-                <h1 className="text-base sm:text-xl font-semibold text-gray-900 truncate">
+                <h1 className="text-base sm:text-xl font-medium text-gray-900 truncate">
                   Reports
                 </h1>
               </div>
@@ -58,7 +58,7 @@ const SuperAdminReports = () => {
                 alt="Coming Soon" 
                 className="w-full h-64 object-cover rounded-lg mb-8"
               />
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl sm:text-4xl font-medium text-gray-900 mb-4">
                 Coming Soon
               </h2>
               <p className="text-lg text-gray-600 mb-6">

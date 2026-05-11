@@ -125,13 +125,13 @@ const ItemGenerator = () => {
                 </Button>
               </Link>
               <div className="h-6 w-px bg-border/40" />
-              <h1 className="text-xl font-semibold text-foreground">Item Generator</h1>
+              <h1 className="text-xl font-medium text-foreground">Item Generator</h1>
             </div>
             
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <span>Welcome Back,</span>
-                <span className="font-semibold text-primary">Robert Jones</span>
+                <span className="font-medium text-primary">Robert Jones</span>
               </div>
               <Button variant="ghost" size="icon" className="hover:scale-110 transition-transform duration-200">
                 <Bell className="h-5 w-5" />
@@ -153,7 +153,7 @@ const ItemGenerator = () => {
           <div className="col-span-12 lg:col-span-4">
             <Card className="h-full bg-white/90 backdrop-blur-sm border border-border/30 shadow-xl">
               <CardHeader className="pb-4">
-                <CardTitle className="flex items-center gap-2 text-xl font-bold">
+                <CardTitle className="flex items-center gap-2 text-xl font-medium">
                   <BookOpen className="h-6 w-6 text-primary" />
                   Generated Books
                 </CardTitle>
@@ -163,14 +163,14 @@ const ItemGenerator = () => {
                   <Link key={index} to={`/question-generator/${book.code.toLowerCase()}`}>
                     <Card className="group p-4 bg-white/95 backdrop-blur-sm border border-border/30 hover:shadow-lg hover-glow transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-16 bg-gradient-to-br from-primary/30 to-primary/10 rounded-lg flex items-center justify-center text-xs font-bold text-primary border border-primary/30">
+                        <div className="w-12 h-16 bg-gradient-to-br from-primary/30 to-primary/10 rounded-lg flex items-center justify-center text-xs font-medium text-primary border border-primary/30">
                           {book.code}
                         </div>
                         <div className="flex-1 min-w-0">
                           <Badge variant="secondary" className="mb-2 text-xs">
                             {book.year}
                           </Badge>
-                          <h3 className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors leading-tight">
+                          <h3 className="font-medium text-sm mb-1 group-hover:text-primary transition-colors leading-tight">
                             {book.title}
                           </h3>
                           <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
@@ -219,7 +219,7 @@ const ItemGenerator = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <div className={`text-2xl font-bold ${stat.textColor} group-hover:scale-105 transition-transform duration-300`}>
+                      <div className={`text-2xl font-medium ${stat.textColor} group-hover:scale-105 transition-transform duration-300`}>
                         {stat.value}
                       </div>
                       <p className="text-xs font-medium text-muted-foreground">
@@ -237,7 +237,7 @@ const ItemGenerator = () => {
                           {stat.subStats.map((subStat, subIndex) => (
                             <div key={subIndex} className="flex items-center justify-between text-xs">
                               <span className="text-muted-foreground">{subStat.label}</span>
-                              <span className={`font-bold ${subStat.color}`}>{subStat.value}</span>
+                              <span className={`font-medium ${subStat.color}`}>{subStat.value}</span>
                             </div>
                           ))}
                         </div>

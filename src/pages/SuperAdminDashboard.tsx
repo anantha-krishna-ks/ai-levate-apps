@@ -96,7 +96,7 @@ const SuperAdminDashboard = () => {
                 <Menu className="h-5 w-5" />
               </Button>
               <div className="min-w-0 flex items-center gap-3 flex-1">
-                <h1 className="text-base sm:text-xl font-semibold text-gray-900 truncate">
+                <h1 className="text-base sm:text-xl font-medium text-gray-900 truncate">
                   Subscription Management
                 </h1>
               </div>
@@ -202,7 +202,7 @@ const SuperAdminDashboard = () => {
                   </div>
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
                   No Subscription Details Found
                 </h3>
                 <p className="text-sm text-gray-600 mb-4">
@@ -213,7 +213,7 @@ const SuperAdminDashboard = () => {
                   <div className="flex items-start gap-2 text-left">
                     <div className="flex-shrink-0 mt-0.5">
                       <div className="w-4 h-4 rounded-full bg-orange-500 flex items-center justify-center">
-                        <span className="text-white text-[10px] font-bold">!</span>
+                        <span className="text-white text-[10px] font-medium">!</span>
                       </div>
                     </div>
                     <div>
@@ -234,13 +234,13 @@ const SuperAdminDashboard = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="font-semibold">Date</TableHead>
-                    <TableHead className="font-semibold">User Name</TableHead>
-                    <TableHead className="font-semibold">Contact Details</TableHead>
-                    <TableHead className="font-semibold">Email Id</TableHead>
-                    <TableHead className="font-semibold">Application Name</TableHead>
-                    <TableHead className="font-semibold">Admin Status</TableHead>
-                    <TableHead className="font-semibold">Actions</TableHead>
+                    <TableHead className="font-medium">Date</TableHead>
+                    <TableHead className="font-medium">User Name</TableHead>
+                    <TableHead className="font-medium">Contact Details</TableHead>
+                    <TableHead className="font-medium">Email Id</TableHead>
+                    <TableHead className="font-medium">Application Name</TableHead>
+                    <TableHead className="font-medium">Admin Status</TableHead>
+                    <TableHead className="font-medium">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

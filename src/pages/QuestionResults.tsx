@@ -182,7 +182,7 @@ const QuestionResults = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AL</span>
+                <span className="text-white font-medium text-sm">AL</span>
               </div>
               <img 
                 src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
@@ -269,7 +269,7 @@ const QuestionResults = () => {
                 <span className="text-sm font-medium text-gray-700">{stat.title}</span>
                 {stat.icon}
               </div>
-              <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+              <div className="text-2xl font-medium text-gray-900">{stat.value}</div>
             </Card>
           ))}
         </div>
@@ -278,7 +278,7 @@ const QuestionResults = () => {
         <Card className="p-6 bg-white border border-gray-200 shadow-sm mb-8">
           <div className="flex items-center gap-2 mb-6">
             <span className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm">?</span>
-            <h3 className="text-lg font-semibold text-gray-900">Question Generation Parameters</h3>
+            <h3 className="text-lg font-medium text-gray-900">Question Generation Parameters</h3>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-6">
@@ -382,7 +382,7 @@ const QuestionResults = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">Generated Questions</h3>
+              <h3 className="text-lg font-medium text-gray-900">Generated Questions</h3>
               <p className="text-sm text-gray-500">Review and manage your generated questions</p>
             </div>
             <div className="flex gap-3">
@@ -509,7 +509,7 @@ const QuestionResults = () => {
           <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <Sparkles className="w-6 h-6 text-gray-600" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">Need more questions?</h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">Need more questions?</h3>
           <p className="text-gray-600 mb-6">Generate additional questions with the same or different parameters</p>
           <Button className="bg-blue-600 hover:bg-blue-700 text-white">
             Generate More Questions
@@ -538,7 +538,7 @@ const QuestionResults = () => {
                   <div className="flex items-center justify-between">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-600">Total Questions</p>
-                      <p className="text-2xl font-bold" style={{ color: "#1c398e", fontSize: '1.25rem' }}>
+                      <p className="text-2xl font-medium" style={{ color: "#1c398e", fontSize: '1.25rem' }}>
                         1,247
                       </p>
                       <p className="text-xs text-gray-500">+15% this month</p>
@@ -555,7 +555,7 @@ const QuestionResults = () => {
                   <div className="flex items-center justify-between">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-600">AI Generated</p>
-                      <p className="text-2xl font-bold" style={{ color: "#0d542b", fontSize: '1.25rem' }}>
+                      <p className="text-2xl font-medium" style={{ color: "#0d542b", fontSize: '1.25rem' }}>
                         892
                       </p>
                       <p className="text-xs text-gray-500">High quality</p>
@@ -572,7 +572,7 @@ const QuestionResults = () => {
                   <div className="flex items-center justify-between">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-600">This Week</p>
-                      <p className="text-2xl font-bold" style={{ color: "#59168b", fontSize: '1.25rem' }}>
+                      <p className="text-2xl font-medium" style={{ color: "#59168b", fontSize: '1.25rem' }}>
                         47
                       </p>
                       <p className="text-xs text-gray-500">New questions</p>
@@ -589,7 +589,7 @@ const QuestionResults = () => {
                   <div className="flex items-center justify-between">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-600">Contributors</p>
-                      <p className="text-2xl font-bold" style={{ color: "#7e2a0c", fontSize: '1.25rem' }}>
+                      <p className="text-2xl font-medium" style={{ color: "#7e2a0c", fontSize: '1.25rem' }}>
                         12
                       </p>
                       <p className="text-xs text-gray-500">Active authors</p>
@@ -853,7 +853,7 @@ const QuestionResults = () => {
                 <Edit3 className="w-5 h-5 text-white" />
               </div>
               <div>
-                <DialogTitle className="text-xl font-semibold text-gray-900">
+                <DialogTitle className="text-xl font-medium text-gray-900">
                   {questionType === "written-response" ? "Edit Written Response" : "Edit Multiple Choice"}
                 </DialogTitle>
                 <p className="text-sm text-gray-500 mt-1">
@@ -873,7 +873,7 @@ const QuestionResults = () => {
                 <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
                   <FileText className="w-4 h-4 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">Question Stem</h3>
+                <h3 className="text-lg font-medium text-gray-900">Question Stem</h3>
               </div>
               
               <Textarea 
@@ -891,7 +891,7 @@ const QuestionResults = () => {
                     <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
                       <MessageSquare className="w-4 h-4 text-purple-600" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900">Sample Answer</h3>
+                    <h3 className="text-lg font-medium text-gray-900">Sample Answer</h3>
                   </div>
                   
                   <Textarea 
@@ -908,7 +908,7 @@ const QuestionResults = () => {
                       <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
                         <List className="w-4 h-4 text-green-600" />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900">Key Points</h3>
+                      <h3 className="text-lg font-medium text-gray-900">Key Points</h3>
                     </div>
                     <Button variant="outline" size="sm" className="flex items-center gap-2">
                       <Plus className="w-4 h-4" />
@@ -952,7 +952,7 @@ const QuestionResults = () => {
                       <CheckCircle2 className="w-5 h-5 text-green-600" />
                     </div>
                     <div>
-                      <Label className="text-lg font-semibold text-gray-800">Options</Label>
+                      <Label className="text-lg font-medium text-gray-800">Options</Label>
                       <p className="text-sm text-gray-500">Configure answer choices</p>
                     </div>
                   </div>
@@ -960,7 +960,7 @@ const QuestionResults = () => {
                   <div className="space-y-4">
                     {['A', 'B', 'C', 'D'].map((option, index) => (
                       <div key={option} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
-                        <div className="w-10 h-10 bg-white border-2 border-gray-300 rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 mt-1 shadow-sm">
+                        <div className="w-10 h-10 bg-white border-2 border-gray-300 rounded-lg flex items-center justify-center text-sm font-medium text-gray-700 mt-1 shadow-sm">
                           {option}
                         </div>
                         <Textarea 
@@ -984,7 +984,7 @@ const QuestionResults = () => {
                       <Target className="w-5 h-5 text-purple-600" />
                     </div>
                     <div>
-                      <Label className="text-lg font-semibold text-gray-800">Correct Answer</Label>
+                      <Label className="text-lg font-medium text-gray-800">Correct Answer</Label>
                       <p className="text-sm text-gray-500">Select the correct option</p>
                     </div>
                   </div>
@@ -1017,7 +1017,7 @@ const QuestionResults = () => {
                       <AlertCircle className="w-5 h-5 text-orange-600" />
                     </div>
                     <div>
-                      <Label className="text-lg font-semibold text-gray-800">Feedback</Label>
+                      <Label className="text-lg font-medium text-gray-800">Feedback</Label>
                       <p className="text-sm text-gray-500">Provide explanations for each option</p>
                     </div>
                   </div>
@@ -1030,8 +1030,8 @@ const QuestionResults = () => {
                       {option: 'D', feedback: 'Incorrect. Speculative risk involves both loss and gain, making it uninsurable.', bg: 'bg-gray-50'}
                     ].map((item, index) => (
                       <div key={item.option} className={`p-4 ${item.bg} rounded-lg border border-gray-200`}>
-                        <Label className="text-sm font-semibold text-gray-800 mb-3 block flex items-center gap-2">
-                          <span className="w-6 h-6 bg-white border border-gray-300 rounded-full flex items-center justify-center text-xs font-bold">
+                        <Label className="text-sm font-medium text-gray-800 mb-3 block flex items-center gap-2">
+                          <span className="w-6 h-6 bg-white border border-gray-300 rounded-full flex items-center justify-center text-xs font-medium">
                             {item.option}
                           </span>
                           Option {item.option} Feedback
@@ -1053,7 +1053,7 @@ const QuestionResults = () => {
                 <div className="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center">
                   <FileQuestion className="w-4 h-4 text-orange-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">Question Details</h3>
+                <h3 className="text-lg font-medium text-gray-900">Question Details</h3>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1138,7 +1138,7 @@ const QuestionResults = () => {
                 <Eye className="w-5 h-5 text-white" />
               </div>
               <div>
-                <DialogTitle className="text-xl font-semibold text-gray-900">
+                <DialogTitle className="text-xl font-medium text-gray-900">
                   {questionType === "written-response" ? "Preview Written Response" : "Preview Multiple Choice"}
                 </DialogTitle>
                 <p className="text-sm text-gray-500 mt-1">
@@ -1158,7 +1158,7 @@ const QuestionResults = () => {
                 <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
                   <FileText className="w-4 h-4 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">Question Stem:</h3>
+                <h3 className="text-lg font-medium text-gray-900">Question Stem:</h3>
               </div>
               
               <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg">
@@ -1176,7 +1176,7 @@ const QuestionResults = () => {
                     <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
                       <MessageSquare className="w-4 h-4 text-purple-600" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900">Answer:</h3>
+                    <h3 className="text-lg font-medium text-gray-900">Answer:</h3>
                   </div>
                   
                   <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
@@ -1192,7 +1192,7 @@ const QuestionResults = () => {
                     <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
                       <List className="w-4 h-4 text-green-600" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900">Key Points:</h3>
+                    <h3 className="text-lg font-medium text-gray-900">Key Points:</h3>
                   </div>
                   
                   <div className="p-6 bg-green-50 border border-green-200 rounded-lg space-y-4">
@@ -1210,7 +1210,7 @@ const QuestionResults = () => {
             ) : (
               <div>
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Answer Options:</h3>
+                  <h3 className="text-lg font-medium text-gray-800 mb-4">Answer Options:</h3>
                   
                   <div className="space-y-4">
                     <div className="flex items-start gap-4 p-4 bg-green-50 border-2 border-green-300 rounded-lg">
@@ -1268,7 +1268,7 @@ const QuestionResults = () => {
                     <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
                       <FileText className="w-4 h-4 text-orange-600" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-800">Detailed Feedback:</h3>
+                    <h3 className="text-lg font-medium text-gray-800">Detailed Feedback:</h3>
                   </div>
                   
                   <div className="space-y-4">
@@ -1322,7 +1322,7 @@ const QuestionResults = () => {
                 <div className="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center">
                   <FileQuestion className="w-4 h-4 text-orange-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">Question Details:</h3>
+                <h3 className="text-lg font-medium text-gray-900">Question Details:</h3>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1440,7 +1440,7 @@ const QuestionResults = () => {
               <CheckCircle2 className="w-8 h-8 text-green-600" />
             </div>
             <DialogHeader>
-              <DialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+              <DialogTitle className="text-xl font-medium text-gray-900 mb-2">
                 Data Saved Successfully!
               </DialogTitle>
             </DialogHeader>
