@@ -53,17 +53,7 @@ export function AppSidebar({ onNavigate }: AppSidebarProps = {}) {
 
   return (
     <div className="h-full w-full bg-white/95 backdrop-blur-xl border-r border-border/20 shadow-xl">
-      <div className="p-4 border-b border-border/20">
-        <div className="flex items-center">
-          <img 
-            src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
-            alt="AI-Levate" 
-            className="h-8 w-auto"
-          />
-        </div>
-      </div>
-      
-      <div className="px-4 py-6">
+      <div className="px-4 py-6 pt-4">
         <nav className="space-y-2">
           {items.map((item) => (
             <Link

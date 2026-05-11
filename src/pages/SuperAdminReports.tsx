@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SuperAdminSidebar } from "@/components/SuperAdminSidebar";
@@ -28,6 +29,13 @@ const SuperAdminReports = () => {
         <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
           <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
             <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
+              <Link to="/superadmin-dashboard" className="flex-shrink-0">
+                <img 
+                  src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
+                  alt="AI-Levate" 
+                  className="h-8 w-auto"
+                />
+              </Link>
               <Button
                 variant="ghost"
                 size="icon"
