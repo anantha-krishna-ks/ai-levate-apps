@@ -8,27 +8,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Clean, elegant design matching ItemGeneration */
-    --background: 210 20% 98%; /* Clean light gray background */
-    --foreground: 224 17% 15%; /* Dark text for good contrast */
+    /* Apple-like minimal, professional education aesthetic */
+    --background: 220 20% 98%;
+    --foreground: 220 15% 12%;
     
     --card: 0 0% 100%; /* Pure white cards */
-    --card-foreground: 224 17% 15%;
+    --card-foreground: 220 15% 12%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 224 17% 15%;
+    --popover-foreground: 220 15% 12%;
     
     --primary: 211 100% 44%; /* #006ce0 */
     --primary-foreground: 0 0% 100%;
+    --primary-soft: 211 100% 96%;
     
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 224 17% 15%;
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 220 15% 12%;
     
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 9% 46%;
     
     --accent: 211 100% 44%;
     --accent-foreground: 0 0% 100%;
+
+    --success: 145 63% 42%;
+    --warning: 38 92% 50%;
+
+    /* Pastel accents */
+    --pastel-lavender: 256 60% 96.5%;
+    --pastel-lavender-ink: 256 45% 45%;
+    --pastel-mint: 158 45% 94%;
+    --pastel-mint-ink: 158 45% 32%;
+    --pastel-peach: 22 80% 95.5%;
+    --pastel-peach-ink: 22 70% 42%;
+    --pastel-sky: 205 70% 95%;
+    --pastel-sky-ink: 205 70% 38%;
+    --pastel-rose: 340 70% 96%;
+    --pastel-rose-ink: 340 60% 44%;
     
     /* Colorful accent colors for stats cards */
     --orange-50: 33 100% 96%;
@@ -51,14 +67,14 @@ All colors MUST be HSL.
     --yellow-100: 55 97% 88%;
     --yellow-600: 45 93% 47%;
     
-    --destructive: 0 84% 60%;
+    --destructive: 4 80% 58%;
     --destructive-foreground: 0 0% 98%;
     
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 211 100% 44%;
     
-    --radius: 0.5rem;
+    --radius: 1rem;
     
     /* AI-themed gradients */
     --gradient-ai-primary: linear-gradient(135deg, hsl(211 100% 62%), hsl(211 100% 72%));
@@ -161,6 +177,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
   }
 }
 
