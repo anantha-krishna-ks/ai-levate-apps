@@ -279,7 +279,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-52 z-40 hidden lg:block">
+      <div className="fixed left-0 top-16 h-[calc(100%-4rem)] w-52 z-40 hidden lg:block">
         <AppSidebar />
       </div>
 
@@ -370,9 +370,8 @@ const Dashboard = () => {
         </SheetContent>
       </Sheet>
       
-      <div className="ml-0 lg:ml-52 min-h-screen flex flex-col">
-        {/* Header */}
-        <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+      {/* Header - full width across sidebar */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
           <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
             <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
               {/* Mobile Menu Button */}
@@ -430,6 +429,7 @@ const Dashboard = () => {
           </div>
         </header>
 
+      <div className="ml-0 lg:ml-52 pt-16 min-h-screen flex flex-col">
         {/* Page Title */}
         <div className="p-2">
           
