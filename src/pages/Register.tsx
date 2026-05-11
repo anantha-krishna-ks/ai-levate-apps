@@ -478,7 +478,7 @@ const Register = () => {
 
                   <Button 
                     type="submit"
-                    className="w-full h-12 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-medium rounded-lg transform transition-all duration-200 hover:scale-[1.02]"
+                    className="w-full h-12 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-medium rounded-full transform transition-all duration-200 hover:scale-[1.02]"
                   >
                     Create Account
                   </Button>

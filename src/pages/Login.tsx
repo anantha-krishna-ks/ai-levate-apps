@@ -268,7 +268,7 @@ const Login = () => {
                   <Button 
                     type="submit"
                     disabled={!canSubmit()}
-                    className="w-full h-12 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-medium rounded-lg transform transition-all duration-200 hover:scale-[1.02] disabled:opacity-50"
+                    className="w-full h-12 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-medium rounded-full transform transition-all duration-200 hover:scale-[1.02] disabled:opacity-50"
                   >
                     <LogIn className="w-5 h-5 mr-2" />
                     Sign In

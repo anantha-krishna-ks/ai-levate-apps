@@ -276,7 +276,7 @@ const KnowledgeBase = () => {
                         size="icon"
                         onClick={handleSendMessage}
                         disabled={!chatInput.trim()}
-                        className="h-9 w-9 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg flex-shrink-0"
+                        className="h-9 w-9 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-full flex-shrink-0"
                       >
                         <Send className="h-4 w-4 text-white" />
                       </Button>
