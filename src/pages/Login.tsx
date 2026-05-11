@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, Eye, EyeOff, AlertCircle, CheckCircle2, LogIn, UserCircle2 } from "lucide-react";
+import { Sparkles, Eye, EyeOff, AlertCircle, CheckCircle2, LogIn, User, ShieldCheck, Zap } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -225,23 +225,43 @@ const Login = () => {
                         }
                       }}
                     >
-                      <SelectTrigger className="h-12 bg-white/80 border-gray-200 text-sm">
-                        <div className="flex items-center gap-2 text-gray-600">
-                          <UserCircle2 className="w-4 h-4 text-primary" />
+                      <SelectTrigger
+                        className="h-12 bg-primary-soft/60 border border-primary/20 text-sm text-foreground hover:bg-primary-soft hover:border-primary/40 focus:ring-primary/30 transition-colors"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground shrink-0">
+                            <Zap className="w-3.5 h-3.5" />
+                          </span>
                           <SelectValue placeholder="Quick fill demo account" />
                         </div>
                       </SelectTrigger>
-                      <SelectContent className="rounded-2xl">
-                        <SelectItem value="user" className="rounded-xl">
-                          <div className="flex flex-col">
-                            <span className="text-sm font-medium">User</span>
-                            <span className="text-xs text-muted-foreground">demo@example.com / password123</span>
+                      <SelectContent className="rounded-2xl border-border/70 shadow-soft-md p-1.5">
+                        <SelectItem
+                          value="user"
+                          className="rounded-xl py-2.5 pl-3 pr-8 cursor-pointer focus:bg-primary-soft focus:text-foreground data-[state=checked]:bg-primary-soft"
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-pastel-sky text-pastel-sky-ink shrink-0">
+                              <User className="w-4 h-4" />
+                            </span>
+                            <div className="flex flex-col">
+                              <span className="text-sm font-medium leading-tight">User</span>
+                              <span className="text-xs text-muted-foreground">demo@example.com</span>
+                            </div>
                           </div>
                         </SelectItem>
-                        <SelectItem value="superadmin" className="rounded-xl">
-                          <div className="flex flex-col">
-                            <span className="text-sm font-medium">Super Admin</span>
-                            <span className="text-xs text-muted-foreground">superadmin@excelindia.com / school</span>
+                        <SelectItem
+                          value="superadmin"
+                          className="rounded-xl py-2.5 pl-3 pr-8 cursor-pointer focus:bg-primary-soft focus:text-foreground data-[state=checked]:bg-primary-soft"
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-pastel-lavender text-pastel-lavender-ink shrink-0">
+                              <ShieldCheck className="w-4 h-4" />
+                            </span>
+                            <div className="flex flex-col">
+                              <span className="text-sm font-medium leading-tight">Super Admin</span>
+                              <span className="text-xs text-muted-foreground">superadmin@excelindia.com</span>
+                            </div>
                           </div>
                         </SelectItem>
                       </SelectContent>
