@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SuperAdminSidebar } from "@/components/SuperAdminSidebar";
@@ -41,8 +42,6 @@ const SuperAdminReports = () => {
                 className="lg:hidden flex-shrink-0"
                 onClick={() => setMobileMenuOpen(true)}
               >
-                <Menu className="h-5 w-5" />
-              </Button>
                 <Menu className="h-5 w-5" />
               </Button>
               <div className="min-w-0 flex items-center gap-3 flex-1">
