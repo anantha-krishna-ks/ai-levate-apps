@@ -488,7 +488,7 @@ const QuestionGenerator = () => {
                       <div className="flex justify-center mt-8">
                         <Button 
                           type="submit"
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg"
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full"
                         >
                           <Sparkles className="w-4 h-4 mr-2" />
                           Generate Questions

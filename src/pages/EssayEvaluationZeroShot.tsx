@@ -231,7 +231,7 @@ const EssayEvaluationZeroShot = () => {
             <Button
               onClick={handleSubmitEvaluation}
               disabled={isEvaluating}
-              className="px-8 py-6 text-base font-medium bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-700 hover:via-purple-800 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
+              className="px-8 py-6 text-base font-medium bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-700 hover:via-purple-800 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-full"
             >
               {isEvaluating ? (
                 <>

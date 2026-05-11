@@ -496,7 +496,7 @@ const ItemRewriter = () => {
                 </div>
                 
                 <Button 
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 h-12 text-base font-medium rounded-lg transition-all duration-200 hover:scale-105"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 h-12 text-base font-medium rounded-full transition-all duration-200 hover:scale-105"
                   onClick={handleRewriteQuestions}
                   disabled={isRewriting}
                 >
