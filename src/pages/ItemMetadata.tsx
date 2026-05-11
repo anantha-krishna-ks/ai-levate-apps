@@ -221,10 +221,10 @@ const ItemMetadata = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">IM</span>
+              <span className="text-white font-medium text-lg">IM</span>
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-gray-900">Item Metadata</h1>
+              <h1 className="text-xl font-medium text-gray-900">Item Metadata</h1>
               <p className="text-sm text-gray-500">AI-Powered Metadata Extraction</p>
             </div>
           </div>
@@ -301,7 +301,7 @@ const ItemMetadata = () => {
                   <div className="space-y-4">
                     <CheckCircle className="h-12 w-12 text-green-600 mx-auto" />
                     <div>
-                      <p className="text-lg font-semibold text-green-800">{uploadedFile.name}</p>
+                      <p className="text-lg font-medium text-green-800">{uploadedFile.name}</p>
                       <p className="text-sm text-green-600">File uploaded successfully</p>
                     </div>
                     <div className="flex gap-3 justify-center">
@@ -357,7 +357,7 @@ const ItemMetadata = () => {
               <CardContent className="space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-purple-800">Custom Metadata Fields</h3>
+                    <h3 className="text-lg font-medium text-purple-800">Custom Metadata Fields</h3>
                     <Button
                       onClick={addMetadataField}
                       disabled={customMetadataList.length >= 5}
@@ -464,10 +464,10 @@ const ItemMetadata = () => {
                   <Table>
                     <TableHeader>
                       <TableRow className="border-orange-100">
-                        <TableHead className="w-16 font-semibold">Sl. No.</TableHead>
-                        <TableHead className="font-semibold">Question</TableHead>
+                        <TableHead className="w-16 font-medium">Sl. No.</TableHead>
+                        <TableHead className="font-medium">Question</TableHead>
                          {customMetadataList.map((metadata, index) => (
-                           <TableHead key={index} className="font-semibold">
+                           <TableHead key={index} className="font-medium">
                              {metadata || `Metadata ${index + 1}`}
                            </TableHead>
                          ))}

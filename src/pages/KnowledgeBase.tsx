@@ -180,7 +180,7 @@ const KnowledgeBase = () => {
                 <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
               <div className="flex flex-col">
-                <h2 className="text-base sm:text-lg font-semibold text-gray-900">
+                <h2 className="text-base sm:text-lg font-medium text-gray-900">
                   {isCreating ? "Create New Knowledge Base" : isCreatingStudyLO ? "Create Study LO" : isViewingGuidelines ? "Guideline Data" : isChatMode ? `Knowledge Base: ${selectedKBForChat?.bookName}` : "Knowledge Base System"}
                 </h2>
                 {isChatMode && selectedKBForChat && (
@@ -291,7 +291,7 @@ const KnowledgeBase = () => {
                 <Card className="border-2 border-blue-100 bg-blue-50">
                   <CardContent className="p-4">
                     <p className="text-sm text-gray-700">
-                      <span className="font-semibold">Knowledgebase Name:</span> {selectedKBForGuidelines?.name}
+                      <span className="font-medium">Knowledgebase Name:</span> {selectedKBForGuidelines?.name}
                     </p>
                   </CardContent>
                 </Card>
@@ -299,7 +299,7 @@ const KnowledgeBase = () => {
                 {/* Add New Guideline Card */}
                 <Card id="add-guideline-section" className="border-2 border-teal-100 bg-teal-50">
                   <CardContent className="p-6 space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-medium text-gray-900">
                       {editingGuideline ? 'Edit Guideline' : 'Add New Guideline'}
                     </h3>
                     
@@ -391,7 +391,7 @@ const KnowledgeBase = () => {
                 <Card className="border-2 border-purple-100 bg-purple-50">
                   <CardContent className="p-6 space-y-4">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-gray-900">All Guidelines</h3>
+                      <h3 className="text-lg font-medium text-gray-900">All Guidelines</h3>
                       <Button
                         variant="outline"
                         size="sm"
@@ -409,9 +409,9 @@ const KnowledgeBase = () => {
                         <Table>
                           <TableHeader>
                             <TableRow className="bg-gray-50 border-b-2 border-gray-200 hover:bg-gray-50">
-                              <TableHead className="font-semibold text-gray-900 py-4">Guideline Name</TableHead>
-                              <TableHead className="font-semibold text-gray-900 py-4">Guideline Type</TableHead>
-                              <TableHead className="font-semibold text-gray-900 py-4">Actions</TableHead>
+                              <TableHead className="font-medium text-gray-900 py-4">Guideline Name</TableHead>
+                              <TableHead className="font-medium text-gray-900 py-4">Guideline Type</TableHead>
+                              <TableHead className="font-medium text-gray-900 py-4">Actions</TableHead>
                             </TableRow>
                           </TableHeader>
                           <TableBody>
@@ -516,7 +516,7 @@ const KnowledgeBase = () => {
                 {/* Select Book Card */}
                 <Card className="border-2 border-blue-100 bg-blue-50">
                   <CardContent className="p-6 space-y-3">
-                    <h3 className="text-lg font-semibold text-blue-900">Select Book</h3>
+                    <h3 className="text-lg font-medium text-blue-900">Select Book</h3>
                     <Select value={selectedBook} onValueChange={setSelectedBook}>
                       <SelectTrigger className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20">
                         <SelectValue placeholder="Choose a book" />
@@ -533,7 +533,7 @@ const KnowledgeBase = () => {
                 {/* Upload Study LO Documents Card */}
                 <Card className="border-2 border-teal-100 bg-teal-50">
                   <CardContent className="p-6 space-y-3">
-                    <h3 className="text-lg font-semibold text-teal-900">Upload Study LO Documents</h3>
+                    <h3 className="text-lg font-medium text-teal-900">Upload Study LO Documents</h3>
                     <div className="bg-white border-2 border-dashed border-teal-200 rounded-lg p-12 text-center space-y-4 hover:border-teal-300 transition-colors">
                       <div className="flex justify-center">
                         <div className="p-4 bg-yellow-100 rounded-lg">
@@ -575,7 +575,7 @@ const KnowledgeBase = () => {
                 <Card className="border-2 border-purple-100 bg-purple-50">
                   <CardContent className="p-6">
                     <div className="mb-4">
-                      <h3 className="text-lg font-semibold text-purple-800">Select Knowledge Base Type</h3>
+                      <h3 className="text-lg font-medium text-purple-800">Select Knowledge Base Type</h3>
                       <p className="text-sm text-purple-600 mt-1">Choose how you want to organize your knowledge base</p>
                     </div>
                     
@@ -598,7 +598,7 @@ const KnowledgeBase = () => {
                             <Library className="h-5 w-5" />
                           </div>
                           <div className="flex-1">
-                            <h4 className={`font-semibold transition-colors ${
+                            <h4 className={`font-medium transition-colors ${
                               levelType === "book" ? "text-purple-900" : "text-gray-900"
                             }`}>
                               Book Level
@@ -634,7 +634,7 @@ const KnowledgeBase = () => {
                             <GraduationCap className="h-5 w-5" />
                           </div>
                           <div className="flex-1">
-                            <h4 className={`font-semibold transition-colors ${
+                            <h4 className={`font-medium transition-colors ${
                               levelType === "study" ? "text-purple-900" : "text-gray-900"
                             }`}>
                               Study Level
@@ -662,7 +662,7 @@ const KnowledgeBase = () => {
                       <div className="p-2 bg-blue-600 text-white rounded-lg">
                         <FileText className="h-5 w-5" />
                       </div>
-                      <h3 className="text-lg font-semibold text-blue-800">Basic Information</h3>
+                      <h3 className="text-lg font-medium text-blue-800">Basic Information</h3>
                     </div>
                     
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -721,7 +721,7 @@ const KnowledgeBase = () => {
                       <div className="p-2 bg-teal-600 text-white rounded-lg">
                         <FileText className="h-5 w-5" />
                       </div>
-                      <h3 className="text-lg font-semibold text-teal-800">File Uploads</h3>
+                      <h3 className="text-lg font-medium text-teal-800">File Uploads</h3>
                     </div>
                     
                     <div className={`grid ${levelType === "book" ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"} gap-6`}>
@@ -835,7 +835,7 @@ const KnowledgeBase = () => {
                       <div className="p-2 bg-orange-600 text-white rounded-lg">
                         <Search className="h-5 w-5" />
                       </div>
-                      <h3 className="text-lg font-semibold text-orange-800">Processing Settings</h3>
+                      <h3 className="text-lg font-medium text-orange-800">Processing Settings</h3>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -1043,7 +1043,7 @@ const KnowledgeBase = () => {
                 <div className="p-2 bg-purple-600 text-white rounded-lg">
                   <Search className="h-5 w-5" />
                 </div>
-                <h2 className="text-xl font-semibold text-purple-800">Select Customer</h2>
+                <h2 className="text-xl font-medium text-purple-800">Select Customer</h2>
               </div>
               
               <div className="relative">
@@ -1070,7 +1070,7 @@ const KnowledgeBase = () => {
                   <div className="p-2 bg-blue-600 text-white rounded-lg">
                     <FileText className="h-5 w-5" />
                   </div>
-                  <h2 className="text-xl font-semibold text-blue-800">Knowledge Bases</h2>
+                  <h2 className="text-xl font-medium text-blue-800">Knowledge Bases</h2>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-2">
@@ -1120,10 +1120,10 @@ const KnowledgeBase = () => {
                   <Table>
                     <TableHeader>
                       <TableRow className="bg-blue-50 border-b-2 border-blue-200 hover:bg-blue-50">
-                        <TableHead className="font-semibold text-blue-900 py-4">Knowledge Base Name</TableHead>
-                        <TableHead className="font-semibold text-blue-900 py-4">Book Name</TableHead>
-                        <TableHead className="font-semibold text-blue-900 py-4">Type</TableHead>
-                        <TableHead className="font-semibold text-blue-900 py-4">Actions</TableHead>
+                        <TableHead className="font-medium text-blue-900 py-4">Knowledge Base Name</TableHead>
+                        <TableHead className="font-medium text-blue-900 py-4">Book Name</TableHead>
+                        <TableHead className="font-medium text-blue-900 py-4">Type</TableHead>
+                        <TableHead className="font-medium text-blue-900 py-4">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -1212,7 +1212,7 @@ const KnowledgeBase = () => {
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent className="bg-white">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-xl font-semibold text-gray-900">Delete Knowledge Base</AlertDialogTitle>
+            <AlertDialogTitle className="text-xl font-medium text-gray-900">Delete Knowledge Base</AlertDialogTitle>
             <AlertDialogDescription className="text-gray-600 space-y-3">
               <p>Are you sure you want to delete this knowledge base? This action cannot be undone.</p>
               {kbToDelete && (

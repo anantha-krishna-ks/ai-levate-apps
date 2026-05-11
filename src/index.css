@@ -18,7 +18,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 224 17% 15%;
     
-    --primary: 217 91% 60%; /* Blue-600 #2563eb */
+    --primary: 211 100% 44%; /* #006ce0 */
     --primary-foreground: 0 0% 100%;
     
     --secondary: 210 20% 96%;
@@ -27,7 +27,7 @@ All colors MUST be HSL.
     --muted: 210 20% 96%;
     --muted-foreground: 215 16% 47%;
     
-    --accent: 217 91% 60%;
+    --accent: 211 100% 44%;
     --accent-foreground: 0 0% 100%;
     
     /* Colorful accent colors for stats cards */
@@ -56,40 +56,40 @@ All colors MUST be HSL.
     
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 217 91% 60%;
+    --ring: 211 100% 44%;
     
     --radius: 0.5rem;
     
     /* AI-themed gradients */
-    --gradient-ai-primary: linear-gradient(135deg, hsl(217 81% 62%), hsl(217 81% 72%));
-    --gradient-ai-accent: linear-gradient(135deg, hsl(217 81% 52%), hsl(217 81% 72%));
-    --gradient-neural: linear-gradient(135deg, hsl(217 81% 62%) 0%, hsl(217 81% 52%) 50%, hsl(217 81% 72%) 100%);
-    --gradient-glow: radial-gradient(circle at center, hsl(217 81% 62% / 0.15) 0%, transparent 70%);
+    --gradient-ai-primary: linear-gradient(135deg, hsl(211 100% 62%), hsl(211 100% 72%));
+    --gradient-ai-accent: linear-gradient(135deg, hsl(211 100% 52%), hsl(211 100% 72%));
+    --gradient-neural: linear-gradient(135deg, hsl(211 100% 62%) 0%, hsl(211 100% 52%) 50%, hsl(211 100% 72%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(211 100% 62% / 0.15) 0%, transparent 70%);
     
     /* Premium shadows */
-    --shadow-neural: 0 0 30px hsl(217 81% 62% / 0.3), 0 0 60px hsl(217 81% 72% / 0.2);
-    --shadow-ai-glow: 0 0 40px hsl(217 81% 62% / 0.4);
+    --shadow-neural: 0 0 30px hsl(211 100% 62% / 0.3), 0 0 60px hsl(211 100% 72% / 0.2);
+    --shadow-ai-glow: 0 0 40px hsl(211 100% 62% / 0.4);
     --shadow-premium: 0 25px 50px -12px hsl(217 25% 15% / 0.25);
     --shadow-floating: 0 32px 64px -12px hsl(217 25% 15% / 0.4);
     
     /* AI-specific colors */
-    --ai-primary: 217 81% 62%;
-    --ai-secondary: 217 81% 72%;
-    --ai-tertiary: 217 81% 52%;
-    --ai-neural: 217 81% 42%;
-    --ai-glow: 217 81% 82%;
+    --ai-primary: 211 100% 62%;
+    --ai-secondary: 211 100% 72%;
+    --ai-tertiary: 211 100% 52%;
+    --ai-neural: 211 100% 42%;
+    --ai-glow: 211 100% 82%;
     
     /* Primary color shades for hover effects */
-    --primary-50: 217 81% 95%;
-    --primary-100: 217 81% 90%;
-    --primary-200: 217 81% 82%;
-    --primary-300: 217 81% 72%;
-    --primary-400: 217 81% 62%;
-    --primary-500: 217 81% 52%;
-    --primary-600: 217 81% 42%;
-    --primary-700: 217 81% 32%;
-    --primary-800: 217 81% 22%;
-    --primary-900: 217 81% 12%;
+    --primary-50: 211 100% 95%;
+    --primary-100: 211 100% 90%;
+    --primary-200: 211 100% 82%;
+    --primary-300: 211 100% 72%;
+    --primary-400: 211 100% 62%;
+    --primary-500: 211 100% 52%;
+    --primary-600: 211 100% 42%;
+    --primary-700: 211 100% 32%;
+    --primary-800: 211 100% 22%;
+    --primary-900: 211 100% 12%;
     
     /* Enhanced grays */
     --gray-50: 215 15% 98%;
@@ -106,12 +106,12 @@ All colors MUST be HSL.
     /* Sidebar colors */
     --sidebar-background: 215 15% 98%;
     --sidebar-foreground: 215 20% 25%;
-    --sidebar-primary: 215 100% 25%;
+    --sidebar-primary: 211 100% 44%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 215 15% 95%;
     --sidebar-accent-foreground: 215 25% 15%;
     --sidebar-border: 215 15% 88%;
-    --sidebar-ring: 215 100% 25%;
+    --sidebar-ring: 211 100% 44%;
   }
 
   .dark {
@@ -160,6 +160,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Open Sans', sans-serif;
   }
 }
 

@@ -109,7 +109,7 @@ const QuestionGenerationLoading = () => {
       <div className="bg-white border-b border-gray-200 px-6 py-4 relative z-10">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-            <span className="text-white font-bold text-sm">AL</span>
+            <span className="text-white font-medium text-sm">AL</span>
           </div>
           <img 
             src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
@@ -143,7 +143,7 @@ const QuestionGenerationLoading = () => {
 
           {/* Title and Description */}
           <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold text-gray-900 animate-fade-in">
+            <h1 className="text-4xl font-medium text-gray-900 animate-fade-in">
               AI is Generating Your Questions
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
@@ -155,9 +155,9 @@ const QuestionGenerationLoading = () => {
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <span className="text-lg font-semibold text-gray-800">Processing Progress</span>
+                <span className="text-lg font-medium text-gray-800">Processing Progress</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-blue-600">{progress}%</span>
+                  <span className="text-2xl font-medium text-blue-600">{progress}%</span>
                   <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse" />
                 </div>
               </div>
@@ -196,7 +196,7 @@ const QuestionGenerationLoading = () => {
                       </div>
                       
                       <div className="flex-1">
-                        <h3 className={`text-base font-semibold mb-1 ${
+                        <h3 className={`text-base font-medium mb-1 ${
                           status === "complete" ? "text-green-900" :
                           status === "processing" ? "text-blue-900" : "text-gray-500"
                         }`}>
@@ -243,7 +243,7 @@ const QuestionGenerationLoading = () => {
                     </div>
                   </div>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                <h3 className="font-medium text-gray-900 mb-2">{feature.title}</h3>
                 <p className="text-sm text-gray-600">{feature.subtitle}</p>
               </div>
             ))}

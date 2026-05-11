@@ -32,7 +32,7 @@ const Index = () => {
           <CardContent className="p-8">
             {/* Header */}
             <div className="text-center mb-8">
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome to AI-Levate</h1>
+              <h1 className="text-2xl font-medium text-gray-900 mb-2">Welcome to AI-Levate</h1>
               <p className="text-gray-600">Access your AI-powered workspace</p>
             </div>
 
@@ -81,7 +81,7 @@ const Index = () => {
                   e.preventDefault();
                   navigate('/dashboard');
                 }}
-                className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-200 hover:scale-[1.02]"
+                className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all duration-200 hover:scale-[1.02]"
               >
                 Login
                 <ArrowRight className="w-4 h-4 ml-2" />

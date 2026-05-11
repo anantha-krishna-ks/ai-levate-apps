@@ -64,7 +64,7 @@ const CheckSimilarity = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">AL</span>
+                <span className="text-primary-foreground font-medium text-sm">AL</span>
               </div>
               <img 
                 src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
@@ -93,7 +93,7 @@ const CheckSimilarity = () => {
           <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
             <GitCompare className="w-6 h-6 text-primary" />
           </div>
-          <h1 className="text-3xl font-bold text-foreground">Check Similarity</h1>
+          <h1 className="text-3xl font-medium text-foreground">Check Similarity</h1>
         </div>
 
         {/* Selected Question Details */}
@@ -104,7 +104,7 @@ const CheckSimilarity = () => {
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <FileQuestion className="w-4 h-4 text-primary-foreground" />
               </div>
-              <h2 className="text-lg font-semibold text-foreground">Question Details</h2>
+              <h2 className="text-lg font-medium text-foreground">Question Details</h2>
             </div>
           </div>
           
@@ -129,7 +129,7 @@ const CheckSimilarity = () => {
                 <span className="text-sm font-medium text-muted-foreground">Question</span>
               </div>
               <div className="p-4 bg-gradient-to-br from-purple-50/50 to-blue-50/50 rounded-md border border-purple-100">
-                <p className="text-sm text-foreground leading-relaxed font-semibold">
+                <p className="text-sm text-foreground leading-relaxed font-medium">
                   {selectedQuestion?.text || "What characteristic of pure risk makes it more acceptable for insurers to cover compared to speculative risk?"}
                 </p>
               </div>
@@ -149,7 +149,7 @@ const CheckSimilarity = () => {
                       className="flex gap-3 p-3 bg-card rounded-md border border-border"
                     >
                       <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-primary to-blue-600 rounded flex items-center justify-center">
-                        <span className="font-bold text-white text-sm">{option.id}</span>
+                        <span className="font-medium text-white text-sm">{option.id}</span>
                       </div>
                       <span className="text-sm text-foreground leading-relaxed flex-1">{option.text}</span>
                     </div>
@@ -158,25 +158,25 @@ const CheckSimilarity = () => {
                   <>
                     <div className="flex gap-3 p-3 bg-card rounded-md border border-border">
                       <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-primary to-blue-600 rounded flex items-center justify-center">
-                        <span className="font-bold text-white text-sm">A</span>
+                        <span className="font-medium text-white text-sm">A</span>
                       </div>
                       <span className="text-sm text-foreground leading-relaxed flex-1">Pure risk only involves potential loss or no loss, making it predictable</span>
                     </div>
                     <div className="flex gap-3 p-3 bg-card rounded-md border border-border">
                       <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-primary to-blue-600 rounded flex items-center justify-center">
-                        <span className="font-bold text-white text-sm">B</span>
+                        <span className="font-medium text-white text-sm">B</span>
                       </div>
                       <span className="text-sm text-foreground leading-relaxed flex-1">Pure risk offers the possibility of gain</span>
                     </div>
                     <div className="flex gap-3 p-3 bg-card rounded-md border border-border">
                       <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-primary to-blue-600 rounded flex items-center justify-center">
-                        <span className="font-bold text-white text-sm">C</span>
+                        <span className="font-medium text-white text-sm">C</span>
                       </div>
                       <span className="text-sm text-foreground leading-relaxed flex-1">Speculative risk is more measurable</span>
                     </div>
                     <div className="flex gap-3 p-3 bg-card rounded-md border border-border">
                       <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-primary to-blue-600 rounded flex items-center justify-center">
-                        <span className="font-bold text-white text-sm">D</span>
+                        <span className="font-medium text-white text-sm">D</span>
                       </div>
                       <span className="text-sm text-foreground leading-relaxed flex-1">Pure risk always results in loss</span>
                     </div>
@@ -189,7 +189,7 @@ const CheckSimilarity = () => {
 
         {/* Filter Section */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-foreground">Similar Questions</h2>
+          <h2 className="text-xl font-medium text-foreground">Similar Questions</h2>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">Filter by:</span>
             <Select value={filterType} onValueChange={setFilterType}>
@@ -212,11 +212,11 @@ const CheckSimilarity = () => {
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent bg-muted">
-                <TableHead className="font-semibold text-foreground">Sl No</TableHead>
-                <TableHead className="font-semibold text-foreground">Question Identifier</TableHead>
-                <TableHead className="font-semibold text-foreground w-[50%]">Question</TableHead>
-                <TableHead className="font-semibold text-foreground text-center">Score</TableHead>
-                <TableHead className="font-semibold text-foreground text-center">Preview</TableHead>
+                <TableHead className="font-medium text-foreground">Sl No</TableHead>
+                <TableHead className="font-medium text-foreground">Question Identifier</TableHead>
+                <TableHead className="font-medium text-foreground w-[50%]">Question</TableHead>
+                <TableHead className="font-medium text-foreground text-center">Score</TableHead>
+                <TableHead className="font-medium text-foreground text-center">Preview</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -227,7 +227,7 @@ const CheckSimilarity = () => {
                   <TableCell className="text-foreground">{question.question}</TableCell>
                   <TableCell className="text-center">
                     <div className="flex items-center justify-center">
-                      <div className={`inline-flex items-center justify-center min-w-[3.5rem] px-3 py-1.5 rounded-full font-bold text-sm ${
+                      <div className={`inline-flex items-center justify-center min-w-[3.5rem] px-3 py-1.5 rounded-full font-medium text-sm ${
                         question.score >= 60 ? 'bg-green-600 text-white' : 
                         question.score >= 40 ? 'bg-orange-600 text-white' : 
                         'bg-red-600 text-white'
@@ -256,7 +256,7 @@ const CheckSimilarity = () => {
       <Dialog open={isPreviewDialogOpen} onOpenChange={setIsPreviewDialogOpen}>
         <DialogContent className="max-w-6xl max-h-[90vh] w-[calc(100vw-2rem)] p-0">
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 px-4 sm:px-6 py-4 border-b">
-            <DialogTitle className="text-lg sm:text-xl font-semibold text-foreground flex items-center gap-2">
+            <DialogTitle className="text-lg sm:text-xl font-medium text-foreground flex items-center gap-2">
               <FileQuestion className="w-5 h-5 text-primary" />
               Question Preview
             </DialogTitle>
@@ -281,7 +281,7 @@ const CheckSimilarity = () => {
                   
                   <div className="text-right">
                     <span className="text-sm font-medium text-muted-foreground block mb-2">Similarity Score</span>
-                    <div className={`text-4xl font-bold ${
+                    <div className={`text-4xl font-medium ${
                       previewQuestion.score >= 60 ? 'text-green-600' : 
                       previewQuestion.score >= 40 ? 'text-orange-600' : 
                       'text-red-600'
@@ -314,7 +314,7 @@ const CheckSimilarity = () => {
                     {['A', 'B', 'C', 'D', 'E', 'F'].map((option) => (
                       <div key={option} className="flex gap-3 p-3 bg-card rounded-md border border-border">
                         <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-primary to-blue-600 rounded flex items-center justify-center">
-                          <span className="font-bold text-white text-sm">{option}</span>
+                          <span className="font-medium text-white text-sm">{option}</span>
                         </div>
                         <span className="text-sm text-foreground leading-relaxed flex-1">
                           [Option {option} text placeholder]
@@ -347,7 +347,7 @@ const CheckSimilarity = () => {
                     {['A', 'B', 'C', 'D', 'E', 'F'].map((option) => (
                       <div key={option} className="p-3 bg-muted/30 rounded-md border border-border/50">
                         <p className="text-sm text-foreground">
-                          <span className="font-semibold">Option {option}:</span> [Feedback for option {option}]
+                          <span className="font-medium">Option {option}:</span> [Feedback for option {option}]
                         </p>
                       </div>
                     ))}

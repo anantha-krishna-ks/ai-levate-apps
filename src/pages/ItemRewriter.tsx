@@ -268,10 +268,10 @@ const ItemRewriter = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg hover-scale">
-                <span className="text-white font-bold text-sm">AL</span>
+                <span className="text-white font-medium text-sm">AL</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-semibold text-gray-900">Item Rewriter</span>
+                <span className="font-medium text-gray-900">Item Rewriter</span>
                 <span className="text-xs text-gray-500">AI-Powered Question Transformation</span>
               </div>
             </div>
@@ -302,7 +302,7 @@ const ItemRewriter = () => {
             <RefreshCw className="w-4 h-4" />
             Transform Your Questions
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-medium bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
             Intelligent Question Rewriter
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -360,7 +360,7 @@ const ItemRewriter = () => {
                     </div>
                     
                     <div className="space-y-3">
-                      <h3 className="text-lg font-semibold text-gray-900">
+                      <h3 className="text-lg font-medium text-gray-900">
                         Drop your Excel file here
                       </h3>
                       <p className="text-gray-500">
@@ -399,7 +399,7 @@ const ItemRewriter = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <h3 className="text-lg font-semibold text-gray-900">
+                      <h3 className="text-lg font-medium text-gray-900">
                         {uploadedFile.name}
                       </h3>
                       <p className="text-green-600 font-medium">
@@ -431,7 +431,7 @@ const ItemRewriter = () => {
                     <FileText className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Uploaded Data</h2>
+                    <h2 className="text-2xl font-medium text-gray-900">Uploaded Data</h2>
                     <p className="text-gray-600 mt-1">Review your uploaded questions before processing</p>
                   </div>
                 </div>
@@ -445,15 +445,15 @@ const ItemRewriter = () => {
                   <table className="w-full">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-100 to-gray-50 border-b border-gray-200">
-                        <th className="px-8 py-5 text-left font-semibold text-gray-900 text-sm uppercase tracking-wide">Question No</th>
-                        <th className="px-8 py-5 text-left font-semibold text-gray-900 text-sm uppercase tracking-wide">Passage</th>
-                        <th className="px-8 py-5 text-left font-semibold text-gray-900 text-sm uppercase tracking-wide">Question(s)</th>
+                        <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide">Question No</th>
+                        <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide">Passage</th>
+                        <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide">Question(s)</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-100">
                       {uploadedData.map((item, index) => (
                         <tr key={index} className="hover:bg-green-50/50 transition-colors duration-200">
-                          <td className="px-8 py-6 font-semibold text-green-600 text-lg">{item.questionNo}</td>
+                          <td className="px-8 py-6 font-medium text-green-600 text-lg">{item.questionNo}</td>
                           <td className="px-8 py-6 text-gray-700 leading-relaxed max-w-md">{item.passage}</td>
                           <td className="px-8 py-6 text-gray-700 leading-relaxed max-w-md font-medium">{item.question}</td>
                         </tr>
@@ -466,7 +466,7 @@ const ItemRewriter = () => {
               <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mt-8 p-6 bg-gradient-to-r from-blue-50 via-purple-50 to-blue-50 rounded-xl border border-blue-200">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 flex-1">
                   <div className="space-y-3">
-                    <label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Question Format</label>
+                    <label className="text-sm font-medium text-gray-800 uppercase tracking-wide">Question Format</label>
                     <Select value={selectedFormat} onValueChange={setSelectedFormat}>
                       <SelectTrigger className="w-64 h-12 border border-gray-300 hover:border-blue-400 focus:border-blue-500 transition-colors bg-white">
                         <SelectValue />
@@ -480,7 +480,7 @@ const ItemRewriter = () => {
                   </div>
                   
                   <div className="space-y-3">
-                    <label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Language</label>
+                    <label className="text-sm font-medium text-gray-800 uppercase tracking-wide">Language</label>
                     <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
                       <SelectTrigger className="w-40 h-12 border border-gray-300 hover:border-blue-400 focus:border-blue-500 transition-colors bg-white">
                         <SelectValue />
@@ -496,7 +496,7 @@ const ItemRewriter = () => {
                 </div>
                 
                 <Button 
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 h-12 text-base font-semibold rounded-lg transition-all duration-200 hover:scale-105"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 h-12 text-base font-medium rounded-lg transition-all duration-200 hover:scale-105"
                   onClick={handleRewriteQuestions}
                   disabled={isRewriting}
                 >
@@ -527,7 +527,7 @@ const ItemRewriter = () => {
                     <Sparkles className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Rewritten Questions</h2>
+                    <h2 className="text-2xl font-medium text-gray-900">Rewritten Questions</h2>
                     <p className="text-gray-600 mt-1">AI-generated questions ready for download</p>
                   </div>
                   <Badge className="bg-purple-50 text-purple-700 border border-purple-200 px-4 py-2 text-sm font-medium">
@@ -558,8 +558,8 @@ const ItemRewriter = () => {
                   <table className="w-full">
                     <thead>
                       <tr className="bg-gradient-to-r from-purple-100 via-blue-50 to-purple-100 border-b border-gray-200">
-                        <th className="px-8 py-5 text-left font-semibold text-gray-900 text-sm uppercase tracking-wide w-1/2">Original Question</th>
-                        <th className="px-8 py-5 text-left font-semibold text-gray-900 text-sm uppercase tracking-wide w-1/2">Rewritten Question</th>
+                        <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide w-1/2">Original Question</th>
+                        <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide w-1/2">Rewritten Question</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-100">
@@ -567,10 +567,10 @@ const ItemRewriter = () => {
                         <tr key={index} className="hover:bg-purple-50/30 transition-colors duration-200">
                           <td className="px-8 py-6 text-gray-700 leading-relaxed align-top">{item.original}</td>
                           <td className="px-8 py-6 space-y-4 align-top">
-                            <div className="font-semibold text-gray-900 text-lg leading-relaxed">{item.rewritten}</div>
+                            <div className="font-medium text-gray-900 text-lg leading-relaxed">{item.rewritten}</div>
                              {item.choices && (
                               <div className="bg-blue-50 rounded-lg p-4 space-y-2 border border-blue-200">
-                                <div className="text-xs font-semibold text-blue-700 uppercase tracking-wide mb-3">Answer Choices</div>
+                                <div className="text-xs font-medium text-blue-700 uppercase tracking-wide mb-3">Answer Choices</div>
                                 {item.choices.map((choice, idx) => {
                                   const isCorrect = item.correctAnswer === idx;
                                   return (
@@ -584,7 +584,7 @@ const ItemRewriter = () => {
                                       }`}></span>
                                       <span className="leading-relaxed font-medium">{choice}</span>
                                       {isCorrect && (
-                                        <span className="ml-auto text-xs font-semibold text-green-600 bg-green-200 px-2 py-1 rounded-full">
+                                        <span className="ml-auto text-xs font-medium text-green-600 bg-green-200 px-2 py-1 rounded-full">
                                           Correct
                                         </span>
                                       )}

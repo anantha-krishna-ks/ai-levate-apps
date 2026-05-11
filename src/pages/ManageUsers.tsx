@@ -57,7 +57,7 @@ const ManageUsers = () => {
             {/* Enhanced Content */}
             <div className="space-y-8">
               <div className="space-y-4">
-                <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 animate-fade-in">
+                <h1 className="text-5xl font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 animate-fade-in">
                   User Management Coming Soon!
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
@@ -79,7 +79,7 @@ const ManageUsers = () => {
               {/* Enhanced Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link to="/dashboard">
-                  <Button className="w-full sm:w-auto bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-semibold transform transition-all duration-300 hover:scale-105 hover:shadow-xl group">
+                  <Button className="w-full sm:w-auto bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-xl group">
                     <Home className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
                     Back to Dashboard
                   </Button>
@@ -108,7 +108,7 @@ const ManageUsers = () => {
                 }`}>
                   {feature.icon}
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                <h3 className="font-medium text-gray-900 mb-2">{feature.title}</h3>
                 <p className="text-sm text-gray-600">{feature.description}</p>
               </CardContent>
             </Card>

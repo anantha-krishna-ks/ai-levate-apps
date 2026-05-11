@@ -93,7 +93,7 @@ const EssayEvaluationZeroShot = () => {
               <PenTool className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-gray-900">Essay Evaluation - Zero Shot</h1>
+              <h1 className="text-lg font-medium text-gray-900">Essay Evaluation - Zero Shot</h1>
               <p className="text-xs text-gray-500">AI-powered evaluation without predefined books</p>
             </div>
           </div>
@@ -126,11 +126,11 @@ const EssayEvaluationZeroShot = () => {
                 <div className="p-2 bg-purple-600 text-white rounded-lg">
                   <PenTool className="h-5 w-5" />
                 </div>
-                <h2 className="text-2xl font-semibold text-purple-800">Essay Content</h2>
+                <h2 className="text-2xl font-medium text-purple-800">Essay Content</h2>
               </div>
               
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
+                <label className="block text-sm font-medium text-gray-700">
                   Essay Question
                 </label>
                 <Input
@@ -143,7 +143,7 @@ const EssayEvaluationZeroShot = () => {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="block text-sm font-semibold text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700">
                     Essay Answer
                   </label>
                   <Button
@@ -173,11 +173,11 @@ const EssayEvaluationZeroShot = () => {
                 <div className="p-2 bg-blue-600 text-white rounded-lg">
                   <Sparkles className="h-5 w-5" />
                 </div>
-                <h2 className="text-2xl font-semibold text-blue-800">Evaluation Rubrics</h2>
+                <h2 className="text-2xl font-medium text-blue-800">Evaluation Rubrics</h2>
               </div>
               
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
+                <label className="block text-sm font-medium text-gray-700">
                   Add Rubric Keywords
                 </label>
                 <div className="flex gap-2">
@@ -200,7 +200,7 @@ const EssayEvaluationZeroShot = () => {
 
               {rubrics.length > 0 && (
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700">
                     Current Rubrics ({rubrics.length})
                   </label>
                   <div className="flex flex-wrap gap-2 p-3 bg-blue-50/50 rounded-lg border border-blue-100 min-h-[220px] content-start">
@@ -231,7 +231,7 @@ const EssayEvaluationZeroShot = () => {
             <Button
               onClick={handleSubmitEvaluation}
               disabled={isEvaluating}
-              className="px-8 py-6 text-base font-semibold bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-700 hover:via-purple-800 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
+              className="px-8 py-6 text-base font-medium bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-700 hover:via-purple-800 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
             >
               {isEvaluating ? (
                 <>
@@ -257,7 +257,7 @@ const EssayEvaluationZeroShot = () => {
                     <div className="p-2 bg-green-600 text-white rounded-lg">
                       <Sparkles className="h-5 w-5" />
                     </div>
-                    <h2 className="text-2xl font-semibold text-green-800">Detailed Rationale</h2>
+                    <h2 className="text-2xl font-medium text-green-800">Detailed Rationale</h2>
                   </div>
                   
                   <div className="space-y-3">
@@ -291,7 +291,7 @@ const EssayEvaluationZeroShot = () => {
                                 <div>
                                   <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Rubric</span>
                                   <div className="mt-1">
-                                    <Badge className="px-3 py-1 text-sm font-semibold bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border border-blue-300/50">
+                                    <Badge className="px-3 py-1 text-sm font-medium bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border border-blue-300/50">
                                       {item.rubric}
                                     </Badge>
                                   </div>
@@ -307,13 +307,13 @@ const EssayEvaluationZeroShot = () => {
                                 <div className={`relative w-20 h-20 rounded-full bg-gradient-to-br ${getScoreColor(percentage)} p-0.5 shadow-lg`}>
                                   <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
                                     <div className="text-center">
-                                      <div className="text-2xl font-bold text-gray-900">{item.score.split('/')[0]}</div>
+                                      <div className="text-2xl font-medium text-gray-900">{item.score.split('/')[0]}</div>
                                       <div className="text-xs text-gray-500 font-medium">out of {item.score.split('/')[1]}</div>
                                     </div>
                                   </div>
                                 </div>
                                 <div className={`px-3 py-1 rounded-full bg-gradient-to-r ${getScoreColor(percentage)} shadow-sm`}>
-                                  <p className="text-xs font-bold text-white">{percentage.toFixed(0)}%</p>
+                                  <p className="text-xs font-medium text-white">{percentage.toFixed(0)}%</p>
                                 </div>
                               </div>
                             </div>
@@ -332,14 +332,14 @@ const EssayEvaluationZeroShot = () => {
                     <div className="p-2 bg-slate-500 text-white rounded-lg">
                       <ClipboardCheck className="h-5 w-5" />
                     </div>
-                    <h2 className="text-2xl font-semibold text-slate-700">Evaluation Summary</h2>
+                    <h2 className="text-2xl font-medium text-slate-700">Evaluation Summary</h2>
                   </div>
                 <div className="overflow-x-auto bg-white rounded-lg border border-slate-200 shadow-sm">
                   <Table>
                     <TableHeader>
                       <TableRow className="bg-slate-50 border-b border-slate-200 hover:bg-slate-50">
-                        <TableHead className="font-semibold text-slate-700 py-4 text-base">Criteria</TableHead>
-                        <TableHead className="font-semibold text-slate-700 text-right py-4 text-base">Score</TableHead>
+                        <TableHead className="font-medium text-slate-700 py-4 text-base">Criteria</TableHead>
+                        <TableHead className="font-medium text-slate-700 text-right py-4 text-base">Score</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -348,16 +348,16 @@ const EssayEvaluationZeroShot = () => {
                           <TableCell className="font-medium text-slate-900 py-4">
                             {item.rubric}
                           </TableCell>
-                          <TableCell className="text-right py-4 font-semibold text-slate-700 text-base">
+                          <TableCell className="text-right py-4 font-medium text-slate-700 text-base">
                             {item.score}
                           </TableCell>
                         </TableRow>
                       ))}
                       <TableRow className="bg-slate-100 border-t-2 border-slate-300 hover:bg-slate-100">
-                        <TableCell className="font-bold text-slate-900 py-5 text-base">
+                        <TableCell className="font-medium text-slate-900 py-5 text-base">
                           Overall Average Score
                         </TableCell>
-                        <TableCell className="text-right py-5 font-bold text-green-600 text-xl">
+                        <TableCell className="text-right py-5 font-medium text-green-600 text-xl">
                           {evaluationResults.overallScore}/10
                         </TableCell>
                       </TableRow>

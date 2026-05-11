@@ -299,10 +299,10 @@ const ItemSimilarity = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-sm">IS</span>
+                <span className="text-white font-medium text-sm">IS</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-semibold text-gray-900">Item Similarity</span>
+                <span className="font-medium text-gray-900">Item Similarity</span>
                 <span className="text-xs text-gray-500">AI-Powered Similarity Analysis</span>
               </div>
             </div>
@@ -333,7 +333,7 @@ const ItemSimilarity = () => {
             <Scan className="w-4 h-4" />
             Analyze Item Similarity
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-blue-800 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-medium bg-gradient-to-r from-gray-900 via-purple-800 to-blue-800 bg-clip-text text-transparent">
             Item Similarity Analyzer
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -348,24 +348,24 @@ const ItemSimilarity = () => {
               <TabsList className="grid w-full grid-cols-3 bg-white border border-slate-200 h-16 rounded-lg p-1.5">
                 <TabsTrigger 
                   value="item-bank" 
-                  className="relative flex items-center justify-center gap-2 text-gray-700 font-semibold text-sm transition-all duration-300 data-[state=active]:bg-purple-600 data-[state=active]:text-white data-[state=active]:scale-[1.02] hover:bg-purple-50 rounded-md mx-0.5 h-full px-3 py-1.5"
+                  className="relative flex items-center justify-center gap-2 text-gray-700 font-medium text-sm transition-all duration-300 data-[state=active]:bg-purple-600 data-[state=active]:text-white data-[state=active]:scale-[1.02] hover:bg-purple-50 rounded-md mx-0.5 h-full px-3 py-1.5"
                 >
                   <FileText className="w-4 h-4" />
-                  <span className="font-semibold">Item Bank</span>
+                  <span className="font-medium">Item Bank</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="similar-items" 
-                  className="relative flex items-center justify-center gap-2 text-gray-700 font-semibold text-sm transition-all duration-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:scale-[1.02] hover:bg-blue-50 rounded-md mx-0.5 h-full px-3 py-1.5"
+                  className="relative flex items-center justify-center gap-2 text-gray-700 font-medium text-sm transition-all duration-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:scale-[1.02] hover:bg-blue-50 rounded-md mx-0.5 h-full px-3 py-1.5"
                 >
                   <Target className="w-4 h-4" />
-                  <span className="font-semibold">Similar Items</span>
+                  <span className="font-medium">Similar Items</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="enemy-items" 
-                  className="relative flex items-center justify-center gap-2 text-gray-700 font-semibold text-sm transition-all duration-300 data-[state=active]:bg-red-600 data-[state=active]:text-white data-[state=active]:scale-[1.02] hover:bg-red-50 rounded-md mx-0.5 h-full px-3 py-1.5"
+                  className="relative flex items-center justify-center gap-2 text-gray-700 font-medium text-sm transition-all duration-300 data-[state=active]:bg-red-600 data-[state=active]:text-white data-[state=active]:scale-[1.02] hover:bg-red-50 rounded-md mx-0.5 h-full px-3 py-1.5"
                 >
                   <Filter className="w-4 h-4" />
-                  <span className="font-semibold">Enemy Items</span>
+                  <span className="font-medium">Enemy Items</span>
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -374,7 +374,7 @@ const ItemSimilarity = () => {
             <TabsContent value="item-bank" className="p-6 space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Item Bank</h2>
+                  <h2 className="text-2xl font-medium text-gray-900">Item Bank</h2>
                   <p className="text-gray-600 mt-1">Manage your question sets and upload templates</p>
                 </div>
                 <Badge variant="secondary" className="bg-purple-100 text-purple-700 border-purple-200">
@@ -415,7 +415,7 @@ const ItemSimilarity = () => {
 
               {/* File Upload */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">Upload Question Template</h3>
+                <h3 className="text-lg font-medium text-gray-900">Upload Question Template</h3>
                 <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
                   <Badge variant="outline" className="text-xs">Format: .xlsx only</Badge>
                   <Badge variant="outline" className="text-xs">Limit: 50 Questions</Badge>
@@ -445,7 +445,7 @@ const ItemSimilarity = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <h4 className="text-md font-semibold text-gray-900">
+                        <h4 className="text-md font-medium text-gray-900">
                           Drop your Excel file here
                         </h4>
                         <p className="text-gray-500 text-sm">
@@ -481,7 +481,7 @@ const ItemSimilarity = () => {
                           <FileText className="w-6 h-6 text-green-600" />
                         </div>
                         <div>
-                          <h4 className="text-md font-semibold text-gray-900">{uploadedFile.name}</h4>
+                          <h4 className="text-md font-medium text-gray-900">{uploadedFile.name}</h4>
                           <p className="text-green-600 font-medium text-sm">File uploaded successfully!</p>
                         </div>
                       </div>
@@ -524,7 +524,7 @@ const ItemSimilarity = () => {
                       <Scan className="w-6 h-6 text-purple-600 animate-pulse" />
                     </div>
                     <div className="space-y-2">
-                      <h4 className="text-lg font-semibold text-gray-900">Processing Items...</h4>
+                      <h4 className="text-lg font-medium text-gray-900">Processing Items...</h4>
                       <p className="text-gray-600">AI is analyzing your questions</p>
                       <Progress value={75} className="w-full max-w-md mx-auto" />
                     </div>
@@ -536,7 +536,7 @@ const ItemSimilarity = () => {
               {selectedQuestionSet && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-medium text-gray-900">
                       Questions ({getQuestionsForSet(selectedQuestionSet).length} items)
                     </h3>
                     <Button variant="outline" className="border-2 border-blue-400 text-blue-700 hover:bg-blue-50">
@@ -590,7 +590,7 @@ const ItemSimilarity = () => {
                                       </Badge>
                                     </div>
                                     <div className="bg-white p-4 rounded-lg shadow-sm">
-                                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Question Statement</h3>
+                                      <h3 className="text-lg font-medium text-gray-900 mb-2">Question Statement</h3>
                                       <p className="text-gray-800 leading-relaxed">{item.question}</p>
                                     </div>
                                   </div>
@@ -598,7 +598,7 @@ const ItemSimilarity = () => {
                                   {/* Options Section */}
                                   {item.options && (
                                     <div className="space-y-4">
-                                      <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                                      <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
                                         <span className="w-2 h-2 bg-purple-600 rounded-full"></span>
                                         Answer Options
                                       </h3>
@@ -612,7 +612,7 @@ const ItemSimilarity = () => {
                                                 : 'bg-gray-50 border border-gray-200 hover:bg-gray-100'
                                             }`}
                                           >
-                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                                               item.correctAnswer === option 
                                                 ? 'bg-green-500 text-white' 
                                                 : 'bg-gray-300 text-gray-700'
@@ -645,7 +645,7 @@ const ItemSimilarity = () => {
               {questionItems.length > 0 && !isAnalyzing && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-900">Processed Items</h3>
+                    <h3 className="text-lg font-medium text-gray-900">Processed Items</h3>
                     <Button variant="outline" className="border-2 border-blue-400 text-blue-700 hover:bg-blue-50">
                       <Download className="w-4 h-4 mr-2" />
                       Export Items
@@ -697,7 +697,7 @@ const ItemSimilarity = () => {
                                       </Badge>
                                     </div>
                                     <div className="bg-white p-4 rounded-lg shadow-sm">
-                                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Question Statement</h3>
+                                      <h3 className="text-lg font-medium text-gray-900 mb-2">Question Statement</h3>
                                       <p className="text-gray-800 leading-relaxed">{item.question}</p>
                                     </div>
                                   </div>
@@ -705,7 +705,7 @@ const ItemSimilarity = () => {
                                   {/* Options Section */}
                                   {item.options && (
                                     <div className="space-y-4">
-                                      <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                                      <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
                                         <span className="w-2 h-2 bg-purple-600 rounded-full"></span>
                                         Answer Options
                                       </h3>
@@ -719,7 +719,7 @@ const ItemSimilarity = () => {
                                                 : 'bg-gray-50 border border-gray-200 hover:bg-gray-100'
                                             }`}
                                           >
-                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                                               item.correctAnswer === option 
                                                 ? 'bg-green-500 text-white' 
                                                 : 'bg-gray-300 text-gray-700'
@@ -753,7 +753,7 @@ const ItemSimilarity = () => {
             <TabsContent value="similar-items" className="p-6 space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Similar Items</h2>
+                  <h2 className="text-2xl font-medium text-gray-900">Similar Items</h2>
                   <p className="text-gray-600 mt-1">Find and analyze similar questions based on score threshold</p>
                 </div>
               </div>
@@ -778,7 +778,7 @@ const ItemSimilarity = () => {
               {/* Questions List for Similar Items */}
               {selectedQuestionSet && (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-900">Questions in {questionSets.find(s => s.id === selectedQuestionSet)?.name}</h3>
+                  <h3 className="text-lg font-medium text-gray-900">Questions in {questionSets.find(s => s.id === selectedQuestionSet)?.name}</h3>
                   <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
                     <Table>
                       <TableHeader>
@@ -876,8 +876,8 @@ const ItemSimilarity = () => {
               <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-200">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <label className="text-lg font-semibold text-gray-800">Score Threshold</label>
-                    <span className={`text-lg font-bold px-4 py-2 rounded-lg shadow-sm ${
+                    <label className="text-lg font-medium text-gray-800">Score Threshold</label>
+                    <span className={`text-lg font-medium px-4 py-2 rounded-lg shadow-sm ${
                       scoreThreshold >= 90 ? 'bg-green-500 text-white' :
                       scoreThreshold >= 80 ? 'bg-yellow-500 text-white' :
                       'bg-red-500 text-white'
@@ -915,7 +915,7 @@ const ItemSimilarity = () => {
                       <span>High (100%)</span>
                     </div>
                     <p className="text-sm text-gray-600 text-center">
-                      Questions with similarity score above <span className="font-semibold text-blue-600">{scoreThreshold}%</span> will be displayed
+                      Questions with similarity score above <span className="font-medium text-blue-600">{scoreThreshold}%</span> will be displayed
                     </p>
                   </div>
                 </div>
@@ -936,7 +936,7 @@ const ItemSimilarity = () => {
               {similarItems.length > 0 && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-900">Similar Items Found</h3>
+                    <h3 className="text-lg font-medium text-gray-900">Similar Items Found</h3>
                     <Button variant="outline" className="border-2 border-blue-400 text-blue-700 hover:bg-blue-50">
                       <Download className="w-4 h-4 mr-2" />
                       Export Results
@@ -1014,22 +1014,22 @@ const ItemSimilarity = () => {
                                     {/* Similarity Stats */}
                                     <div className="grid grid-cols-3 gap-4">
                                       <div className="bg-green-50 p-4 rounded-lg border border-green-200 text-center">
-                                        <div className="text-2xl font-bold text-green-600">5</div>
+                                        <div className="text-2xl font-medium text-green-600">5</div>
                                         <div className="text-sm text-green-700">Similar Items</div>
                                       </div>
                                       <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 text-center">
-                                        <div className="text-2xl font-bold text-blue-600">{item.similarity.toFixed(1)}%</div>
+                                        <div className="text-2xl font-medium text-blue-600">{item.similarity.toFixed(1)}%</div>
                                         <div className="text-sm text-blue-700">Avg Similarity</div>
                                       </div>
                                       <div className="bg-purple-50 p-4 rounded-lg border border-purple-200 text-center">
-                                        <div className="text-2xl font-bold text-purple-600">98.2%</div>
+                                        <div className="text-2xl font-medium text-purple-600">98.2%</div>
                                         <div className="text-sm text-purple-700">Highest Match</div>
                                       </div>
                                     </div>
 
                                     {/* Similar Items List */}
                                     <div>
-                                      <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                                      <h4 className="font-medium text-gray-900 mb-4 flex items-center gap-2">
                                         <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
                                         Similar Items Found
                                       </h4>
@@ -1045,13 +1045,13 @@ const ItemSimilarity = () => {
                                             <div className="flex items-start justify-between mb-3">
                                               <div className="flex items-center gap-3">
                                                 <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                                  <span className="text-blue-600 font-bold text-sm">{similarItem.id}</span>
+                                                  <span className="text-blue-600 font-medium text-sm">{similarItem.id}</span>
                                                 </div>
                                                 <Badge variant="outline" className="border-gray-300">
                                                   {similarItem.type}
                                                 </Badge>
                                               </div>
-                                              <div className={`px-3 py-1 rounded-full text-sm font-bold ${
+                                              <div className={`px-3 py-1 rounded-full text-sm font-medium ${
                                                 similarItem.similarity >= 95 ? 'bg-green-100 text-green-700' :
                                                 similarItem.similarity >= 90 ? 'bg-yellow-100 text-yellow-700' :
                                                 'bg-orange-100 text-orange-700'
@@ -1095,7 +1095,7 @@ const ItemSimilarity = () => {
             <TabsContent value="enemy-items" className="p-6 space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Enemy Items</h2>
+                  <h2 className="text-2xl font-medium text-gray-900">Enemy Items</h2>
                   <p className="text-gray-600 mt-1">Manage and export enemy questions</p>
                 </div>
                 <Button variant="outline" className="border-2 border-red-400 text-red-700 hover:bg-red-50">
@@ -1136,7 +1136,7 @@ const ItemSimilarity = () => {
                {/* Questions List for Enemy Items */}
                {selectedQuestionSet && (
                  <div className="space-y-4">
-                   <h3 className="text-lg font-semibold text-gray-900">Questions in {questionSets.find(s => s.id === selectedQuestionSet)?.name}</h3>
+                   <h3 className="text-lg font-medium text-gray-900">Questions in {questionSets.find(s => s.id === selectedQuestionSet)?.name}</h3>
                    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
                      <Table>
                         <TableHeader>
@@ -1228,7 +1228,7 @@ const ItemSimilarity = () => {
               {enemyItems.length > 0 ? (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-900">Enemy Questions ({enemyItems.length})</h3>
+                    <h3 className="text-lg font-medium text-gray-900">Enemy Questions ({enemyItems.length})</h3>
                   </div>
 
                   <Table>
@@ -1268,7 +1268,7 @@ const ItemSimilarity = () => {
                               </DialogTrigger>
                                <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
                                  <DialogHeader className="border-b border-red-200 pb-4">
-                                   <DialogTitle className="text-xl font-bold text-red-700 flex items-center gap-2">
+                                   <DialogTitle className="text-xl font-medium text-red-700 flex items-center gap-2">
                                      <AlertTriangle className="w-5 h-5" />
                                      Enemy Question Preview
                                    </DialogTitle>
@@ -1291,7 +1291,7 @@ const ItemSimilarity = () => {
                                      </div>
                                      
                                      <div className="space-y-3">
-                                       <label className="text-sm font-semibold text-red-800 uppercase tracking-wide">Question</label>
+                                       <label className="text-sm font-medium text-red-800 uppercase tracking-wide">Question</label>
                                        <p className="text-gray-900 text-lg leading-relaxed bg-white p-4 rounded-lg border border-red-200 shadow-sm">
                                          {item.question}
                                        </p>
@@ -1299,7 +1299,7 @@ const ItemSimilarity = () => {
 
                                      {item.type === "MCQ" && (
                                        <div className="mt-6 space-y-3">
-                                         <label className="text-sm font-semibold text-red-800 uppercase tracking-wide">Options</label>
+                                         <label className="text-sm font-medium text-red-800 uppercase tracking-wide">Options</label>
                                          <div className="grid gap-2">
                                            {["Option A", "Option B", "Option C", "Option D"].map((option, idx) => (
                                              <div key={idx} className="flex items-center gap-3 p-3 bg-white border border-red-200 rounded-lg">

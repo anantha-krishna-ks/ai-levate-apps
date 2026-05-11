@@ -126,7 +126,7 @@ const QuestionGenerator = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AL</span>
+                <span className="text-white font-medium text-sm">AL</span>
               </div>
               <img 
                 src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
@@ -217,7 +217,7 @@ const QuestionGenerator = () => {
                     <Zap className="w-4 h-4 text-green-600" />
                   </div>
                 </div>
-                <div className="text-2xl font-bold text-gray-900 mb-1">7,762</div>
+                <div className="text-2xl font-medium text-gray-900 mb-1">7,762</div>
                 <div className="text-sm text-green-600 flex items-center gap-1">
                   <span>+250 today</span>
                 </div>
@@ -229,7 +229,7 @@ const QuestionGenerator = () => {
                   <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
                     <Sparkles className="w-4 h-4 text-white" />
                   </div>
-                  <h3 className="text-sm font-semibold text-gray-800">AI Generation Mode</h3>
+                  <h3 className="text-sm font-medium text-gray-800">AI Generation Mode</h3>
                 </div>
                 <div className="bg-gray-200 p-1 rounded-full flex">
                   <button
@@ -440,7 +440,7 @@ const QuestionGenerator = () => {
                             render={({ field }) => (
                               <FormItem>
                                 <FormLabel className="flex items-center gap-2">
-                                  <span className="w-4 h-4 text-pink-600 text-sm font-bold">★</span>
+                                  <span className="w-4 h-4 text-pink-600 text-sm font-medium">★</span>
                                   Point Value
                                 </FormLabel>
                                 <FormControl>
@@ -511,7 +511,7 @@ const QuestionGenerator = () => {
                   <div className="flex items-center justify-between">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-600">Total Questions</p>
-                      <p className="text-2xl font-bold" style={{ color: "#1c398e", fontSize: '1.25rem' }}>
+                      <p className="text-2xl font-medium" style={{ color: "#1c398e", fontSize: '1.25rem' }}>
                         1,247
                       </p>
                       <p className="text-xs text-gray-500">+15% this month</p>
@@ -528,7 +528,7 @@ const QuestionGenerator = () => {
                   <div className="flex items-center justify-between">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-600">AI Generated</p>
-                      <p className="text-2xl font-bold" style={{ color: "#0d542b", fontSize: '1.25rem' }}>
+                      <p className="text-2xl font-medium" style={{ color: "#0d542b", fontSize: '1.25rem' }}>
                         892
                       </p>
                       <p className="text-xs text-gray-500">High quality</p>
@@ -545,7 +545,7 @@ const QuestionGenerator = () => {
                   <div className="flex items-center justify-between">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-600">This Week</p>
-                      <p className="text-2xl font-bold" style={{ color: "#59168b", fontSize: '1.25rem' }}>
+                      <p className="text-2xl font-medium" style={{ color: "#59168b", fontSize: '1.25rem' }}>
                         47
                       </p>
                       <p className="text-xs text-gray-500">New questions</p>
@@ -562,7 +562,7 @@ const QuestionGenerator = () => {
                   <div className="flex items-center justify-between">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-gray-600">Contributors</p>
-                      <p className="text-2xl font-bold" style={{ color: "#7e2a0c", fontSize: '1.25rem' }}>
+                      <p className="text-2xl font-medium" style={{ color: "#7e2a0c", fontSize: '1.25rem' }}>
                         12
                       </p>
                       <p className="text-xs text-gray-500">Active authors</p>
@@ -919,14 +919,14 @@ const QuestionGenerator = () => {
       <Dialog open={ratingDialogOpen} onOpenChange={setRatingDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-xl font-semibold">Share feedback</DialogTitle>
+            <DialogTitle className="text-xl font-medium">Share feedback</DialogTitle>
           </DialogHeader>
 
           <div className="space-y-6 pt-2">
             {/* Question Display */}
             <div>
               <p className="text-sm text-foreground leading-relaxed">
-                <span className="font-semibold">1.</span> {selectedQuestion}
+                <span className="font-medium">1.</span> {selectedQuestion}
               </p>
             </div>
 
@@ -1004,7 +1004,7 @@ const QuestionGenerator = () => {
           <DialogHeader>
             <div className="flex items-center gap-2">
               <Sparkles className="h-5 w-5" />
-              <DialogTitle className="text-xl font-semibold">Question Refinement</DialogTitle>
+              <DialogTitle className="text-xl font-medium">Question Refinement</DialogTitle>
             </div>
           </DialogHeader>
 

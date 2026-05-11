@@ -287,7 +287,7 @@ const EssayEvaluationDetail = () => {
               <PenTool className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-gray-900">Essay Evaluation Detail</h1>
+              <h1 className="text-xl font-medium text-gray-900">Essay Evaluation Detail</h1>
               <p className="text-sm text-gray-500">Evaluate candidate responses and review evaluations</p>
             </div>
           </div>
@@ -391,7 +391,7 @@ const EssayEvaluationDetail = () => {
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
                       <p className="text-green-700 mb-2">
-                        Total Questions: <span className="font-semibold text-green-800">{totalQuestions}</span>
+                        Total Questions: <span className="font-medium text-green-800">{totalQuestions}</span>
                       </p>
                       <p className="text-sm text-green-600">
                         Use the actions below to manage your evaluation process.
@@ -522,18 +522,18 @@ const EssayEvaluationDetail = () => {
                            {isEvaluated && question.feedback && (
                              <div className="space-y-3">
                                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                                 <h4 className="text-sm font-semibold text-blue-900 mb-2">AI Feedback</h4>
+                                 <h4 className="text-sm font-medium text-blue-900 mb-2">AI Feedback</h4>
                                  <p className="text-sm text-gray-700 leading-relaxed">{question.feedback}</p>
                                </div>
                                <div className="flex items-center gap-4 py-2 px-4 bg-gray-50 rounded-lg">
                                  <div className="flex items-center gap-2">
                                    <span className="text-sm font-medium text-gray-600">Max Score:</span>
-                                   <span className="text-lg font-bold text-purple-700">{question.maxScore}</span>
+                                   <span className="text-lg font-medium text-purple-700">{question.maxScore}</span>
                                  </div>
                                  <div className="h-4 w-px bg-gray-300"></div>
                                  <div className="flex items-center gap-2">
                                    <span className="text-sm font-medium text-gray-600">AI Score:</span>
-                                   <span className="text-lg font-bold text-green-700">{question.aiScore}</span>
+                                   <span className="text-lg font-medium text-green-700">{question.aiScore}</span>
                                  </div>
                                </div>
                              </div>
@@ -543,7 +543,7 @@ const EssayEvaluationDetail = () => {
                          <AccordionContent className="px-4 pb-4">
                            <div className="space-y-4">
                              <div className="bg-purple-50 rounded-lg p-4">
-                               <h4 className="text-sm font-semibold text-purple-900 mb-2">Key Answer</h4>
+                               <h4 className="text-sm font-medium text-purple-900 mb-2">Key Answer</h4>
                                <p className="text-sm text-gray-700 leading-relaxed">{question.keyAnswer}</p>
                              </div>
                              
@@ -624,7 +624,7 @@ const EssayEvaluationDetail = () => {
                         </Button>
                       </div>
                       <span className="text-sm text-gray-600">
-                        Total Candidates: <span className="font-bold text-blue-600">{savedEvaluations.length}</span>
+                        Total Candidates: <span className="font-medium text-blue-600">{savedEvaluations.length}</span>
                       </span>
                     </div>
                     
@@ -737,15 +737,15 @@ const EssayEvaluationDetail = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
                 <div>
                   <Label className="text-sm font-medium text-gray-600">Candidate ID:</Label>
-                  <p className="text-sm font-semibold text-gray-900">{selectedEvaluation.candidateId}</p>
+                  <p className="text-sm font-medium text-gray-900">{selectedEvaluation.candidateId}</p>
                 </div>
                 <div>
                   <Label className="text-sm font-medium text-gray-600">Course Details:</Label>
-                  <p className="text-sm font-semibold text-gray-900">{selectedEvaluation.courseDetails || 'N/A'}</p>
+                  <p className="text-sm font-medium text-gray-900">{selectedEvaluation.courseDetails || 'N/A'}</p>
                 </div>
                 <div>
                   <Label className="text-sm font-medium text-gray-600">Total Questions:</Label>
-                  <p className="text-sm font-semibold text-gray-900">{selectedEvaluation.questions.length}</p>
+                  <p className="text-sm font-medium text-gray-900">{selectedEvaluation.questions.length}</p>
                 </div>
               </div>
 
@@ -797,18 +797,18 @@ const EssayEvaluationDetail = () => {
                         {question.feedback && (
                           <div className="space-y-3">
                             <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                              <h4 className="text-sm font-semibold text-blue-900 mb-2">AI Feedback</h4>
+                              <h4 className="text-sm font-medium text-blue-900 mb-2">AI Feedback</h4>
                               <p className="text-sm text-gray-700 leading-relaxed">{question.feedback}</p>
                             </div>
                             <div className="flex items-center gap-4 py-2 px-4 bg-gray-50 rounded-lg">
                               <div className="flex items-center gap-2">
                                 <span className="text-sm font-medium text-gray-600">Max Score:</span>
-                                <span className="text-lg font-bold text-purple-700">{question.maxScore}</span>
+                                <span className="text-lg font-medium text-purple-700">{question.maxScore}</span>
                               </div>
                               <div className="h-4 w-px bg-gray-300"></div>
                               <div className="flex items-center gap-2">
                                 <span className="text-sm font-medium text-gray-600">AI Score:</span>
-                                <span className="text-lg font-bold text-green-700">{question.aiScore}</span>
+                                <span className="text-lg font-medium text-green-700">{question.aiScore}</span>
                               </div>
                             </div>
                           </div>
@@ -818,7 +818,7 @@ const EssayEvaluationDetail = () => {
                       <AccordionContent className="px-4 pb-4">
                         <div className="space-y-4">
                           <div className="bg-purple-50 rounded-lg p-4">
-                            <h4 className="text-sm font-semibold text-purple-900 mb-2">Key Answer</h4>
+                            <h4 className="text-sm font-medium text-purple-900 mb-2">Key Answer</h4>
                             <p className="text-sm text-gray-700 leading-relaxed">{question.keyAnswer}</p>
                           </div>
                           

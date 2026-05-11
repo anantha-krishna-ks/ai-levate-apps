@@ -162,7 +162,7 @@ const Login = () => {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-4xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-4xl font-medium text-gray-900 leading-tight">
                 Welcome Back to
                 <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent"> AI Innovation</span>
               </h2>
@@ -189,7 +189,7 @@ const Login = () => {
               <CardContent className="p-8">
                 {/* Header */}
                 <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h2>
+                  <h2 className="text-3xl font-medium text-gray-900 mb-2">Welcome Back</h2>
                   <p className="text-gray-600">Sign in to your AI-powered platform</p>
                 </div>
 
@@ -268,7 +268,7 @@ const Login = () => {
                   <Button 
                     type="submit"
                     disabled={!canSubmit()}
-                    className="w-full h-12 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-semibold rounded-lg transform transition-all duration-200 hover:scale-[1.02] disabled:opacity-50"
+                    className="w-full h-12 bg-[#2563eb] hover:bg-[#2563eb]/90 text-white font-medium rounded-lg transform transition-all duration-200 hover:scale-[1.02] disabled:opacity-50"
                   >
                     <LogIn className="w-5 h-5 mr-2" />
                     Sign In
