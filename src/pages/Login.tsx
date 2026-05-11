@@ -2,7 +2,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, Eye, EyeOff, AlertCircle, CheckCircle2, LogIn } from "lucide-react";
+import { Sparkles, Eye, EyeOff, AlertCircle, CheckCircle2, LogIn, UserCircle2 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -205,6 +212,42 @@ const Login = () => {
                     </div>
                   )}
 
+                  {/* Demo Accounts dropdown */}
+                  <div>
+                    <Select
+                      onValueChange={(value) => {
+                        if (value === "user") {
+                          handleInputChange("username", "demo@example.com");
+                          handleInputChange("password", "password123");
+                        } else if (value === "superadmin") {
+                          handleInputChange("username", "superadmin@excelindia.com");
+                          handleInputChange("password", "school");
+                        }
+                      }}
+                    >
+                      <SelectTrigger className="h-12 bg-white/80 border-gray-200 text-sm">
+                        <div className="flex items-center gap-2 text-gray-600">
+                          <UserCircle2 className="w-4 h-4 text-primary" />
+                          <SelectValue placeholder="Quick fill demo account" />
+                        </div>
+                      </SelectTrigger>
+                      <SelectContent className="rounded-2xl">
+                        <SelectItem value="user" className="rounded-xl">
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium">User</span>
+                            <span className="text-xs text-muted-foreground">demo@example.com / password123</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="superadmin" className="rounded-xl">
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium">Super Admin</span>
+                            <span className="text-xs text-muted-foreground">superadmin@excelindia.com / school</span>
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
                   <div>
                     <Input
                       placeholder="Username or Email"
@@ -254,15 +297,6 @@ const Login = () => {
                     >
                       Forgot password?
                     </button>
-                  </div>
-
-                  {/* Help section with demo credentials */}
-                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                    <p className="text-xs font-medium text-blue-800 mb-2">Demo Accounts (for testing):</p>
-                    <div className="text-xs text-blue-700 space-y-1">
-                      <div><strong>User:</strong> demo@example.com / password123</div>
-                      <div><strong>Super Admin:</strong> superadmin@excelindia.com / school</div>
-                    </div>
                   </div>
 
                   <Button 
