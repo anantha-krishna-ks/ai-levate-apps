@@ -429,6 +429,7 @@ const Dashboard = () => {
           </div>
         </header>
 
+      <div className="ml-0 lg:ml-52 pt-16 min-h-screen flex flex-col">
         {/* Page Title */}
         <div className="p-2">
           
