@@ -776,8 +776,8 @@ const OCREvaluation = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sticky top-0 z-50">
+      <AppHeader />
+      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 mt-16">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-600 to-teal-700 rounded-lg flex items-center justify-center shrink-0">
@@ -797,12 +797,6 @@ const OCREvaluation = () => {
                 {localStorage.getItem('userName') || 'Evaluator'}
               </span>
             </div>
-            <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-purple-50 rounded-full border border-purple-200">
-              <Sparkle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-purple-500" />
-              <span className="text-xs sm:text-sm font-medium text-purple-600">
-                4,651 Tokens
-              </span>
-            </div>
             <Link to="/dashboard">
               <Button variant="ghost" size="sm" className="text-gray-600 px-2 sm:px-3">
                 <ArrowLeft className="w-4 h-4 sm:mr-2" />
@@ -811,7 +805,7 @@ const OCREvaluation = () => {
             </Link>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Content */}
       <main className="p-4 sm:p-6">
