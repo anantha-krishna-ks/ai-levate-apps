@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { AppSidebar } from "@/components/AppSidebar"
 import { ProfileDropdown } from "@/components/ProfileDropdown"
+import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed"
 import { Link, useNavigate } from "react-router-dom"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -26,6 +27,7 @@ import ocrEvaluationImage from "@/assets/ocr-evaluation.png"
 
 const Dashboard = () => {
   const navigate = useNavigate()
+  const sidebarCollapsed = useSidebarCollapsed()
   const [activeTab, setActiveTab] = useState("All")
   const [subscriptionFilter, setSubscriptionFilter] = useState("All")
   const [hoveredTool, setHoveredTool] = useState<string | null>(null)
@@ -279,14 +281,22 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
-      <div className="fixed left-0 top-16 h-[calc(100%-4rem)] w-52 z-40 hidden lg:block">
+      <div
+        className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-40 hidden lg:block transition-all duration-300 ${
+          sidebarCollapsed ? "w-16" : "w-60"
+        }`}
+      >
         <AppSidebar />
       </div>
 
       {/* Mobile Menu Sheet */}
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <SheetContent side="left" className="w-64 p-0">
-          <AppSidebar onNavigate={() => setMobileMenuOpen(false)} />
+          <AppSidebar
+            forceExpanded
+            hideToggle
+            onNavigate={() => setMobileMenuOpen(false)}
+          />
         </SheetContent>
       </Sheet>
 
@@ -437,7 +447,11 @@ const Dashboard = () => {
           </div>
         </header>
 
-      <div className="ml-0 lg:ml-52 pt-16 min-h-screen flex flex-col">
+      <div
+        className={`ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
+          sidebarCollapsed ? "lg:ml-16" : "lg:ml-60"
+        }`}
+      >
         {/* Page Title */}
         <div className="p-2">
           

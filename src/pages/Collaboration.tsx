@@ -8,6 +8,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Label } from "@/components/ui/label";
 import { Search, Edit, Trash2, Package, Menu, Plus, Users as UsersIcon, X } from "lucide-react";
 import { AppSidebar } from "@/components/AppSidebar";
+import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
 import { ProfileDropdown } from "@/components/ProfileDropdown";
 
 const users = [
@@ -22,6 +23,7 @@ const users = [
 ];
 
 const Collaboration = () => {
+  const sidebarCollapsed = useSidebarCollapsed();
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAddingUser, setIsAddingUser] = useState(false);
@@ -96,18 +98,30 @@ const Collaboration = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-52 z-40 hidden lg:block">
+      <div
+        className={`fixed left-0 top-0 h-full z-40 hidden lg:block transition-all duration-300 ${
+          sidebarCollapsed ? "w-16" : "w-60"
+        }`}
+      >
         <AppSidebar />
       </div>
 
       {/* Mobile Menu Sheet */}
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <SheetContent side="left" className="w-64 p-0">
-          <AppSidebar onNavigate={() => setMobileMenuOpen(false)} />
+          <AppSidebar
+            forceExpanded
+            hideToggle
+            onNavigate={() => setMobileMenuOpen(false)}
+          />
         </SheetContent>
       </Sheet>
 
-      <div className="ml-0 lg:ml-52 min-h-screen flex flex-col">
+      <div
+        className={`ml-0 min-h-screen flex flex-col transition-all duration-300 ${
+          sidebarCollapsed ? "lg:ml-16" : "lg:ml-60"
+        }`}
+      >
         {/* Header */}
         <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
           <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
