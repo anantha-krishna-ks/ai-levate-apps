@@ -179,42 +179,22 @@ const KnowledgeBase = () => {
                 <div className="h-11 w-11 sm:h-12 sm:w-12 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 ring-4 ring-blue-100">
                   <Library className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h1 className="text-xl sm:text-2xl font-semibold text-slate-900 leading-tight tracking-tight truncate">
+                  <div className="flex flex-col min-w-0">
+                    <h1 className="text-lg sm:text-xl font-medium text-slate-900 leading-tight tracking-tight truncate">
                       {isCreating ? "Create New Knowledge Base" : isCreatingStudyLO ? "Create Study LO" : isViewingGuidelines ? "Guideline Data" : isChatMode ? `Knowledge Base: ${selectedKBForChat?.bookName}` : "Knowledge Base"}
                     </h1>
-                    {!isCreating && !isCreatingStudyLO && !isViewingGuidelines && !isChatMode && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 border border-blue-200 px-2 py-0.5 text-[11px] font-medium text-blue-700">
-                        <Sparkle className="h-2.5 w-2.5 fill-blue-600 text-blue-600" />
-                        AI Powered
-                      </span>
-                    )}
+                    <p className="text-sm text-slate-500 mt-1 truncate">
+                      {isCreating
+                        ? "Configure a new knowledge base for your content"
+                        : isCreatingStudyLO
+                          ? "Upload a CSV to create study learning outcomes"
+                          : isViewingGuidelines
+                            ? "Manage guideline documents for this knowledge base"
+                            : isChatMode && selectedKBForChat
+                              ? `Customer: ${selectedCustomer}`
+                              : "Manage your knowledge bases and study materials"}
+                    </p>
                   </div>
-                  <p className="text-sm text-slate-500 mt-1 truncate">
-                    {isCreating
-                      ? "Configure a new knowledge base for your content"
-                      : isCreatingStudyLO
-                        ? "Upload a CSV to create study learning outcomes"
-                        : isViewingGuidelines
-                          ? "Manage guideline documents for this knowledge base"
-                          : isChatMode && selectedKBForChat
-                            ? `Customer: ${selectedCustomer}`
-                            : "Manage your knowledge bases and study materials"}
-                  </p>
-                  {!isCreating && !isCreatingStudyLO && !isViewingGuidelines && !isChatMode && (
-                    <div className="mt-3 flex items-center gap-2 flex-wrap">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700">
-                        <Library className="h-3 w-3 text-slate-500" />
-                        {knowledgeBases.length} Knowledge Bases
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700">
-                        <BookOpen className="h-3 w-3 text-slate-500" />
-                        {selectedCustomer}
-                      </span>
-                    </div>
-                  )}
-                </div>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
                 {isCreatingStudyLO ? (
