@@ -115,7 +115,7 @@ const KnowledgeBase = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#F4F5F7]">
+    <div className="min-h-screen bg-[#F0F4F8]">
       {/* Desktop Sidebar */}
       <div
         className={`fixed left-0 top-0 h-full z-[60] hidden lg:block transition-all duration-300 ${
