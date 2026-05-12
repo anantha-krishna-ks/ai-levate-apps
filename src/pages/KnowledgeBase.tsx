@@ -1089,19 +1089,20 @@ const KnowledgeBase = () => {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-2">
-                  <Button 
-                    onClick={() => setIsCreating(true)}
-                    className="px-6 bg-blue-600 hover:bg-blue-700 text-white"
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Create New Knowledge Base
-                  </Button>
-                  <Button 
+                  <Button
+                    variant="outline"
                     onClick={() => setIsCreatingStudyLO(true)}
-                    className="px-6 bg-blue-600 hover:bg-blue-700 text-white"
+                    className="px-5 bg-white border-gray-300 text-gray-800 hover:bg-gray-50 hover:border-gray-400 shadow-sm"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Create Study LO
+                  </Button>
+                  <Button
+                    onClick={() => setIsCreating(true)}
+                    className="px-5 bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Create New Knowledge Base
                   </Button>
                 </div>
               </div>
