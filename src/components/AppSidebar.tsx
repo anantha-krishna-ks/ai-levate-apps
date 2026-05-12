@@ -135,7 +135,12 @@ export function AppSidebar({
                     )}
                     title={collapsed ? item.title : undefined}
                   >
-                    <Icon className="h-[18px] w-[18px] flex-shrink-0" />
+                    <Icon
+                      className={cn(
+                        "h-[18px] w-[18px] flex-shrink-0",
+                        groupActive && "fill-current",
+                      )}
+                    />
                     {!collapsed && (
                       <>
                         <span className="flex-1 text-left">{item.title}</span>
@@ -190,7 +195,12 @@ export function AppSidebar({
                     : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                 )}
               >
-                <Icon className="h-[18px] w-[18px] flex-shrink-0" />
+                <Icon
+                  className={cn(
+                    "h-[18px] w-[18px] flex-shrink-0",
+                    active && "fill-current",
+                  )}
+                />
                 {!collapsed && <span>{item.title}</span>}
               </NavLink>
             )
