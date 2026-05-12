@@ -577,50 +577,39 @@ const Dashboard = () => {
 
         {/* Stats Cards */}
         <div className="px-3 sm:px-6 pb-4 sm:pb-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
-            <Card className="p-3 sm:p-6 bg-blue-50 border border-gray-200 shadow-sm">
-              <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center shadow-sm flex-shrink-0">
-                  <Sparkle className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
-                </div>
-                <span className="font-medium text-xs sm:text-base text-gray-700 leading-tight">Available Tools</span>
-              </div>
-              <div className="text-lg sm:text-2xl font-medium text-gray-900 mb-0.5 sm:mb-1">16</div>
-              <div className="text-[10px] sm:text-sm font-medium text-blue-600 leading-tight">AI-Powered</div>
-            </Card>
-
-            <Card className="p-3 sm:p-6 bg-green-50 border border-gray-200 shadow-sm">
-              <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center shadow-sm flex-shrink-0">
-                  <Star className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
-                </div>
-                <span className="font-medium text-xs sm:text-base text-gray-700 leading-tight">Active Access</span>
-              </div>
-              <div className="text-lg sm:text-2xl font-medium text-gray-900 mb-0.5 sm:mb-1">12</div>
-              <div className="text-[10px] sm:text-sm font-medium text-green-600 leading-tight">Subscribed</div>
-            </Card>
-
-            <Card className="p-3 sm:p-6 bg-purple-50 border border-gray-200 shadow-sm">
-              <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center shadow-sm flex-shrink-0">
-                  <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 text-purple-600" />
-                </div>
-                <span className="font-medium text-xs sm:text-base text-gray-700 leading-tight">Explore More</span>
-              </div>
-              <div className="text-lg sm:text-2xl font-medium text-gray-900 mb-0.5 sm:mb-1">4</div>
-              <div className="text-[10px] sm:text-sm font-medium text-purple-600 leading-tight">Features</div>
-            </Card>
-
-            <Card className="p-3 sm:p-6 bg-orange-50 border border-gray-200 shadow-sm">
-              <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center shadow-sm flex-shrink-0">
-                  <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-orange-600" />
-                </div>
-                <span className="font-medium text-xs sm:text-base text-gray-700 leading-tight">Today's Usage</span>
-              </div>
-              <div className="text-lg sm:text-2xl font-medium text-gray-900 mb-0.5 sm:mb-1">847</div>
-              <div className="text-[10px] sm:text-sm font-medium text-orange-600 leading-tight">Tokens</div>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <PastelStatTile
+              tone="lavender"
+              icon={Sparkle}
+              label="Available Tools"
+              value={16}
+              total={20}
+              caption="AI-Powered"
+            />
+            <PastelStatTile
+              tone="mint"
+              icon={Star}
+              label="Active Access"
+              value={12}
+              total={16}
+              caption="Subscribed"
+            />
+            <PastelStatTile
+              tone="sky"
+              icon={ArrowRight}
+              label="Explore More"
+              value={4}
+              total={10}
+              caption="Features"
+            />
+            <PastelStatTile
+              tone="peach"
+              icon={Clock}
+              label="Today's Usage"
+              value={847}
+              total={1000}
+              caption="Tokens"
+            />
           </div>
         </div>
 
