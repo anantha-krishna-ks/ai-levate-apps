@@ -13,6 +13,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { useNavigate } from "react-router-dom";
 import { AppSidebar } from "@/components/AppSidebar";
+import { AppHeader } from "@/components/AppHeader";
 import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
 import { ProfileDropdown } from "@/components/ProfileDropdown";
 
