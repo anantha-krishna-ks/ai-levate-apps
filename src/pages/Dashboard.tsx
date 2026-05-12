@@ -381,7 +381,7 @@ const Dashboard = () => {
       </Sheet>
       
       {/* Header - full width across sidebar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-slate-200/70 shadow-sm">
           <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
             <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
               {/* Logo - leftmost side */}
@@ -401,17 +401,12 @@ const Dashboard = () => {
               >
                 <Menu className="h-5 w-5" />
               </Button>
-              <div className="min-w-0 flex items-center gap-3 flex-1">
-                <h1 className="text-base sm:text-xl font-medium text-gray-900 truncate">Welcome Back, Robert Jones!</h1>
-              </div>
             </div>
             
             <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-              <div className="hidden sm:flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-                  <span className="text-white text-xs">✦</span>
-                </div>
-                <span className="text-xs sm:text-sm text-blue-600 font-medium whitespace-nowrap">4,651</span>
+              <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-full border border-slate-200 bg-white">
+                <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                <span className="text-xs sm:text-sm text-slate-700 font-medium whitespace-nowrap">4,651</span>
               </div>
               
               {/* Mobile Search Button */}
@@ -458,8 +453,8 @@ const Dashboard = () => {
           
         </div>
 
-        {/* Subscription Filter */}
-        <div className="px-6 pb-4">
+        {/* Subscription Filter + Welcome */}
+        <div className="px-6 pb-4 pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="flex items-center gap-1 p-1 bg-gray-100 rounded-lg w-fit">
             {subscriptionCategories.map((category) => (
               <button
@@ -475,6 +470,7 @@ const Dashboard = () => {
               </button>
             ))}
           </div>
+          <h1 className="text-base sm:text-lg font-medium text-gray-900 truncate">Welcome Back, Robert Jones!</h1>
         </div>
 
         {/* Stats Cards */}
