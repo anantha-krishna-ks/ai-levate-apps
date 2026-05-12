@@ -204,6 +204,13 @@ const ItemGeneration = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/0" />
 
+                  {/* Level badge */}
+                  <div className="absolute top-3 right-3">
+                    <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold ring-1 backdrop-blur ${levelStyle}`}>
+                      {base.level}
+                    </span>
+                  </div>
+
                   {/* Bottom: year */}
                   <div className="absolute bottom-3 left-3">
                     <span className="inline-flex items-center gap-1 bg-black/60 backdrop-blur text-white px-2 py-0.5 rounded-md text-[11px] font-medium tracking-wide">
