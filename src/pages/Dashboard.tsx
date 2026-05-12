@@ -47,7 +47,7 @@ function PastelStatTile({ tone, icon: Icon, label, value, total, caption }: Past
       className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-5 ${styles.bg} ${styles.ink}`}
     >
       <div className="flex items-center gap-2.5 mb-4">
-        <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0">
+        <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
           <Icon className="h-3.5 w-3.5" />
         </div>
         <span id={labelId} className="text-[15px] font-medium tracking-tight">{label}</span>
