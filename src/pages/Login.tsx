@@ -21,8 +21,8 @@ const Login = () => {
     general: ""
   });
   const [formData, setFormData] = useState({
-    username: "",
-    password: ""
+    username: "demo@example.com",
+    password: "password123"
   });
 
   const handleInputChange = (field: string, value: string) => {
