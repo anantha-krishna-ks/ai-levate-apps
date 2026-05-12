@@ -114,8 +114,8 @@ const ItemGenerator = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-background via-muted/10 to-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 glass-effect border-b border-border/30">
+      <AppHeader />
+      <div className="border-b border-border/30 mt-16">
         <div className="flex h-16 items-center gap-4 px-6">
           <div className="flex-1 flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -127,23 +127,9 @@ const ItemGenerator = () => {
               <div className="h-6 w-px bg-border/40" />
               <h1 className="text-xl font-medium text-foreground">Item Generator</h1>
             </div>
-            
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span>Welcome Back,</span>
-                <span className="font-medium text-primary">Robert Jones</span>
-              </div>
-              <Button variant="ghost" size="icon" className="hover:scale-110 transition-transform duration-200">
-                <Bell className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="hover:scale-110 transition-transform duration-200">
-                <Settings className="h-5 w-5" />
-              </Button>
-              <ProfileDropdown />
-            </div>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Content - Bento Grid Layout */}
       <main className="flex-1 p-6">
