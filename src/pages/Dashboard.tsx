@@ -725,7 +725,7 @@ const Dashboard = () => {
               return (
                 <div 
                   key={tool.id}
-                  className="relative"
+                  className="relative h-full"
                   onMouseEnter={() => setHoveredTool(tool.id)}
                   onMouseLeave={() => setHoveredTool(null)}
                   onMouseMove={(e) => {
@@ -736,36 +736,48 @@ const Dashboard = () => {
                     })
                   }}
                 >
-                  <Card className="group bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1">
-                    <div className="relative">
-                      <img 
-                        src={tool.image} 
+                  <Card className="group relative h-full flex flex-col overflow-hidden bg-white border border-gray-200/80 rounded-2xl shadow-[0_1px_2px_rgba(16,24,40,0.04)] hover:shadow-[0_8px_24px_rgba(16,24,40,0.08)] hover:border-blue-200 transition-all duration-300 hover:-translate-y-1">
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={tool.image}
                         alt={tool.title}
-                        className="w-full h-40 object-cover rounded-t-lg"
+                        className="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       />
-                      {tool.badge && (
-                        <div className={`absolute top-3 right-3 px-2 py-1 rounded-md text-xs text-white font-medium ${tool.badgeColor} shadow-sm`}>
-                          {tool.badge}
-                        </div>
-                      )}
-                      <div className="absolute bottom-3 right-3 px-2 py-1 rounded-md text-xs font-medium text-gray-700 bg-white/90 backdrop-blur-sm shadow-sm">
-                        {tool.category}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                      <div className="absolute top-3 left-3 flex items-center gap-2">
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium text-gray-700 bg-white/90 backdrop-blur-sm border border-white/60">
+                          {tool.category}
+                        </span>
+                        {tool.badge && (
+                          <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold text-white ${tool.badgeColor}`}>
+                            {tool.badge}
+                          </span>
+                        )}
+                      </div>
+                      <div className="absolute -bottom-5 right-4 h-11 w-11 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center">
+                        <IconComponent className="h-5 w-5 text-blue-600" />
                       </div>
                     </div>
-                    
-                    <CardContent className="p-6">
-                      <h3 className="font-medium text-gray-900 mb-2 line-clamp-1">{tool.title}</h3>
-                      <p className="text-sm text-gray-600 mb-4 line-clamp-2">{tool.description}</p>
-                      
-                      <Link to={tool.path}>
-                        <Button 
-                          className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-all duration-200 hover:scale-[1.02]"
-                          size="sm"
-                        >
-                          <Sparkle className="h-4 w-4 mr-2" />
-                          Launch App
-                        </Button>
-                      </Link>
+
+                    <CardContent className="flex flex-col flex-1 p-5 pt-6">
+                      <h3 className="font-semibold text-[15px] text-gray-900 mb-1.5 line-clamp-1 pr-12">
+                        {tool.title}
+                      </h3>
+                      <p className="text-[13px] leading-relaxed text-gray-500 line-clamp-3 min-h-[60px]">
+                        {tool.description}
+                      </p>
+
+                      <div className="mt-auto pt-5">
+                        <Link to={tool.path}>
+                          <Button
+                            className="w-full rounded-full bg-gray-900 hover:bg-blue-600 text-white font-medium transition-colors duration-200 group/btn"
+                            size="sm"
+                          >
+                            Launch App
+                            <ArrowRight className="h-4 w-4 ml-1.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
+                          </Button>
+                        </Link>
+                      </div>
                     </CardContent>
                   </Card>
                   
