@@ -27,6 +27,7 @@ import { ProfileDropdown } from "@/components/ProfileDropdown"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { toast } from "@/hooks/use-toast"
+import { AppHeader } from "@/components/AppHeader"
 
 const ItemMetadata = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
@@ -216,8 +217,8 @@ const ItemMetadata = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-3">
+      <AppHeader />
+      <div className="bg-white border-b border-gray-200 px-6 py-3 mt-16">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
@@ -229,10 +230,6 @@ const ItemMetadata = () => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg border border-blue-200">
-              <Sparkle className="h-4 w-4 text-blue-600" />
-              <span className="text-sm font-medium text-blue-600">2,847 Tokens</span>
-            </div>
             <Link to="/dashboard">
               <Button variant="ghost" size="sm" className="hover:bg-gray-200 hover:text-gray-900 bg-transparent text-gray-700">
                 <ArrowLeft className="h-4 w-4 mr-2" />
@@ -241,7 +238,7 @@ const ItemMetadata = () => {
             </Link>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Content */}
       <main className="p-6">

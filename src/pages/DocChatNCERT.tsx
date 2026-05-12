@@ -27,6 +27,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import ncertBookImage from "@/assets/ncert-biology-book.jpg"
+import { AppHeader } from "@/components/AppHeader"
 
 interface Message {
   role: "user" | "assistant"
@@ -411,8 +412,8 @@ Assessment (10 minutes):
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-3 flex-shrink-0">
+      <AppHeader onMenuClick={() => setIsDrawerOpen(true)} />
+      <div className="bg-white border-b border-gray-200 px-6 py-3 flex-shrink-0 mt-16">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             {/* Hamburger Menu for Mobile */}
@@ -441,10 +442,6 @@ Assessment (10 minutes):
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-purple-50 rounded-lg border border-purple-200">
-              <Sparkle className="h-4 w-4 text-purple-600" />
-              <span className="text-sm font-medium text-purple-600">3,241 Tokens</span>
-            </div>
             <Link to="/dashboard">
               <Button variant="ghost" size="sm" className="hover:bg-accent hover:text-accent-foreground">
                 <ArrowLeft className="h-4 w-4 sm:mr-2" />
@@ -453,7 +450,7 @@ Assessment (10 minutes):
             </Link>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Content - Split Layout */}
       <div className="flex flex-1 overflow-hidden">
