@@ -47,7 +47,7 @@ function PastelStatTile({ tone, icon: Icon, label, value, total, caption }: Past
       className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-5 ${styles.bg} ${styles.ink}`}
     >
       <div className="flex items-center gap-2.5 mb-4">
-        <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0">
+        <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
           <Icon className="h-3.5 w-3.5" />
         </div>
         <span id={labelId} className="text-[15px] font-medium tracking-tight">{label}</span>
@@ -72,7 +72,7 @@ function PastelStatTile({ tone, icon: Icon, label, value, total, caption }: Past
             style={{ ["--progress-target" as never]: `${pct}%` }}
           >
             <span className="absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-white/35" />
-            <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 h-3 w-3 rounded-full bg-white shadow-[0_0_8px_2px_rgba(255,255,255,0.9)]" />
+            <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 h-3 w-3 rounded-full bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.12),0_0_10px_3px_rgba(255,255,255,0.95)] ring-1 ring-black/5" />
           </div>
         </div>
         <span className="text-sm font-medium tabular-nums">{pct}%</span>
