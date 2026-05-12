@@ -215,6 +215,7 @@ const Login = () => {
                   {/* Demo Accounts dropdown */}
                   <div>
                     <Select
+                      defaultValue="user"
                       onValueChange={(value) => {
                         if (value === "user") {
                           handleInputChange("username", "demo@example.com");
