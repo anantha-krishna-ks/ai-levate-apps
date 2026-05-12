@@ -150,9 +150,9 @@ const KnowledgeBase = () => {
         }`}
       >
         {/* Page Title Section */}
-        <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
+        <div className="px-6 pt-6 pb-2">
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-3 min-w-0">
               {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode) && (
                 <Button
                   variant="ghost"
@@ -165,29 +165,38 @@ const KnowledgeBase = () => {
                     setIsChatMode(false);
                     setSelectedKBForChat(null);
                   }}
-                  className="flex-shrink-0"
+                  className="h-9 w-9 flex-shrink-0 -ml-2 text-gray-600 hover:text-gray-900"
                 >
                   <ArrowLeft className="w-5 h-5" />
                 </Button>
               )}
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center flex-shrink-0">
-                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-              </div>
-              <div className="flex flex-col">
-                <h2 className="text-base sm:text-lg font-medium text-gray-900">
-                  {isCreating ? "Create New Knowledge Base" : isCreatingStudyLO ? "Create Study LO" : isViewingGuidelines ? "Guideline Data" : isChatMode ? `Knowledge Base: ${selectedKBForChat?.bookName}` : "Knowledge Base System"}
-                </h2>
-                {isChatMode && selectedKBForChat && (
-                  <p className="text-sm text-gray-600">Customer: {selectedCustomer}</p>
-                )}
+              <div className="flex flex-col min-w-0">
+                <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 leading-tight truncate">
+                  {isCreating ? "Create New Knowledge Base" : isCreatingStudyLO ? "Create Study LO" : isViewingGuidelines ? "Guideline Data" : isChatMode ? `Knowledge Base: ${selectedKBForChat?.bookName}` : "Knowledge Base"}
+                </h1>
+                <p className="text-sm text-gray-500 mt-0.5 truncate">
+                  {isCreating
+                    ? "Configure a new knowledge base for your content"
+                    : isCreatingStudyLO
+                      ? "Upload a CSV to create study learning outcomes"
+                      : isViewingGuidelines
+                        ? "Manage guideline documents for this knowledge base"
+                        : isChatMode && selectedKBForChat
+                          ? `Customer: ${selectedCustomer}`
+                          : "Manage your knowledge bases and study materials"}
+                </p>
               </div>
             </div>
             {isCreatingStudyLO ? (
-              <Button className="bg-yellow-600 hover:bg-yellow-700 text-white flex-shrink-0">
+              <Button className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full flex-shrink-0">
                 Download Template
               </Button>
             ) : !isCreating && (
-              <Button variant="outline" size="sm" className="text-gray-600 hover:text-gray-900 flex-shrink-0">
+              <Button
+                variant="outline"
+                size="sm"
+                className="rounded-full border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 flex-shrink-0"
+              >
                 <FileText className="w-4 h-4 mr-2" />
                 Knowledge Base Manual
               </Button>
