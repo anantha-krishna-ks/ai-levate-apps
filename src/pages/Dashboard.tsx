@@ -86,7 +86,7 @@ const SubscriptionPillToggle: React.FC<SubscriptionPillToggleProps> = ({ categor
             aria-selected={isActive}
             onClick={() => onChange(category)}
             className={`relative z-10 flex items-center justify-center gap-1.5 px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 whitespace-nowrap ${
-              isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+              isActive ? "text-primary" : "text-foreground/80 hover:text-foreground"
             }`}
           >
             {category}
