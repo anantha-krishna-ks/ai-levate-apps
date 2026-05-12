@@ -681,21 +681,24 @@ const Dashboard = () => {
         <main className="flex-1 px-6 pb-6">
 
           {/* Filter Tabs */}
-          <div className="flex gap-2 mb-6 overflow-x-auto">
-            {tabs.map((tab) => (
-              <Button
-                key={tab}
-                variant={activeTab === tab ? "default" : "outline"}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-lg whitespace-nowrap text-sm transition-all ${
-                  activeTab === tab 
-                    ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm" 
-                    : "bg-background text-foreground border-input hover:bg-accent hover:text-accent-foreground hover:border-accent"
-                }`}
-              >
-                {tab}
-              </Button>
-            ))}
+          <div className="flex gap-2 mb-6 overflow-x-auto pb-1 -mx-1 px-1">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab;
+              return (
+                <button
+                  key={tab}
+                  type="button"
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-4 h-9 rounded-full whitespace-nowrap text-sm font-medium tracking-tight transition-all duration-200 border ${
+                    isActive
+                      ? "bg-foreground text-background border-foreground shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_-2px_rgba(0,0,0,0.12)]"
+                      : "bg-background/80 backdrop-blur text-foreground/80 border-border/70 hover:text-foreground hover:bg-foreground/[0.04]"
+                  }`}
+                >
+                  {tab}
+                </button>
+              );
+            })}
           </div>
 
           {/* Search Results Info */}
