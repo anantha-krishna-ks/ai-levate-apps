@@ -197,7 +197,7 @@ const KnowledgeBase = () => {
 
         {/* Main Content */}
         <main className="p-6">
-          <div className="max-w-7xl mx-auto space-y-6">
+          <div className="space-y-6">
             {isChatMode ? (
               /* Chat Interface */
               <div className="flex flex-col h-[calc(100vh-200px)]">
