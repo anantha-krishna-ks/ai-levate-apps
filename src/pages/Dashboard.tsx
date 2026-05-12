@@ -448,7 +448,7 @@ const Dashboard = () => {
 
             <Separator orientation="vertical" className="hidden sm:block h-8" />
 
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
