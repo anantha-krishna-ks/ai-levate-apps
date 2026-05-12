@@ -99,7 +99,7 @@ const Collaboration = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
       <div
-        className={`fixed left-0 top-0 h-full z-40 hidden lg:block transition-all duration-300 ${
+        className={`fixed left-0 top-0 h-full z-[60] hidden lg:block transition-all duration-300 ${
           sidebarCollapsed ? "w-16" : "w-52"
         }`}
       >
