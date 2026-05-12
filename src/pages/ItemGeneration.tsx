@@ -183,65 +183,83 @@ const ItemGeneration = () => {
 
         {/* Knowledge Base Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {knowledgeBases.map((base) => (
-            <Card key={base.id} className="overflow-hidden bg-white border border-gray-200 hover:shadow-md transition-shadow">
-              {/* Image Section */}
-              <div className="relative h-48 bg-gray-100">
-                <img 
-                  src={base.image} 
-                  alt={base.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-3 left-3">
-                  <Badge variant="secondary" className="bg-gray-900 text-white hover:bg-gray-900">
-                    {base.year}
-                  </Badge>
-                </div>
-                <div className="absolute top-3 right-3">
-                  <Badge 
-                    variant="secondary" 
-                    className={base.level === 'Advanced' ? 'bg-red-100 text-red-700 hover:bg-red-100' : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-100'}
-                  >
-                    {base.level}
-                  </Badge>
-                </div>
-                <div className="absolute bottom-3 right-3">
-                  <div className="bg-white rounded-lg px-2 py-1 flex items-center gap-1">
-                    <FileText className="w-3 h-3 text-blue-600" />
-                    <span className="text-xs font-medium text-gray-900">Questions: {base.questions}</span>
-                  </div>
-                </div>
-              </div>
+          {knowledgeBases.map((base) => {
+            const levelStyle =
+              base.level === "Advanced"
+                ? "bg-rose-50 text-rose-700 ring-rose-200"
+                : base.level === "Intermediate"
+                  ? "bg-amber-50 text-amber-700 ring-amber-200"
+                  : "bg-emerald-50 text-emerald-700 ring-emerald-200";
+            return (
+              <Card
+                key={base.id}
+                className="group relative overflow-hidden bg-white border border-slate-200 rounded-2xl transition-all hover:border-slate-300 hover:-translate-y-0.5"
+              >
+                {/* Image Section */}
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={base.image}
+                    alt={base.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/0" />
 
-              {/* Content Section */}
-              <div className="p-6">
-                <div className="mb-3">
-                  <div className="text-sm text-gray-500 mb-1">{base.category}</div>
-                  <h3 className="font-medium text-gray-900 mb-2">{base.title}</h3>
-                  <p className="text-sm text-gray-600">{base.description}</p>
-                </div>
-
-                <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-gray-400" />
-                    <span>{base.lastUpdated}</span>
+                  {/* Top row: category pill + level */}
+                  <div className="absolute top-3 inset-x-3 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 bg-white/95 backdrop-blur px-2.5 py-1 rounded-full text-[11px] font-semibold text-slate-700 ring-1 ring-black/5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                      {base.category}
+                    </span>
+                    <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold ring-1 ${levelStyle}`}>
+                      {base.level}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <CheckCircle className="w-3 h-3 text-green-500" />
-                    <span>{base.status}</span>
+
+                  {/* Bottom: year */}
+                  <div className="absolute bottom-3 left-3">
+                    <span className="inline-flex items-center gap-1 bg-black/60 backdrop-blur text-white px-2 py-0.5 rounded-md text-[11px] font-medium tracking-wide">
+                      {base.year}
+                    </span>
                   </div>
                 </div>
 
-                <Link to={`/question-generator/${base.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                    <Zap className="w-4 h-4 mr-2" />
-                    Start Generating
-                    <ChevronRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-          ))}
+                {/* Content Section */}
+                <div className="p-5">
+                  <h3 className="text-base font-semibold text-slate-900 leading-snug tracking-tight line-clamp-1">
+                    {base.title}
+                  </h3>
+                  <p className="text-sm text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">
+                    {base.description}
+                  </p>
+
+                  {/* Meta row */}
+                  <div className="mt-4 flex items-center gap-2 text-[11px] text-slate-500">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-slate-50 ring-1 ring-slate-200">
+                      <FileText className="w-3 h-3 text-blue-600" />
+                      <span className="font-semibold text-slate-700 tabular-nums">{base.questions}</span>
+                      <span>questions</span>
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-slate-50 ring-1 ring-slate-200">
+                      <Clock className="w-3 h-3 text-slate-400" />
+                      {base.lastUpdated}
+                    </span>
+                    <span className="inline-flex items-center gap-1 ml-auto text-emerald-600 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      {base.status}
+                    </span>
+                  </div>
+
+                  <Link to={`/question-generator/${base.title.toLowerCase().replace(/\s+/g, "-")}`} className="block mt-5">
+                    <Button className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-full h-10 group/btn">
+                      <Zap className="w-4 h-4 mr-1.5" />
+                      Start Generating
+                      <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover/btn:translate-x-0.5" />
+                    </Button>
+                  </Link>
+                </div>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Footer */}
