@@ -85,8 +85,8 @@ const EssayEvaluationZeroShot = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-3 sticky top-0 z-50">
+      <AppHeader />
+      <div className="bg-white border-b border-gray-200 px-6 py-3 mt-16">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center">
@@ -99,10 +99,6 @@ const EssayEvaluationZeroShot = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-purple-50 rounded-lg border border-purple-200">
-              <Sparkle className="h-4 w-4 text-purple-600" />
-              <span className="text-sm font-medium text-purple-600">4,651 Tokens</span>
-            </div>
             <Link to="/dashboard">
               <Button variant="ghost" size="sm" className="text-gray-600">
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -111,7 +107,7 @@ const EssayEvaluationZeroShot = () => {
             </Link>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Content */}
       <main className="p-6">
