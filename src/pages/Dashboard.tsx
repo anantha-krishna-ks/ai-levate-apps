@@ -477,10 +477,10 @@ const Dashboard = () => {
           {/* Center: Search */}
           <div className="flex-1 flex justify-center">
             <div className="relative hidden lg:block w-full max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-600" />
               <Input
                 placeholder="Search AI tools..."
-                className="pl-10 pr-9 h-10 w-full bg-background/60 border-border focus-visible:ring-primary/30"
+                className="pl-10 pr-9 h-10 w-full bg-slate-100 border-slate-200 placeholder:text-slate-600 focus-visible:ring-primary/30"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
