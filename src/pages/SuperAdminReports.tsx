@@ -13,7 +13,7 @@ const SuperAdminReports = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-52 z-40 hidden lg:block">
+      <div className="fixed left-0 top-0 h-full w-52 z-[60] hidden lg:block">
         <SuperAdminSidebar />
       </div>
 
