@@ -151,9 +151,19 @@ const KnowledgeBase = () => {
       >
         {/* Page Title Section */}
         <div className="relative bg-white border-b border-slate-200">
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-0.5 bg-blue-600" />
+          {/* subtle dotted texture */}
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.35]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgb(148 163 184 / 0.18) 1px, transparent 1px)",
+              backgroundSize: "14px 14px",
+            }}
+          />
+          {/* left accent bar */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-[3px] bg-blue-600" />
 
-          <div className="relative px-4 sm:px-6 py-3">
+          <div className="relative px-4 sm:px-6 py-3.5">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3 min-w-0">
                 {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode) && (
@@ -168,43 +178,46 @@ const KnowledgeBase = () => {
                       setIsChatMode(false);
                       setSelectedKBForChat(null);
                     }}
-                    className="h-8 w-8 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900"
+                    className="h-8 w-8 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900 rounded-full hover:bg-slate-100"
                   >
                     <ArrowLeft className="w-4 h-4" />
                   </Button>
                 )}
-                <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
-                  <Library className="h-4 w-4 text-white" />
+                <div className="h-9 w-9 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 ring-[3px] ring-blue-100">
+                  <Library className="h-[18px] w-[18px] text-white" />
                 </div>
-                  <div className="flex flex-col min-w-0">
-                    <h1 className="text-base sm:text-lg font-medium text-slate-900 leading-tight tracking-tight truncate">
+                <div className="flex flex-col min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h1 className="text-base sm:text-lg font-semibold text-slate-900 leading-tight tracking-tight truncate">
                       {isCreating ? "Create New Knowledge Base" : isCreatingStudyLO ? "Create Study LO" : isViewingGuidelines ? "Guideline Data" : isChatMode ? `Knowledge Base: ${selectedKBForChat?.bookName}` : "Knowledge Base"}
                     </h1>
-                    <p className="text-xs text-slate-500 truncate">
-                      {isCreating
-                        ? "Configure a new knowledge base for your content"
-                        : isCreatingStudyLO
-                          ? "Upload a CSV to create study learning outcomes"
-                          : isViewingGuidelines
-                            ? "Manage guideline documents for this knowledge base"
-                            : isChatMode && selectedKBForChat
-                              ? `Customer: ${selectedCustomer}`
-                              : "Manage your knowledge bases and study materials"}
-                    </p>
+                    <span className="hidden sm:inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
                   </div>
+                  <p className="text-[11px] sm:text-xs text-slate-500 truncate mt-0.5">
+                    {isCreating
+                      ? "Configure a new knowledge base for your content"
+                      : isCreatingStudyLO
+                        ? "Upload a CSV to create study learning outcomes"
+                        : isViewingGuidelines
+                          ? "Manage guideline documents for this knowledge base"
+                          : isChatMode && selectedKBForChat
+                            ? `Customer: ${selectedCustomer}`
+                            : "Manage your knowledge bases and study materials"}
+                  </p>
+                </div>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
                 {isCreatingStudyLO ? (
-                  <Button className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full text-xs h-8">
+                  <Button className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full text-xs h-8 px-4">
                     Download Template
                   </Button>
                 ) : !isCreating && (
                   <Button
                     variant="outline"
                     size="sm"
-                    className="rounded-full border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 text-xs h-8"
+                    className="rounded-full border-slate-200 bg-white text-slate-700 hover:text-blue-700 hover:bg-blue-50 hover:border-blue-200 text-xs h-8 px-3.5 transition-colors"
                   >
-                    <FileText className="w-3 h-3 mr-1.5" />
+                    <FileText className="w-3.5 h-3.5 mr-1.5" />
                     Manual
                   </Button>
                 )}
