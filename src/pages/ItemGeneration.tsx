@@ -157,7 +157,7 @@ const ItemGeneration = () => {
 
                 {/* Big value */}
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-[40px] leading-none font-medium tracking-tight tabular-nums">
+                  <span className="text-[32px] leading-none font-medium tracking-tight tabular-nums">
                     {stat.value.toLocaleString()}
                   </span>
                   <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
