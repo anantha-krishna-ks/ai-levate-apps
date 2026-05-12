@@ -1082,12 +1082,7 @@ const KnowledgeBase = () => {
           <Card className="border border-gray-200/70 bg-white shadow-sm rounded-2xl">
             <CardContent className="p-6 space-y-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-gray-200 text-gray-700 rounded-lg">
-                    <FileText className="h-5 w-5" />
-                  </div>
-                  <h2 className="text-xl font-medium text-gray-900">Knowledge Bases</h2>
-                </div>
+                <h2 className="text-xl font-medium text-gray-900">Knowledge Bases</h2>
                 
                 <div className="flex flex-col sm:flex-row gap-2">
                   <Button
