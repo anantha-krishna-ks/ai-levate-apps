@@ -8,6 +8,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Label } from "@/components/ui/label";
 import { Search, Edit, Trash2, Package, Menu, Plus, Users as UsersIcon, X } from "lucide-react";
 import { AppSidebar } from "@/components/AppSidebar";
+import { AppHeader } from "@/components/AppHeader";
 import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
 import { ProfileDropdown } from "@/components/ProfileDropdown";
 
@@ -97,9 +98,10 @@ const Collaboration = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />
       {/* Desktop Sidebar */}
       <div
-        className={`fixed left-0 top-0 h-full z-[60] hidden lg:block transition-all duration-300 ${
+        className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-[60] hidden lg:block transition-all duration-300 ${
           sidebarCollapsed ? "w-16" : "w-52"
         }`}
       >
@@ -118,38 +120,10 @@ const Collaboration = () => {
       </Sheet>
 
       <div
-        className={`ml-0 min-h-screen flex flex-col transition-all duration-300 ${
+        className={`ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
           sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
         }`}
       >
-        {/* Header */}
-        <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-          <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
-            <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
-              {/* Mobile Menu Button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden flex-shrink-0"
-                onClick={() => setMobileMenuOpen(true)}
-              >
-                <Menu className="h-5 w-5" />
-              </Button>
-            </div>
-            
-            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-              <div className="hidden sm:flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-                  <span className="text-white text-xs">✦</span>
-                </div>
-                <span className="text-xs sm:text-sm text-blue-600 font-medium whitespace-nowrap">4,651</span>
-              </div>
-              
-              <ProfileDropdown />
-            </div>
-          </div>
-        </header>
-
         {/* Page Title Section */}
         <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between gap-3 flex-wrap">
