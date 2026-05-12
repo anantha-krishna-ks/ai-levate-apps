@@ -115,7 +115,13 @@ const KnowledgeBase = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#F4F5F7]">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Mesh gradient background blobs */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 -left-40 w-[600px] h-[600px] rounded-full bg-primary/[0.04] blur-[120px]" />
+        <div className="absolute top-1/3 -right-20 w-[500px] h-[500px] rounded-full bg-primary/[0.03] blur-[100px]" />
+        <div className="absolute -bottom-40 left-1/3 w-[700px] h-[700px] rounded-full bg-accent/[0.06] blur-[140px]" />
+      </div>
       {/* Desktop Sidebar */}
       <div
         className={`fixed left-0 top-0 h-full z-[60] hidden lg:block transition-all duration-300 ${
