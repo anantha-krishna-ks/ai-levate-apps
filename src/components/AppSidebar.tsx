@@ -80,7 +80,7 @@ export function AppSidebar({
     <aside
       className={cn(
         "relative h-full bg-white border-r border-sidebar-border flex flex-col transition-all duration-300",
-        collapsed ? "w-16" : "w-60",
+        collapsed ? "w-16" : "w-52",
       )}
     >
       {!hideToggle && (

@@ -290,7 +290,7 @@ const Dashboard = () => {
       {/* Desktop Sidebar */}
       <div
         className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-40 hidden lg:block transition-all duration-300 ${
-          sidebarCollapsed ? "w-16" : "w-60"
+          sidebarCollapsed ? "w-16" : "w-52"
         }`}
       >
         <AppSidebar />
@@ -489,7 +489,7 @@ const Dashboard = () => {
 
       <div
         className={`ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
-          sidebarCollapsed ? "lg:ml-16" : "lg:ml-60"
+          sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
         }`}
       >
         {/* Page Title */}
