@@ -174,7 +174,7 @@ const KnowledgeBase = () => {
                   </Button>
                 )}
                 <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
-                  <div className="h-full w-full rounded-lg bg-blue-600 flex items-center justify-center">
+                  <div className="h-full w-full rounded-md bg-blue-600 flex items-center justify-center">
                     <Library className="h-4 w-4 text-white" />
                   </div>
                 </div>
