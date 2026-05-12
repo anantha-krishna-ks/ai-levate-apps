@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, Search, Sparkle, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, Search, Sparkle, X, User, Settings, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { ProfileDropdown } from "@/components/ProfileDropdown";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface AppHeaderProps {
   onMenuClick?: () => void;
@@ -24,6 +30,7 @@ export function AppHeader({
   const [internal, setInternal] = useState("");
   const value = searchValue ?? internal;
   const setValue = onSearchChange ?? setInternal;
+  const navigate = useNavigate();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[70] backdrop-blur-sm bg-card/95 border-b border-border">
@@ -80,7 +87,41 @@ export function AppHeader({
             <span className="text-xs text-muted-foreground">tokens</span>
           </div>
           <Separator orientation="vertical" className="hidden sm:block h-8" />
-          <ProfileDropdown />
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="w-11 h-11 p-0 rounded-full border-2 border-primary/30 hover:border-primary/50 hover:bg-transparent"
+              >
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                  <span className="text-sm font-bold text-primary">A</span>
+                </div>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-64 mt-2 p-2">
+              <div className="flex flex-col min-w-0 px-2 py-2">
+                <span className="text-sm font-semibold text-foreground truncate">Anil Kumar</span>
+                <span className="text-xs text-muted-foreground truncate">anil.kumar@ailevate.com</span>
+              </div>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="cursor-pointer rounded-md px-2 py-2 text-sm text-foreground/80 transition-colors focus:bg-primary/10 focus:text-primary [&>svg]:text-muted-foreground focus:[&>svg]:text-primary">
+                <User className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer rounded-md px-2 py-2 text-sm text-foreground/80 transition-colors focus:bg-primary/10 focus:text-primary [&>svg]:text-muted-foreground focus:[&>svg]:text-primary">
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Settings</span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="cursor-pointer rounded-md px-2 py-2 text-sm text-destructive transition-colors focus:bg-destructive/10 focus:text-destructive [&>svg]:text-destructive/70 focus:[&>svg]:text-destructive"
+                onClick={() => navigate("/")}
+              >
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Logout</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
