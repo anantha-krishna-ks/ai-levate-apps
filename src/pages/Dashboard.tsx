@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { AppSidebar } from "@/components/AppSidebar"
+import { ProfileDropdown } from "@/components/ProfileDropdown"
 import { Separator } from "@/components/ui/separator"
 import {
   DropdownMenu,
