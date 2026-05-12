@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, Eye, EyeOff, AlertCircle, CheckCircle2, LogIn, User, ShieldCheck, Zap } from "lucide-react";
+import { Sparkles, Eye, EyeOff, AlertCircle, CheckCircle2, LogIn, User, ShieldCheck, Zap, Mail, Lock } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -268,12 +268,13 @@ const Login = () => {
                     </Select>
                   </div>
 
-                  <div>
+                  <div className="relative">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
                     <Input
                       placeholder="Username or Email"
                       value={formData.username}
                       onChange={(e) => handleInputChange('username', e.target.value)}
-                      className={`h-12 border-gray-200 bg-white/80 focus:border-primary focus:ring-primary/20 transition-all duration-200 ${
+                      className={`h-12 border-gray-200 bg-white/80 pl-12 focus:border-primary focus:ring-primary/20 transition-all duration-200 ${
                         errors.username ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : ''
                       }`}
                     />
@@ -286,12 +287,13 @@ const Login = () => {
                   </div>
 
                   <div className="relative">
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
                     <Input
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
                       value={formData.password}
                       onChange={(e) => handleInputChange('password', e.target.value)}
-                      className={`h-12 border-gray-200 bg-white/80 focus:border-primary focus:ring-primary/20 transition-all duration-200 pr-12 ${
+                      className={`h-12 border-gray-200 bg-white/80 pl-12 pr-12 focus:border-primary focus:ring-primary/20 transition-all duration-200 ${
                         errors.password ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : ''
                       }`}
                     />
