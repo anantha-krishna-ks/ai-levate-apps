@@ -136,7 +136,26 @@ const KnowledgeBase = () => {
             </Button>
           </div>
 
-          <div className="flex-1" />
+          {/* Center: Search */}
+          <div className="flex-1 flex justify-center">
+            <div className="relative hidden lg:block w-full max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-600" />
+              <Input
+                placeholder="Search AI tools..."
+                className="pl-10 pr-9 h-10 w-full bg-slate-100 border-slate-200 placeholder:text-slate-600 focus-visible:ring-primary/30"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+          </div>
 
           <div className="flex items-center gap-3 flex-shrink-0">
             <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-full bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/30 transition-colors">
