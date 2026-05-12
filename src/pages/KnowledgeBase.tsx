@@ -1051,19 +1051,19 @@ const KnowledgeBase = () => {
               <>
                 {/* Existing List View */}
           {/* Customer Selection Card */}
-          <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+          <Card className="border border-gray-200 bg-gray-50">
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-purple-600 text-white rounded-lg">
+                <div className="p-2 bg-gray-200 text-gray-700 rounded-lg">
                   <Search className="h-5 w-5" />
                 </div>
-                <h2 className="text-xl font-medium text-purple-800">Select Customer</h2>
+                <h2 className="text-xl font-medium text-gray-900">Select Customer</h2>
               </div>
               
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400 z-10" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 z-10" />
                 <Select value={selectedCustomer} onValueChange={setSelectedCustomer}>
-                  <SelectTrigger className="w-full pl-10 bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20">
+                  <SelectTrigger className="w-full pl-10 bg-white border-gray-200 focus:border-gray-400 focus:ring-gray-400/20">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="bg-white z-50">
@@ -1077,27 +1077,27 @@ const KnowledgeBase = () => {
           </Card>
 
           {/* Knowledge Bases Card */}
-          <Card className="border-2 border-blue-100 bg-gradient-to-br from-blue-50 to-blue-100">
+          <Card className="border border-gray-200 bg-gray-50">
             <CardContent className="p-6 space-y-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-600 text-white rounded-lg">
+                  <div className="p-2 bg-gray-200 text-gray-700 rounded-lg">
                     <FileText className="h-5 w-5" />
                   </div>
-                  <h2 className="text-xl font-medium text-blue-800">Knowledge Bases</h2>
+                  <h2 className="text-xl font-medium text-gray-900">Knowledge Bases</h2>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-2">
                   <Button 
                     onClick={() => setIsCreating(true)}
-                    className="px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                    className="px-6 bg-blue-600 hover:bg-blue-700 text-white"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Create New Knowledge Base
                   </Button>
                   <Button 
                     onClick={() => setIsCreatingStudyLO(true)}
-                    className="px-6 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white"
+                    className="px-6 bg-blue-600 hover:bg-blue-700 text-white"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Create Study LO
@@ -1108,16 +1108,16 @@ const KnowledgeBase = () => {
               {/* Search and Filter */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-blue-400 z-10" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
                   <Input
                     placeholder="Search knowledge bases..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20"
+                    className="pl-10 bg-white border-gray-200 focus:border-gray-400 focus:ring-gray-400/20"
                   />
                 </div>
                 <Select value={typeFilter} onValueChange={setTypeFilter}>
-                  <SelectTrigger className="w-full sm:w-40 bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20">
+                  <SelectTrigger className="w-full sm:w-40 bg-white border-gray-200 focus:border-gray-400 focus:ring-gray-400/20">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="bg-white z-50">
@@ -1129,15 +1129,15 @@ const KnowledgeBase = () => {
               </div>
 
               {/* Table */}
-              <div className="bg-white rounded-lg border-2 border-blue-200 overflow-hidden">
+              <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                 <div className="overflow-x-auto">
                   <Table>
                     <TableHeader>
-                      <TableRow className="bg-blue-50 border-b-2 border-blue-200 hover:bg-blue-50">
-                        <TableHead className="font-medium text-blue-900 py-4">Knowledge Base Name</TableHead>
-                        <TableHead className="font-medium text-blue-900 py-4">Book Name</TableHead>
-                        <TableHead className="font-medium text-blue-900 py-4">Type</TableHead>
-                        <TableHead className="font-medium text-blue-900 py-4">Actions</TableHead>
+                      <TableRow className="bg-gray-50 border-b border-gray-200 hover:bg-gray-50">
+                        <TableHead className="font-medium text-gray-900 py-4">Knowledge Base Name</TableHead>
+                        <TableHead className="font-medium text-gray-900 py-4">Book Name</TableHead>
+                        <TableHead className="font-medium text-gray-900 py-4">Type</TableHead>
+                        <TableHead className="font-medium text-gray-900 py-4">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -1153,7 +1153,7 @@ const KnowledgeBase = () => {
                         </TableRow>
                       ) : (
                         filteredKnowledgeBases.map((kb) => (
-                          <TableRow key={kb.id} className="hover:bg-blue-50/50 transition-colors border-b border-blue-100 last:border-b-0">
+                          <TableRow key={kb.id} className="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0">
                             <TableCell className="font-medium text-gray-900 py-4">{kb.name}</TableCell>
                             <TableCell className="text-gray-700 py-4">{kb.bookName}</TableCell>
                             <TableCell className="py-4">
