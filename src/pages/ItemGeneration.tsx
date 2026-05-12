@@ -128,7 +128,7 @@ const ItemGeneration = () => {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {stats.map((stat, index) => {
             const TONE: Record<string, { bg: string; ink: string; fill: string }> = {
               lavender: { bg: "bg-pastel-lavender", ink: "text-pastel-lavender-ink", fill: "bg-pastel-lavender-ink" },
@@ -142,42 +142,42 @@ const ItemGeneration = () => {
             return (
               <div
                 key={index}
-                className={`relative overflow-hidden rounded-2xl border border-border/70 shadow-soft-xs p-3.5 ${s.bg} ${s.ink}`}
+                className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-5 ${s.bg} ${s.ink}`}
               >
                 {/* Header */}
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <div className="h-6 w-6 rounded-full bg-white/85 flex items-center justify-center shrink-0 ring-1 ring-black/5">
-                      <Icon className="h-3 w-3" />
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
+                      <Icon className="h-3.5 w-3.5" />
                     </div>
-                    <span className="text-[13px] font-medium tracking-tight">{stat.label}</span>
+                    <span className="text-[15px] font-medium tracking-tight">{stat.label}</span>
                   </div>
-                  <span className="text-[11px] font-medium opacity-80 tabular-nums">{pct}%</span>
+                  <span className="text-xs font-medium opacity-80 tabular-nums">{pct}%</span>
                 </div>
 
                 {/* Big value */}
-                <div className="flex items-baseline gap-1">
-                  <span className="text-[26px] leading-none font-medium tracking-tight tabular-nums">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-[40px] leading-none font-medium tracking-tight tabular-nums">
                     {stat.value.toLocaleString()}
                   </span>
-                  <span className="text-xs font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
+                  <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
                 </div>
-                <p className="text-[11px] opacity-90 mt-1 mb-2.5">{stat.caption}</p>
+                <p className="text-sm opacity-90 mt-1.5 mb-4">{stat.caption}</p>
 
                 {/* Progress */}
-                <div className="relative h-1.5 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 overflow-hidden mb-2.5">
+                <div className="relative h-2.5 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] overflow-hidden mb-4">
                   <div className={`h-full rounded-full ${s.fill}`} style={{ width: `${pct}%` }} />
                 </div>
 
                 {/* Breakdown chips */}
-                <div className="grid grid-cols-2 gap-1.5">
+                <div className="grid grid-cols-2 gap-2">
                   {stat.items.map((item, idx) => (
                     <div
                       key={idx}
-                      className="rounded-lg bg-white/70 ring-1 ring-black/5 px-2 py-1.5"
+                      className="rounded-2xl bg-white/70 ring-1 ring-black/5 px-3 py-2 backdrop-blur-sm"
                     >
-                      <div className="text-[10px] font-medium opacity-75 truncate leading-tight">{item.label}</div>
-                      <div className="text-sm font-semibold tracking-tight tabular-nums">{item.value}</div>
+                      <div className="text-[11px] font-medium opacity-75 truncate">{item.label}</div>
+                      <div className="text-base font-semibold tracking-tight tabular-nums">{item.value}</div>
                     </div>
                   ))}
                 </div>
