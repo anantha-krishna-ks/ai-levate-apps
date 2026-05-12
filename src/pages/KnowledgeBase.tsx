@@ -1134,11 +1134,11 @@ const KnowledgeBase = () => {
                 <div className="overflow-x-auto">
                   <Table>
                     <TableHeader>
-                      <TableRow className="bg-gray-50 border-b border-gray-200 hover:bg-gray-50">
-                        <TableHead className="font-medium text-gray-900 py-4">Knowledge Base Name</TableHead>
-                        <TableHead className="font-medium text-gray-900 py-4">Book Name</TableHead>
-                        <TableHead className="font-medium text-gray-900 py-4">Type</TableHead>
-                        <TableHead className="font-medium text-gray-900 py-4">Actions</TableHead>
+                      <TableRow className="bg-gray-100 border-b border-gray-300 hover:bg-gray-100">
+                        <TableHead className="font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Knowledge Base Name</TableHead>
+                        <TableHead className="font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Book Name</TableHead>
+                        <TableHead className="font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Type</TableHead>
+                        <TableHead className="font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
