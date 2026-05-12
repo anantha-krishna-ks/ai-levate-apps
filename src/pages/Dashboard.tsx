@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useLayoutEffect } from "react"
 import { Search, Sparkle, ArrowRight, BarChart, Clock, Star, Users, FileText, Brain, Database, BookOpen, RefreshCw, GitCompare, Image, MessageSquare, ScanLine, PenTool, BarChart3, Bot, Mic, Menu, X, User, Settings, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -31,6 +31,71 @@ import speechEvaluationImage from "@/assets/speech-evaluation-hero.jpg"
 import essayEvaluationImage from "@/assets/essay-evaluation-hero.jpg"
 import essayEvaluationZeroShotImage from "@/assets/essay-evaluation-zero-shot.jpg"
 import ocrEvaluationImage from "@/assets/ocr-evaluation.png"
+
+type SubscriptionPillToggleProps = {
+  categories: string[];
+  value: string;
+  onChange: (v: string) => void;
+};
+
+const SubscriptionPillToggle: React.FC<SubscriptionPillToggleProps> = ({ categories, value, onChange }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const [indicator, setIndicator] = useState({ left: 4, width: 0 });
+
+  useLayoutEffect(() => {
+    const idx = categories.indexOf(value);
+    const btn = buttonRefs.current[idx];
+    const container = containerRef.current;
+    if (!btn || !container) return;
+    const update = () => {
+      const cRect = container.getBoundingClientRect();
+      const bRect = btn.getBoundingClientRect();
+      setIndicator({ left: bRect.left - cRect.left, width: bRect.width });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(container);
+    buttonRefs.current.forEach((b) => b && ro.observe(b));
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, [value, categories]);
+
+  return (
+    <div
+      ref={containerRef}
+      role="tablist"
+      aria-label="Subscription filter"
+      className="relative inline-flex items-center bg-foreground/[0.06] border border-border/50 rounded-full p-[4px]"
+    >
+      <span
+        aria-hidden="true"
+        className="absolute top-[4px] bottom-[4px] rounded-full bg-background shadow-[0_1px_3px_0_rgba(0,0,0,0.08),0_1px_2px_-1px_rgba(0,0,0,0.05)] transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+        style={{ left: indicator.left, width: indicator.width }}
+      />
+      {categories.map((category, i) => {
+        const isActive = value === category;
+        return (
+          <button
+            key={category}
+            ref={(el) => (buttonRefs.current[i] = el)}
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => onChange(category)}
+            className={`relative z-10 flex items-center justify-center gap-1.5 px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 whitespace-nowrap ${
+              isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {category}
+          </button>
+        );
+      })}
+    </div>
+  );
+};
 
 const Dashboard = () => {
   const navigate = useNavigate()
