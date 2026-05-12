@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Progress } from "@/components/ui/progress"
 import { toast } from "sonner"
+import { AppHeader } from "@/components/AppHeader"
 
 const EssayEvaluationZeroShot = () => {
   const [essayQuestion, setEssayQuestion] = useState("")
