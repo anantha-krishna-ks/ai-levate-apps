@@ -193,14 +193,14 @@ const ItemGeneration = () => {
             return (
               <Card
                 key={base.id}
-                className="group relative overflow-hidden bg-white border border-slate-200 rounded-2xl transition-all hover:border-slate-300 hover:-translate-y-0.5"
+                className="group relative overflow-hidden bg-white border border-slate-200/80 rounded-2xl shadow-soft-xs transition-[box-shadow,border-color] duration-300 ease-out hover:shadow-soft-md hover:border-slate-300"
               >
                 {/* Image Section */}
                 <div className="relative h-44 overflow-hidden">
                   <img
                     src={base.image}
                     alt={base.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/0" />
 
@@ -250,7 +250,7 @@ const ItemGeneration = () => {
                   </div>
 
                   <Link to={`/question-generator/${base.title.toLowerCase().replace(/\s+/g, "-")}`} className="block mt-5">
-                    <Button className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-full h-10 group/btn">
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full h-10 shadow-soft-sm group/btn transition-colors">
                       <Zap className="w-4 h-4 mr-1.5" />
                       Start Generating
                       <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover/btn:translate-x-0.5" />
