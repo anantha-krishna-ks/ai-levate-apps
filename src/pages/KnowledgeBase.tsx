@@ -1132,13 +1132,13 @@ const KnowledgeBase = () => {
               {/* Table */}
               <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                 <div className="overflow-x-auto">
-                  <Table>
+                  <Table className="w-full table-fixed">
                     <TableHeader>
                       <TableRow className="bg-gray-100 border-b border-gray-300 hover:bg-gray-100">
-                        <TableHead className="font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Knowledge Base Name</TableHead>
-                        <TableHead className="font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Book Name</TableHead>
-                        <TableHead className="font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Type</TableHead>
-                        <TableHead className="font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Actions</TableHead>
+                        <TableHead className="w-[38%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Knowledge Base Name</TableHead>
+                        <TableHead className="w-[34%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Book Name</TableHead>
+                        <TableHead className="w-[14%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Type</TableHead>
+                        <TableHead className="w-[14%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide text-right pr-4">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -1155,15 +1155,15 @@ const KnowledgeBase = () => {
                       ) : (
                         filteredKnowledgeBases.map((kb) => (
                           <TableRow key={kb.id} className="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0">
-                            <TableCell className="font-medium text-gray-900 py-4">{kb.name}</TableCell>
-                            <TableCell className="text-gray-700 py-4">{kb.bookName}</TableCell>
+                            <TableCell className="font-medium text-gray-900 py-4 truncate">{kb.name}</TableCell>
+                            <TableCell className="text-gray-700 py-4 truncate">{kb.bookName}</TableCell>
                             <TableCell className="py-4">
-                              <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                              <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium whitespace-nowrap">
                                 {kb.type}
                               </span>
                             </TableCell>
                             <TableCell className="py-4">
-                              <div className="flex items-center gap-1">
+                              <div className="flex items-center justify-end gap-1">
                                 <Button 
                                   variant="ghost" 
                                   size="icon" 
