@@ -115,7 +115,7 @@ const KnowledgeBase = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA]">
+    <div className="min-h-screen bg-[#EFEFF2]">
       {/* Desktop Sidebar */}
       <div
         className={`fixed left-0 top-0 h-full z-[60] hidden lg:block transition-all duration-300 ${
@@ -1051,7 +1051,7 @@ const KnowledgeBase = () => {
               <>
                 {/* Existing List View */}
           {/* Customer Selection Card */}
-          <Card className="border border-gray-200 bg-gray-50">
+          <Card className="border border-gray-200/80 bg-white shadow-[0_1px_2px_rgba(16,24,40,0.04),0_1px_3px_rgba(16,24,40,0.06)] rounded-2xl">
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-gray-200 text-gray-700 rounded-lg">
@@ -1077,7 +1077,7 @@ const KnowledgeBase = () => {
           </Card>
 
           {/* Knowledge Bases Card */}
-          <Card className="border border-gray-200 bg-gray-50">
+          <Card className="border border-gray-200/80 bg-white shadow-[0_1px_2px_rgba(16,24,40,0.04),0_1px_3px_rgba(16,24,40,0.06)] rounded-2xl">
             <CardContent className="p-6 space-y-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 <div className="flex items-center gap-3">
