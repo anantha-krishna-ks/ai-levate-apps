@@ -565,6 +565,7 @@ const Dashboard = () => {
 
         {/* Subscription Filter + Welcome */}
         <div className="px-6 pb-4 pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <h1 className="text-base sm:text-lg font-medium text-gray-900 truncate">Welcome Back, Robert Jones!</h1>
           <section className="px-3 pt-3 pb-2">
             <SubscriptionPillToggle
               categories={subscriptionCategories}
@@ -572,7 +573,6 @@ const Dashboard = () => {
               onChange={setSubscriptionFilter}
             />
           </section>
-          <h1 className="text-base sm:text-lg font-medium text-gray-900 truncate">Welcome Back, Robert Jones!</h1>
         </div>
 
         {/* Stats Cards */}
