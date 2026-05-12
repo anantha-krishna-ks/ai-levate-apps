@@ -27,6 +27,7 @@ import { ProfileDropdown } from "@/components/ProfileDropdown"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { toast } from "@/hooks/use-toast"
+import { AppHeader } from "@/components/AppHeader"
 
 const ItemMetadata = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
