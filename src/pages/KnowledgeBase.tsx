@@ -5,7 +5,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Search, FileText, Edit, Eye, MessageSquare, Trash2, ArrowLeft, BookOpen, Plus, Menu, GraduationCap, Library, HelpCircle, ScrollText, RefreshCw, Send, Bot, User, X } from "lucide-react";
+import { Search, FileText, Edit, Eye, MessageSquare, Trash2, ArrowLeft, BookOpen, Plus, Menu, GraduationCap, Library, HelpCircle, ScrollText, RefreshCw, Send, Bot, User, X, Sparkle } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -142,10 +143,15 @@ const KnowledgeBase = () => {
         }`}
       >
         {/* Header */}
-        <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-          <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
-            <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
-              {/* Mobile Menu Button */}
+        <header className="sticky top-0 z-50 backdrop-blur-sm bg-card/95 border-b border-border">
+          <div className="flex h-16 items-center px-3 sm:px-6 gap-3 sm:gap-4">
+            {/* Left: Logo + mobile menu */}
+            <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+              <img
+                src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png"
+                alt="AI-Levate"
+                className="h-8 w-auto"
+              />
               <Button
                 variant="ghost"
                 size="icon"
@@ -155,15 +161,19 @@ const KnowledgeBase = () => {
                 <Menu className="h-5 w-5" />
               </Button>
             </div>
-            
-            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-              <div className="hidden sm:flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-                  <span className="text-white text-xs">✦</span>
-                </div>
-                <span className="text-xs sm:text-sm text-blue-600 font-medium whitespace-nowrap">4,651</span>
+
+            <div className="flex-1" />
+
+            {/* Right: Tokens pill + separator + profile */}
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-full bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/30 transition-colors">
+                <Sparkle className="h-2 w-2 text-primary fill-primary" />
+                <span className="text-xs font-medium text-foreground whitespace-nowrap">932,679</span>
+                <span className="text-xs text-muted-foreground">tokens</span>
               </div>
-              
+
+              <Separator orientation="vertical" className="hidden sm:block h-8" />
+
               <ProfileDropdown />
             </div>
           </div>
