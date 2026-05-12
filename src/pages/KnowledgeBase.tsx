@@ -173,8 +173,10 @@ const KnowledgeBase = () => {
                     <ArrowLeft className="w-4 h-4" />
                   </Button>
                 )}
-                <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
-                  <Library className="h-4 w-4 text-white" />
+                <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
+                  <div className="h-full w-full rounded-lg bg-blue-600 flex items-center justify-center">
+                    <Library className="h-4 w-4 text-white" />
+                  </div>
                 </div>
                   <div className="flex flex-col min-w-0">
                     <h1 className="text-base sm:text-lg font-medium text-slate-900 leading-tight tracking-tight truncate">
