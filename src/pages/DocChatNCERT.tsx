@@ -27,6 +27,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import ncertBookImage from "@/assets/ncert-biology-book.jpg"
+import { AppHeader } from "@/components/AppHeader"
 
 interface Message {
   role: "user" | "assistant"
