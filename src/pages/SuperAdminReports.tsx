@@ -1,9 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { SuperAdminSidebar } from "@/components/SuperAdminSidebar";
-import { ProfileDropdown } from "@/components/ProfileDropdown";
+import { AppHeader } from "@/components/AppHeader";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import comingSoonImage from "@/assets/coming-soon-new.jpg";
 
@@ -12,8 +9,9 @@ const SuperAdminReports = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />
       {/* Desktop Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-52 z-[60] hidden lg:block">
+      <div className="fixed left-0 top-16 h-[calc(100%-4rem)] w-52 z-[60] hidden lg:block">
         <SuperAdminSidebar />
       </div>
 
@@ -24,38 +22,10 @@ const SuperAdminReports = () => {
         </SheetContent>
       </Sheet>
 
-      <div className="ml-0 lg:ml-52 min-h-screen flex flex-col">
-        {/* Header */}
-        <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-          <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
-            <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
-              <Link to="/superadmin-dashboard" className="flex-shrink-0">
-                <img 
-                  src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
-                  alt="AI-Levate" 
-                  className="h-8 w-auto"
-                />
-              </Link>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden flex-shrink-0"
-                onClick={() => setMobileMenuOpen(true)}
-              >
-                <Menu className="h-5 w-5" />
-              </Button>
-              <div className="min-w-0 flex items-center gap-3 flex-1">
-                <h1 className="text-base sm:text-xl font-medium text-gray-900 truncate">
-                  Reports
-                </h1>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-              <ProfileDropdown />
-            </div>
-          </div>
-        </header>
+      <div className="ml-0 pt-16 lg:ml-52 min-h-screen flex flex-col">
+        <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
+          <h1 className="text-base sm:text-xl font-medium text-gray-900">Reports</h1>
+        </div>
 
         {/* Main Content - Coming Soon */}
         <main className="flex-1 flex items-center justify-center p-6">
