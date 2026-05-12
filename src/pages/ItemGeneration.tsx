@@ -204,17 +204,6 @@ const ItemGeneration = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/0" />
 
-                  {/* Top row: category pill + level */}
-                  <div className="absolute top-3 inset-x-3 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 bg-white/95 backdrop-blur px-2.5 py-1 rounded-full text-[11px] font-semibold text-slate-700 ring-1 ring-black/5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                      {base.category}
-                    </span>
-                    <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold ring-1 ${levelStyle}`}>
-                      {base.level}
-                    </span>
-                  </div>
-
                   {/* Bottom: year */}
                   <div className="absolute bottom-3 left-3">
                     <span className="inline-flex items-center gap-1 bg-black/60 backdrop-blur text-white px-2 py-0.5 rounded-md text-[11px] font-medium tracking-wide">
