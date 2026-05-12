@@ -691,8 +691,8 @@ const Dashboard = () => {
                   onClick={() => setActiveTab(tab)}
                   className={`px-4 h-9 rounded-full whitespace-nowrap text-sm font-medium tracking-tight transition-all duration-200 border ${
                     isActive
-                      ? "bg-primary text-primary-foreground border-primary-700 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_-2px_hsl(var(--primary)/0.25)]"
-                      : "bg-background/80 backdrop-blur text-foreground/80 border-border hover:text-foreground hover:bg-foreground/[0.04]"
+                      ? "bg-primary text-primary-foreground border-[hsl(var(--primary-700))] shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_-2px_hsl(var(--primary)/0.25)]"
+                      : "bg-background/80 backdrop-blur text-foreground/80 border-[hsl(var(--gray-300))] hover:text-foreground hover:bg-foreground/[0.04]"
                   }`}
                 >
                   {tab}
