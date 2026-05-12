@@ -1092,7 +1092,7 @@ const KnowledgeBase = () => {
                   <Button
                     variant="outline"
                     onClick={() => setIsCreatingStudyLO(true)}
-                    className="px-5 bg-white border-gray-300 text-gray-800 hover:bg-gray-50 hover:border-gray-400 shadow-sm"
+                    className="px-5 bg-white border-blue-600 text-blue-600 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-700 shadow-sm"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Create Study LO
