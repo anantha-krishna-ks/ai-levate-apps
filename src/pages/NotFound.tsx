@@ -2,7 +2,7 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Home, ArrowLeft, RefreshCw, Sparkles, Brain, Code, Zap } from "lucide-react";
+import { Home, ArrowLeft, RefreshCw, Sparkle, Brain, Code, Zap } from "lucide-react";
 import comingSoonHero from "@/assets/coming-soon-new.jpg";
 
 const NotFound = () => {
@@ -56,7 +56,7 @@ const NotFound = () => {
                 className="w-full max-w-md mx-auto rounded-xl shadow-lg animate-float relative z-10 transform group-hover:scale-105 transition-all duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-transparent to-primary/5 rounded-xl z-20" />
-              <Sparkles className="absolute top-4 right-4 w-6 h-6 text-yellow-400 animate-pulse z-30" />
+              <Sparkle className="absolute top-4 right-4 w-6 h-6 text-yellow-400 animate-pulse z-30" />
             </div>
             
             {/* Enhanced Content */}

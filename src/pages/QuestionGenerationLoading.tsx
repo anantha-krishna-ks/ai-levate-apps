@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { Brain, Check, Zap, Target, Shield, Sparkles, Cpu, Database, Lightbulb } from "lucide-react"
+import { Brain, Check, Zap, Target, Shield, Sparkle, Cpu, Database, Lightbulb } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 
 const QuestionGenerationLoading = () => {

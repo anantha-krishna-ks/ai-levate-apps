@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Brain, Sparkles, ArrowRight, Eye, EyeOff } from "lucide-react";
+import { Brain, Sparkle, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Index = () => {
@@ -112,7 +112,7 @@ const Index = () => {
         {/* Footer */}
         <div className="mt-8 text-center space-y-2">
           <div className="flex items-center justify-center space-x-2 text-xs text-gray-500">
-            <Sparkles className="w-3 h-3" />
+            <Sparkle className="w-3 h-3" />
             <span className="flex items-center gap-1">Powered By: 
               <img 
                 src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 

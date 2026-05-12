@@ -5,7 +5,7 @@ import {
   MessageSquare, 
   BookOpen,
   Send,
-  Sparkles,
+  Sparkle,
   Loader2,
   Bot,
   User,
@@ -442,7 +442,7 @@ Assessment (10 minutes):
           </div>
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-purple-50 rounded-lg border border-purple-200">
-              <Sparkles className="h-4 w-4 text-purple-600" />
+              <Sparkle className="h-4 w-4 text-purple-600" />
               <span className="text-sm font-medium text-purple-600">3,241 Tokens</span>
             </div>
             <Link to="/dashboard">
@@ -487,7 +487,7 @@ Assessment (10 minutes):
                 >
                   {message.role === "assistant" && (
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center flex-shrink-0">
-                      <Sparkles className="h-4 w-4 text-white" />
+                      <Sparkle className="h-4 w-4 text-white" />
                     </div>
                   )}
                   <div
@@ -509,7 +509,7 @@ Assessment (10 minutes):
               {isLoading && (
                 <div className="flex gap-3 justify-start">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
-                    <Sparkles className="h-4 w-4 text-white" />
+                    <Sparkle className="h-4 w-4 text-white" />
                   </div>
                   <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
                     <Loader2 className="h-4 w-4 animate-spin text-purple-600" />

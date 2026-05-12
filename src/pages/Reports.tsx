@@ -2,7 +2,7 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Home, ArrowLeft, RefreshCw, BarChart3, TrendingUp, PieChart, Sparkles } from "lucide-react";
+import { Home, ArrowLeft, RefreshCw, BarChart3, TrendingUp, PieChart, Sparkle } from "lucide-react";
 
 const Reports = () => {
   const location = useLocation();
@@ -50,7 +50,7 @@ const Reports = () => {
                 <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center text-white transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                   <BarChart3 className="w-10 h-10" />
                 </div>
-                <Sparkles className="absolute top-4 right-4 w-6 h-6 text-yellow-400 animate-pulse" />
+                <Sparkle className="absolute top-4 right-4 w-6 h-6 text-yellow-400 animate-pulse" />
               </div>
             </div>
             

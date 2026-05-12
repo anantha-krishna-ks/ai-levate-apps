@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Search, Sparkles, ArrowRight, BarChart, Clock, Star, Users, FileText, Brain, Database, BookOpen, RefreshCw, GitCompare, Image, MessageSquare, ScanLine, PenTool, BarChart3, Bot, Mic, Menu, X } from "lucide-react"
+import { Search, Sparkle, ArrowRight, BarChart, Clock, Star, Users, FileText, Brain, Database, BookOpen, RefreshCw, GitCompare, Image, MessageSquare, ScanLine, PenTool, BarChart3, Bot, Mic, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -63,7 +63,7 @@ const Dashboard = () => {
       "ai-persona": Bot,
       "speech-evaluation": Mic
     }
-    return iconMap[toolId] || Sparkles
+    return iconMap[toolId] || Sparkle
   }
 
   const aiTools = [
@@ -405,7 +405,7 @@ const Dashboard = () => {
             
             <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
               <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-full border border-slate-200 bg-white">
-                <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                <Sparkle className="h-3.5 w-3.5 text-blue-600" />
                 <span className="text-xs sm:text-sm text-slate-700 font-medium whitespace-nowrap">4,651</span>
               </div>
               
@@ -479,7 +479,7 @@ const Dashboard = () => {
             <Card className="p-3 sm:p-6 bg-blue-50 border border-gray-200 shadow-sm">
               <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4">
                 <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center shadow-sm flex-shrink-0">
-                  <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
+                  <Sparkle className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
                 </div>
                 <span className="font-medium text-xs sm:text-base text-gray-700 leading-tight">Available Tools</span>
               </div>
@@ -608,7 +608,7 @@ const Dashboard = () => {
                           className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-all duration-200 hover:scale-[1.02]"
                           size="sm"
                         >
-                          <Sparkles className="h-4 w-4 mr-2" />
+                          <Sparkle className="h-4 w-4 mr-2" />
                           Launch App
                         </Button>
                       </Link>

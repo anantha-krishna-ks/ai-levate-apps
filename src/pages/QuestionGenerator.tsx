@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { 
   ArrowLeft, 
-  Sparkles,
+  Sparkle,
   Brain,
   Target,
   Globe,
@@ -187,7 +187,7 @@ const QuestionGenerator = () => {
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 }`}
               >
-                <Sparkles className="h-4 w-4" />
+                <Sparkle className="h-4 w-4" />
                 Generate Questions
               </button>
               <button
@@ -227,7 +227,7 @@ const QuestionGenerator = () => {
               <Card className="p-6 bg-white border border-gray-200">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-                    <Sparkles className="w-4 h-4 text-white" />
+                    <Sparkle className="w-4 h-4 text-white" />
                   </div>
                   <h3 className="text-sm font-medium text-gray-800">AI Generation Mode</h3>
                 </div>
@@ -285,7 +285,7 @@ const QuestionGenerator = () => {
                 <Card className="p-6 bg-white border border-gray-200">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Sparkles className="w-4 h-4 text-purple-600" />
+                      <Sparkle className="w-4 h-4 text-purple-600" />
                     </div>
                     <div>
                       <h3 className="font-medium text-gray-900">AI Question Generator</h3>
@@ -490,7 +490,7 @@ const QuestionGenerator = () => {
                           type="submit"
                           className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full"
                         >
-                          <Sparkles className="w-4 h-4 mr-2" />
+                          <Sparkle className="w-4 h-4 mr-2" />
                           Generate Questions
                         </Button>
                       </div>
@@ -534,7 +534,7 @@ const QuestionGenerator = () => {
                       <p className="text-xs text-gray-500">High quality</p>
                     </div>
                     <div className="h-8 w-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Sparkles className="h-5 w-5 text-purple-600" />
+                      <Sparkle className="h-5 w-5 text-purple-600" />
                     </div>
                   </div>
                 </div>
@@ -647,7 +647,7 @@ const QuestionGenerator = () => {
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Search Questions</label>
                     <div className="relative">
-                      <Sparkles className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                      <Sparkle className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                       <input 
                         placeholder="Search questions, topics, or content..." 
                         className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -764,7 +764,7 @@ const QuestionGenerator = () => {
                                   Check Similarity
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleOpenRefinement("What characteristic of pure risk makes it more acceptable for insurer...")}>
-                                  <Sparkles className="h-4 w-4 mr-2" />
+                                  <Sparkle className="h-4 w-4 mr-2" />
                                   Question Refinement
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
@@ -823,7 +823,7 @@ const QuestionGenerator = () => {
                                   Check Similarity
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleOpenRefinement("Pure risk always results in a loss or no loss situation.")}>
-                                  <Sparkles className="h-4 w-4 mr-2" />
+                                  <Sparkle className="h-4 w-4 mr-2" />
                                   Question Refinement
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
@@ -882,7 +882,7 @@ const QuestionGenerator = () => {
                                   Check Similarity
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleOpenRefinement("Explain the relationship between risk assessment and cybersecurity f...")}>
-                                  <Sparkles className="h-4 w-4 mr-2" />
+                                  <Sparkle className="h-4 w-4 mr-2" />
                                   Question Refinement
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
@@ -1003,7 +1003,7 @@ const QuestionGenerator = () => {
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <div className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5" />
+              <Sparkle className="h-5 w-5" />
               <DialogTitle className="text-xl font-medium">Question Refinement</DialogTitle>
             </div>
           </DialogHeader>
