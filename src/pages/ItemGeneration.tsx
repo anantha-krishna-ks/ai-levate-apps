@@ -109,12 +109,6 @@ const ItemGeneration = () => {
               </div>
               <span className="text-sm text-blue-600 font-medium">4,651 Tokens</span>
             </div>
-            <Link to="/dashboard">
-              <Button variant="ghost" size="sm" className="text-gray-600">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Dashboard
-              </Button>
-            </Link>
           </div>
         </div>
       </div>
@@ -123,7 +117,14 @@ const ItemGeneration = () => {
       <div className="p-6 max-w-7xl mx-auto">
         {/* Page Title */}
         <div className="mb-8">
-          <h1 className="text-2xl font-medium text-gray-900 mb-2">Select Knowledge Base</h1>
+          <div className="flex items-center gap-3 mb-2">
+            <Link to="/dashboard">
+              <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-600 hover:text-gray-900 -ml-2">
+                <ArrowLeft className="w-4 h-4" />
+              </Button>
+            </Link>
+            <h1 className="text-2xl font-medium text-gray-900">Select Knowledge Base</h1>
+          </div>
           <p className="text-gray-600">Choose a knowledge base to start generating intelligent questions</p>
         </div>
 
