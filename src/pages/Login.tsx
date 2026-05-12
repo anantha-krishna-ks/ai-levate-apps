@@ -294,7 +294,7 @@ const Login = () => {
                       placeholder="Password"
                       value={formData.password}
                       onChange={(e) => handleInputChange('password', e.target.value)}
-                      className={`h-12 border-gray-200 bg-white/80 pl-12 pr-12 focus:border-primary focus:ring-primary/20 transition-all duration-200 ${
+                      className={`h-12 border-gray-200 bg-white/80 pl-12 pr-12 text-lg tracking-widest focus:border-primary focus:ring-primary/20 transition-all duration-200 ${
                         errors.password ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : ''
                       }`}
                     />
