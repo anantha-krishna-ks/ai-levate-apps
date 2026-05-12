@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, Eye, EyeOff, AlertCircle, CheckCircle2, LogIn, User, ShieldCheck, Zap } from "lucide-react";
+import { Sparkles, Eye, EyeOff, AlertCircle, CheckCircle2, LogIn, User, ShieldCheck, Zap, Mail, Lock } from "lucide-react";
 import {
   Select,
   SelectContent,
