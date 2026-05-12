@@ -162,22 +162,17 @@ const ItemGeneration = () => {
                   </span>
                   <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
                 </div>
-                <p className="text-sm opacity-90 mt-1.5 mb-4">{stat.caption}</p>
-
-                {/* Progress */}
-                <div className="relative h-2.5 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] overflow-hidden mb-4">
-                  <div className={`h-full rounded-full ${s.fill}`} style={{ width: `${pct}%` }} />
-                </div>
+                <p className="text-sm opacity-90 mt-2 mb-5">{stat.caption}</p>
 
                 {/* Breakdown chips */}
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2.5">
                   {stat.items.map((item, idx) => (
                     <div
                       key={idx}
-                      className="rounded-2xl bg-white/70 ring-1 ring-black/5 px-3 py-2 backdrop-blur-sm"
+                      className="rounded-2xl bg-white/70 ring-1 ring-black/5 px-3.5 py-2.5 backdrop-blur-sm"
                     >
                       <div className="text-[11px] font-medium opacity-75 truncate">{item.label}</div>
-                      <div className="text-base font-semibold tracking-tight tabular-nums">{item.value}</div>
+                      <div className="text-lg font-semibold tracking-tight tabular-nums mt-0.5">{item.value}</div>
                     </div>
                   ))}
                 </div>
