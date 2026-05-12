@@ -117,9 +117,42 @@ const KnowledgeBase = () => {
 
   return (
     <div className="min-h-screen bg-[#F4F8FC]">
+      {/* Header - fixed full width above sidebar */}
+      <header className="fixed top-0 left-0 right-0 z-[70] backdrop-blur-sm bg-card/95 border-b border-border">
+        <div className="flex h-16 items-center px-3 sm:px-6 gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+            <img
+              src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png"
+              alt="AI-Levate"
+              className="h-8 w-auto"
+            />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden flex-shrink-0"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
+
+          <div className="flex-1" />
+
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-full bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/30 transition-colors">
+              <Sparkle className="h-2 w-2 text-primary fill-primary" />
+              <span className="text-xs font-medium text-foreground whitespace-nowrap">932,679</span>
+              <span className="text-xs text-muted-foreground">tokens</span>
+            </div>
+            <Separator orientation="vertical" className="hidden sm:block h-8" />
+            <ProfileDropdown />
+          </div>
+        </div>
+      </header>
+
       {/* Desktop Sidebar */}
       <div
-        className={`fixed left-0 top-0 h-full z-[60] hidden lg:block transition-all duration-300 ${
+        className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-[60] hidden lg:block transition-all duration-300 ${
           sidebarCollapsed ? "w-16" : "w-52"
         }`}
       >
@@ -138,47 +171,10 @@ const KnowledgeBase = () => {
       </Sheet>
 
       <div
-        className={`ml-0 min-h-screen flex flex-col transition-all duration-300 ${
+        className={`ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
           sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
         }`}
       >
-        {/* Header */}
-        <header className="sticky top-0 z-50 backdrop-blur-sm bg-card/95 border-b border-border">
-          <div className="flex h-16 items-center px-3 sm:px-6 gap-3 sm:gap-4">
-            {/* Left: Logo + mobile menu */}
-            <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
-              <img
-                src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png"
-                alt="AI-Levate"
-                className="h-8 w-auto"
-              />
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden flex-shrink-0"
-                onClick={() => setMobileMenuOpen(true)}
-              >
-                <Menu className="h-5 w-5" />
-              </Button>
-            </div>
-
-            <div className="flex-1" />
-
-            {/* Right: Tokens pill + separator + profile */}
-            <div className="flex items-center gap-3 flex-shrink-0">
-              <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-full bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/30 transition-colors">
-                <Sparkle className="h-2 w-2 text-primary fill-primary" />
-                <span className="text-xs font-medium text-foreground whitespace-nowrap">932,679</span>
-                <span className="text-xs text-muted-foreground">tokens</span>
-              </div>
-
-              <Separator orientation="vertical" className="hidden sm:block h-8" />
-
-              <ProfileDropdown />
-            </div>
-          </div>
-        </header>
-
         {/* Page Title Section */}
         <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between gap-3 flex-wrap">
