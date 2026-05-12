@@ -1058,7 +1058,7 @@ const KnowledgeBase = () => {
                 {/* Existing List View */}
           {/* Customer Selection Card */}
           {/* Customer Selection Card */}
-          <Card className="border border-gray-200/70 bg-white shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_-12px_rgba(16,24,40,0.10)] rounded-2xl">
+          <Card className="border border-gray-200/70 bg-white shadow-sm rounded-2xl">
             <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-gray-100 text-gray-700 rounded-lg">
@@ -1084,7 +1084,7 @@ const KnowledgeBase = () => {
           </Card>
 
           {/* Knowledge Bases Card */}
-          <Card className="border border-gray-200/70 bg-white shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_-12px_rgba(16,24,40,0.10)] rounded-2xl">
+          <Card className="border border-gray-200/70 bg-white shadow-sm rounded-2xl">
             <CardContent className="p-6 space-y-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 <div className="flex items-center gap-3">
