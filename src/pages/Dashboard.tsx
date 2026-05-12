@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Search, Sparkle, ArrowRight, BarChart, Clock, Star, Users, FileText, Brain, Database, BookOpen, RefreshCw, GitCompare, Image, MessageSquare, ScanLine, PenTool, BarChart3, Bot, Mic, Menu, X, KeyRound, Shield, LogOut } from "lucide-react"
+import { Search, Sparkle, ArrowRight, BarChart, Clock, Star, Users, FileText, Brain, Database, BookOpen, RefreshCw, GitCompare, Image, MessageSquare, ScanLine, PenTool, BarChart3, Bot, Mic, Menu, X, User, Settings, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -459,14 +459,26 @@ const Dashboard = () => {
                   </div>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-52 mt-2">
+              <DropdownMenuContent align="end" className="w-64 mt-2 p-2">
+                <div className="flex items-center gap-3 px-2 py-2.5">
+                  <div className="w-11 h-11 rounded-full border-2 border-primary/30 flex items-center justify-center flex-shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                      <span className="text-sm font-bold text-primary">A</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-sm font-semibold text-foreground truncate">Anil Kumar</span>
+                    <span className="text-xs text-muted-foreground truncate">anil.kumar@ailevate.com</span>
+                  </div>
+                </div>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer">
-                  <KeyRound className="mr-2 h-4 w-4" />
-                  <span>Change Password</span>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="cursor-pointer">
-                  <Shield className="mr-2 h-4 w-4" />
-                  <span>Admin Module</span>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
