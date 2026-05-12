@@ -2,7 +2,7 @@ import { useState } from "react"
 import {
   LayoutDashboard,
   Sparkle,
-  Library,
+  BrainCircuit,
   BarChart3,
   Users,
   ChevronDown,
@@ -28,7 +28,7 @@ type NavItem = {
 const items: NavItem[] = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "AI Tools", url: "/ai-tools", icon: Sparkle },
-  { title: "Knowledge Base", url: "/knowledge-base", icon: Library },
+  { title: "Knowledge Base", url: "/knowledge-base", icon: BrainCircuit },
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
   { title: "Collaboration", url: "/collaboration", icon: Users },
 ]
