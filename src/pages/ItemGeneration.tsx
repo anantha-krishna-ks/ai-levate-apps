@@ -1,4 +1,4 @@
-import { ArrowLeft, Users, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Shield } from "lucide-react";
+import { ArrowLeft, Users, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Shield, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -11,7 +11,9 @@ const ItemGeneration = () => {
       title: "Token Usage",
       total: "51,449",
       subtitle: "Total Tokens used",
-      bgColor: "bg-orange-50",
+      accent: "orange",
+      progress: 53,
+      progressLabel: "53% of monthly quota",
       items: [
         { label: "Today's usage", value: "5,349", color: "text-orange-600" },
         { label: "Balance usage", value: "4,651", color: "text-orange-600" }
@@ -22,7 +24,9 @@ const ItemGeneration = () => {
       title: "Questions Generated",
       total: "72",
       subtitle: "Total Questions Generated",
-      bgColor: "bg-blue-50",
+      accent: "blue",
+      progress: 90,
+      progressLabel: "90% Multiple Choice",
       items: [
         { label: "Multiple Choice", value: "65", color: "text-blue-600" },
         { label: "Written Response", value: "7", color: "text-blue-600" }
@@ -33,7 +37,9 @@ const ItemGeneration = () => {
       title: "Questions Saved",
       total: "28",
       subtitle: "Total Questions Saved",
-      bgColor: "bg-green-50",
+      accent: "green",
+      progress: 39,
+      progressLabel: "39% save rate",
       items: [
         { label: "Multiple Choice", value: "27", color: "text-green-600" },
         { label: "Written Response", value: "1", color: "text-green-600" }
@@ -126,30 +132,60 @@ const ItemGeneration = () => {
 
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {stats.map((stat, index) => (
-            <Card key={index} className={`p-6 ${stat.bgColor} border border-gray-200 shadow-sm`}>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm">
-                  {stat.icon}
-                </div>
-                <span className="font-medium text-gray-700">{stat.title}</span>
-              </div>
-              
-              <div className="mb-4">
-                <div className="text-2xl font-medium text-gray-900 mb-2">{stat.total}</div>
-                <div className="text-sm font-medium text-gray-600">{stat.subtitle}</div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                {stat.items.map((item, idx) => (
-                  <div key={idx} className="text-left">
-                    <div className="text-sm text-gray-600 font-medium">{item.label}</div>
-                    <div className={`text-lg font-medium ${item.color}`}>{item.value}</div>
+          {stats.map((stat, index) => {
+            const accentMap: Record<string, { tile: string; bar: string; dot: string; chip: string; ring: string }> = {
+              orange: { tile: "bg-orange-50", bar: "bg-orange-500", dot: "bg-orange-500", chip: "bg-orange-50 text-orange-700", ring: "ring-orange-100" },
+              blue:   { tile: "bg-blue-50",   bar: "bg-blue-600",   dot: "bg-blue-600",   chip: "bg-blue-50 text-blue-700",     ring: "ring-blue-100" },
+              green:  { tile: "bg-green-50",  bar: "bg-green-600",  dot: "bg-green-600",  chip: "bg-green-50 text-green-700",   ring: "ring-green-100" },
+            };
+            const a = accentMap[stat.accent];
+            return (
+              <Card key={index} className="relative p-5 bg-white border border-slate-200 rounded-xl overflow-hidden">
+                {/* Header */}
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-lg ${a.tile} ring-1 ${a.ring} flex items-center justify-center`}>
+                      {stat.icon}
+                    </div>
+                    <div>
+                      <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-500">{stat.title}</div>
+                      <div className="text-xs text-slate-400">{stat.subtitle}</div>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </Card>
-          ))}
+                  <span className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full ${a.chip}`}>
+                    <TrendingUp className="w-3 h-3" />
+                    {stat.progress}%
+                  </span>
+                </div>
+
+                {/* Big number */}
+                <div className="flex items-baseline gap-2 mb-3">
+                  <span className="text-3xl font-semibold text-slate-900 tracking-tight tabular-nums">{stat.total}</span>
+                </div>
+
+                {/* Progress bar */}
+                <div className="mb-4">
+                  <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div className={`h-full ${a.bar} rounded-full`} style={{ width: `${stat.progress}%` }} />
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-1.5">{stat.progressLabel}</div>
+                </div>
+
+                {/* Breakdown */}
+                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+                  {stat.items.map((item, idx) => (
+                    <div key={idx} className="flex flex-col">
+                      <div className="flex items-center gap-1.5">
+                        <span className={`w-1.5 h-1.5 rounded-full ${a.dot}`} />
+                        <span className="text-[11px] text-slate-500 font-medium truncate">{item.label}</span>
+                      </div>
+                      <span className="text-base font-semibold text-slate-900 mt-0.5 tabular-nums">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Knowledge Base Cards */}
