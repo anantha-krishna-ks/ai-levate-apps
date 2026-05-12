@@ -500,21 +500,38 @@ const Dashboard = () => {
 
         {/* Subscription Filter + Welcome */}
         <div className="px-6 pb-4 pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div className="flex items-center gap-1 p-1 bg-gray-100 rounded-lg w-fit">
-            {subscriptionCategories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSubscriptionFilter(category)}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                  subscriptionFilter === category
-                    ? "bg-white text-blue-600 shadow-sm"
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+          <section className="px-3 pt-3 pb-2">
+            <div
+              role="tablist"
+              aria-label="Subscription filter"
+              className="relative flex items-center bg-foreground/[0.06] border border-border/50 rounded-lg p-[3px] w-fit"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute top-[3px] bottom-[3px] rounded-md bg-background shadow-[0_1px_3px_0_rgba(0,0,0,0.08),0_1px_2px_-1px_rgba(0,0,0,0.05)] transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+                style={{
+                  width: "calc((100% - 6px) / 3)",
+                  left: `calc(3px + ((100% - 6px) / 3) * ${subscriptionCategories.indexOf(subscriptionFilter)})`,
+                }}
+              />
+              {subscriptionCategories.map((category) => {
+                const isActive = subscriptionFilter === category;
+                return (
+                  <button
+                    key={category}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setSubscriptionFilter(category)}
+                    className={`relative z-10 flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-semibold rounded-md transition-colors duration-300 whitespace-nowrap ${
+                      isActive ? "text-foreground" : "text-muted-foreground hover:text-muted-foreground"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+          </section>
           <h1 className="text-base sm:text-lg font-medium text-gray-900 truncate">Welcome Back, Robert Jones!</h1>
         </div>
 
