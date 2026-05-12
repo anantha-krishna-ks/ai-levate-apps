@@ -1,4 +1,4 @@
-import { ArrowLeft, Users, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Shield, TrendingUp } from "lucide-react";
+import { ArrowLeft, Users, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Shield, TrendingUp, type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -7,43 +7,40 @@ import { Badge } from "@/components/ui/badge";
 const ItemGeneration = () => {
   const stats = [
     {
-      icon: <Zap className="w-5 h-5 text-orange-600" />,
-      title: "Token Usage",
-      total: "51,449",
-      subtitle: "Total Tokens used",
-      accent: "orange",
-      progress: 53,
-      progressLabel: "53% of monthly quota",
+      tone: "peach" as const,
+      icon: Zap,
+      label: "Token Usage",
+      value: 5349,
+      total: 10000,
+      caption: "Today's tokens used",
       items: [
-        { label: "Today's usage", value: "5,349", color: "text-orange-600" },
-        { label: "Balance usage", value: "4,651", color: "text-orange-600" }
-      ]
+        { label: "Used today", value: "5,349" },
+        { label: "Balance", value: "4,651" },
+      ],
     },
     {
-      icon: <FileText className="w-5 h-5 text-blue-600" />,
-      title: "Questions Generated",
-      total: "72",
-      subtitle: "Total Questions Generated",
-      accent: "blue",
-      progress: 90,
-      progressLabel: "90% Multiple Choice",
+      tone: "lavender" as const,
+      icon: FileText,
+      label: "Generated",
+      value: 72,
+      total: 100,
+      caption: "Questions generated",
       items: [
-        { label: "Multiple Choice", value: "65", color: "text-blue-600" },
-        { label: "Written Response", value: "7", color: "text-blue-600" }
-      ]
+        { label: "Multiple Choice", value: "65" },
+        { label: "Written Response", value: "7" },
+      ],
     },
     {
-      icon: <Bookmark className="w-5 h-5 text-green-600" />,
-      title: "Questions Saved",
-      total: "28",
-      subtitle: "Total Questions Saved",
-      accent: "green",
-      progress: 39,
-      progressLabel: "39% save rate",
+      tone: "mint" as const,
+      icon: Bookmark,
+      label: "Saved",
+      value: 28,
+      total: 72,
+      caption: "Questions saved",
       items: [
-        { label: "Multiple Choice", value: "27", color: "text-green-600" },
-        { label: "Written Response", value: "1", color: "text-green-600" }
-      ]
+        { label: "Multiple Choice", value: "27" },
+        { label: "Written Response", value: "1" },
+      ],
     }
   ];
 
@@ -133,57 +130,58 @@ const ItemGeneration = () => {
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {stats.map((stat, index) => {
-            const accentMap: Record<string, { tile: string; bar: string; dot: string; chip: string; ring: string }> = {
-              orange: { tile: "bg-orange-50", bar: "bg-orange-500", dot: "bg-orange-500", chip: "bg-orange-50 text-orange-700", ring: "ring-orange-100" },
-              blue:   { tile: "bg-blue-50",   bar: "bg-blue-600",   dot: "bg-blue-600",   chip: "bg-blue-50 text-blue-700",     ring: "ring-blue-100" },
-              green:  { tile: "bg-green-50",  bar: "bg-green-600",  dot: "bg-green-600",  chip: "bg-green-50 text-green-700",   ring: "ring-green-100" },
+            const TONE: Record<string, { bg: string; ink: string; fill: string }> = {
+              lavender: { bg: "bg-pastel-lavender", ink: "text-pastel-lavender-ink", fill: "bg-pastel-lavender-ink" },
+              mint:     { bg: "bg-pastel-mint",     ink: "text-pastel-mint-ink",     fill: "bg-pastel-mint-ink" },
+              peach:    { bg: "bg-pastel-peach",    ink: "text-pastel-peach-ink",    fill: "bg-pastel-peach-ink" },
+              sky:      { bg: "bg-pastel-sky",      ink: "text-pastel-sky-ink",      fill: "bg-pastel-sky-ink" },
             };
-            const a = accentMap[stat.accent];
+            const s = TONE[stat.tone];
+            const Icon = stat.icon;
+            const pct = Math.max(0, Math.min(100, Math.round((stat.value / stat.total) * 100)));
             return (
-              <Card key={index} className="relative p-5 bg-white border border-slate-200 rounded-xl overflow-hidden">
+              <div
+                key={index}
+                className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-5 ${s.bg} ${s.ink}`}
+              >
                 {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-lg ${a.tile} ring-1 ${a.ring} flex items-center justify-center`}>
-                      {stat.icon}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
+                      <Icon className="h-3.5 w-3.5" />
                     </div>
-                    <div>
-                      <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-500">{stat.title}</div>
-                      <div className="text-xs text-slate-400">{stat.subtitle}</div>
-                    </div>
+                    <span className="text-[15px] font-medium tracking-tight">{stat.label}</span>
                   </div>
-                  <span className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full ${a.chip}`}>
-                    <TrendingUp className="w-3 h-3" />
-                    {stat.progress}%
+                  <span className="text-xs font-medium opacity-80 tabular-nums">{pct}%</span>
+                </div>
+
+                {/* Big value */}
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-[40px] leading-none font-medium tracking-tight tabular-nums">
+                    {stat.value.toLocaleString()}
                   </span>
+                  <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
+                </div>
+                <p className="text-sm opacity-90 mt-1.5 mb-4">{stat.caption}</p>
+
+                {/* Progress */}
+                <div className="relative h-2.5 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] overflow-hidden mb-4">
+                  <div className={`h-full rounded-full ${s.fill}`} style={{ width: `${pct}%` }} />
                 </div>
 
-                {/* Big number */}
-                <div className="flex items-baseline gap-2 mb-3">
-                  <span className="text-3xl font-semibold text-slate-900 tracking-tight tabular-nums">{stat.total}</span>
-                </div>
-
-                {/* Progress bar */}
-                <div className="mb-4">
-                  <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <div className={`h-full ${a.bar} rounded-full`} style={{ width: `${stat.progress}%` }} />
-                  </div>
-                  <div className="text-[11px] text-slate-500 mt-1.5">{stat.progressLabel}</div>
-                </div>
-
-                {/* Breakdown */}
-                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+                {/* Breakdown chips */}
+                <div className="grid grid-cols-2 gap-2">
                   {stat.items.map((item, idx) => (
-                    <div key={idx} className="flex flex-col">
-                      <div className="flex items-center gap-1.5">
-                        <span className={`w-1.5 h-1.5 rounded-full ${a.dot}`} />
-                        <span className="text-[11px] text-slate-500 font-medium truncate">{item.label}</span>
-                      </div>
-                      <span className="text-base font-semibold text-slate-900 mt-0.5 tabular-nums">{item.value}</span>
+                    <div
+                      key={idx}
+                      className="rounded-2xl bg-white/70 ring-1 ring-black/5 px-3 py-2 backdrop-blur-sm"
+                    >
+                      <div className="text-[11px] font-medium opacity-75 truncate">{item.label}</div>
+                      <div className="text-base font-semibold tracking-tight tabular-nums">{item.value}</div>
                     </div>
                   ))}
                 </div>
-              </Card>
+              </div>
             );
           })}
         </div>
