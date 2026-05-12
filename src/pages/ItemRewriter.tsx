@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Upload, Download, FileText, RefreshCw, Trash2, Sparkles, Clock, BarChart3 } from "lucide-react";
+import { ArrowLeft, Upload, Download, FileText, RefreshCw, Trash2, Sparkle, Clock, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -33,7 +33,7 @@ const ItemRewriter = () => {
 
   const stats = [
     {
-      icon: <Sparkles className="w-5 h-5" />,
+      icon: <Sparkle className="w-5 h-5" />,
       title: "Token Usage",
       total: "4,651",
       subtitle: "Available Tokens",
@@ -280,7 +280,7 @@ const ItemRewriter = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg border border-blue-200">
               <div className="w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center">
-                <Sparkles className="w-2 h-2 text-white" />
+                <Sparkle className="w-2 h-2 text-white" />
               </div>
               <span className="text-sm text-blue-700 font-medium">4,651 Tokens</span>
             </div>
@@ -507,7 +507,7 @@ const ItemRewriter = () => {
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-5 h-5 mr-3" />
+                      <Sparkle className="w-5 h-5 mr-3" />
                       Rewrite Questions
                     </>
                   )}
@@ -524,7 +524,7 @@ const ItemRewriter = () => {
               <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-white" />
+                    <Sparkle className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h2 className="text-2xl font-medium text-gray-900">Rewritten Questions</h2>
@@ -608,7 +608,7 @@ const ItemRewriter = () => {
         <div className="text-center py-8">
           <div className="flex items-center justify-center gap-3 text-sm text-gray-500">
             <div className="w-6 h-6 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center border-2 border-blue-200">
-              <Sparkles className="w-3 h-3 text-white" />
+              <Sparkle className="w-3 h-3 text-white" />
             </div>
             <span className="font-medium">Powered by Advanced AI Technology</span>
           </div>

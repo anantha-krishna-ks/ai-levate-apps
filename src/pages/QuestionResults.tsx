@@ -13,7 +13,7 @@ import {
   Eye,
   Trash2,
   RotateCcw,
-  Sparkles,
+  Sparkle,
   ChevronDown,
   Target,
   User,
@@ -243,7 +243,7 @@ const QuestionResults = () => {
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 }`}
               >
-                <Sparkles className="h-4 w-4" />
+                <Sparkle className="h-4 w-4" />
                 Generate Questions
               </button>
               <button
@@ -507,7 +507,7 @@ const QuestionResults = () => {
         {/* Need More Questions */}
         <Card className="p-8 text-center border border-gray-200 mb-8">
           <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Sparkles className="w-6 h-6 text-gray-600" />
+            <Sparkle className="w-6 h-6 text-gray-600" />
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">Need more questions?</h3>
           <p className="text-gray-600 mb-6">Generate additional questions with the same or different parameters</p>
@@ -561,7 +561,7 @@ const QuestionResults = () => {
                       <p className="text-xs text-gray-500">High quality</p>
                     </div>
                     <div className="h-8 w-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Sparkles className="h-5 w-5 text-purple-600" />
+                      <Sparkle className="h-5 w-5 text-purple-600" />
                     </div>
                   </div>
                 </div>
@@ -674,7 +674,7 @@ const QuestionResults = () => {
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Search Questions</label>
                     <div className="relative">
-                      <Sparkles className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                      <Sparkle className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                       <input 
                         placeholder="Search questions, topics, or content..." 
                         className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"

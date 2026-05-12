@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Link } from "react-router-dom"
-import { ArrowLeft, PenTool, Sparkles, X, Plus, Loader2, ClipboardCheck } from "lucide-react"
+import { ArrowLeft, PenTool, Sparkle, X, Plus, Loader2, ClipboardCheck } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Progress } from "@/components/ui/progress"
@@ -100,7 +100,7 @@ const EssayEvaluationZeroShot = () => {
           
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 px-3 py-1.5 bg-purple-50 rounded-lg border border-purple-200">
-              <Sparkles className="h-4 w-4 text-purple-600" />
+              <Sparkle className="h-4 w-4 text-purple-600" />
               <span className="text-sm font-medium text-purple-600">4,651 Tokens</span>
             </div>
             <Link to="/dashboard">
@@ -171,7 +171,7 @@ const EssayEvaluationZeroShot = () => {
             <CardContent className="p-6 space-y-4">
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2 bg-blue-600 text-white rounded-lg">
-                  <Sparkles className="h-5 w-5" />
+                  <Sparkle className="h-5 w-5" />
                 </div>
                 <h2 className="text-2xl font-medium text-blue-800">Evaluation Rubrics</h2>
               </div>
@@ -240,7 +240,7 @@ const EssayEvaluationZeroShot = () => {
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-5 h-5 mr-2" />
+                  <Sparkle className="w-5 h-5 mr-2" />
                   Submit for AI Evaluation
                 </>
               )}
@@ -255,7 +255,7 @@ const EssayEvaluationZeroShot = () => {
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="p-2 bg-green-600 text-white rounded-lg">
-                      <Sparkles className="h-5 w-5" />
+                      <Sparkle className="h-5 w-5" />
                     </div>
                     <h2 className="text-2xl font-medium text-green-800">Detailed Rationale</h2>
                   </div>

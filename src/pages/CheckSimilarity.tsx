@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate, useLocation } from "react-router-dom"
-import { ArrowLeft, Eye, GitCompare, FileQuestion, Hash, CheckCircle2, Sparkles, BookOpen, User, Target, ListChecks } from "lucide-react"
+import { ArrowLeft, Eye, GitCompare, FileQuestion, Hash, CheckCircle2, Sparkle, BookOpen, User, Target, ListChecks } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -125,7 +125,7 @@ const CheckSimilarity = () => {
             {/* Question Text */}
             <div className="animate-scale-in" style={{ animationDelay: '0.1s' }}>
               <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="w-4 h-4 text-purple-600" />
+                <Sparkle className="w-4 h-4 text-purple-600" />
                 <span className="text-sm font-medium text-muted-foreground">Question</span>
               </div>
               <div className="p-4 bg-gradient-to-br from-purple-50/50 to-blue-50/50 rounded-md border border-purple-100">
@@ -294,7 +294,7 @@ const CheckSimilarity = () => {
                 {/* Question Stem */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <Sparkles className="w-5 h-5 text-purple-600" />
+                    <Sparkle className="w-5 h-5 text-purple-600" />
                     <span className="text-sm font-medium text-muted-foreground">Question Stem</span>
                   </div>
                   <div className="p-4 bg-gradient-to-br from-purple-50/50 to-blue-50/50 rounded-md border border-purple-100">

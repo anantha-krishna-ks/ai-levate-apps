@@ -8,7 +8,7 @@ import {
   FileText,
   Database,
   CheckCircle,
-  Sparkles,
+  Sparkle,
   BarChart3,
   Target,
   Trash2,
@@ -230,7 +230,7 @@ const ItemMetadata = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg border border-blue-200">
-              <Sparkles className="h-4 w-4 text-blue-600" />
+              <Sparkle className="h-4 w-4 text-blue-600" />
               <span className="text-sm font-medium text-blue-600">2,847 Tokens</span>
             </div>
             <Link to="/dashboard">
@@ -413,7 +413,7 @@ const ItemMetadata = () => {
                     <CardContent className="p-6">
                       <div className="flex items-center gap-4">
                         <div className="animate-spin">
-                          <Sparkles className="h-6 w-6 text-blue-600" />
+                          <Sparkle className="h-6 w-6 text-blue-600" />
                         </div>
                         <div className="flex-1">
                           <p className="font-medium text-blue-800">Processing your items...</p>

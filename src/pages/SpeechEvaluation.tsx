@@ -18,7 +18,7 @@ import {
   Headphones,
   Waves,
   Radio,
-  Sparkles,
+  Sparkle,
   Download,
   X,
   Pause,
@@ -821,7 +821,7 @@ const SpeechEvaluation = () => {
                       <div className="space-y-3">
                         <div className="flex items-center gap-2 mb-3">
                           <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-md flex items-center justify-center shadow-sm">
-                            <Sparkles className="w-3 h-3 text-white" />
+                            <Sparkle className="w-3 h-3 text-white" />
                           </div>
                           <h3 className="text-lg font-medium text-gray-900">Performance Breakdown</h3>
                         </div>
