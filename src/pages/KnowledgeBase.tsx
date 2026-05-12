@@ -1065,7 +1065,7 @@ const KnowledgeBase = () => {
               </div>
 
               <Select value={selectedCustomer} onValueChange={setSelectedCustomer}>
-                <SelectTrigger className="w-full sm:w-64 bg-white border border-gray-400 hover:border-gray-500 focus:border-gray-600 focus:ring-gray-500/20 shadow-sm">
+                <SelectTrigger className="w-full sm:w-64 bg-white border border-gray-300 hover:border-gray-400 focus:border-gray-500 focus:ring-gray-400/20 shadow-sm">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-white z-50">
