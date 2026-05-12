@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useParams, Link } from "react-router-dom"
 import { Save, FileSpreadsheet, Trash, ChevronDown, ChevronUp, ArrowLeft, PenTool, Loader2, Download, Eye, ArrowUp, Sparkle } from "lucide-react"
 import essayEvaluationImage from "@/assets/essay-evaluation-hero.jpg"
+import { AppHeader } from "@/components/AppHeader"
 
 const EssayEvaluationDetail = () => {
   const { essayId } = useParams()
