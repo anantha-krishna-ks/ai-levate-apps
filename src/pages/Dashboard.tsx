@@ -743,10 +743,6 @@ const Dashboard = () => {
                         alt={tool.title}
                         className="w-full h-40 object-cover rounded-t-lg"
                       />
-                      {/* Tool Icon Overlay */}
-                      <div className="absolute top-3 left-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center shadow-sm">
-                        <IconComponent className="h-4 w-4 text-gray-700" />
-                      </div>
                       {tool.badge && (
                         <div className={`absolute top-3 right-3 px-2 py-1 rounded-md text-xs text-white font-medium ${tool.badgeColor} shadow-sm`}>
                           {tool.badge}
