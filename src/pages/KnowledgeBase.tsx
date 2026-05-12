@@ -150,15 +150,12 @@ const KnowledgeBase = () => {
         }`}
       >
         {/* Page Title Section */}
-        <div className="relative overflow-hidden bg-white border-b border-slate-200">
-          {/* subtle decorative accents */}
-          <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-blue-500/5" />
-          <div className="pointer-events-none absolute -bottom-20 right-32 h-40 w-40 rounded-full bg-blue-400/5" />
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-1 bg-blue-600" />
+        <div className="relative bg-white border-b border-slate-200">
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-0.5 bg-blue-600" />
 
-          <div className="relative px-4 sm:px-6 py-5 sm:py-6">
-            <div className="flex items-start justify-between gap-4 flex-wrap">
-              <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+          <div className="relative px-4 sm:px-6 py-3">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3 min-w-0">
                 {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode) && (
                   <Button
                     variant="ghost"
@@ -171,19 +168,19 @@ const KnowledgeBase = () => {
                       setIsChatMode(false);
                       setSelectedKBForChat(null);
                     }}
-                    className="h-9 w-9 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900"
+                    className="h-8 w-8 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900"
                   >
-                    <ArrowLeft className="w-5 h-5" />
+                    <ArrowLeft className="w-4 h-4" />
                   </Button>
                 )}
-                <div className="h-11 w-11 sm:h-12 sm:w-12 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 ring-4 ring-blue-100">
-                  <Library className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
+                  <Library className="h-4 w-4 text-white" />
                 </div>
                   <div className="flex flex-col min-w-0">
-                    <h1 className="text-lg sm:text-xl font-medium text-slate-900 leading-tight tracking-tight truncate">
+                    <h1 className="text-base sm:text-lg font-medium text-slate-900 leading-tight tracking-tight truncate">
                       {isCreating ? "Create New Knowledge Base" : isCreatingStudyLO ? "Create Study LO" : isViewingGuidelines ? "Guideline Data" : isChatMode ? `Knowledge Base: ${selectedKBForChat?.bookName}` : "Knowledge Base"}
                     </h1>
-                    <p className="text-sm text-slate-500 mt-1 truncate">
+                    <p className="text-xs text-slate-500 truncate">
                       {isCreating
                         ? "Configure a new knowledge base for your content"
                         : isCreatingStudyLO
@@ -198,17 +195,17 @@ const KnowledgeBase = () => {
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
                 {isCreatingStudyLO ? (
-                  <Button className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full">
+                  <Button className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full text-xs h-8">
                     Download Template
                   </Button>
                 ) : !isCreating && (
                   <Button
                     variant="outline"
                     size="sm"
-                    className="rounded-full border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50"
+                    className="rounded-full border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 text-xs h-8"
                   >
-                    <FileText className="w-4 h-4 mr-2" />
-                    Knowledge Base Manual
+                    <FileText className="w-3 h-3 mr-1.5" />
+                    Manual
                   </Button>
                 )}
               </div>
