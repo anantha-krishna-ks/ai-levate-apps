@@ -504,14 +504,14 @@ const Dashboard = () => {
             <div
               role="tablist"
               aria-label="Subscription filter"
-              className="relative flex items-center bg-foreground/[0.06] border border-border/50 rounded-lg p-[3px] w-fit"
+              className="relative inline-flex items-center bg-foreground/[0.06] border border-border/50 rounded-full p-[4px]"
             >
               <span
                 aria-hidden="true"
-                className="absolute top-[3px] bottom-[3px] rounded-md bg-background shadow-[0_1px_3px_0_rgba(0,0,0,0.08),0_1px_2px_-1px_rgba(0,0,0,0.05)] transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+                className="absolute top-[4px] bottom-[4px] rounded-full bg-background shadow-[0_1px_3px_0_rgba(0,0,0,0.08),0_1px_2px_-1px_rgba(0,0,0,0.05)] transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
                 style={{
-                  width: "calc((100% - 6px) / 3)",
-                  left: `calc(3px + ((100% - 6px) / 3) * ${subscriptionCategories.indexOf(subscriptionFilter)})`,
+                  width: `calc((100% - 8px) / ${subscriptionCategories.length})`,
+                  left: `calc(4px + ((100% - 8px) / ${subscriptionCategories.length}) * ${subscriptionCategories.indexOf(subscriptionFilter)})`,
                 }}
               />
               {subscriptionCategories.map((category) => {
@@ -522,8 +522,8 @@ const Dashboard = () => {
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => setSubscriptionFilter(category)}
-                    className={`relative z-10 flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-semibold rounded-md transition-colors duration-300 whitespace-nowrap ${
-                      isActive ? "text-foreground" : "text-muted-foreground hover:text-muted-foreground"
+                    className={`relative z-10 flex-1 flex items-center justify-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-full transition-colors duration-300 whitespace-nowrap ${
+                      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {category}
