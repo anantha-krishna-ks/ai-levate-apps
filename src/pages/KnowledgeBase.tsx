@@ -1051,28 +1051,29 @@ const KnowledgeBase = () => {
               <>
                 {/* Existing List View */}
           {/* Customer Selection Card */}
+          {/* Customer Selection Card */}
           <Card className="border border-gray-200/70 bg-white shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_-12px_rgba(16,24,40,0.10)] rounded-2xl">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-gray-200 text-gray-700 rounded-lg">
-                  <Search className="h-5 w-5" />
+            <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-gray-100 text-gray-700 rounded-lg">
+                  <Search className="h-4 w-4" />
                 </div>
-                <h2 className="text-xl font-medium text-gray-900">Select Customer</h2>
+                <div className="flex flex-col">
+                  <span className="text-xs uppercase tracking-wide text-gray-500">Customer</span>
+                  <h2 className="text-sm font-medium text-gray-900 leading-tight">Active context</h2>
+                </div>
               </div>
-              
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 z-10" />
-                <Select value={selectedCustomer} onValueChange={setSelectedCustomer}>
-                  <SelectTrigger className="w-full pl-10 bg-white border-gray-200 focus:border-gray-400 focus:ring-gray-400/20">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white z-50">
-                    <SelectItem value="ACCA">ACCA</SelectItem>
-                    <SelectItem value="Customer2">Customer 2</SelectItem>
-                    <SelectItem value="Customer3">Customer 3</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+
+              <Select value={selectedCustomer} onValueChange={setSelectedCustomer}>
+                <SelectTrigger className="w-full sm:w-64 bg-white border-gray-200 focus:border-gray-400 focus:ring-gray-400/20">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-white z-50">
+                  <SelectItem value="ACCA">ACCA</SelectItem>
+                  <SelectItem value="Customer2">Customer 2</SelectItem>
+                  <SelectItem value="Customer3">Customer 3</SelectItem>
+                </SelectContent>
+              </Select>
             </CardContent>
           </Card>
 
