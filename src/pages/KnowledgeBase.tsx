@@ -150,57 +150,89 @@ const KnowledgeBase = () => {
         }`}
       >
         {/* Page Title Section */}
-        <div className="px-6 pt-6 pb-2">
-          <div className="flex items-center justify-between gap-3 flex-wrap">
-            <div className="flex items-center gap-3 min-w-0">
-              {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode) && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => {
-                    setIsCreating(false);
-                    setIsCreatingStudyLO(false);
-                    setIsViewingGuidelines(false);
-                    setSelectedKBForGuidelines(null);
-                    setIsChatMode(false);
-                    setSelectedKBForChat(null);
-                  }}
-                  className="h-9 w-9 flex-shrink-0 -ml-2 text-gray-600 hover:text-gray-900"
-                >
-                  <ArrowLeft className="w-5 h-5" />
-                </Button>
-              )}
-              <div className="flex flex-col min-w-0">
-                <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 leading-tight truncate">
-                  {isCreating ? "Create New Knowledge Base" : isCreatingStudyLO ? "Create Study LO" : isViewingGuidelines ? "Guideline Data" : isChatMode ? `Knowledge Base: ${selectedKBForChat?.bookName}` : "Knowledge Base"}
-                </h1>
-                <p className="text-sm text-gray-500 mt-0.5 truncate">
-                  {isCreating
-                    ? "Configure a new knowledge base for your content"
-                    : isCreatingStudyLO
-                      ? "Upload a CSV to create study learning outcomes"
-                      : isViewingGuidelines
-                        ? "Manage guideline documents for this knowledge base"
-                        : isChatMode && selectedKBForChat
-                          ? `Customer: ${selectedCustomer}`
-                          : "Manage your knowledge bases and study materials"}
-                </p>
+        <div className="relative overflow-hidden bg-white border-b border-slate-200">
+          {/* subtle decorative accents */}
+          <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-blue-500/5" />
+          <div className="pointer-events-none absolute -bottom-20 right-32 h-40 w-40 rounded-full bg-blue-400/5" />
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-1 bg-blue-600" />
+
+          <div className="relative px-4 sm:px-6 py-5 sm:py-6">
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode) && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => {
+                      setIsCreating(false);
+                      setIsCreatingStudyLO(false);
+                      setIsViewingGuidelines(false);
+                      setSelectedKBForGuidelines(null);
+                      setIsChatMode(false);
+                      setSelectedKBForChat(null);
+                    }}
+                    className="h-9 w-9 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900"
+                  >
+                    <ArrowLeft className="w-5 h-5" />
+                  </Button>
+                )}
+                <div className="h-11 w-11 sm:h-12 sm:w-12 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 ring-4 ring-blue-100">
+                  <Library className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h1 className="text-xl sm:text-2xl font-semibold text-slate-900 leading-tight tracking-tight truncate">
+                      {isCreating ? "Create New Knowledge Base" : isCreatingStudyLO ? "Create Study LO" : isViewingGuidelines ? "Guideline Data" : isChatMode ? `Knowledge Base: ${selectedKBForChat?.bookName}` : "Knowledge Base"}
+                    </h1>
+                    {!isCreating && !isCreatingStudyLO && !isViewingGuidelines && !isChatMode && (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 border border-blue-200 px-2 py-0.5 text-[11px] font-medium text-blue-700">
+                        <Sparkle className="h-2.5 w-2.5 fill-blue-600 text-blue-600" />
+                        AI Powered
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-slate-500 mt-1 truncate">
+                    {isCreating
+                      ? "Configure a new knowledge base for your content"
+                      : isCreatingStudyLO
+                        ? "Upload a CSV to create study learning outcomes"
+                        : isViewingGuidelines
+                          ? "Manage guideline documents for this knowledge base"
+                          : isChatMode && selectedKBForChat
+                            ? `Customer: ${selectedCustomer}`
+                            : "Manage your knowledge bases and study materials"}
+                  </p>
+                  {!isCreating && !isCreatingStudyLO && !isViewingGuidelines && !isChatMode && (
+                    <div className="mt-3 flex items-center gap-2 flex-wrap">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700">
+                        <Library className="h-3 w-3 text-slate-500" />
+                        {knowledgeBases.length} Knowledge Bases
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700">
+                        <BookOpen className="h-3 w-3 text-slate-500" />
+                        {selectedCustomer}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                {isCreatingStudyLO ? (
+                  <Button className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full">
+                    Download Template
+                  </Button>
+                ) : !isCreating && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50"
+                  >
+                    <FileText className="w-4 h-4 mr-2" />
+                    Knowledge Base Manual
+                  </Button>
+                )}
               </div>
             </div>
-            {isCreatingStudyLO ? (
-              <Button className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full flex-shrink-0">
-                Download Template
-              </Button>
-            ) : !isCreating && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="rounded-full border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 flex-shrink-0"
-              >
-                <FileText className="w-4 h-4 mr-2" />
-                Knowledge Base Manual
-              </Button>
-            )}
           </div>
         </div>
 
