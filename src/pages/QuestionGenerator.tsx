@@ -596,11 +596,19 @@ const QuestionGenerator = () => {
                         )}
                       />
 
-                      {/* Generate Button */}
-                      <div className="flex justify-center mt-8">
+                      {/* Buttons */}
+                      <div className="flex gap-3 mt-6">
+                        <Button 
+                          type="button"
+                          variant="outline"
+                          className="w-[35%] rounded-full"
+                          onClick={() => form.reset()}
+                        >
+                          Reset
+                        </Button>
                         <Button 
                           type="submit"
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full"
+                          className="w-[65%] rounded-full"
                         >
                           <Sparkle className="w-4 h-4 mr-2" />
                           Generate Questions
@@ -608,6 +616,7 @@ const QuestionGenerator = () => {
                       </div>
                     </form>
                   </Form>
+                  </CardContent>
                 </Card>
               </div>
             </div>
