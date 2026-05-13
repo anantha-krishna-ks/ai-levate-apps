@@ -338,75 +338,82 @@ const QuestionGenerator = () => {
               <div className="lg:col-span-3">
                 <Card className="border-border/60 shadow-sm rounded-2xl">
                   <CardHeader className="pb-4">
-                    <div className="flex items-start justify-between gap-4 flex-wrap">
-                      <div>
-                        <div className="flex items-center gap-3">
-                          <span aria-hidden="true" className="block w-1 h-6 rounded-full bg-blue-600" />
-                          <CardTitle className="text-xl font-semibold text-gray-900">AI Question Generator</CardTitle>
-                        </div>
-                        <CardDescription className="text-sm text-gray-500 mt-1.5 ml-4">
-                          Configure your question generation settings
-                        </CardDescription>
-                      </div>
-                      <div
-                        role="radiogroup"
-                        aria-label="AI Generation Mode"
-                        className="flex items-center gap-2"
-                      >
-                        {[
-                          { key: false, label: "Knowledge Base", desc: "Use source material", icon: BookOpen },
-                          { key: true, label: "LLM", desc: "Pure AI knowledge", icon: Brain },
-                        ].map((opt) => {
-                          const Icon = opt.icon;
-                          const selected = generationMode === opt.key;
-                          return (
-                            <button
-                              key={String(opt.key)}
-                              type="button"
-                              role="radio"
-                              aria-checked={selected}
-                              onClick={() => setGenerationMode(opt.key)}
-                              className={`group relative flex items-center gap-2.5 rounded-xl border px-3.5 py-2 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
-                                selected
-                                  ? "border-primary bg-primary/5 shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)]"
-                                  : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
-                              }`}
-                            >
-                              <span
-                                className={`flex h-8 w-8 items-center justify-center rounded-lg shrink-0 transition-colors ${
-                                  selected ? "bg-primary text-white" : "bg-gray-100 text-gray-500 group-hover:bg-gray-200"
-                                }`}
-                              >
-                                <Icon className="h-4 w-4" />
-                              </span>
-                              <span className="flex flex-col leading-tight pr-1">
-                                <span className={`text-sm font-semibold ${selected ? "text-primary" : "text-gray-800"}`}>
-                                  {opt.label}
-                                </span>
-                                <span className="text-[10.5px] text-gray-500 font-medium">{opt.desc}</span>
-                              </span>
-                              <span
-                                aria-hidden="true"
-                                className={`flex h-4 w-4 items-center justify-center rounded-full border-2 shrink-0 transition-colors ${
-                                  selected ? "border-primary bg-white" : "border-gray-300 bg-white"
-                                }`}
-                              >
-                                <span
-                                  className={`h-1.5 w-1.5 rounded-full transition-transform ${
-                                    selected ? "bg-primary scale-100" : "bg-transparent scale-0"
-                                  }`}
-                                />
-                              </span>
-                            </button>
-                          );
-                        })}
-                      </div>
+                    <div className="flex items-center gap-3">
+                      <span aria-hidden="true" className="block w-1 h-6 rounded-full bg-blue-600" />
+                      <CardTitle className="text-xl font-semibold text-gray-900">AI Question Generator</CardTitle>
                     </div>
+                    <CardDescription className="text-sm text-gray-500 mt-1.5 ml-4">
+                      Configure your question generation settings
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
 
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleGenerateQuestions)} className="space-y-6">
+                      {/* Generation Source */}
+                      <div className="rounded-2xl border border-gray-200 bg-gray-50/50 p-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <Sparkle className="h-3.5 w-3.5 text-primary" />
+                            <span className="text-sm font-semibold text-gray-900">Generation Source</span>
+                          </div>
+                          <span className="text-[11px] text-gray-500">Choose where answers come from</span>
+                        </div>
+                        <div
+                          role="radiogroup"
+                          aria-label="AI Generation Mode"
+                          className="grid grid-cols-1 sm:grid-cols-2 gap-2.5"
+                        >
+                          {[
+                            { key: false, label: "Knowledge Base", desc: "Use uploaded source material", icon: BookOpen },
+                            { key: true, label: "LLM", desc: "Use the model's own knowledge", icon: Brain },
+                          ].map((opt) => {
+                            const Icon = opt.icon;
+                            const selected = generationMode === opt.key;
+                            return (
+                              <button
+                                key={String(opt.key)}
+                                type="button"
+                                role="radio"
+                                aria-checked={selected}
+                                onClick={() => setGenerationMode(opt.key)}
+                                className={`group relative flex items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                                  selected
+                                    ? "border-primary bg-primary/5 shadow-[0_2px_10px_-3px_hsl(var(--primary)/0.3)]"
+                                    : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
+                                }`}
+                              >
+                                <span
+                                  className={`flex h-10 w-10 items-center justify-center rounded-xl shrink-0 transition-colors ${
+                                    selected ? "bg-primary text-white" : "bg-gray-100 text-gray-500 group-hover:bg-gray-200"
+                                  }`}
+                                >
+                                  <Icon className="h-[18px] w-[18px]" />
+                                </span>
+                                <span className="flex flex-col leading-tight flex-1 min-w-0">
+                                  <span className={`text-sm font-semibold ${selected ? "text-primary" : "text-gray-900"}`}>
+                                    {opt.label}
+                                  </span>
+                                  <span className="text-xs text-gray-500 mt-0.5">{opt.desc}</span>
+                                </span>
+                                <span
+                                  aria-hidden="true"
+                                  className={`flex h-[18px] w-[18px] items-center justify-center rounded-full border-2 shrink-0 transition-colors ${
+                                    selected ? "border-primary bg-white" : "border-gray-300 bg-white"
+                                  }`}
+                                >
+                                  <span
+                                    className={`h-2 w-2 rounded-full transition-transform ${
+                                      selected ? "bg-primary scale-100" : "bg-transparent scale-0"
+                                    }`}
+                                  />
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
                         {/* Left side form */}
                         <div className="space-y-5">
