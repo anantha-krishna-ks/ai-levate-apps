@@ -709,74 +709,114 @@ const QuestionGenerator = () => {
                     Filters & Search
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-700">Source Type</label>
-                      <Select defaultValue="all-sources">
-                        <SelectTrigger className="bg-white border-gray-200">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white border border-gray-200 shadow-lg">
-                          <SelectItem value="all-sources">All Sources</SelectItem>
-                          <SelectItem value="book-based">Book Based</SelectItem>
-                          <SelectItem value="ai-generated">AI Generated</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-700">Study Area</label>
-                      <Select defaultValue="all-areas">
-                        <SelectTrigger className="bg-white border-gray-200">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white border border-gray-200 shadow-lg">
-                          <SelectItem value="all-areas">All Areas</SelectItem>
-                          <SelectItem value="cyber-risk">Cyber Risk</SelectItem>
-                          <SelectItem value="risk-management">Risk Management</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-700">Question Type</label>
-                      <Select defaultValue="all-types">
-                        <SelectTrigger className="bg-white border-gray-200">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white border border-gray-200 shadow-lg">
-                          <SelectItem value="all-types">All Types</SelectItem>
-                          <SelectItem value="multiple-choice">Multiple Choice</SelectItem>
-                          <SelectItem value="true-false">True/False</SelectItem>
-                          <SelectItem value="short-answer">Short Answer</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-700">Difficulty</label>
-                      <Select defaultValue="all-levels">
-                        <SelectTrigger className="bg-white border-gray-200">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white border border-gray-200 shadow-lg">
-                          <SelectItem value="all-levels">All Levels</SelectItem>
-                          <SelectItem value="easy">Easy</SelectItem>
-                          <SelectItem value="medium">Medium</SelectItem>
-                          <SelectItem value="hard">Hard</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                      {
+                        label: "Source Type",
+                        defaultValue: "all",
+                        options: [
+                          { value: "all", label: "All" },
+                          { value: "book-based", label: "Book Based" },
+                          { value: "ai-generated", label: "AI Generated" },
+                        ],
+                      },
+                      {
+                        label: "Study Domain",
+                        defaultValue: "all",
+                        options: [
+                          { value: "all", label: "All" },
+                          { value: "cyber-risk", label: "Cyber Risk" },
+                          { value: "risk-management", label: "Risk Management" },
+                        ],
+                      },
+                      {
+                        label: "Learning Objective",
+                        defaultValue: "all",
+                        options: [
+                          { value: "all", label: "All" },
+                          { value: "lo-1", label: "Identify cyber threats" },
+                          { value: "lo-2", label: "Apply risk frameworks" },
+                        ],
+                      },
+                      {
+                        label: "Taxonomy",
+                        defaultValue: "all",
+                        options: [
+                          { value: "all", label: "All" },
+                          { value: "remember", label: "Remember" },
+                          { value: "understand", label: "Understand" },
+                          { value: "apply", label: "Apply" },
+                        ],
+                      },
+                      {
+                        label: "Question Type",
+                        defaultValue: "all",
+                        options: [
+                          { value: "all", label: "All" },
+                          { value: "multiple-choice", label: "Multiple Choice" },
+                          { value: "true-false", label: "True/False" },
+                          { value: "short-answer", label: "Short Answer" },
+                        ],
+                      },
+                      {
+                        label: "Creativity Level",
+                        defaultValue: "all",
+                        options: [
+                          { value: "all", label: "All" },
+                          { value: "low", label: "Low" },
+                          { value: "medium", label: "Medium" },
+                          { value: "high", label: "High" },
+                        ],
+                      },
+                      {
+                        label: "Created By",
+                        defaultValue: "me",
+                        options: [
+                          { value: "me", label: "Me" },
+                          { value: "team", label: "Team" },
+                          { value: "all", label: "Anyone" },
+                        ],
+                      },
+                      {
+                        label: "Rating",
+                        defaultValue: "all",
+                        options: [
+                          { value: "all", label: "All" },
+                          { value: "5", label: "5 Stars" },
+                          { value: "4", label: "4+ Stars" },
+                          { value: "3", label: "3+ Stars" },
+                        ],
+                      },
+                    ].map((f) => (
+                      <div key={f.label} className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">{f.label}</label>
+                        <Select defaultValue={f.defaultValue}>
+                          <SelectTrigger className="bg-white border-gray-200">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="bg-white border border-gray-200 shadow-lg">
+                            {f.options.map((o) => (
+                              <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    ))}
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Search Questions</label>
-                    <div className="relative">
-                      <Sparkle className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                      <input 
-                        placeholder="Search questions, topics, or content..." 
-                        className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      />
+                    <label className="text-sm font-medium text-gray-700">Search</label>
+                    <div className="flex gap-3">
+                      <div className="relative flex-1">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+                        <input
+                          placeholder="Enter search text"
+                          className="w-full pl-10 pr-4 h-10 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+                        />
+                      </div>
+                      <Button type="button" className="h-10 px-6 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold">
+                        Go
+                      </Button>
                     </div>
                   </div>
                 </div>
