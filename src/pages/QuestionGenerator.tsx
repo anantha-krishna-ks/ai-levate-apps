@@ -320,18 +320,45 @@ const QuestionGenerator = () => {
             {/* Top Row - Tokens and AI Mode */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Available Tokens */}
-              <Card className="p-6 bg-white border border-gray-200">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-medium text-gray-700">Available Tokens</h3>
-                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Zap className="w-4 h-4 text-green-600" />
+              {(() => {
+                const used = 2238;
+                const total = 10000;
+                const remaining = total - used;
+                const pct = Math.round((used / total) * 100);
+                return (
+                  <div className="relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-5 bg-pastel-peach text-pastel-peach-ink">
+                    <div className="flex items-center gap-2.5 mb-4">
+                      <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
+                        <Zap className="h-3.5 w-3.5" />
+                      </div>
+                      <span className="text-[15px] font-medium tracking-tight">Available Tokens</span>
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-[44px] leading-none font-medium tracking-tight">{remaining.toLocaleString()}</span>
+                      <span className="text-base font-medium opacity-75">/ {total.toLocaleString()}</span>
+                    </div>
+                    <p className="text-sm opacity-90 mt-1.5 mb-4">Remaining today</p>
+                    <div className="flex items-center gap-3">
+                      <div
+                        role="progressbar"
+                        aria-valuenow={pct}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                        className="relative h-2.5 flex-1 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] overflow-visible"
+                      >
+                        <div
+                          className="relative h-full rounded-full bg-pastel-peach-ink"
+                          style={{ width: `${pct}%` }}
+                        >
+                          <span className="absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-white/35" />
+                          <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 h-3 w-3 rounded-full bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.12),0_0_10px_3px_rgba(255,255,255,0.95)] ring-1 ring-black/5" />
+                        </div>
+                      </div>
+                      <span className="text-sm font-medium tabular-nums">{pct}%</span>
+                    </div>
                   </div>
-                </div>
-                <div className="text-2xl font-medium text-gray-900 mb-1">7,762</div>
-                <div className="text-sm text-green-600 flex items-center gap-1">
-                  <span>+250 today</span>
-                </div>
-              </Card>
+                );
+              })()}
 
               {/* AI Generation Mode */}
               <Card className="p-6 bg-white border border-gray-200">
