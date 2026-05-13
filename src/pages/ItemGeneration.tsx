@@ -164,7 +164,7 @@ const ItemGeneration = () => {
                 className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-4 ${s.bg} ${s.ink}`}
               >
                 {/* Header */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2.5">
                     <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
                       <Icon className="h-3.5 w-3.5" />
