@@ -53,6 +53,74 @@ const formSchema = z.object({
   additionalInstructions: z.string().min(1, "Additional instructions are required"),
 })
 
+type QuestionPillOption = { key: string; label: string; icon: React.ComponentType<{ className?: string }> };
+
+type QuestionPillToggleProps = {
+  options: QuestionPillOption[];
+  value: string;
+  onChange: (v: string) => void;
+};
+
+const QuestionPillToggle: React.FC<QuestionPillToggleProps> = ({ options, value, onChange }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const [indicator, setIndicator] = useState({ left: 4, width: 0 });
+
+  useLayoutEffect(() => {
+    const idx = options.findIndex((o) => o.key === value);
+    const btn = buttonRefs.current[idx];
+    const container = containerRef.current;
+    if (!btn || !container) return;
+    const update = () => {
+      const cRect = container.getBoundingClientRect();
+      const bRect = btn.getBoundingClientRect();
+      setIndicator({ left: bRect.left - cRect.left, width: bRect.width });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(container);
+    buttonRefs.current.forEach((b) => b && ro.observe(b));
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, [value, options]);
+
+  return (
+    <div
+      ref={containerRef}
+      role="tablist"
+      className="relative inline-flex items-center bg-foreground/[0.06] border border-border/50 rounded-full p-[4px]"
+    >
+      <span
+        aria-hidden="true"
+        className="absolute top-[4px] bottom-[4px] rounded-full bg-background shadow-[0_1px_3px_0_rgba(0,0,0,0.08),0_1px_2px_-1px_rgba(0,0,0,0.05)] transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+        style={{ left: indicator.left, width: indicator.width }}
+      />
+      {options.map((option, i) => {
+        const isActive = value === option.key;
+        const Icon = option.icon;
+        return (
+          <button
+            key={option.key}
+            ref={(el) => (buttonRefs.current[i] = el)}
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => onChange(option.key)}
+            className={`relative z-10 flex items-center justify-center gap-1.5 px-5 py-2.5 text-sm font-medium rounded-full transition-colors duration-300 whitespace-nowrap ${
+              isActive ? "text-primary" : "text-foreground/80 hover:text-foreground"
+            }`}
+          >
+            <Icon className="h-4 w-4" />
+            {option.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+};
+
 const QuestionGenerator = () => {
   const { bookCode } = useParams()
   const navigate = useNavigate()
