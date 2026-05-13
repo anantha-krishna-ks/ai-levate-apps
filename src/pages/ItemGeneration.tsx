@@ -161,48 +161,33 @@ const ItemGeneration = () => {
 
       {/* Main Content */}
       <div className="pt-16 p-6 max-w-7xl mx-auto">
-        {/* Secondary Header — clean, breadcrumb-led */}
-        <div className="pt-8 pb-6 mb-6 border-b border-border/60">
-          {/* Breadcrumb */}
-          <Link
-            to="/dashboard"
-            className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-primary transition-colors group"
-          >
-            <ArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-0.5" />
-            <span>Dashboard</span>
-            <span className="mx-1 text-border">/</span>
-            <span className="text-foreground/70">Item Generation</span>
-          </Link>
-
-          {/* Title row */}
-          <div className="mt-3 flex items-end justify-between gap-4 flex-wrap">
-            <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <h1 className="text-[22px] font-semibold text-foreground tracking-tight leading-tight">
-                  Select Knowledge Base
-                </h1>
-                <TooltipProvider delayDuration={100}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button className="w-5 h-5 rounded-full text-muted-foreground/60 hover:text-primary transition-colors flex items-center justify-center">
-                        <Info className="w-3.5 h-3.5" />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="right" className="max-w-xs">
-                      <p>Choose a knowledge base to start generating intelligent questions</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <p className="text-sm text-muted-foreground mt-1">
-                Choose a base to start generating questions
-              </p>
-            </div>
-
-            <div className="inline-flex items-center gap-1.5 h-7 px-2.5 rounded-full bg-primary/5 ring-1 ring-primary/15 text-primary">
-              <span className="text-xs font-semibold tabular-nums">{knowledgeBases.length}</span>
-              <span className="text-[11px] font-medium opacity-80">available</span>
-            </div>
+        {/* Page Title */}
+        <div className="pt-6 mb-8">
+          <div className="flex items-center gap-3 mb-2">
+            <Link to="/dashboard" aria-label="Back to dashboard">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-9 rounded-full pl-2.5 pr-3.5 gap-1.5 border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span className="text-sm font-medium">Back</span>
+              </Button>
+            </Link>
+            <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+            <h1 className="text-2xl font-medium text-gray-900">Select Knowledge Base</h1>
+            <TooltipProvider delayDuration={100}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button className="ml-1.5 w-7 h-7 rounded-full bg-blue-50 text-blue-400 hover:text-blue-600 hover:bg-blue-100 ring-1 ring-blue-200/60 hover:ring-blue-300 transition-all duration-200 flex items-center justify-center shadow-sm">
+                    <Info className="w-3.5 h-3.5" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent side="right" className="max-w-xs">
+                  <p>Choose a knowledge base to start generating intelligent questions</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
 
