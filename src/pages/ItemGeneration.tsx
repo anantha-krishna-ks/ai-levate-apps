@@ -161,7 +161,7 @@ const ItemGeneration = () => {
             return (
               <div
                 key={index}
-                className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-5 ${s.bg} ${s.ink}`}
+                className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-4 ${s.bg} ${s.ink}`}
               >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-4">
