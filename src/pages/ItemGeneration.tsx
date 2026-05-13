@@ -181,7 +181,7 @@ const ItemGeneration = () => {
                   </span>
                   <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
                 </div>
-                <p className="text-sm opacity-90 mt-2 mb-5">{stat.caption}</p>
+                <p className="text-sm opacity-90 mt-2 mb-4">{stat.caption}</p>
 
                 {/* Breakdown chips */}
                 <div className="grid grid-cols-2 gap-2.5">
