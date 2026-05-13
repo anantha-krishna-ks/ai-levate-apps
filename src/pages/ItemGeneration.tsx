@@ -185,7 +185,7 @@ const ItemGeneration = () => {
         </div>
 
         {/* Statistics Cards — Accordion */}
-        <Accordion type="multiple" defaultValue={["stat-0", "stat-1"]} className="grid grid-cols-1 gap-6 mb-8">
+        <Accordion type="multiple" defaultValue={[]} className="grid grid-cols-1 gap-6 mb-8">
           {stats.map((stat, index) => {
             const TONE: Record<string, { bg: string; ink: string; fill: string }> = {
               lavender: { bg: "bg-pastel-lavender", ink: "text-pastel-lavender-ink", fill: "bg-pastel-lavender-ink" },
