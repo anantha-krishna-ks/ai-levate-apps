@@ -344,7 +344,7 @@ const QuestionGenerator = () => {
                 <div className="relative flex w-full items-center bg-gray-100 border border-gray-200 rounded-full p-1.5 shadow-inner">
                   <span
                     aria-hidden="true"
-                    className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-blue-600 shadow-[0_4px_12px_-2px_rgba(37,99,235,0.45)] transition-transform duration-300 ease-out"
+                    className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-primary shadow-[0_4px_12px_-2px_hsl(var(--primary)/0.45)] transition-transform duration-300 ease-out"
                     style={{
                       width: "calc(50% - 0.375rem)",
                       transform: generationMode ? "translateX(100%)" : "translateX(0%)",
