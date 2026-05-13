@@ -185,7 +185,7 @@ const ItemGeneration = () => {
         </div>
 
         {/* Statistics Cards — Accordion */}
-        <Accordion type="multiple" defaultValue={["stat-0", "stat-1"]} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <Accordion type="multiple" defaultValue={["stat-0", "stat-1"]} className="flex flex-col gap-4 mb-8">
           {stats.map((stat, index) => {
             const TONE: Record<string, { bg: string; ink: string; fill: string }> = {
               lavender: { bg: "bg-pastel-lavender", ink: "text-pastel-lavender-ink", fill: "bg-pastel-lavender-ink" },
@@ -210,61 +210,68 @@ const ItemGeneration = () => {
                 value={`stat-${index}`}
                 className={`relative overflow-hidden rounded-3xl border border-border/60 shadow-soft-xs ${s.bg} ${s.ink} data-[state=open]:shadow-soft-md transition-shadow duration-300`}
               >
-                {/* Trigger — header + big value */}
-                <AccordionTrigger className="w-full px-5 pt-5 pb-0 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 rounded-t-3xl [&>div:last-child]:hidden">
-                  <div className="flex flex-col w-full text-left">
-                    {/* Header row */}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2.5">
-                        <div className="h-8 w-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
-                          <Icon className="h-4 w-4" />
-                        </div>
-                        <span className="text-[15px] font-medium tracking-tight">{stat.label}</span>
+                {/* Trigger — horizontal layout */}
+                <AccordionTrigger className="w-full px-6 py-5 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 [&>div:last-child]:hidden">
+                  <div className="flex items-center justify-between w-full gap-6">
+                    {/* Left: icon + label + caption */}
+                    <div className="flex items-center gap-4 min-w-0">
+                      <div className="h-11 w-11 rounded-2xl bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
+                        <Icon className="h-5 w-5" />
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-medium opacity-80 tabular-nums">{pct}%</span>
-                        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-white/70 ring-1 ring-black/5 transition-transform duration-300 group-data-[state=open]:rotate-180">
-                          <ChevronRight className="h-3.5 w-3.5 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
-                        </div>
+                      <div className="flex flex-col min-w-0 text-left">
+                        <span className="text-[15px] font-semibold tracking-tight">{stat.label}</span>
+                        <span className="text-xs font-medium opacity-70 truncate">{stat.caption}</span>
                       </div>
                     </div>
 
-                    {/* Big value row */}
-                    <div className="flex items-end justify-between gap-3 mb-5">
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="text-[34px] leading-none font-medium tracking-tight tabular-nums">
-                          {stat.value.toLocaleString()}
-                        </span>
-                        <span className="text-base font-medium opacity-70">/ {stat.total.toLocaleString()}</span>
+                    {/* Center: progress bar */}
+                    <div className="hidden sm:flex flex-1 max-w-xs flex-col gap-1.5">
+                      <div className="flex items-center justify-between text-[11px] font-semibold opacity-80">
+                        <span>{stat.value.toLocaleString()}</span>
+                        <span>{stat.total.toLocaleString()}</span>
                       </div>
-                      <p className="text-[11px] font-medium opacity-80 leading-tight pb-1 text-right max-w-[120px]">
-                        {stat.caption}
-                      </p>
+                      <div className="h-2 w-full rounded-full bg-black/10 overflow-hidden">
+                        <div
+                          className={`h-full rounded-full ${s.fill} transition-all duration-700 ease-out`}
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Right: percentage + chevron */}
+                    <div className="flex items-center gap-4 shrink-0">
+                      <div className="flex flex-col items-end text-right">
+                        <span className="text-2xl font-semibold tracking-tight tabular-nums leading-none">
+                          {pct}%
+                        </span>
+                        <span className="text-[11px] font-medium opacity-70 mt-1">{stat.value.toLocaleString()} / {stat.total.toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/70 ring-1 ring-black/5 transition-transform duration-300 group-data-[state=open]:rotate-180">
+                        <ChevronRight className="h-4 w-4 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
+                      </div>
                     </div>
                   </div>
                 </AccordionTrigger>
 
-                {/* Content — breakdown grid */}
-                <AccordionContent className="px-5 pb-5">
-                  <div className="grid grid-cols-2 gap-2.5">
+                {/* Content — spacious breakdown grid */}
+                <AccordionContent className="px-6 pb-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                     {stat.items.map((item, idx) => {
                       const QIcon = QTYPE_ICON[item.label] ?? FileText;
                       return (
                         <div
                           key={idx}
-                          className="flex items-center gap-2.5 rounded-2xl bg-white/95 ring-1 ring-black/[0.06] px-3 py-2.5 min-w-0 hover:shadow-soft-xs hover:ring-black/[0.08] transition-all duration-200"
+                          className="flex flex-col items-center gap-2 rounded-2xl bg-white/95 ring-1 ring-black/[0.06] px-3 py-3 hover:shadow-soft-xs hover:ring-black/[0.08] transition-all duration-200"
                         >
-                          <div className="h-8 w-8 rounded-xl bg-white flex items-center justify-center shrink-0 ring-1 ring-black/[0.06]">
+                          <div className="h-9 w-9 rounded-xl bg-white flex items-center justify-center shrink-0 ring-1 ring-black/[0.06]">
                             <QIcon className={`h-4 w-4 ${s.ink}`} />
                           </div>
-                          <div className="flex flex-col min-w-0 flex-1">
-                            <span className={`text-[12px] font-medium leading-tight truncate ${s.ink} opacity-80`}>
-                              {item.label}
-                            </span>
-                            <span className={`text-sm font-semibold tabular-nums leading-tight mt-0.5 ${s.ink}`}>
-                              {item.value}
-                            </span>
-                          </div>
+                          <span className={`text-[11px] font-medium leading-tight text-center ${s.ink} opacity-80`}>
+                            {item.label}
+                          </span>
+                          <span className={`text-lg font-bold tabular-nums leading-tight ${s.ink}`}>
+                            {item.value}
+                          </span>
                         </div>
                       );
                     })}
