@@ -334,22 +334,22 @@ const ItemGeneration = () => {
                 </div>
 
                 {/* Breakdown - 2 col grid with icon + label + value */}
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2.5">
                   {stat.items.map((item, idx) => {
                     const QIcon = QTYPE_ICON[item.label] ?? FileText;
                     return (
                       <div
                         key={idx}
-                        className="flex items-center gap-3 rounded-2xl bg-white/95 ring-1 ring-black/5 px-3.5 py-3 min-w-0"
+                        className="flex items-center gap-2.5 rounded-xl bg-white/95 ring-1 ring-black/5 px-3 py-2.5 min-w-0"
                       >
-                        <div className="h-9 w-9 rounded-xl bg-white flex items-center justify-center shrink-0 ring-1 ring-black/5">
-                          <QIcon className={`h-[18px] w-[18px] ${s.ink}`} />
+                        <div className="h-8 w-8 rounded-lg bg-white flex items-center justify-center shrink-0 ring-1 ring-black/5">
+                          <QIcon className={`h-4 w-4 ${s.ink}`} />
                         </div>
                         <div className="flex flex-col min-w-0 flex-1">
-                          <span className={`text-[13px] font-medium leading-tight truncate ${s.ink} opacity-85`}>
+                          <span className={`text-[12px] font-medium leading-tight truncate ${s.ink} opacity-85`}>
                             {item.label}
                           </span>
-                          <span className={`text-base font-semibold tabular-nums leading-tight mt-0.5 ${s.ink}`}>
+                          <span className={`text-sm font-semibold tabular-nums leading-tight mt-0.5 ${s.ink}`}>
                             {item.value}
                           </span>
                         </div>
