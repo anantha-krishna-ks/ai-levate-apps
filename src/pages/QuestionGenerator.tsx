@@ -18,6 +18,7 @@ import {
   FileSpreadsheet,
   Save,
   Database,
+  BookOpen,
   Clock,
   Eye,
   Edit3,
