@@ -414,12 +414,12 @@ const QuestionGenerator = () => {
                             name="studyDomain"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                <FormLabel className="text-sm font-medium text-gray-900">
                                   Study Domain <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -438,12 +438,12 @@ const QuestionGenerator = () => {
                             name="taxonomyFramework"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                <FormLabel className="text-sm font-medium text-gray-900">
                                   Taxonomy Framework <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
                                       <SelectValue placeholder="Select framework" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -464,12 +464,12 @@ const QuestionGenerator = () => {
                             name="questionQuantity"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                <FormLabel className="text-sm font-medium text-gray-900">
                                   Question Quantity <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -493,12 +493,12 @@ const QuestionGenerator = () => {
                             name="learningObjectives"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                <FormLabel className="text-sm font-medium text-gray-900">
                                   Learning Objectives <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -519,12 +519,12 @@ const QuestionGenerator = () => {
                             name="questionFormat"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                <FormLabel className="text-sm font-medium text-gray-900">
                                   Question Format <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -544,12 +544,12 @@ const QuestionGenerator = () => {
                             name="pointValue"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                <FormLabel className="text-sm font-medium text-gray-900">
                                   Point Value <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -572,7 +572,7 @@ const QuestionGenerator = () => {
                         name="additionalInstructions"
                         render={({ field }) => (
                           <FormItem className="mt-5">
-                            <FormLabel className="text-sm font-semibold text-gray-900">
+                            <FormLabel className="text-sm font-medium text-gray-900">
                               Additional Instructions
                             </FormLabel>
                             <FormControl>
