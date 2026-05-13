@@ -1,10 +1,10 @@
-import { ArrowLeft, Users, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Shield, TrendingUp, Info, Sparkle, User, Settings, LogOut, Coins, ArrowDownRight, ArrowUpRight, ListChecks, CheckSquare, ToggleLeft, TextCursorInput, PenLine, Grid3x3, type LucideIcon } from "lucide-react";
+import { ArrowLeft, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Info, User, Settings, LogOut, ListChecks, CheckSquare, ToggleLeft, TextCursorInput, PenLine, Grid3x3, BarChart3, type LucideIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import TokenUsagePopover from "@/components/TokenUsagePopover";
 import {
   DropdownMenu,
@@ -184,8 +184,8 @@ const ItemGeneration = () => {
           </div>
         </div>
 
-        {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {/* Statistics Cards — Accordion */}
+        <Accordion type="multiple" defaultValue={["stat-0", "stat-1"]} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {stats.map((stat, index) => {
             const TONE: Record<string, { bg: string; ink: string; fill: string }> = {
               lavender: { bg: "bg-pastel-lavender", ink: "text-pastel-lavender-ink", fill: "bg-pastel-lavender-ink" },
@@ -205,62 +205,75 @@ const ItemGeneration = () => {
               "Matrix": Grid3x3,
             };
             return (
-              <div
+              <AccordionItem
                 key={index}
-                className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-5 ${s.bg} ${s.ink}`}
+                value={`stat-${index}`}
+                className={`relative overflow-hidden rounded-3xl border border-border/60 shadow-soft-xs ${s.bg} ${s.ink} data-[state=open]:shadow-soft-md transition-shadow duration-300`}
               >
-                {/* Header */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2.5">
-                    <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
-                      <Icon className="h-3.5 w-3.5" />
-                    </div>
-                    <span className="text-[15px] font-medium tracking-tight">{stat.label}</span>
-                  </div>
-                  <span className="text-xs font-medium opacity-80 tabular-nums">{pct}%</span>
-                </div>
-
-                {/* Big value */}
-                <div className="flex items-end justify-between gap-3 mb-4">
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-[32px] leading-none font-medium tracking-tight tabular-nums">
-                      {stat.value.toLocaleString()}
-                    </span>
-                    <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
-                  </div>
-                  <p className="text-[11px] font-medium opacity-80 leading-tight pb-0.5 text-right">
-                    {stat.caption}
-                  </p>
-                </div>
-
-                {/* Breakdown - 2 col grid with icon + label + value */}
-                <div className="grid grid-cols-2 gap-2.5">
-                  {stat.items.map((item, idx) => {
-                    const QIcon = QTYPE_ICON[item.label] ?? FileText;
-                    return (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-2.5 rounded-xl bg-white/95 ring-1 ring-black/5 px-3 py-2.5 min-w-0"
-                      >
-                        <div className="h-8 w-8 rounded-lg bg-white flex items-center justify-center shrink-0 ring-1 ring-black/5">
-                          <QIcon className={`h-4 w-4 ${s.ink}`} />
+                {/* Trigger — header + big value */}
+                <AccordionTrigger className="w-full px-5 pt-5 pb-0 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 rounded-t-3xl [&>div:last-child]:hidden">
+                  <div className="flex flex-col w-full text-left">
+                    {/* Header row */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2.5">
+                        <div className="h-8 w-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
+                          <Icon className="h-4 w-4" />
                         </div>
-                        <div className="flex flex-col min-w-0 flex-1">
-                          <span className={`text-[12px] font-medium leading-tight truncate ${s.ink} opacity-85`}>
-                            {item.label}
-                          </span>
-                          <span className={`text-sm font-semibold tabular-nums leading-tight mt-0.5 ${s.ink}`}>
-                            {item.value}
-                          </span>
+                        <span className="text-[15px] font-medium tracking-tight">{stat.label}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium opacity-80 tabular-nums">{pct}%</span>
+                        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-white/70 ring-1 ring-black/5 transition-transform duration-300 group-data-[state=open]:rotate-180">
+                          <ChevronRight className="h-3.5 w-3.5 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
+                    </div>
+
+                    {/* Big value row */}
+                    <div className="flex items-end justify-between gap-3 mb-5">
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-[34px] leading-none font-medium tracking-tight tabular-nums">
+                          {stat.value.toLocaleString()}
+                        </span>
+                        <span className="text-base font-medium opacity-70">/ {stat.total.toLocaleString()}</span>
+                      </div>
+                      <p className="text-[11px] font-medium opacity-80 leading-tight pb-1 text-right max-w-[120px]">
+                        {stat.caption}
+                      </p>
+                    </div>
+                  </div>
+                </AccordionTrigger>
+
+                {/* Content — breakdown grid */}
+                <AccordionContent className="px-5 pb-5">
+                  <div className="grid grid-cols-2 gap-2.5">
+                    {stat.items.map((item, idx) => {
+                      const QIcon = QTYPE_ICON[item.label] ?? FileText;
+                      return (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-2.5 rounded-2xl bg-white/95 ring-1 ring-black/[0.06] px-3 py-2.5 min-w-0 hover:shadow-soft-xs hover:ring-black/[0.08] transition-all duration-200"
+                        >
+                          <div className="h-8 w-8 rounded-xl bg-white flex items-center justify-center shrink-0 ring-1 ring-black/[0.06]">
+                            <QIcon className={`h-4 w-4 ${s.ink}`} />
+                          </div>
+                          <div className="flex flex-col min-w-0 flex-1">
+                            <span className={`text-[12px] font-medium leading-tight truncate ${s.ink} opacity-80`}>
+                              {item.label}
+                            </span>
+                            <span className={`text-sm font-semibold tabular-nums leading-tight mt-0.5 ${s.ink}`}>
+                              {item.value}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
             );
           })}
-        </div>
+        </Accordion>
 
         {/* Knowledge Base Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
