@@ -200,10 +200,10 @@ const ItemGeneration = () => {
             return (
               <Card
                 key={base.id}
-                className="group relative overflow-hidden bg-white border border-slate-200/80 rounded-2xl shadow-soft-xs transition-[box-shadow,border-color] duration-300 ease-out hover:shadow-soft-md hover:border-slate-300"
+                className="group relative overflow-hidden bg-white border border-slate-200/80 rounded-3xl shadow-soft-xs transition-[box-shadow,border-color] duration-300 ease-out hover:shadow-soft-md hover:border-slate-300"
               >
                 {/* Image Section */}
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative h-44 overflow-hidden rounded-t-3xl">
                   <img
                     src={base.image}
                     alt={base.title}
