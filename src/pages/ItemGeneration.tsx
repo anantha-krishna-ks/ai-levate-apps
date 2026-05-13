@@ -17,18 +17,6 @@ import {
 const ItemGeneration = () => {
   const stats = [
     {
-      tone: "peach" as const,
-      icon: Zap,
-      label: "Token Usage",
-      value: 5349,
-      total: 10000,
-      caption: "Today's tokens used",
-      items: [
-        { label: "Used today", value: "5,349" },
-        { label: "Balance", value: "4,651" },
-      ],
-    },
-    {
       tone: "lavender" as const,
       icon: FileText,
       label: "Generated",
