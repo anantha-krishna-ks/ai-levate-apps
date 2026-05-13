@@ -43,6 +43,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
+import TokenUsagePopover from "@/components/TokenUsagePopover"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -216,11 +217,7 @@ const QuestionGenerator = () => {
 
           {/* Right: Tokens + separator + profile */}
           <div className="flex items-center gap-3 ml-auto flex-shrink-0">
-            <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-full bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/30 transition-colors">
-              <Sparkle className="h-2 w-2 text-primary fill-primary" />
-              <span className="text-xs font-medium text-foreground whitespace-nowrap">7,762</span>
-              <span className="text-xs text-muted-foreground">tokens</span>
-            </div>
+            <TokenUsagePopover used={2238} total={10000} scopeLabel="Cyber Risk" />
 
             <Separator orientation="vertical" className="hidden sm:block h-8" />
 
