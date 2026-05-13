@@ -491,7 +491,7 @@ const QuestionGenerator = () => {
                         </div>
 
                         {/* Right side form */}
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                           {/* Learning Objectives */}
                           <FormField
                             control={form.control}
