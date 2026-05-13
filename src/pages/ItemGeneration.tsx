@@ -296,10 +296,18 @@ const ItemGeneration = () => {
             const s = TONE[stat.tone];
             const Icon = stat.icon;
             const pct = Math.max(0, Math.min(100, Math.round((stat.value / stat.total) * 100)));
+            const QTYPE_ICON: Record<string, LucideIcon> = {
+              "Multiple Choice": ListChecks,
+              "Multiple Response": CheckSquare,
+              "True False": ToggleLeft,
+              "Fill In the Blank": TextCursorInput,
+              "Written Response": PenLine,
+              "Matrix": Grid3x3,
+            };
             return (
               <div
                 key={index}
-                className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-4 ${s.bg} ${s.ink}`}
+                className={`relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-5 ${s.bg} ${s.ink}`}
               >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-3">
@@ -319,19 +327,31 @@ const ItemGeneration = () => {
                   </span>
                   <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
                 </div>
-                <p className="text-xs opacity-90 mt-1.5 mb-3">{stat.caption}</p>
+                <p className="text-xs font-medium opacity-90 mt-1.5 mb-4">{stat.caption}</p>
 
-                {/* Breakdown chips - compact 3 col grid */}
-                <div className="grid grid-cols-3 gap-1.5">
-                  {stat.items.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded-xl bg-white/70 ring-1 ring-black/5 px-2.5 py-1.5 backdrop-blur-sm min-w-0"
-                    >
-                      <div className="text-[10px] font-medium opacity-75 truncate leading-tight">{item.label}</div>
-                      <div className="text-sm font-semibold tracking-tight tabular-nums mt-0.5">{item.value}</div>
-                    </div>
-                  ))}
+                {/* Breakdown - 2 col grid with icon + label + value */}
+                <div className="grid grid-cols-2 gap-x-3 gap-y-2">
+                  {stat.items.map((item, idx) => {
+                    const QIcon = QTYPE_ICON[item.label] ?? FileText;
+                    return (
+                      <div
+                        key={idx}
+                        className="flex items-center gap-2.5 rounded-xl bg-white/95 ring-1 ring-black/5 px-2.5 py-2 min-w-0"
+                      >
+                        <div className="h-7 w-7 rounded-lg bg-white flex items-center justify-center shrink-0 ring-1 ring-black/5">
+                          <QIcon className={`h-3.5 w-3.5 ${s.ink}`} />
+                        </div>
+                        <div className="flex flex-col min-w-0 flex-1">
+                          <span className={`text-[11px] font-medium leading-tight truncate ${s.ink} opacity-80`}>
+                            {item.label}
+                          </span>
+                          <span className={`text-sm font-semibold tabular-nums leading-tight ${s.ink}`}>
+                            {item.value}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             );
