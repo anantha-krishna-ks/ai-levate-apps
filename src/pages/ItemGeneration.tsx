@@ -162,7 +162,7 @@ const ItemGeneration = () => {
       {/* Main Content */}
       <div className="pt-16 p-6 max-w-7xl mx-auto">
         {/* Page Title */}
-        <div className="mb-8">
+        <div className="pt-6 mb-8">
           <div className="flex items-center gap-3 mb-2">
             <Link to="/dashboard" aria-label="Back to dashboard">
               <Button
