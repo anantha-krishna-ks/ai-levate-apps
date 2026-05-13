@@ -1,9 +1,17 @@
-import { ArrowLeft, Users, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Shield, TrendingUp, Info, type LucideIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowLeft, Users, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Shield, TrendingUp, Info, Sparkle, User, Settings, LogOut, type LucideIcon } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Separator } from "@/components/ui/separator";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const ItemGeneration = () => {
   const stats = [
@@ -84,38 +92,75 @@ const ItemGeneration = () => {
     }
   ];
 
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-medium text-sm">AL</span>
-              </div>
-              <img 
-                src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
-                alt="AI-Levate" 
-                className="h-5 w-auto"
+      {/* Header - frosted glass, full width */}
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-card/95 border-b border-border">
+        <div className="flex h-16 items-center px-6 gap-4">
+          {/* Left: Logo */}
+          <div className="flex items-center gap-4 flex-shrink-0">
+            <Link to="/dashboard" className="flex-shrink-0">
+              <img
+                src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png"
+                alt="AI-Levate"
+                className="h-8 w-auto"
               />
-              <span className="text-sm text-gray-500">Knowledge Base Selection</span>
-            </div>
+            </Link>
           </div>
-          
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-                <span className="text-white text-xs">✦</span>
-              </div>
-              <span className="text-sm text-blue-600 font-medium">4,651 Tokens</span>
+
+          {/* Right: Tokens + separator + profile */}
+          <div className="flex items-center gap-3 ml-auto flex-shrink-0">
+            <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-full bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/30 transition-colors">
+              <Sparkle className="h-2 w-2 text-primary fill-primary" />
+              <span className="text-xs font-medium text-foreground whitespace-nowrap">4,651</span>
+              <span className="text-xs text-muted-foreground">tokens</span>
             </div>
+
+            <Separator orientation="vertical" className="hidden sm:block h-8" />
+
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="w-11 h-11 p-0 rounded-full border-2 border-primary/30 hover:border-primary/50 hover:bg-transparent"
+                >
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                    <span className="text-sm font-bold text-primary">A</span>
+                  </div>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-64 mt-2 p-2">
+                <div className="flex flex-col min-w-0 px-2 py-2">
+                  <span className="text-sm font-semibold text-foreground truncate">Anil Kumar</span>
+                  <span className="text-xs text-muted-foreground truncate">anil.kumar@ailevate.com</span>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer rounded-md px-2 py-2 text-sm text-foreground/80 transition-colors focus:bg-primary/10 focus:text-primary [&>svg]:text-muted-foreground focus:[&>svg]:text-primary">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer rounded-md px-2 py-2 text-sm text-foreground/80 transition-colors focus:bg-primary/10 focus:text-primary [&>svg]:text-muted-foreground focus:[&>svg]:text-primary">
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="cursor-pointer rounded-md px-2 py-2 text-sm text-destructive transition-colors focus:bg-destructive/10 focus:text-destructive [&>svg]:text-destructive/70 focus:[&>svg]:text-destructive"
+                  onClick={() => navigate("/")}
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Main Content */}
-      <div className="p-6 max-w-7xl mx-auto">
+      <div className="pt-16 p-6 max-w-7xl mx-auto">
         {/* Page Title */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
