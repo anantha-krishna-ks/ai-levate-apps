@@ -265,7 +265,7 @@ const QuestionGenerator = () => {
       {/* Main Content */}
       <div className="pt-16 p-6 max-w-7xl mx-auto">
         {/* Breadcrumb */}
-        <Breadcrumb className="mb-3">
+        <Breadcrumb className="pt-6 mb-3">
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
