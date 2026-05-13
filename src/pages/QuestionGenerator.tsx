@@ -341,22 +341,22 @@ const QuestionGenerator = () => {
                   </div>
                   <h3 className="text-sm font-medium text-gray-800">AI Generation Mode</h3>
                 </div>
-                <div className="relative flex w-full items-center bg-muted/50 border border-border/50 rounded-full p-1">
+                <div className="relative flex w-full items-center bg-gray-100 border border-gray-200 rounded-full p-1.5 shadow-inner">
                   <span
                     aria-hidden="true"
-                    className="absolute top-1 bottom-1 left-1 rounded-full bg-primary shadow-sm transition-transform duration-300 ease-out"
+                    className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-blue-600 shadow-[0_4px_12px_-2px_rgba(37,99,235,0.45)] transition-transform duration-300 ease-out"
                     style={{
-                      width: "calc(50% - 0.25rem)",
+                      width: "calc(50% - 0.375rem)",
                       transform: generationMode ? "translateX(100%)" : "translateX(0%)",
                     }}
                   />
                   <button
                     type="button"
                     onClick={() => setGenerationMode(false)}
-                    className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-medium transition-colors duration-300 ${
+                    className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-semibold transition-colors duration-300 ${
                       !generationMode
-                        ? "text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground"
+                        ? "text-white"
+                        : "text-gray-500 hover:text-gray-700"
                     }`}
                   >
                     <BookOpen className="w-4 h-4" />
@@ -365,10 +365,10 @@ const QuestionGenerator = () => {
                   <button
                     type="button"
                     onClick={() => setGenerationMode(true)}
-                    className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-medium transition-colors duration-300 ${
+                    className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-semibold transition-colors duration-300 ${
                       generationMode
-                        ? "text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground"
+                        ? "text-white"
+                        : "text-gray-500 hover:text-gray-700"
                     }`}
                   >
                     <Brain className="w-4 h-4" />
