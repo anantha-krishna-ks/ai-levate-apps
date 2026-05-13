@@ -393,8 +393,8 @@ const QuestionGenerator = () => {
               <div className="lg:col-span-3">
                 <Card className="border-border/60 shadow-sm rounded-2xl">
                   <CardHeader className="pb-4">
-                    <div className="flex items-center gap-2.5">
-                      <Sparkle className="w-6 h-6 text-primary fill-primary" />
+                    <div className="flex items-center gap-3">
+                      <span aria-hidden="true" className="block w-1 h-6 rounded-full bg-blue-600" />
                       <CardTitle className="text-xl font-semibold text-gray-900">AI Question Generator</CardTitle>
                     </div>
                     <CardDescription className="text-sm text-gray-500">
