@@ -326,19 +326,19 @@ const QuestionGenerator = () => {
                 const remaining = total - used;
                 const pct = Math.round((used / total) * 100);
                 return (
-                  <div className="relative overflow-hidden rounded-3xl border border-border/70 shadow-soft-xs p-5 bg-pastel-peach text-pastel-peach-ink">
-                    <div className="flex items-center gap-2.5 mb-4">
-                      <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
-                        <Zap className="h-3.5 w-3.5" />
+                  <div className="relative overflow-hidden rounded-2xl border border-border/70 shadow-soft-xs px-5 py-4 bg-pastel-peach text-pastel-peach-ink">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="h-6 w-6 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
+                        <Zap className="h-3 w-3" />
                       </div>
-                      <span className="text-[15px] font-medium tracking-tight">Available Tokens</span>
+                      <span className="text-sm font-medium tracking-tight">Available Tokens</span>
                     </div>
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-[44px] leading-none font-medium tracking-tight">{remaining.toLocaleString()}</span>
-                      <span className="text-base font-medium opacity-75">/ {total.toLocaleString()}</span>
+                      <span className="text-[28px] leading-none font-medium tracking-tight">{remaining.toLocaleString()}</span>
+                      <span className="text-sm font-medium opacity-75">/ {total.toLocaleString()}</span>
+                      <span className="ml-auto text-xs opacity-80">Remaining today</span>
                     </div>
-                    <p className="text-sm opacity-90 mt-1.5 mb-4">Remaining today</p>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 mt-3">
                       <div
                         role="progressbar"
                         aria-valuenow={pct}
