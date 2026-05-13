@@ -398,20 +398,20 @@ const QuestionGenerator = () => {
                                   </span>
                                   <span className="text-xs text-gray-500 mt-0.5">{opt.desc}</span>
                                 </span>
-                                {selected ? (
-                                  <CheckCircle2
-                                    aria-hidden="true"
-                                    className="h-5 w-5 text-primary shrink-0"
-                                    strokeWidth={2.25}
-                                    fill="hsl(var(--primary) / 0.12)"
+                                <span
+                                  aria-hidden="true"
+                                  className={`relative flex h-5 w-5 items-center justify-center rounded-full shrink-0 transition-all duration-200 ring-1 ${
+                                    selected
+                                      ? "bg-primary ring-primary"
+                                      : "bg-white ring-gray-300 group-hover:ring-gray-400"
+                                  }`}
+                                >
+                                  <span
+                                    className={`h-1.5 w-1.5 rounded-full bg-white transition-all duration-200 ${
+                                      selected ? "opacity-100 scale-100" : "opacity-0 scale-50"
+                                    }`}
                                   />
-                                ) : (
-                                  <Circle
-                                    aria-hidden="true"
-                                    className="h-5 w-5 text-gray-300 shrink-0"
-                                    strokeWidth={2}
-                                  />
-                                )}
+                                </span>
                               </button>
                             );
                           })}
