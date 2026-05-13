@@ -206,34 +206,16 @@ const QuestionGenerator = () => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* Navigation Tabs — Pill Toggle */}
         <div className="flex justify-center mb-8">
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-2 max-w-lg">
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={() => setActiveTab("generate")}
-                className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
-                  activeTab === "generate"
-                    ? "bg-blue-600 text-white shadow-md"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                }`}
-              >
-                <Sparkle className="h-4 w-4" />
-                Generate Questions
-              </button>
-              <button
-                onClick={() => setActiveTab("repository")}
-                className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
-                  activeTab === "repository"
-                    ? "bg-blue-600 text-white shadow-md"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                }`}
-              >
-                <FileText className="h-4 w-4" />
-                Question Repository
-              </button>
-            </div>
-          </div>
+          <QuestionPillToggle
+            options={[
+              { key: "generate", label: "Generate Questions", icon: Sparkle },
+              { key: "repository", label: "Question Repository", icon: FileText },
+            ]}
+            value={activeTab}
+            onChange={setActiveTab}
+          />
         </div>
 
         {activeTab === "generate" && (
