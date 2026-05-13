@@ -151,9 +151,10 @@ const ItemGeneration = () => {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-[28px] font-bold text-foreground tabular-nums">{stats[0].value.toLocaleString()}</span>
-                      <span className="text-sm text-muted-foreground">tokens</span>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-[28px] font-bold text-foreground tabular-nums">
+                        {stats[0].value.toLocaleString()}<span className="text-[20px] font-medium opacity-60">/ {stats[0].total.toLocaleString()}</span>
+                      </span>
                     </div>
                     <div className="mt-2.5 h-1.5 rounded-full bg-muted overflow-hidden">
                       <div
