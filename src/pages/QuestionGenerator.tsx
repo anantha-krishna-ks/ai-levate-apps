@@ -326,7 +326,7 @@ const QuestionGenerator = () => {
                 const remaining = total - used;
                 const pct = Math.round((used / total) * 100);
                 return (
-                  <div className="relative overflow-hidden rounded-2xl border border-border/70 shadow-soft-xs px-5 py-4 bg-pastel-peach text-pastel-peach-ink">
+                  <div className="relative overflow-hidden rounded-2xl border border-border/70 shadow-soft-xs px-5 py-4 bg-pastel-sky text-pastel-sky-ink">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="h-6 w-6 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
                         <Zap className="h-3 w-3" />
@@ -347,7 +347,7 @@ const QuestionGenerator = () => {
                         className="relative h-2.5 flex-1 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] overflow-visible"
                       >
                         <div
-                          className="relative h-full rounded-full bg-pastel-peach-ink"
+                          className="relative h-full rounded-full bg-pastel-sky-ink"
                           style={{ width: `${pct}%` }}
                         >
                           <span className="absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-white/35" />
