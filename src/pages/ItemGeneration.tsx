@@ -177,17 +177,17 @@ const ItemGeneration = () => {
                 <div className="px-5 py-4 border-t border-border/60 space-y-2.5">
                   {stats[0].items.map((item, idx) => (
                     <div key={idx} className="flex items-center gap-3">
-                      <div className={`h-7 w-7 rounded-lg flex items-center justify-center shrink-0 ${idx === 0 ? 'bg-accent' : 'bg-primary/10'}`}>
+                      <div className={`h-7 w-7 rounded-lg flex items-center justify-center shrink-0 ${idx === 0 ? 'bg-orange-100' : 'bg-primary/10'}`}>
                         {idx === 0 ? (
-                          <ArrowDownRight className="h-3.5 w-3.5 text-foreground" />
+                          <Zap className="h-3.5 w-3.5 text-orange-600" />
                         ) : (
-                          <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+                          <Coins className="h-3.5 w-3.5 text-primary" />
                         )}
                       </div>
                       <div className="flex flex-col min-w-0 flex-1">
                         <span className="text-xs font-medium text-foreground">{item.label}</span>
                         <span className="text-[10px] text-muted-foreground">
-                          {idx === 0 ? 'Prompts & context' : 'Remaining balance'}
+                          {idx === 0 ? 'Tokens consumed today' : 'Remaining available'}
                         </span>
                       </div>
                       <span className="text-sm font-semibold text-foreground tabular-nums">{item.value}</span>
