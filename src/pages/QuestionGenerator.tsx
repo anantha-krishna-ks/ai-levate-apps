@@ -806,15 +806,16 @@ const QuestionGenerator = () => {
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Search</label>
-                    <div className="flex gap-3">
-                      <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
-                        <input
-                          placeholder="Enter search text"
-                          className="w-full pl-10 pr-4 h-10 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
-                        />
-                      </div>
-                      <Button type="button" className="h-10 px-6 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold">
+                    <div className="group relative flex items-center h-12 pl-5 pr-1.5 bg-white border border-gray-200 rounded-full transition-all focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 hover:border-gray-300">
+                      <Search className="text-gray-400 h-4 w-4 mr-3 shrink-0 group-focus-within:text-primary transition-colors" />
+                      <input
+                        placeholder="Search questions..."
+                        className="flex-1 h-full bg-transparent text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none"
+                      />
+                      <Button
+                        type="button"
+                        className="h-9 px-6 rounded-full bg-primary hover:bg-primary/90 text-white text-sm font-semibold shrink-0"
+                      >
                         Go
                       </Button>
                     </div>
