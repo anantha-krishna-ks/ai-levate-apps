@@ -211,20 +211,20 @@ const ItemGeneration = () => {
                 className={`relative overflow-hidden rounded-3xl border border-border/60 shadow-soft-xs ${s.bg} ${s.ink} data-[state=open]:shadow-soft-md transition-shadow duration-300`}
               >
                 {/* Trigger — header + big value */}
-                <AccordionTrigger className="w-full px-5 pt-5 pb-0 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 rounded-t-3xl [&>div:last-child]:hidden">
+                <AccordionTrigger className="w-full px-6 pt-6 pb-0 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 rounded-t-3xl [&>div:last-child]:hidden">
                   <div className="flex flex-col w-full text-left">
                     {/* Header row */}
                     <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2.5">
-                        <div className="h-8 w-8 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
-                          <Icon className="h-4 w-4" />
+                      <div className="flex items-center gap-3">
+                        <div className="h-10 w-10 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
+                          <Icon className="h-5 w-5" />
                         </div>
-                        <span className="text-[15px] font-medium tracking-tight">{stat.label}</span>
+                        <span className="text-base font-medium tracking-tight">{stat.label}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-medium opacity-80 tabular-nums">{pct}%</span>
-                        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-white/70 ring-1 ring-black/5 transition-transform duration-300 group-data-[state=open]:rotate-180">
-                          <ChevronRight className="h-3.5 w-3.5 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
+                        <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white/80 ring-1 ring-black/[0.08] shadow-[0_2px_6px_rgba(0,0,0,0.06)] transition-transform duration-300 group-data-[state=open]:rotate-180">
+                          <ChevronRight className="h-5 w-5 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
                         </div>
                       </div>
                     </div>
