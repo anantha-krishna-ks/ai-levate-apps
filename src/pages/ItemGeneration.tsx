@@ -20,24 +20,32 @@ const ItemGeneration = () => {
       tone: "lavender" as const,
       icon: FileText,
       label: "Generated",
-      value: 72,
-      total: 100,
-      caption: "Questions generated",
+      value: 1118,
+      total: 1500,
+      caption: "Total questions generated",
       items: [
-        { label: "Multiple Choice", value: "65" },
-        { label: "Written Response", value: "7" },
+        { label: "Multiple Choice", value: "932" },
+        { label: "Multiple Response", value: "5" },
+        { label: "True False", value: "4" },
+        { label: "Fill In the Blank", value: "0" },
+        { label: "Written Response", value: "174" },
+        { label: "Matrix", value: "3" },
       ],
     },
     {
       tone: "mint" as const,
       icon: Bookmark,
       label: "Saved",
-      value: 28,
-      total: 72,
-      caption: "Questions saved",
+      value: 34,
+      total: 1118,
+      caption: "Total questions saved",
       items: [
-        { label: "Multiple Choice", value: "27" },
-        { label: "Written Response", value: "1" },
+        { label: "Multiple Choice", value: "21" },
+        { label: "Multiple Response", value: "5" },
+        { label: "True False", value: "5" },
+        { label: "Fill In the Blank", value: "0" },
+        { label: "Written Response", value: "0" },
+        { label: "Matrix", value: "3" },
       ],
     }
   ];
@@ -311,17 +319,17 @@ const ItemGeneration = () => {
                   </span>
                   <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
                 </div>
-                <p className="text-sm opacity-90 mt-2 mb-4">{stat.caption}</p>
+                <p className="text-xs opacity-90 mt-1.5 mb-3">{stat.caption}</p>
 
-                {/* Breakdown chips */}
-                <div className="grid grid-cols-2 gap-2.5">
+                {/* Breakdown chips - compact 3 col grid */}
+                <div className="grid grid-cols-3 gap-1.5">
                   {stat.items.map((item, idx) => (
                     <div
                       key={idx}
-                      className="rounded-2xl bg-white/70 ring-1 ring-black/5 px-3.5 py-2.5 backdrop-blur-sm"
+                      className="rounded-xl bg-white/70 ring-1 ring-black/5 px-2.5 py-1.5 backdrop-blur-sm min-w-0"
                     >
-                      <div className="text-[11px] font-medium opacity-75 truncate">{item.label}</div>
-                      <div className="text-lg font-semibold tracking-tight tabular-nums mt-0.5">{item.value}</div>
+                      <div className="text-[10px] font-medium opacity-75 truncate leading-tight">{item.label}</div>
+                      <div className="text-sm font-semibold tracking-tight tabular-nums mt-0.5">{item.value}</div>
                     </div>
                   ))}
                 </div>
