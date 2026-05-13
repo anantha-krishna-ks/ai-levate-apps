@@ -340,26 +340,34 @@ const QuestionGenerator = () => {
                   </div>
                   <h3 className="text-sm font-medium text-gray-800">AI Generation Mode</h3>
                 </div>
-                <div className="bg-gray-200 p-1 rounded-full flex">
+                <div className="relative flex w-full items-center bg-muted/50 border border-border/50 rounded-full p-1">
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-1 bottom-1 left-1 rounded-full bg-primary shadow-sm transition-transform duration-300 ease-out"
+                    style={{
+                      width: "calc(50% - 0.25rem)",
+                      transform: generationMode ? "translateX(100%)" : "translateX(0%)",
+                    }}
+                  />
                   <button
                     type="button"
                     onClick={() => setGenerationMode(false)}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-medium transition-all duration-200 ${
-                      !generationMode 
-                        ? 'bg-emerald-500 text-white' 
-                        : 'text-gray-600 hover:text-gray-800'
+                    className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-medium transition-colors duration-300 ${
+                      !generationMode
+                        ? "text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    <Database className="w-4 h-4" />
+                    <BookOpen className="w-4 h-4" />
                     <span>Knowledge Base</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setGenerationMode(true)}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-medium transition-all duration-200 ${
-                      generationMode 
-                        ? 'bg-violet-500 text-white' 
-                        : 'text-gray-600 hover:text-gray-800'
+                    className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-medium transition-colors duration-300 ${
+                      generationMode
+                        ? "text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <Brain className="w-4 h-4" />
