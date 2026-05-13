@@ -131,8 +131,19 @@ const ItemGeneration = () => {
             </Link>
             <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
             <h1 className="text-2xl font-medium text-gray-900">Select Knowledge Base</h1>
+            <TooltipProvider delayDuration={100}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button className="ml-1 p-1.5 rounded-full text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors">
+                    <Info className="w-4 h-4" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent side="right" className="max-w-xs">
+                  <p>Choose a knowledge base to start generating intelligent questions</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
-          <p className="text-gray-600">Choose a knowledge base to start generating intelligent questions</p>
         </div>
 
         {/* Statistics Cards */}
