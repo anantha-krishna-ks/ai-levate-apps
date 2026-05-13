@@ -349,34 +349,34 @@ const QuestionGenerator = () => {
                         </CardDescription>
                       </div>
                       <div className="flex items-center gap-2.5">
-                        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide hidden sm:inline">Mode</span>
-                        <div className="relative flex items-center bg-gray-100 border border-gray-200 rounded-full p-1 shadow-inner">
+                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide hidden sm:inline">Mode</span>
+                        <div className="relative grid grid-cols-2 items-center bg-gray-100 border border-gray-200 rounded-full p-1.5 shadow-inner w-[300px]">
                           <span
                             aria-hidden="true"
-                            className="absolute top-1 bottom-1 left-1 rounded-full bg-primary shadow-[0_4px_12px_-2px_hsl(var(--primary)/0.45)] transition-transform duration-300 ease-out"
+                            className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-primary shadow-[0_4px_12px_-2px_hsl(var(--primary)/0.45)] transition-transform duration-300 ease-out"
                             style={{
-                              width: "calc(50% - 0.25rem)",
+                              width: "calc(50% - 0.375rem)",
                               transform: generationMode ? "translateX(100%)" : "translateX(0%)",
                             }}
                           />
                           <button
                             type="button"
                             onClick={() => setGenerationMode(false)}
-                            className={`relative z-10 flex items-center justify-center gap-1.5 py-1.5 px-3.5 rounded-full text-xs font-semibold transition-colors duration-300 ${
+                            className={`relative z-10 flex items-center justify-center gap-1.5 py-2 px-3 rounded-full text-sm font-semibold transition-colors duration-300 ${
                               !generationMode ? "text-white" : "text-gray-500 hover:text-gray-700"
                             }`}
                           >
-                            <BookOpen className="w-3.5 h-3.5" />
+                            <BookOpen className="w-4 h-4" />
                             <span>Knowledge Base</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => setGenerationMode(true)}
-                            className={`relative z-10 flex items-center justify-center gap-1.5 py-1.5 px-3.5 rounded-full text-xs font-semibold transition-colors duration-300 ${
+                            className={`relative z-10 flex items-center justify-center gap-1.5 py-2 px-3 rounded-full text-sm font-semibold transition-colors duration-300 ${
                               generationMode ? "text-white" : "text-gray-500 hover:text-gray-700"
                             }`}
                           >
-                            <Brain className="w-3.5 h-3.5" />
+                            <Brain className="w-4 h-4" />
                             <span>LLM</span>
                           </button>
                         </div>
