@@ -17,18 +17,6 @@ import {
 const ItemGeneration = () => {
   const stats = [
     {
-      tone: "peach" as const,
-      icon: Zap,
-      label: "Token Usage",
-      value: 5349,
-      total: 10000,
-      caption: "Today's tokens used",
-      items: [
-        { label: "Used today", value: "5,349" },
-        { label: "Balance", value: "4,651" },
-      ],
-    },
-    {
       tone: "lavender" as const,
       icon: FileText,
       label: "Generated",
@@ -146,28 +134,28 @@ const ItemGeneration = () => {
                       <Coins className="h-[18px] w-[18px] text-primary" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">{stats[0].label}</span>
+                      <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">Token Usage</span>
                       <span className="text-sm font-semibold text-foreground">This course</span>
                     </div>
                   </div>
                   <div className="mt-4">
                     <div className="flex items-baseline gap-1.5">
                       <span className="text-[28px] font-bold text-foreground tabular-nums">
-                        {stats[0].value.toLocaleString()}<span className="text-[20px] font-medium opacity-60">/ {stats[0].total.toLocaleString()}</span>
+                        {(5349).toLocaleString()}<span className="text-[20px] font-medium opacity-60">/ {(10000).toLocaleString()}</span>
                       </span>
                     </div>
                     <div className="mt-2.5 h-1.5 rounded-full bg-muted overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-primary to-primary/60 rounded-full"
-                        style={{ width: `${Math.max(0, Math.min(100, Math.round((stats[0].value / stats[0].total) * 100)))}%` }}
+                        style={{ width: `${Math.max(0, Math.min(100, Math.round((5349 / 10000) * 100)))}%` }}
                       />
                     </div>
                     <div className="flex items-center justify-between mt-1.5">
                       <span className="text-[10px] text-muted-foreground tabular-nums">
-                        {Math.max(0, Math.min(100, Math.round((stats[0].value / stats[0].total) * 100)))}% of daily quota
+                        {Math.max(0, Math.min(100, Math.round((5349 / 10000) * 100)))}% of daily quota
                       </span>
                       <span className="text-[10px] text-muted-foreground tabular-nums">
-                        {(stats[0].total - stats[0].value).toLocaleString()} left
+                        {(10000 - 5349).toLocaleString()} left
                       </span>
                     </div>
                   </div>
@@ -175,7 +163,10 @@ const ItemGeneration = () => {
 
                 {/* Breakdown */}
                 <div className="px-5 py-4 border-t border-border/60 space-y-2.5">
-                  {stats[0].items.map((item, idx) => (
+                  {[
+                    { label: "Used today", value: "5,349" },
+                    { label: "Balance", value: "4,651" },
+                  ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-3">
                       <div className={`h-7 w-7 rounded-lg flex items-center justify-center shrink-0 ${idx === 0 ? 'bg-orange-100' : 'bg-primary/10'}`}>
                         {idx === 0 ? (
@@ -286,7 +277,7 @@ const ItemGeneration = () => {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {stats.map((stat, index) => {
             const TONE: Record<string, { bg: string; ink: string; fill: string }> = {
               lavender: { bg: "bg-pastel-lavender", ink: "text-pastel-lavender-ink", fill: "bg-pastel-lavender-ink" },
