@@ -230,12 +230,12 @@ const ItemGeneration = () => {
                     </div>
 
                     {/* Big value row */}
-                    <div className="flex items-end justify-between gap-3 mb-5">
+                    <div className="flex items-end justify-between gap-3 mb-6">
                       <div className="flex items-baseline gap-1.5">
-                        <span className="text-[34px] leading-none font-medium tracking-tight tabular-nums">
+                        <span className="text-[40px] leading-none font-medium tracking-tight tabular-nums">
                           {stat.value.toLocaleString()}
                         </span>
-                        <span className="text-base font-medium opacity-70">/ {stat.total.toLocaleString()}</span>
+                        <span className="text-lg font-medium opacity-70">/ {stat.total.toLocaleString()}</span>
                       </div>
                       <p className="text-[11px] font-medium opacity-80 leading-tight pb-1 text-right max-w-[120px]">
                         {stat.caption}
@@ -245,7 +245,7 @@ const ItemGeneration = () => {
                 </AccordionTrigger>
 
                 {/* Content — breakdown grid */}
-                <AccordionContent className="px-5 pb-5">
+                <AccordionContent className="px-6 pb-6">
                   <div className="grid grid-cols-2 gap-2.5">
                     {stat.items.map((item, idx) => {
                       const QIcon = QTYPE_ICON[item.label] ?? FileText;
