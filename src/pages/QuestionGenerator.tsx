@@ -391,38 +391,35 @@ const QuestionGenerator = () => {
 
               {/* Right Column - AI Question Generator */}
               <div className="lg:col-span-3">
-                <Card className="border-border/60 shadow-sm">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <Sparkle className="w-4 h-4 text-primary" />
-                      </div>
-                      <div className="space-y-0.5">
-                        <CardTitle className="text-lg">AI Question Generator</CardTitle>
-                        <CardDescription>Configure your question generation settings</CardDescription>
-                      </div>
+                <Card className="border-border/60 shadow-sm rounded-2xl">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-center gap-2.5">
+                      <Sparkle className="w-6 h-6 text-primary fill-primary" />
+                      <CardTitle className="text-xl font-semibold text-gray-900">AI Question Generator</CardTitle>
                     </div>
+                    <CardDescription className="text-sm text-gray-500">
+                      Configure your question generation settings
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
 
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleGenerateQuestions)} className="space-y-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
                         {/* Left side form */}
-                        <div className="space-y-4">
+                        <div className="space-y-5">
                           {/* Study Domain */}
                           <FormField
                             control={form.control}
                             name="studyDomain"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="flex items-center gap-2">
-                                  <Target className="w-4 h-4 text-blue-600" />
-                                  Study Domain
+                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                  Study Domain <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full bg-white border-gray-200">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -441,13 +438,12 @@ const QuestionGenerator = () => {
                             name="taxonomyFramework"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="flex items-center gap-2">
-                                  <Globe className="w-4 h-4 text-blue-600" />
-                                  Taxonomy Framework
+                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                  Taxonomy Framework <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full bg-white border-gray-200">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
                                       <SelectValue placeholder="Select framework" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -468,13 +464,12 @@ const QuestionGenerator = () => {
                             name="questionQuantity"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="flex items-center gap-2">
-                                  <Hash className="w-4 h-4 text-orange-600" />
-                                  Question Quantity
+                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                  Question Quantity <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full bg-white border-gray-200">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -491,20 +486,19 @@ const QuestionGenerator = () => {
                         </div>
 
                         {/* Right side form */}
-                        <div className="space-y-4">
+                        <div className="space-y-5">
                           {/* Learning Objectives */}
                           <FormField
                             control={form.control}
                             name="learningObjectives"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="flex items-center gap-2">
-                                  <Brain className="w-4 h-4 text-purple-600" />
-                                  Learning Objectives
+                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                  Learning Objectives <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full bg-white border-gray-200">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -525,13 +519,12 @@ const QuestionGenerator = () => {
                             name="questionFormat"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="flex items-center gap-2">
-                                  <FileText className="w-4 h-4 text-green-600" />
-                                  Question Format
+                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                  Question Format <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full bg-white border-gray-200">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -551,13 +544,12 @@ const QuestionGenerator = () => {
                             name="pointValue"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="flex items-center gap-2">
-                                  <span className="w-4 h-4 text-pink-600 text-sm font-medium">★</span>
-                                  Point Value
+                                <FormLabel className="text-sm font-semibold text-gray-900">
+                                  Point Value <span className="text-red-500">*</span>
                                 </FormLabel>
                                 <FormControl>
                                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <SelectTrigger className="w-full bg-white border-gray-200">
+                                    <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-xl">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -579,15 +571,14 @@ const QuestionGenerator = () => {
                         control={form.control}
                         name="additionalInstructions"
                         render={({ field }) => (
-                          <FormItem className="mt-6">
-                            <FormLabel className="flex items-center gap-2">
-                              <MessageSquare className="w-4 h-4 text-purple-600" />
+                          <FormItem className="mt-5">
+                            <FormLabel className="text-sm font-semibold text-gray-900">
                               Additional Instructions
                             </FormLabel>
                             <FormControl>
                               <Textarea 
-                                placeholder="Provide specific instructions for AI question generation..."
-                                className="min-h-[100px] bg-white border-gray-200"
+                                placeholder="Provide any extra guidance for AI generation..."
+                                className="min-h-[110px] bg-gray-50/60 border-gray-200 rounded-xl"
                                 {...field}
                               />
                             </FormControl>
