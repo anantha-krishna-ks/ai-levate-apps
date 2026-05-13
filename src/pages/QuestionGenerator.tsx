@@ -588,18 +588,18 @@ const QuestionGenerator = () => {
                       />
 
                       {/* Buttons */}
-                      <div className="flex gap-3 mt-6">
-                        <Button 
+                      <div className="flex justify-end gap-3 mt-6">
+                        <Button
                           type="button"
                           variant="outline"
-                          className="w-[35%] rounded-full"
+                          className="rounded-full"
                           onClick={() => form.reset()}
                         >
                           Reset
                         </Button>
-                        <Button 
+                        <Button
                           type="submit"
-                          className="w-[65%] rounded-full"
+                          className="rounded-full"
                         >
                           <Sparkle className="w-4 h-4 mr-2" />
                           Generate Questions
