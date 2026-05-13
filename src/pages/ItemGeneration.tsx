@@ -146,47 +146,52 @@ const ItemGeneration = () => {
                       <Coins className="h-[18px] w-[18px] text-primary" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">Token Usage</span>
+                      <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">{stats[0].label}</span>
                       <span className="text-sm font-semibold text-foreground">This course</span>
                     </div>
                   </div>
                   <div className="mt-4">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-[28px] font-bold text-foreground tabular-nums">40,444</span>
+                      <span className="text-[28px] font-bold text-foreground tabular-nums">{stats[0].value.toLocaleString()}</span>
                       <span className="text-sm text-muted-foreground">tokens</span>
                     </div>
                     <div className="mt-2.5 h-1.5 rounded-full bg-muted overflow-hidden">
-                      <div className="h-full w-[42%] bg-gradient-to-r from-primary to-primary/60 rounded-full" />
+                      <div
+                        className="h-full bg-gradient-to-r from-primary to-primary/60 rounded-full"
+                        style={{ width: `${Math.max(0, Math.min(100, Math.round((stats[0].value / stats[0].total) * 100)))}%` }}
+                      />
                     </div>
                     <div className="flex items-center justify-between mt-1.5">
-                      <span className="text-[10px] text-muted-foreground tabular-nums">42% of monthly quota</span>
-                      <span className="text-[10px] text-muted-foreground tabular-nums">96,000 left</span>
+                      <span className="text-[10px] text-muted-foreground tabular-nums">
+                        {Math.max(0, Math.min(100, Math.round((stats[0].value / stats[0].total) * 100)))}% of daily quota
+                      </span>
+                      <span className="text-[10px] text-muted-foreground tabular-nums">
+                        {(stats[0].total - stats[0].value).toLocaleString()} left
+                      </span>
                     </div>
                   </div>
                 </div>
 
                 {/* Breakdown */}
                 <div className="px-5 py-4 border-t border-border/60 space-y-2.5">
-                  <div className="flex items-center gap-3">
-                    <div className="h-7 w-7 rounded-lg bg-accent flex items-center justify-center shrink-0">
-                      <ArrowDownRight className="h-3.5 w-3.5 text-foreground" />
+                  {stats[0].items.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <div className={`h-7 w-7 rounded-lg flex items-center justify-center shrink-0 ${idx === 0 ? 'bg-accent' : 'bg-primary/10'}`}>
+                        {idx === 0 ? (
+                          <ArrowDownRight className="h-3.5 w-3.5 text-foreground" />
+                        ) : (
+                          <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+                        )}
+                      </div>
+                      <div className="flex flex-col min-w-0 flex-1">
+                        <span className="text-xs font-medium text-foreground">{item.label}</span>
+                        <span className="text-[10px] text-muted-foreground">
+                          {idx === 0 ? 'Prompts & context' : 'Remaining balance'}
+                        </span>
+                      </div>
+                      <span className="text-sm font-semibold text-foreground tabular-nums">{item.value}</span>
                     </div>
-                    <div className="flex flex-col min-w-0 flex-1">
-                      <span className="text-xs font-medium text-foreground">Input</span>
-                      <span className="text-[10px] text-muted-foreground">Prompts & context</span>
-                    </div>
-                    <span className="text-sm font-semibold text-foreground tabular-nums">17,716</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
-                    </div>
-                    <div className="flex flex-col min-w-0 flex-1">
-                      <span className="text-xs font-medium text-foreground">Output</span>
-                      <span className="text-[10px] text-muted-foreground">Generated content</span>
-                    </div>
-                    <span className="text-sm font-semibold text-foreground tabular-nums">22,728</span>
-                  </div>
+                  ))}
                 </div>
 
                 {/* Footer */}
