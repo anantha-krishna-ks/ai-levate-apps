@@ -152,20 +152,39 @@ const ItemGeneration = () => {
                         {(5349).toLocaleString()}<span className="text-[20px] font-medium opacity-60">/ {(10000).toLocaleString()}</span>
                       </span>
                     </div>
-                    <div className="mt-2.5 h-1.5 rounded-full bg-muted overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-primary to-primary/60 rounded-full"
-                        style={{ width: `${Math.max(0, Math.min(100, Math.round((5349 / 10000) * 100)))}%` }}
-                      />
-                    </div>
-                    <div className="flex items-center justify-between mt-1.5">
-                      <span className="text-[10px] text-muted-foreground tabular-nums">
-                        {Math.max(0, Math.min(100, Math.round((5349 / 10000) * 100)))}% of daily quota
-                      </span>
-                      <span className="text-[10px] text-muted-foreground tabular-nums">
-                        {(10000 - 5349).toLocaleString()} left
-                      </span>
-                    </div>
+                    {(() => {
+                      const pct = Math.max(0, Math.min(100, Math.round((5349 / 10000) * 100)));
+                      return (
+                        <>
+                          <div className="flex items-center gap-3 mt-3">
+                            <div
+                              role="progressbar"
+                              aria-valuenow={pct}
+                              aria-valuemin={0}
+                              aria-valuemax={100}
+                              className="relative h-2.5 flex-1 rounded-full bg-muted ring-1 ring-inset ring-black/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] overflow-visible"
+                            >
+                              <div
+                                className="relative h-full rounded-full bg-primary"
+                                style={{ width: `${pct}%` }}
+                              >
+                                <span className="absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-white/35" />
+                                <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 h-3 w-3 rounded-full bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.12),0_0_10px_3px_rgba(255,255,255,0.95)] ring-1 ring-black/5" />
+                              </div>
+                            </div>
+                            <span className="text-sm font-semibold text-foreground tabular-nums">{pct}%</span>
+                          </div>
+                          <div className="flex items-center justify-between mt-1.5">
+                            <span className="text-[10px] text-muted-foreground tabular-nums">
+                              {pct}% of daily quota
+                            </span>
+                            <span className="text-[10px] text-muted-foreground tabular-nums">
+                              {(10000 - 5349).toLocaleString()} left
+                            </span>
+                          </div>
+                        </>
+                      );
+                    })()}
                   </div>
                 </div>
 
