@@ -1,10 +1,11 @@
-import { ArrowLeft, Users, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Shield, TrendingUp, Info, Sparkle, User, Settings, LogOut, type LucideIcon } from "lucide-react";
+import { ArrowLeft, Users, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Shield, TrendingUp, Info, Sparkle, User, Settings, LogOut, Coins, ArrowDownRight, ArrowUpRight, type LucideIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -112,11 +113,98 @@ const ItemGeneration = () => {
 
           {/* Right: Tokens + separator + profile */}
           <div className="flex items-center gap-3 ml-auto flex-shrink-0">
-            <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-full bg-primary/5 border border-primary/20 hover:bg-primary/10 hover:border-primary/30 transition-colors">
-              <Sparkle className="h-2 w-2 text-primary fill-primary" />
-              <span className="text-xs font-medium text-foreground whitespace-nowrap">4,651</span>
-              <span className="text-xs text-muted-foreground">tokens</span>
-            </div>
+            <Popover>
+              <TooltipProvider delayDuration={100}>
+                <Tooltip>
+                  <PopoverTrigger asChild>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        aria-label="View token usage"
+                        className="rounded-full border-primary text-primary hover:bg-primary/5 h-9 w-9"
+                      >
+                        <Coins className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                  </PopoverTrigger>
+                  <TooltipContent side="bottom">
+                    <p>Token usage</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              <PopoverContent
+                className="w-[340px] p-0 overflow-hidden rounded-2xl border border-border/70 shadow-xl"
+                align="end"
+                sideOffset={10}
+              >
+                {/* Header */}
+                <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent px-5 pt-5 pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="h-9 w-9 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+                      <Coins className="h-[18px] w-[18px] text-primary" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">Token Usage</span>
+                      <span className="text-sm font-semibold text-foreground">This course</span>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-[28px] font-bold text-foreground tabular-nums">40,444</span>
+                      <span className="text-sm text-muted-foreground">tokens</span>
+                    </div>
+                    <div className="mt-2.5 h-1.5 rounded-full bg-muted overflow-hidden">
+                      <div className="h-full w-[42%] bg-gradient-to-r from-primary to-primary/60 rounded-full" />
+                    </div>
+                    <div className="flex items-center justify-between mt-1.5">
+                      <span className="text-[10px] text-muted-foreground tabular-nums">42% of monthly quota</span>
+                      <span className="text-[10px] text-muted-foreground tabular-nums">96,000 left</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Breakdown */}
+                <div className="px-5 py-4 border-t border-border/60 space-y-2.5">
+                  <div className="flex items-center gap-3">
+                    <div className="h-7 w-7 rounded-lg bg-accent flex items-center justify-center shrink-0">
+                      <ArrowDownRight className="h-3.5 w-3.5 text-foreground" />
+                    </div>
+                    <div className="flex flex-col min-w-0 flex-1">
+                      <span className="text-xs font-medium text-foreground">Input</span>
+                      <span className="text-[10px] text-muted-foreground">Prompts & context</span>
+                    </div>
+                    <span className="text-sm font-semibold text-foreground tabular-nums">17,716</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <div className="flex flex-col min-w-0 flex-1">
+                      <span className="text-xs font-medium text-foreground">Output</span>
+                      <span className="text-[10px] text-muted-foreground">Generated content</span>
+                    </div>
+                    <span className="text-sm font-semibold text-foreground tabular-nums">22,728</span>
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="px-5 py-3 border-t border-border/60 bg-muted/30 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <TrendingUp className="h-3 w-3 text-muted-foreground" />
+                    <span className="text-[11px] text-muted-foreground">Updated just now</span>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 px-2.5 rounded-full text-primary hover:bg-primary/10 text-xs"
+                  >
+                    View details
+                  </Button>
+                </div>
+              </PopoverContent>
+            </Popover>
 
             <Separator orientation="vertical" className="hidden sm:block h-8" />
 
