@@ -348,38 +348,58 @@ const QuestionGenerator = () => {
                           Configure your question generation settings
                         </CardDescription>
                       </div>
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide hidden sm:inline">Mode</span>
-                        <div className="relative grid grid-cols-2 items-center bg-gray-100 border border-gray-200 rounded-full p-1.5 shadow-inner w-[300px]">
-                          <span
-                            aria-hidden="true"
-                            className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-primary shadow-[0_4px_12px_-2px_hsl(var(--primary)/0.45)] transition-transform duration-300 ease-out"
-                            style={{
-                              width: "calc(50% - 0.375rem)",
-                              transform: generationMode ? "translateX(100%)" : "translateX(0%)",
-                            }}
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setGenerationMode(false)}
-                            className={`relative z-10 flex items-center justify-center gap-1.5 py-2 px-3 rounded-full text-sm font-semibold transition-colors duration-300 ${
-                              !generationMode ? "text-white" : "text-gray-500 hover:text-gray-700"
-                            }`}
-                          >
-                            <BookOpen className="w-4 h-4" />
-                            <span>Knowledge Base</span>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setGenerationMode(true)}
-                            className={`relative z-10 flex items-center justify-center gap-1.5 py-2 px-3 rounded-full text-sm font-semibold transition-colors duration-300 ${
-                              generationMode ? "text-white" : "text-gray-500 hover:text-gray-700"
-                            }`}
-                          >
-                            <Brain className="w-4 h-4" />
-                            <span>LLM</span>
-                          </button>
-                        </div>
+                      <div
+                        role="radiogroup"
+                        aria-label="AI Generation Mode"
+                        className="flex items-center gap-2"
+                      >
+                        {[
+                          { key: false, label: "Knowledge Base", desc: "Use source material", icon: BookOpen },
+                          { key: true, label: "LLM", desc: "Pure AI knowledge", icon: Brain },
+                        ].map((opt) => {
+                          const Icon = opt.icon;
+                          const selected = generationMode === opt.key;
+                          return (
+                            <button
+                              key={String(opt.key)}
+                              type="button"
+                              role="radio"
+                              aria-checked={selected}
+                              onClick={() => setGenerationMode(opt.key)}
+                              className={`group relative flex items-center gap-2.5 rounded-xl border px-3.5 py-2 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                                selected
+                                  ? "border-primary bg-primary/5 shadow-[0_2px_8px_-2px_hsl(var(--primary)/0.25)]"
+                                  : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
+                              }`}
+                            >
+                              <span
+                                className={`flex h-8 w-8 items-center justify-center rounded-lg shrink-0 transition-colors ${
+                                  selected ? "bg-primary text-white" : "bg-gray-100 text-gray-500 group-hover:bg-gray-200"
+                                }`}
+                              >
+                                <Icon className="h-4 w-4" />
+                              </span>
+                              <span className="flex flex-col leading-tight pr-1">
+                                <span className={`text-sm font-semibold ${selected ? "text-primary" : "text-gray-800"}`}>
+                                  {opt.label}
+                                </span>
+                                <span className="text-[10.5px] text-gray-500 font-medium">{opt.desc}</span>
+                              </span>
+                              <span
+                                aria-hidden="true"
+                                className={`flex h-4 w-4 items-center justify-center rounded-full border-2 shrink-0 transition-colors ${
+                                  selected ? "border-primary bg-white" : "border-gray-300 bg-white"
+                                }`}
+                              >
+                                <span
+                                  className={`h-1.5 w-1.5 rounded-full transition-transform ${
+                                    selected ? "bg-primary scale-100" : "bg-transparent scale-0"
+                                  }`}
+                                />
+                              </span>
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   </CardHeader>
