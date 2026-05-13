@@ -601,15 +601,7 @@ const QuestionGenerator = () => {
                       />
 
                       {/* Buttons */}
-                      <div className="flex justify-end gap-3 mt-6">
-                        <Button
-                          type="button"
-                          variant="outline"
-                          className="rounded-full"
-                          onClick={() => form.reset()}
-                        >
-                          Reset
-                        </Button>
+                      <div className="flex justify-end mt-6">
                         <Button
                           type="submit"
                           className="rounded-full"
