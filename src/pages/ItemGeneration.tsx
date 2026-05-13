@@ -161,29 +161,46 @@ const ItemGeneration = () => {
 
       {/* Main Content */}
       <div className="pt-16 p-6 max-w-7xl mx-auto">
-        {/* Page Title */}
+        {/* Secondary Header */}
         <div className="pt-6 mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Link to="/dashboard" aria-label="Back to dashboard">
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-9 rounded-full pl-2.5 pr-3.5 gap-1.5 border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span className="text-sm font-medium">Back</span>
-              </Button>
-            </Link>
-            <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-            <h1 className="text-2xl font-medium text-gray-900">Select Knowledge Base</h1>
+          <div className="flex items-center justify-between gap-4 bg-white rounded-2xl border border-border/70 shadow-soft-xs px-5 py-3.5">
+            {/* Left: Back + Title */}
+            <div className="flex items-center gap-3 min-w-0">
+              <Link to="/dashboard" aria-label="Back to dashboard">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-9 rounded-full px-2.5 text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-1.5" />
+                  <span className="text-sm font-medium">Back</span>
+                </Button>
+              </Link>
+              <span className="h-5 w-px bg-border shrink-0" aria-hidden="true" />
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="hidden sm:flex h-8 w-8 rounded-full bg-primary/10 items-center justify-center shrink-0">
+                  <Bookmark className="h-3.5 w-3.5 text-primary" />
+                </div>
+                <div className="min-w-0">
+                  <h1 className="text-base font-semibold text-foreground truncate tracking-tight">
+                    Select Knowledge Base
+                  </h1>
+                  <p className="text-xs text-muted-foreground truncate hidden sm:block">
+                    Choose a base to start generating questions
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Info tooltip */}
             <TooltipProvider delayDuration={100}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="ml-1.5 w-7 h-7 rounded-full bg-blue-50 text-blue-400 hover:text-blue-600 hover:bg-blue-100 ring-1 ring-blue-200/60 hover:ring-blue-300 transition-all duration-200 flex items-center justify-center shadow-sm">
+                  <button className="w-8 h-8 rounded-full bg-primary/5 text-primary/60 hover:text-primary hover:bg-primary/10 ring-1 ring-primary/10 hover:ring-primary/25 transition-all duration-200 flex items-center justify-center shrink-0">
                     <Info className="w-3.5 h-3.5" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent side="right" className="max-w-xs">
+                <TooltipContent side="bottom" className="max-w-xs">
                   <p>Choose a knowledge base to start generating intelligent questions</p>
                 </TooltipContent>
               </Tooltip>
