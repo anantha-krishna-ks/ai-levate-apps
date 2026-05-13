@@ -32,7 +32,9 @@ import {
   X,
   Search,
   Settings,
-  LogOut
+  LogOut,
+  CheckCircle2,
+  Circle
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -377,9 +379,9 @@ const QuestionGenerator = () => {
                                 role="radio"
                                 aria-checked={selected}
                                 onClick={() => setGenerationMode(opt.key)}
-                                className={`group relative flex items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                                className={`group relative flex items-center gap-3 rounded-xl border px-4 py-3 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
                                   selected
-                                    ? "border-primary bg-primary/5 shadow-[0_2px_10px_-3px_hsl(var(--primary)/0.3)]"
+                                    ? "border-primary bg-primary/5"
                                     : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
                                 }`}
                               >
@@ -396,18 +398,20 @@ const QuestionGenerator = () => {
                                   </span>
                                   <span className="text-xs text-gray-500 mt-0.5">{opt.desc}</span>
                                 </span>
-                                <span
-                                  aria-hidden="true"
-                                  className={`flex h-[18px] w-[18px] items-center justify-center rounded-full border-2 shrink-0 transition-colors ${
-                                    selected ? "border-primary bg-white" : "border-gray-300 bg-white"
-                                  }`}
-                                >
-                                  <span
-                                    className={`h-2 w-2 rounded-full transition-transform ${
-                                      selected ? "bg-primary scale-100" : "bg-transparent scale-0"
-                                    }`}
+                                {selected ? (
+                                  <CheckCircle2
+                                    aria-hidden="true"
+                                    className="h-5 w-5 text-primary shrink-0"
+                                    strokeWidth={2.25}
+                                    fill="hsl(var(--primary) / 0.12)"
                                   />
-                                </span>
+                                ) : (
+                                  <Circle
+                                    aria-hidden="true"
+                                    className="h-5 w-5 text-gray-300 shrink-0"
+                                    strokeWidth={2}
+                                  />
+                                )}
                               </button>
                             );
                           })}
