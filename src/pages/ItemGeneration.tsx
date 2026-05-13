@@ -321,13 +321,17 @@ const ItemGeneration = () => {
                 </div>
 
                 {/* Big value */}
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-[32px] leading-none font-medium tracking-tight tabular-nums">
-                    {stat.value.toLocaleString()}
-                  </span>
-                  <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
+                <div className="flex items-end justify-between gap-3 mb-4">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-[32px] leading-none font-medium tracking-tight tabular-nums">
+                      {stat.value.toLocaleString()}
+                    </span>
+                    <span className="text-base font-medium opacity-75">/ {stat.total.toLocaleString()}</span>
+                  </div>
+                  <p className="text-[11px] font-medium opacity-80 leading-tight pb-0.5 text-right">
+                    {stat.caption}
+                  </p>
                 </div>
-                <p className="text-xs font-medium opacity-90 mt-1.5 mb-4">{stat.caption}</p>
 
                 {/* Breakdown - 2 col grid with icon + label + value */}
                 <div className="grid grid-cols-2 gap-x-3 gap-y-2">
