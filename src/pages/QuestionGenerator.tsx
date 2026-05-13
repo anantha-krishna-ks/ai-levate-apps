@@ -315,48 +315,7 @@ const QuestionGenerator = () => {
         {activeTab === "generate" && (
           <div className="space-y-6">
             {/* Top Row - Tokens and AI Mode */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Available Tokens */}
-              {(() => {
-                const used = 2238;
-                const total = 10000;
-                const remaining = total - used;
-                const pct = Math.round((used / total) * 100);
-                return (
-                  <div className="relative overflow-hidden rounded-2xl border border-border/70 shadow-soft-xs px-5 py-4 bg-pastel-sky text-pastel-sky-ink">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="h-6 w-6 rounded-full bg-white/85 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
-                        <Zap className="h-3 w-3" />
-                      </div>
-                      <span className="text-sm font-medium tracking-tight">Available Tokens</span>
-                    </div>
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-[28px] leading-none font-medium tracking-tight">{remaining.toLocaleString()}</span>
-                      <span className="text-sm font-medium opacity-75">/ {total.toLocaleString()}</span>
-                      <span className="ml-auto text-xs opacity-80">Remaining today</span>
-                    </div>
-                    <div className="flex items-center gap-3 mt-3">
-                      <div
-                        role="progressbar"
-                        aria-valuenow={pct}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                        className="relative h-2.5 flex-1 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] overflow-visible"
-                      >
-                        <div
-                          className="relative h-full rounded-full bg-pastel-sky-ink"
-                          style={{ width: `${pct}%` }}
-                        >
-                          <span className="absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-white/35" />
-                          <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 h-3 w-3 rounded-full bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.12),0_0_10px_3px_rgba(255,255,255,0.95)] ring-1 ring-black/5" />
-                        </div>
-                      </div>
-                      <span className="text-sm font-medium tabular-nums">{pct}%</span>
-                    </div>
-                  </div>
-                );
-              })()}
-
+            <div>
               {/* AI Generation Mode */}
               <Card className="p-6 bg-white border border-gray-200">
                 <div className="flex items-center gap-2 mb-4">
@@ -365,7 +324,7 @@ const QuestionGenerator = () => {
                   </div>
                   <h3 className="text-sm font-medium text-gray-800">AI Generation Mode</h3>
                 </div>
-                <div className="relative flex w-full items-center bg-gray-100 border border-gray-200 rounded-full p-1.5 shadow-inner">
+                <div className="relative flex w-full max-w-md items-center bg-gray-100 border border-gray-200 rounded-full p-1.5 shadow-inner">
                   <span
                     aria-hidden="true"
                     className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-primary shadow-[0_4px_12px_-2px_hsl(var(--primary)/0.45)] transition-transform duration-300 ease-out"
