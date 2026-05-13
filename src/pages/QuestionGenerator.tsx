@@ -314,53 +314,6 @@ const QuestionGenerator = () => {
 
         {activeTab === "generate" && (
           <div className="space-y-6">
-            {/* Top Row - Tokens and AI Mode */}
-            <div>
-              {/* AI Generation Mode */}
-              <Card className="p-6 bg-white border border-gray-200">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-                    <Sparkle className="w-4 h-4 text-white" />
-                  </div>
-                  <h3 className="text-sm font-medium text-gray-800">AI Generation Mode</h3>
-                </div>
-                <div className="relative flex w-full max-w-md items-center bg-gray-100 border border-gray-200 rounded-full p-1.5 shadow-inner">
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-primary shadow-[0_4px_12px_-2px_hsl(var(--primary)/0.45)] transition-transform duration-300 ease-out"
-                    style={{
-                      width: "calc(50% - 0.375rem)",
-                      transform: generationMode ? "translateX(100%)" : "translateX(0%)",
-                    }}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setGenerationMode(false)}
-                    className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-semibold transition-colors duration-300 ${
-                      !generationMode
-                        ? "text-white"
-                        : "text-gray-500 hover:text-gray-700"
-                    }`}
-                  >
-                    <BookOpen className="w-4 h-4" />
-                    <span>Knowledge Base</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setGenerationMode(true)}
-                    className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-full text-sm font-semibold transition-colors duration-300 ${
-                      generationMode
-                        ? "text-white"
-                        : "text-gray-500 hover:text-gray-700"
-                    }`}
-                  >
-                    <Brain className="w-4 h-4" />
-                    <span>LLM</span>
-                  </button>
-                </div>
-              </Card>
-            </div>
-
             {/* Main Content Row */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
               {/* Left Column - Source Material */}
@@ -385,13 +338,50 @@ const QuestionGenerator = () => {
               <div className="lg:col-span-3">
                 <Card className="border-border/60 shadow-sm rounded-2xl">
                   <CardHeader className="pb-4">
-                    <div className="flex items-center gap-3">
-                      <span aria-hidden="true" className="block w-1 h-6 rounded-full bg-blue-600" />
-                      <CardTitle className="text-xl font-semibold text-gray-900">AI Question Generator</CardTitle>
+                    <div className="flex items-start justify-between gap-4 flex-wrap">
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <span aria-hidden="true" className="block w-1 h-6 rounded-full bg-blue-600" />
+                          <CardTitle className="text-xl font-semibold text-gray-900">AI Question Generator</CardTitle>
+                        </div>
+                        <CardDescription className="text-sm text-gray-500 mt-1.5 ml-4">
+                          Configure your question generation settings
+                        </CardDescription>
+                      </div>
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide hidden sm:inline">Mode</span>
+                        <div className="relative flex items-center bg-gray-100 border border-gray-200 rounded-full p-1 shadow-inner">
+                          <span
+                            aria-hidden="true"
+                            className="absolute top-1 bottom-1 left-1 rounded-full bg-primary shadow-[0_4px_12px_-2px_hsl(var(--primary)/0.45)] transition-transform duration-300 ease-out"
+                            style={{
+                              width: "calc(50% - 0.25rem)",
+                              transform: generationMode ? "translateX(100%)" : "translateX(0%)",
+                            }}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setGenerationMode(false)}
+                            className={`relative z-10 flex items-center justify-center gap-1.5 py-1.5 px-3.5 rounded-full text-xs font-semibold transition-colors duration-300 ${
+                              !generationMode ? "text-white" : "text-gray-500 hover:text-gray-700"
+                            }`}
+                          >
+                            <BookOpen className="w-3.5 h-3.5" />
+                            <span>Knowledge Base</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setGenerationMode(true)}
+                            className={`relative z-10 flex items-center justify-center gap-1.5 py-1.5 px-3.5 rounded-full text-xs font-semibold transition-colors duration-300 ${
+                              generationMode ? "text-white" : "text-gray-500 hover:text-gray-700"
+                            }`}
+                          >
+                            <Brain className="w-3.5 h-3.5" />
+                            <span>LLM</span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                    <CardDescription className="text-sm text-gray-500">
-                      Configure your question generation settings
-                    </CardDescription>
                   </CardHeader>
                   <CardContent>
 
