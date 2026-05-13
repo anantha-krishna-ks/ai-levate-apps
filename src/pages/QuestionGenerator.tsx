@@ -391,16 +391,19 @@ const QuestionGenerator = () => {
 
               {/* Right Column - AI Question Generator */}
               <div className="lg:col-span-3">
-                <Card className="p-6 bg-white border border-gray-200">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Sparkle className="w-4 h-4 text-purple-600" />
+                <Card className="border-border/60 shadow-sm">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <Sparkle className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <CardTitle className="text-lg">AI Question Generator</CardTitle>
+                        <CardDescription>Configure your question generation settings</CardDescription>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900">AI Question Generator</h3>
-                      <p className="text-sm text-gray-500">Configure your question generation settings</p>
-                    </div>
-                  </div>
+                  </CardHeader>
+                  <CardContent>
 
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleGenerateQuestions)} className="space-y-6">
