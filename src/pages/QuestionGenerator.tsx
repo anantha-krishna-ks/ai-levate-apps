@@ -34,7 +34,7 @@ import {
   LogOut
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
@@ -391,22 +391,25 @@ const QuestionGenerator = () => {
 
               {/* Right Column - AI Question Generator */}
               <div className="lg:col-span-3">
-                <Card className="p-6 bg-white border border-gray-200">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Sparkle className="w-4 h-4 text-purple-600" />
+                <Card className="border-border/60 shadow-sm">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <Sparkle className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <CardTitle className="text-lg">AI Question Generator</CardTitle>
+                        <CardDescription>Configure your question generation settings</CardDescription>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900">AI Question Generator</h3>
-                      <p className="text-sm text-gray-500">Configure your question generation settings</p>
-                    </div>
-                  </div>
+                  </CardHeader>
+                  <CardContent>
 
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleGenerateQuestions)} className="space-y-6">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {/* Left side form */}
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                           {/* Study Domain */}
                           <FormField
                             control={form.control}
@@ -488,7 +491,7 @@ const QuestionGenerator = () => {
                         </div>
 
                         {/* Right side form */}
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                           {/* Learning Objectives */}
                           <FormField
                             control={form.control}
@@ -593,11 +596,19 @@ const QuestionGenerator = () => {
                         )}
                       />
 
-                      {/* Generate Button */}
-                      <div className="flex justify-center mt-8">
+                      {/* Buttons */}
+                      <div className="flex gap-3 mt-6">
+                        <Button 
+                          type="button"
+                          variant="outline"
+                          className="w-[35%] rounded-full"
+                          onClick={() => form.reset()}
+                        >
+                          Reset
+                        </Button>
                         <Button 
                           type="submit"
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full"
+                          className="w-[65%] rounded-full"
                         >
                           <Sparkle className="w-4 h-4 mr-2" />
                           Generate Questions
@@ -605,6 +616,7 @@ const QuestionGenerator = () => {
                       </div>
                     </form>
                   </Form>
+                  </CardContent>
                 </Card>
               </div>
             </div>
