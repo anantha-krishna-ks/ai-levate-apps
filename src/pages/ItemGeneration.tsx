@@ -19,7 +19,7 @@ const ItemGeneration = () => {
     {
       tone: "lavender" as const,
       icon: FileText,
-      label: "Generated",
+      label: "Questions Generated",
       value: 1118,
       total: 1500,
       caption: "Total questions generated",
@@ -35,7 +35,7 @@ const ItemGeneration = () => {
     {
       tone: "mint" as const,
       icon: Bookmark,
-      label: "Saved",
+      label: "Questions Saved",
       value: 34,
       total: 1118,
       caption: "Total questions saved",
