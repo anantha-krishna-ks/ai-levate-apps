@@ -1,12 +1,13 @@
+import { useState } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { StatusBadge } from '../components/StatusBadge';
 import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockDashboardKPI, mockIssueCategories, mockTrendData, mockItems, mockAnalysisResults } from '../lib/mockData';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, AreaChart, Area, Legend,
+  PieChart, Pie, Cell, LineChart, Line,
 } from 'recharts';
-import { AlertTriangle, ShieldAlert, FileWarning, Users, CheckCircle2, XCircle, AlertCircle, Hash, BarChart3, PieChart as PieIcon, ShieldCheck, Pin } from 'lucide-react';
+import { AlertTriangle, ShieldAlert, FileWarning, Users, CheckCircle2, XCircle, AlertCircle, Hash, BarChart3, PieChart as PieIcon, ShieldCheck, Pin, TrendingUp } from 'lucide-react';
 
 const kpi = mockDashboardKPI;
 
@@ -78,6 +79,43 @@ const riskSignals: { label: string; value: string; priority: RiskPriority; icon:
 ];
 
 export default function Dashboard() {
+  const [trendRange, setTrendRange] = useState<'week' | 'month' | 'year'>('month');
+
+  const trendDatasets = {
+    week: [
+      { label: 'Mon', green: 320, amber: 110, red: 42 },
+      { label: 'Tue', green: 380, amber: 130, red: 58 },
+      { label: 'Wed', green: 410, amber: 95,  red: 48 },
+      { label: 'Thu', green: 360, amber: 145, red: 65 },
+      { label: 'Fri', green: 470, amber: 120, red: 51 },
+      { label: 'Sat', green: 250, amber: 70,  red: 30 },
+      { label: 'Sun', green: 220, amber: 60,  red: 25 },
+    ],
+    month: mockTrendData.map((d: { run_name: string; green: number; amber: number; red: number }) => ({
+      label: d.run_name, green: d.green, amber: d.amber, red: d.red,
+    })),
+    year: [
+      { label: 'Jan', green: 8200,  amber: 2100, red: 920  },
+      { label: 'Feb', green: 8900,  amber: 2350, red: 1010 },
+      { label: 'Mar', green: 9650,  amber: 2480, red: 1180 },
+      { label: 'Apr', green: 9100,  amber: 2620, red: 1240 },
+      { label: 'May', green: 10200, amber: 2750, red: 1310 },
+      { label: 'Jun', green: 11050, amber: 2890, red: 1420 },
+      { label: 'Jul', green: 10780, amber: 3010, red: 1505 },
+      { label: 'Aug', green: 11420, amber: 3160, red: 1380 },
+      { label: 'Sep', green: 12100, amber: 3240, red: 1290 },
+      { label: 'Oct', green: 12680, amber: 3380, red: 1410 },
+      { label: 'Nov', green: 12400, amber: 3420, red: 1500 },
+      { label: 'Dec', green: 13050, amber: 3510, red: 1620 },
+    ],
+  };
+
+  const trendData = trendDatasets[trendRange];
+  const trendTotals = trendData.reduce(
+    (acc, d) => ({ green: acc.green + d.green, amber: acc.amber + d.amber, red: acc.red + d.red }),
+    { green: 0, amber: 0, red: 0 },
+  );
+
   return (
     <div className="animate-fade-in">
       <PageHeader title="Dashboard" subtitle="Executive overview of item bank quality and analysis health" />
@@ -366,18 +404,115 @@ export default function Dashboard() {
       })()}
 
       <div className="ig-kpi-card mb-8">
-        <h3 className="text-sm font-semibold mb-4">Analysis Results Over Time</h3>
-        <ResponsiveContainer width="100%" height={250}>
-          <AreaChart data={mockTrendData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(220,13%,91%)" />
-            <XAxis dataKey="run_name" tick={{ fontSize: 11 }} />
-            <YAxis tick={{ fontSize: 11 }} />
-            <Tooltip />
-            <Legend />
-            <Area type="monotone" dataKey="green" stackId="1" fill="hsl(142,71%,45%)" stroke="hsl(142,71%,45%)" fillOpacity={0.6} name="Pass" />
-            <Area type="monotone" dataKey="amber" stackId="1" fill="hsl(38,92%,50%)" stroke="hsl(38,92%,50%)" fillOpacity={0.6} name="Needs Review" />
-            <Area type="monotone" dataKey="red" stackId="1" fill="hsl(0,72%,51%)" stroke="hsl(0,72%,51%)" fillOpacity={0.6} name="Fail" />
-          </AreaChart>
+        {/* Header: title + range filter */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <div className="flex items-center gap-2">
+            <TrendingUp className="w-4 h-4 text-blue-600" />
+            <div>
+              <h3 className="text-sm font-semibold text-slate-900 leading-tight">Analysis Results Over Time</h3>
+              <p className="text-[11px] text-slate-500 mt-0.5">Pass, Needs Review and Fail trends</p>
+            </div>
+          </div>
+
+          <div
+            role="tablist"
+            aria-label="Time range"
+            className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1"
+          >
+            {(['week', 'month', 'year'] as const).map((r) => {
+              const active = trendRange === r;
+              return (
+                <button
+                  key={r}
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setTrendRange(r)}
+                  className={`px-3 py-1 text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors ${
+                    active
+                      ? 'bg-white text-blue-700 shadow-[0_1px_2px_0_hsl(220_25%_10%/0.08)] ring-1 ring-slate-200'
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  {r === 'week' ? 'Week' : r === 'month' ? 'Month' : 'Year'}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Legend chips with totals */}
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          {[
+            { key: 'green',  label: 'Pass',         color: 'hsl(142, 71%, 45%)', value: trendTotals.green },
+            { key: 'amber',  label: 'Needs Review', color: 'hsl(38, 92%, 50%)',  value: trendTotals.amber },
+            { key: 'red',    label: 'Fail',         color: 'hsl(0, 72%, 51%)',   value: trendTotals.red   },
+          ].map((l) => (
+            <span
+              key={l.key}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700"
+            >
+              <span className="h-2 w-2 rounded-full" style={{ backgroundColor: l.color }} aria-hidden="true" />
+              {l.label}
+              <span className="tabular-nums font-semibold text-slate-900">{l.value.toLocaleString()}</span>
+            </span>
+          ))}
+        </div>
+
+        <ResponsiveContainer width="100%" height={260}>
+          <LineChart data={trendData} margin={{ top: 8, right: 12, left: 0, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(220,13%,91%)" vertical={false} />
+            <XAxis
+              dataKey="label"
+              tick={{ fontSize: 11, fill: 'hsl(215, 16%, 47%)' }}
+              axisLine={{ stroke: 'hsl(220,13%,91%)' }}
+              tickLine={false}
+              dy={6}
+            />
+            <YAxis
+              tick={{ fontSize: 11, fill: 'hsl(215, 16%, 47%)' }}
+              axisLine={false}
+              tickLine={false}
+              width={40}
+            />
+            <Tooltip
+              cursor={{ stroke: 'hsl(220,13%,85%)', strokeDasharray: '3 3' }}
+              contentStyle={{
+                background: 'rgba(255,255,255,0.98)',
+                border: '1px solid hsl(220, 13%, 91%)',
+                borderRadius: 10,
+                fontSize: 12,
+                boxShadow: '0 4px 12px -2px hsl(220 25% 10% / 0.08)',
+              }}
+              labelStyle={{ fontWeight: 600, color: 'hsl(222, 47%, 11%)' }}
+            />
+            <Line
+              type="monotone"
+              dataKey="green"
+              name="Pass"
+              stroke="hsl(142,71%,45%)"
+              strokeWidth={2.25}
+              dot={false}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+            />
+            <Line
+              type="monotone"
+              dataKey="amber"
+              name="Needs Review"
+              stroke="hsl(38,92%,50%)"
+              strokeWidth={2.25}
+              dot={false}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+            />
+            <Line
+              type="monotone"
+              dataKey="red"
+              name="Fail"
+              stroke="hsl(0,72%,51%)"
+              strokeWidth={2.25}
+              dot={false}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+            />
+          </LineChart>
         </ResponsiveContainer>
       </div>
 
