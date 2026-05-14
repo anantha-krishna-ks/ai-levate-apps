@@ -350,8 +350,9 @@ export default function Dashboard() {
                           {s.value}
                         </span>
                         <span
-                          className={`inline-flex justify-center text-[10px] font-semibold px-2 py-0.5 rounded-full w-20 ${tone.chip}`}
+                          className={`inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-md w-24 ${tone.chip}`}
                         >
+                          <span className={`h-1.5 w-1.5 rounded-full ${tone.dot}`} aria-hidden="true" />
                           {tone.label.replace(' priority', '')}
                         </span>
                       </li>
