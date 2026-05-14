@@ -701,100 +701,120 @@ const QuestionGenerator = () => {
                     Filters & Search
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {[
-                      {
-                        label: "Source Type",
-                        defaultValue: "all",
-                        options: [
-                          { value: "all", label: "All" },
-                          { value: "book-based", label: "Book Based" },
-                          { value: "ai-generated", label: "AI Generated" },
-                        ],
-                      },
-                      {
-                        label: "Study Domain",
-                        defaultValue: "all",
-                        options: [
-                          { value: "all", label: "All" },
-                          { value: "cyber-risk", label: "Cyber Risk" },
-                          { value: "risk-management", label: "Risk Management" },
-                        ],
-                      },
-                      {
-                        label: "Learning Objective",
-                        defaultValue: "all",
-                        options: [
-                          { value: "all", label: "All" },
-                          { value: "lo-1", label: "Identify cyber threats" },
-                          { value: "lo-2", label: "Apply risk frameworks" },
-                        ],
-                      },
-                      {
-                        label: "Taxonomy",
-                        defaultValue: "all",
-                        options: [
-                          { value: "all", label: "All" },
-                          { value: "remember", label: "Remember" },
-                          { value: "understand", label: "Understand" },
-                          { value: "apply", label: "Apply" },
-                        ],
-                      },
-                      {
-                        label: "Question Type",
-                        defaultValue: "all",
-                        options: [
-                          { value: "all", label: "All" },
-                          { value: "multiple-choice", label: "Multiple Choice" },
-                          { value: "true-false", label: "True/False" },
-                          { value: "short-answer", label: "Short Answer" },
-                        ],
-                      },
-                      {
-                        label: "Creativity Level",
-                        defaultValue: "all",
-                        options: [
-                          { value: "all", label: "All" },
-                          { value: "low", label: "Low" },
-                          { value: "medium", label: "Medium" },
-                          { value: "high", label: "High" },
-                        ],
-                      },
-                      {
-                        label: "Created By",
-                        defaultValue: "me",
-                        options: [
-                          { value: "me", label: "Me" },
-                          { value: "team", label: "Team" },
-                          { value: "all", label: "Anyone" },
-                        ],
-                      },
-                      {
-                        label: "Rating",
-                        defaultValue: "all",
-                        options: [
-                          { value: "all", label: "All" },
-                          { value: "5", label: "5 Stars" },
-                          { value: "4", label: "4+ Stars" },
-                          { value: "3", label: "3+ Stars" },
-                        ],
-                      },
-                    ].map((f) => (
-                      <div key={f.label} className="space-y-2">
-                        <label className="text-sm font-medium text-gray-900">{f.label}</label>
-                        <Select defaultValue={f.defaultValue}>
-                          <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="bg-white border border-gray-200 shadow-lg">
-                            {f.options.map((o) => (
-                              <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                  {[
+                    {
+                      group: "Content",
+                      filters: [
+                        {
+                          label: "Source Type",
+                          defaultValue: "all",
+                          options: [
+                            { value: "all", label: "All" },
+                            { value: "book-based", label: "Book Based" },
+                            { value: "ai-generated", label: "AI Generated" },
+                          ],
+                        },
+                        {
+                          label: "Study Domain",
+                          defaultValue: "all",
+                          options: [
+                            { value: "all", label: "All" },
+                            { value: "cyber-risk", label: "Cyber Risk" },
+                            { value: "risk-management", label: "Risk Management" },
+                          ],
+                        },
+                        {
+                          label: "Learning Objective",
+                          defaultValue: "all",
+                          options: [
+                            { value: "all", label: "All" },
+                            { value: "lo-1", label: "Identify cyber threats" },
+                            { value: "lo-2", label: "Apply risk frameworks" },
+                          ],
+                        },
+                        {
+                          label: "Taxonomy",
+                          defaultValue: "all",
+                          options: [
+                            { value: "all", label: "All" },
+                            { value: "remember", label: "Remember" },
+                            { value: "understand", label: "Understand" },
+                            { value: "apply", label: "Apply" },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      group: "Question",
+                      filters: [
+                        {
+                          label: "Question Type",
+                          defaultValue: "all",
+                          options: [
+                            { value: "all", label: "All" },
+                            { value: "multiple-choice", label: "Multiple Choice" },
+                            { value: "true-false", label: "True/False" },
+                            { value: "short-answer", label: "Short Answer" },
+                          ],
+                        },
+                        {
+                          label: "Creativity Level",
+                          defaultValue: "all",
+                          options: [
+                            { value: "all", label: "All" },
+                            { value: "low", label: "Low" },
+                            { value: "medium", label: "Medium" },
+                            { value: "high", label: "High" },
+                          ],
+                        },
+                        {
+                          label: "Created By",
+                          defaultValue: "me",
+                          options: [
+                            { value: "me", label: "Me" },
+                            { value: "team", label: "Team" },
+                            { value: "all", label: "Anyone" },
+                          ],
+                        },
+                        {
+                          label: "Rating",
+                          defaultValue: "all",
+                          options: [
+                            { value: "all", label: "All" },
+                            { value: "5", label: "5 Stars" },
+                            { value: "4", label: "4+ Stars" },
+                            { value: "3", label: "3+ Stars" },
+                          ],
+                        },
+                      ],
+                    },
+                  ].map((section) => (
+                    <div key={section.group} className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                          {section.group}
+                        </span>
+                        <span className="h-px flex-1 bg-gray-200" aria-hidden="true" />
                       </div>
-                    ))}
-                  </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {section.filters.map((f) => (
+                          <div key={f.label} className="space-y-2">
+                            <label className="text-sm font-medium text-gray-900">{f.label}</label>
+                            <Select defaultValue={f.defaultValue}>
+                              <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent className="bg-white border border-gray-200 shadow-lg">
+                                {f.options.map((o) => (
+                                  <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Search</label>
