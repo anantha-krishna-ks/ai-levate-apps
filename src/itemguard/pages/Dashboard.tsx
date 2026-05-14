@@ -365,21 +365,6 @@ export default function Dashboard() {
         );
       })()}
 
-      <div className="grid grid-cols-1 gap-6 mb-8">
-        <div className="ig-kpi-card">
-          <h3 className="text-sm font-semibold mb-4">Issues by Category</h3>
-          <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={mockIssueCategories} layout="vertical" margin={{ left: 100 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220,13%,91%)" />
-              <XAxis type="number" tick={{ fontSize: 11 }} />
-              <YAxis type="category" dataKey="category" tick={{ fontSize: 11 }} width={100} />
-              <Tooltip />
-              <Bar dataKey="count" fill="hsl(220,60%,45%)" radius={[0, 4, 4, 0]} barSize={14} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
       <div className="ig-kpi-card mb-8">
         <h3 className="text-sm font-semibold mb-4">Analysis Results Over Time</h3>
         <ResponsiveContainer width="100%" height={250}>
