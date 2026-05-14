@@ -926,7 +926,7 @@ const QuestionGenerator = () => {
                               <DropdownMenuItem onClick={() => handleRateQuestion("What characteristic of pure risk makes it more acceptable for insurers to underwrite compared to speculative risk?")}>
                                 <Star className="h-4 w-4 mr-2" /> Rate
                               </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${courseId}/check-similarity`)}>
+                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${bookCode}/check-similarity`)}>
                                 <GitCompare className="h-4 w-4 mr-2" /> Check Similarity
                               </DropdownMenuItem>
                               <DropdownMenuItem onClick={() => handleOpenRefinement("What characteristic of pure risk makes it more acceptable for insurers to underwrite compared to speculative risk?")}>
@@ -986,7 +986,7 @@ const QuestionGenerator = () => {
                               <DropdownMenuItem onClick={() => handleRateQuestion("Pure risk always results in a loss or no loss situation.")}>
                                 <Star className="h-4 w-4 mr-2" /> Rate
                               </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${courseId}/check-similarity`)}>
+                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${bookCode}/check-similarity`)}>
                                 <GitCompare className="h-4 w-4 mr-2" /> Check Similarity
                               </DropdownMenuItem>
                               <DropdownMenuItem onClick={() => handleOpenRefinement("Pure risk always results in a loss or no loss situation.")}>
@@ -1046,7 +1046,7 @@ const QuestionGenerator = () => {
                               <DropdownMenuItem onClick={() => handleRateQuestion("Explain the relationship between risk assessment and cybersecurity frameworks, and how organizations can apply both to mitigate emerging threats.")}>
                                 <Star className="h-4 w-4 mr-2" /> Rate
                               </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${courseId}/check-similarity`)}>
+                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${bookCode}/check-similarity`)}>
                                 <GitCompare className="h-4 w-4 mr-2" /> Check Similarity
                               </DropdownMenuItem>
                               <DropdownMenuItem onClick={() => handleOpenRefinement("Explain the relationship between risk assessment and cybersecurity frameworks, and how organizations can apply both to mitigate emerging threats.")}>
