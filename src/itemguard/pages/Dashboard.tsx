@@ -243,74 +243,126 @@ export default function Dashboard() {
       </section>
 
       {/* Risk Signals */}
-      <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-6">
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-2">
-            <AlertTriangle className="w-4 h-4 text-amber-600" />
-            <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Risk Signals</h3>
-          </div>
-          <span className="text-[11px] font-medium text-slate-500">
-            {(kpi.technical_accuracy_risk + kpi.bias_fairness_flags + kpi.answer_key_risk + kpi.duplicate_count).toLocaleString()} total signals
-          </span>
-        </div>
+      {(() => {
+        const totalSignals = riskSignals.reduce((sum, r) => sum + Number(r.value.replace(/,/g, '')), 0);
+        const byPriority = (p: RiskPriority) =>
+          riskSignals
+            .filter(r => r.priority === p)
+            .reduce((sum, r) => sum + Number(r.value.replace(/,/g, '')), 0);
+        const buckets: { key: RiskPriority; label: string; count: number; bar: string; dot: string }[] = [
+          { key: 'high',   label: 'High',   count: byPriority('high'),   bar: 'bg-rose-500',  dot: 'bg-rose-500' },
+          { key: 'medium', label: 'Medium', count: byPriority('medium'), bar: 'bg-amber-500', dot: 'bg-amber-500' },
+          { key: 'low',    label: 'Low',    count: byPriority('low'),    bar: 'bg-slate-400', dot: 'bg-slate-400' },
+        ];
+        const sortedSignals = [...riskSignals].sort((a, b) => {
+          const order: Record<RiskPriority, number> = { high: 0, medium: 1, low: 2 };
+          return order[a.priority] - order[b.priority];
+        });
+        return (
+          <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-6">
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-amber-600" />
+                <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                  Risk Signals
+                </h3>
+              </div>
+              <span className="text-[11px] font-medium text-slate-500">
+                Across {riskSignals.length} categories
+              </span>
+            </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {riskSignals.map(s => {
-            const tone = RISK_TONES[s.priority];
-            const Icon = s.icon;
-            return (
-              <div
-                key={s.label}
-                className="relative flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5"
-              >
-                <span className={`absolute left-0 top-3 bottom-3 w-1 rounded-r-full ${tone.dot}`} />
-                <span className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-200">
-                  <Icon className="h-4 w-4 text-slate-600" aria-hidden="true" />
-                </span>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 truncate">
-                    {s.label}
-                  </div>
-                  <div className="text-xl font-semibold tabular-nums leading-none mt-0.5 text-slate-700">
-                    {s.value}
-                  </div>
-                  <span className={`inline-block mt-1.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${tone.chip}`}>
-                    {tone.label}
+            <div className="grid grid-cols-1 lg:grid-cols-[280px,1fr] gap-6">
+              {/* Hero summary */}
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-5 flex flex-col">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                  Total Flags
+                </div>
+                <div className="mt-1 flex items-baseline gap-2">
+                  <span className="text-4xl font-semibold tabular-nums text-slate-900 leading-none">
+                    {totalSignals.toLocaleString()}
+                  </span>
+                  <span className="text-xs font-medium text-slate-500">signals</span>
+                </div>
+
+                {/* Stacked priority bar */}
+                <div className="mt-5 flex h-2 w-full overflow-hidden rounded-full bg-slate-200">
+                  {buckets.map(b => {
+                    const w = totalSignals ? (b.count / totalSignals) * 100 : 0;
+                    return w > 0 ? (
+                      <div
+                        key={b.key}
+                        className={b.bar}
+                        style={{ width: `${w}%` }}
+                        aria-label={`${b.label} ${b.count}`}
+                      />
+                    ) : null;
+                  })}
+                </div>
+
+                {/* Priority breakdown */}
+                <div className="mt-4 flex flex-col gap-2.5">
+                  {buckets.map(b => (
+                    <div key={b.key} className="flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-2">
+                        <span className={`h-2 w-2 rounded-full ${b.dot}`} />
+                        <span className="font-medium text-slate-700">{b.label} priority</span>
+                      </div>
+                      <span className="font-semibold tabular-nums text-slate-900">
+                        {b.count.toLocaleString()}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Risk list */}
+              <div className="rounded-xl border border-slate-200 overflow-hidden">
+                <div className="grid grid-cols-[1fr,auto,auto] items-center gap-4 px-4 py-2.5 bg-slate-50 border-b border-slate-200">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                    Signal
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 text-right">
+                    Count
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 text-right w-20">
+                    Priority
                   </span>
                 </div>
+                <ul className="divide-y divide-slate-100">
+                  {sortedSignals.map(s => {
+                    const tone = RISK_TONES[s.priority];
+                    const Icon = s.icon;
+                    return (
+                      <li
+                        key={s.label}
+                        className="grid grid-cols-[1fr,auto,auto] items-center gap-4 px-4 py-3 hover:bg-slate-50/60 transition-colors"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span className="h-8 w-8 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0">
+                            <Icon className="h-3.5 w-3.5 text-slate-600" aria-hidden="true" />
+                          </span>
+                          <span className="text-sm font-medium text-slate-800 truncate">
+                            {s.label}
+                          </span>
+                        </div>
+                        <span className="text-base font-semibold tabular-nums text-slate-900 text-right">
+                          {s.value}
+                        </span>
+                        <span
+                          className={`inline-flex justify-center text-[10px] font-semibold px-2 py-0.5 rounded-full w-20 ${tone.chip}`}
+                        >
+                          {tone.label.replace(' priority', '')}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
-            );
-          })}
-        </div>
-
-        {/* Priority Summary */}
-        <div className="mt-6 pt-5 border-t border-dashed border-slate-200">
-          <div className="flex items-center gap-2 mb-4">
-            <Pin className="w-3.5 h-3.5 text-rose-500" />
-            <h4 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Priority Summary</h4>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {[
-              { label: 'Pass Rate',        value: `${Math.round((kpi.green_count / qualityTotal) * 100)}%`, icon: CheckCircle2,  iconColor: 'text-emerald-600' },
-              { label: 'Needs Review',     value: `${Math.round((kpi.amber_count / qualityTotal) * 100)}%`, icon: AlertCircle,   iconColor: 'text-amber-600' },
-              { label: 'Total Risk Flags', value: (kpi.technical_accuracy_risk + kpi.bias_fairness_flags + kpi.answer_key_risk).toLocaleString(), icon: AlertTriangle, iconColor: 'text-rose-600' },
-            ].map(p => (
-              <div
-                key={p.label}
-                className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5"
-              >
-                <span className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-200">
-                  <p.icon className={`h-4 w-4 ${p.iconColor}`} aria-hidden="true" />
-                </span>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">{p.label}</div>
-                  <div className="text-xl font-semibold tabular-nums leading-none mt-1 text-slate-700">{p.value}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
+        );
+      })()}
 
       <div className="grid grid-cols-1 gap-6 mb-8">
         <div className="ig-kpi-card">
