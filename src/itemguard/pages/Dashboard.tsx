@@ -34,11 +34,26 @@ const problematicUnits = [
 ];
 
 const coveragePct = Math.round((kpi.items_analysed / kpi.total_items) * 100);
+const pendingItems = kpi.total_items - kpi.items_analysed;
 
-const volumeStats = [
-  { label: 'Total Items', value: kpi.total_items.toLocaleString(), icon: Hash },
-  { label: 'Items Analysed', value: kpi.items_analysed.toLocaleString(), icon: BarChart3 },
-  { label: 'Coverage', value: `${coveragePct}%`, icon: ShieldCheck },
+type VolumeTone = 'lavender' | 'sky' | 'mint';
+const VOLUME_TONES: Record<VolumeTone, { bg: string; ink: string; fill: string }> = {
+  lavender: { bg: 'bg-pastel-lavender', ink: 'text-pastel-lavender-ink', fill: 'bg-pastel-lavender-ink' },
+  sky:      { bg: 'bg-pastel-sky',      ink: 'text-pastel-sky-ink',      fill: 'bg-pastel-sky-ink' },
+  mint:     { bg: 'bg-pastel-mint',     ink: 'text-pastel-mint-ink',     fill: 'bg-pastel-mint-ink' },
+};
+
+const volumeStats: {
+  tone: VolumeTone;
+  icon: typeof Hash;
+  label: string;
+  value: number;
+  total: number;
+  caption: string;
+}[] = [
+  { tone: 'lavender', icon: Hash,       label: 'Total Items',    value: kpi.total_items,    total: kpi.total_items, caption: 'In bank' },
+  { tone: 'sky',      icon: BarChart3,  label: 'Items Analysed', value: kpi.items_analysed, total: kpi.total_items, caption: 'Processed' },
+  { tone: 'mint',     icon: ShieldCheck,label: 'Coverage',       value: kpi.items_analysed, total: kpi.total_items, caption: `${pendingItems.toLocaleString()} pending` },
 ];
 
 const qualityStats = [
@@ -60,30 +75,41 @@ export default function Dashboard() {
       <PageHeader title="Dashboard" subtitle="Executive overview of item bank quality and analysis health" />
 
       {/* Volume & Coverage */}
-      <section className="mb-6 rounded-xl border border-slate-200 bg-white p-5">
-        <div className="flex items-center gap-2 mb-4">
+      <section className="mb-6">
+        <div className="flex items-center gap-2 mb-3 px-1">
           <BarChart3 className="w-4 h-4 text-blue-600" />
           <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Volume & Coverage</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {volumeStats.map(s => (
-            <div key={s.label} className="rounded-lg border border-slate-200 bg-slate-50/60 p-4">
-              <div className="flex items-center gap-2 mb-1.5 text-slate-500">
-                <s.icon className="w-3.5 h-3.5" />
-                <span className="text-xs font-medium">{s.label}</span>
+          {volumeStats.map((s) => {
+            const styles = VOLUME_TONES[s.tone];
+            const pct = Math.max(0, Math.min(100, Math.round((s.value / s.total) * 100)));
+            const Icon = s.icon;
+            return (
+              <div
+                key={s.label}
+                className={`relative overflow-hidden rounded-3xl border border-border/70 p-5 ${styles.bg} ${styles.ink}`}
+              >
+                <div className="flex items-center gap-2.5 mb-4">
+                  <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 ring-1 ring-black/5">
+                    <Icon className="h-3.5 w-3.5" />
+                  </div>
+                  <span className="text-[15px] font-medium tracking-tight">{s.label}</span>
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-[40px] leading-none font-medium tracking-tight">{s.value.toLocaleString()}</span>
+                  <span className="text-base font-medium opacity-75">/ {s.total.toLocaleString()}</span>
+                </div>
+                <p className="text-sm opacity-90 mt-1.5 mb-4">{s.caption}</p>
+                <div className="flex items-center gap-3">
+                  <div className="relative h-2.5 flex-1 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 overflow-hidden">
+                    <div className={`h-full rounded-full ${styles.fill}`} style={{ width: `${pct}%` }} />
+                  </div>
+                  <span className="text-sm font-medium tabular-nums">{pct}%</span>
+                </div>
               </div>
-              <div className="text-2xl font-semibold text-slate-900">{s.value}</div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-4">
-          <div className="flex items-center justify-between text-xs text-slate-500 mb-1.5">
-            <span>Analysis coverage</span>
-            <span className="font-medium text-slate-700">{coveragePct}%</span>
-          </div>
-          <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
-            <div className="h-full bg-blue-600 rounded-full" style={{ width: `${coveragePct}%` }} />
-          </div>
+            );
+          })}
         </div>
       </section>
 
