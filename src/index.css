@@ -510,6 +510,9 @@ All colors MUST be HSL.
   .itemguard .ig-text-status-green { color: hsl(var(--status-green)); }
   .itemguard .ig-text-status-amber { color: hsl(var(--status-amber)); }
   .itemguard .ig-text-status-red   { color: hsl(var(--status-red)); }
+  .itemguard .ig-text-statusfg-green { color: hsl(var(--status-green-foreground)); }
+  .itemguard .ig-text-statusfg-amber { color: hsl(var(--status-amber-foreground)); }
+  .itemguard .ig-text-statusfg-red   { color: hsl(var(--status-red-foreground)); }
   .itemguard .ig-bg-status-green { background-color: hsl(var(--status-green)); }
   .itemguard .ig-bg-status-amber { background-color: hsl(var(--status-amber)); }
   .itemguard .ig-bg-status-red   { background-color: hsl(var(--status-red)); }
