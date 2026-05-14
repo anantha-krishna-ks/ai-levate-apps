@@ -174,29 +174,35 @@ export default function Dashboard() {
             </div>
 
             {/* Stat rows */}
-            <div className="flex flex-col gap-2.5">
+            {/* Clean stat list — no bars; pie already shows distribution */}
+            <div className="divide-y divide-slate-100">
               {qualityStats.map((s) => {
                 const pct = Math.round((s.value / qualityTotal) * 100);
                 const Icon = s.icon;
                 return (
-                  <div
-                    key={s.key}
-                    className={`flex items-center gap-3 rounded-2xl border border-border/70 px-4 py-3 ${s.bg} ${s.ink}`}
-                  >
-                    <div className="h-8 w-8 rounded-full bg-white/85 flex items-center justify-center shrink-0 ring-1 ring-black/5">
+                  <div key={s.key} className="flex items-center gap-4 py-3.5 first:pt-0 last:pb-0">
+                    <span
+                      className="h-9 w-9 rounded-full flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: s.color, color: '#fff' }}
+                    >
                       <Icon className="h-4 w-4" />
-                    </div>
+                    </span>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-sm font-medium tracking-tight">{s.label}</span>
-                        <span className="text-xs font-medium opacity-75 tabular-nums">{pct}%</span>
+                      <div className="text-sm font-semibold text-slate-900 leading-tight">{s.label}</div>
+                      <div className="text-[11px] text-slate-500 mt-0.5">
+                        of {qualityTotal.toLocaleString()} items
                       </div>
-                      <div className="flex items-center gap-3">
-                        <div className="relative h-1.5 flex-1 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 overflow-hidden">
-                          <div className={`h-full rounded-full ${s.fill}`} style={{ width: `${pct}%` }} />
-                        </div>
-                        <span className="text-sm font-semibold tabular-nums shrink-0">{s.value.toLocaleString()}</span>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="text-2xl font-semibold text-slate-900 leading-none tabular-nums">
+                        {s.value.toLocaleString()}
                       </div>
+                      <span
+                        className="inline-block mt-1.5 text-[11px] font-semibold tabular-nums px-2 py-0.5 rounded-full"
+                        style={{ backgroundColor: `${s.color}1a`, color: s.color }}
+                      >
+                        {pct}%
+                      </span>
                     </div>
                   </div>
                 );
