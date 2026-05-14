@@ -117,53 +117,44 @@ export default function Dashboard() {
 
       {/* Quality Outcome */}
       <section className="mb-6">
-        <div className="rounded-xl border border-slate-200 bg-white p-5">
-          <div className="flex items-center justify-between mb-4">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6">
+          <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <PieIcon className="w-4 h-4 text-emerald-600" />
               <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Quality Outcome</h3>
             </div>
             <span className="text-[11px] font-medium text-slate-500">
-              {qualityTotal.toLocaleString()} items analysed · Avg {kpi.average_quality_score.toFixed(1)}
+              {qualityTotal.toLocaleString()} items analysed
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[260px,1fr] gap-6 items-center">
-            {/* Pie chart */}
-            <div className="relative mx-auto w-full max-w-[260px]">
-              <ResponsiveContainer width="100%" height={220}>
+          <div className="grid grid-cols-1 lg:grid-cols-[280px,1fr] gap-8 items-center">
+            {/* Donut with centered avg score */}
+            <div className="relative mx-auto w-full max-w-[260px] h-[220px]">
+              <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <defs>
-                    {qualityPieData.map((d, i) => (
-                      <radialGradient key={i} id={`qual-grad-${i}`} cx="50%" cy="50%" r="65%">
-                        <stop offset="0%" stopColor={d.color} stopOpacity={1} />
-                        <stop offset="100%" stopColor={d.color} stopOpacity={0.85} />
-                      </radialGradient>
-                    ))}
-                  </defs>
                   <Pie
                     data={qualityPieData}
                     cx="50%"
                     cy="50%"
-                    outerRadius={92}
-                    innerRadius={0}
-                    paddingAngle={2}
+                    outerRadius={100}
+                    innerRadius={68}
+                    paddingAngle={3}
                     dataKey="value"
                     stroke="#ffffff"
-                    strokeWidth={2}
+                    strokeWidth={3}
+                    cornerRadius={6}
                     isAnimationActive
                     animationDuration={800}
-                    label={({ percent }) => `${Math.round((percent ?? 0) * 100)}%`}
-                    labelLine={false}
                   >
-                    {qualityPieData.map((_, i) => (
-                      <Cell key={i} fill={`url(#qual-grad-${i})`} />
+                    {qualityPieData.map((d, i) => (
+                      <Cell key={i} fill={d.color} />
                     ))}
                   </Pie>
                   <Tooltip
                     formatter={(val: number) => val.toLocaleString()}
                     contentStyle={{
-                      background: 'rgba(255,255,255,0.95)',
+                      background: 'rgba(255,255,255,0.98)',
                       border: '1px solid hsl(220, 13%, 91%)',
                       borderRadius: 10,
                       fontSize: 11,
@@ -171,38 +162,39 @@ export default function Dashboard() {
                   />
                 </PieChart>
               </ResponsiveContainer>
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <span className="text-[10px] uppercase tracking-wider text-slate-400 font-medium">Avg Score</span>
+                <span className="text-3xl font-semibold text-slate-900 tabular-nums leading-none mt-1">
+                  {kpi.average_quality_score.toFixed(1)}
+                </span>
+                <span className="text-[10px] text-slate-400 mt-1">out of 100</span>
+              </div>
             </div>
 
-            {/* Stat rows */}
-            {/* Clean stat list — no bars; pie already shows distribution */}
-            <div className="divide-y divide-slate-100">
+            {/* Soft pastel stat cards */}
+            <div className="flex flex-col gap-3">
               {qualityStats.map((s) => {
                 const pct = Math.round((s.value / qualityTotal) * 100);
                 const Icon = s.icon;
                 return (
-                  <div key={s.key} className="flex items-center gap-4 py-3.5 first:pt-0 last:pb-0">
-                    <span
-                      className="h-9 w-9 rounded-full flex items-center justify-center shrink-0"
-                      style={{ backgroundColor: s.color, color: '#fff' }}
-                    >
-                      <Icon className="h-4 w-4" />
+                  <div
+                    key={s.key}
+                    className={`flex items-center gap-4 rounded-2xl px-5 py-4 ${s.bg} ${s.ink}`}
+                  >
+                    <span className="h-10 w-10 rounded-xl bg-white/70 flex items-center justify-center shrink-0">
+                      <Icon className="h-4.5 w-4.5" />
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-slate-900 leading-tight">{s.label}</div>
-                      <div className="text-[11px] text-slate-500 mt-0.5">
-                        of {qualityTotal.toLocaleString()} items
+                      <div className="text-sm font-semibold tracking-tight">{s.label}</div>
+                      <div className="text-[11px] opacity-70 mt-0.5">
+                        {s.value.toLocaleString()} items
                       </div>
                     </div>
-                    <div className="text-right shrink-0">
-                      <div className="text-2xl font-semibold text-slate-900 leading-none tabular-nums">
-                        {s.value.toLocaleString()}
+                    <div className="flex items-center gap-3 shrink-0">
+                      <div className="w-20 h-1.5 rounded-full bg-white/60 overflow-hidden">
+                        <div className={`h-full rounded-full ${s.fill}`} style={{ width: `${pct}%` }} />
                       </div>
-                      <span
-                        className="inline-block mt-1.5 text-[11px] font-semibold tabular-nums px-2 py-0.5 rounded-full"
-                        style={{ backgroundColor: `${s.color}1a`, color: s.color }}
-                      >
-                        {pct}%
-                      </span>
+                      <span className="text-base font-semibold tabular-nums w-9 text-right">{pct}%</span>
                     </div>
                   </div>
                 );
