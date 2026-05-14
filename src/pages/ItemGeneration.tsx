@@ -153,7 +153,7 @@ const ItemGeneration = () => {
       </header>
 
       {/* Main Content */}
-      <div className="pt-16 p-6 max-w-7xl mx-auto">
+      <div className="pt-16 p-6 max-w-[1440px] mx-auto">
         {/* Page Title */}
         <div className="pt-6 mb-8">
           <div className="flex items-center gap-3 mb-2">
