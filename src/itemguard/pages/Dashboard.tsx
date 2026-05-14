@@ -79,6 +79,43 @@ const riskSignals: { label: string; value: string; priority: RiskPriority; icon:
 ];
 
 export default function Dashboard() {
+  const [trendRange, setTrendRange] = useState<'week' | 'month' | 'year'>('month');
+
+  const trendDatasets = {
+    week: [
+      { label: 'Mon', green: 320, amber: 110, red: 42 },
+      { label: 'Tue', green: 380, amber: 130, red: 58 },
+      { label: 'Wed', green: 410, amber: 95,  red: 48 },
+      { label: 'Thu', green: 360, amber: 145, red: 65 },
+      { label: 'Fri', green: 470, amber: 120, red: 51 },
+      { label: 'Sat', green: 250, amber: 70,  red: 30 },
+      { label: 'Sun', green: 220, amber: 60,  red: 25 },
+    ],
+    month: mockTrendData.map((d: { run_name: string; green: number; amber: number; red: number }) => ({
+      label: d.run_name, green: d.green, amber: d.amber, red: d.red,
+    })),
+    year: [
+      { label: 'Jan', green: 8200,  amber: 2100, red: 920  },
+      { label: 'Feb', green: 8900,  amber: 2350, red: 1010 },
+      { label: 'Mar', green: 9650,  amber: 2480, red: 1180 },
+      { label: 'Apr', green: 9100,  amber: 2620, red: 1240 },
+      { label: 'May', green: 10200, amber: 2750, red: 1310 },
+      { label: 'Jun', green: 11050, amber: 2890, red: 1420 },
+      { label: 'Jul', green: 10780, amber: 3010, red: 1505 },
+      { label: 'Aug', green: 11420, amber: 3160, red: 1380 },
+      { label: 'Sep', green: 12100, amber: 3240, red: 1290 },
+      { label: 'Oct', green: 12680, amber: 3380, red: 1410 },
+      { label: 'Nov', green: 12400, amber: 3420, red: 1500 },
+      { label: 'Dec', green: 13050, amber: 3510, red: 1620 },
+    ],
+  } as const;
+
+  const trendData = trendDatasets[trendRange];
+  const trendTotals = trendData.reduce(
+    (acc, d) => ({ green: acc.green + d.green, amber: acc.amber + d.amber, red: acc.red + d.red }),
+    { green: 0, amber: 0, red: 0 },
+  );
+
   return (
     <div className="animate-fade-in">
       <PageHeader title="Dashboard" subtitle="Executive overview of item bank quality and analysis health" />
