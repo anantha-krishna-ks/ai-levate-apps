@@ -872,11 +872,10 @@ const QuestionGenerator = () => {
                         <th className="text-left p-4 text-sm font-medium text-gray-700 w-48">Question ID</th>
                         <th className="text-left p-4 text-sm font-medium text-gray-700">Question</th>
                         <th className="text-left p-4 text-sm font-medium text-gray-700">Type</th>
-                        <th className="text-left p-4 text-sm font-medium text-gray-700">User Name</th>
-                        <th className="text-left p-4 text-sm font-medium text-gray-700 w-20">Preview</th>
-                        <th className="text-left p-4 text-sm font-medium text-gray-700 w-20">Edit</th>
-                        <th className="text-left p-4 text-sm font-medium text-gray-700 w-20">Delete</th>
-                        <th className="text-left p-4 text-sm font-medium text-gray-700 w-20">Actions</th>
+                        <th className="text-left p-4 text-sm font-medium text-gray-700">Topic</th>
+                        <th className="text-left p-4 text-sm font-medium text-gray-700">Difficulty</th>
+                        <th className="text-left p-4 text-sm font-medium text-gray-700">Created</th>
+                        <th className="text-left p-4 text-sm font-medium text-gray-700 w-24">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -899,45 +898,71 @@ const QuestionGenerator = () => {
                           </TooltipProvider>
                         </td>
                         <td className="p-4 text-sm text-gray-700">Multiple Choice</td>
-                        <td className="p-4 text-sm text-gray-700">Anil Kumar</td>
+                        <td className="p-4 text-sm" style={{ color: "#7e2a0c" }}>Risk Management</td>
                         <td className="p-4">
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="Preview">
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                            Medium
+                          </span>
+                        </td>
+                        <td className="p-4 text-sm text-gray-500">
+                          <div className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            2 hours ago
+                          </div>
                         </td>
                         <td className="p-4">
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="Edit">
-                            <Edit3 className="h-4 w-4" />
-                          </Button>
-                        </td>
-                        <td className="p-4">
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" aria-label="Delete">
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </td>
-                        <td className="p-4">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="More actions">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem onClick={() => handleRateQuestion("What characteristic of pure risk makes it more acceptable for insurers to underwrite compared to speculative risk?")}>
-                                <Star className="h-4 w-4 mr-2" /> Rate
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${bookCode}/check-similarity`)}>
-                                <GitCompare className="h-4 w-4 mr-2" /> Check Similarity
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => handleOpenRefinement("What characteristic of pure risk makes it more acceptable for insurers to underwrite compared to speculative risk?")}>
-                                <Sparkle className="h-4 w-4 mr-2" /> Refine
-                              </DropdownMenuItem>
-                              <DropdownMenuSeparator />
-                              <DropdownMenuItem className="text-red-600 focus:text-red-700">
-                                <Trash2 className="h-4 w-4 mr-2" /> Delete
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                          <div className="flex items-center gap-1">
+                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                              <Edit3 className="h-4 w-4" />
+                            </Button>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem onClick={() => handleRateQuestion("What characteristic of pure risk makes it more acceptable for insurer...")}>
+                                  <Star className="h-4 w-4 mr-2" />
+                                  Rate Question
+                                </DropdownMenuItem>
+                                <DropdownMenuItem 
+                                  className="cursor-pointer"
+                                  onClick={() => {
+                                    navigate('/check-similarity', { 
+                                      state: { 
+                                        question: {
+                                          identifier: "C20_V2024_S11_L00_MC_L2_EN_ID2426",
+                                          text: "What characteristic of pure risk makes it more acceptable for insurers to cover compared to speculative risk?",
+                                          options: [
+                                            { id: "A", text: "Pure risk only involves potential loss or no loss, making it predictable" },
+                                            { id: "B", text: "Pure risk offers the possibility of gain" },
+                                            { id: "C", text: "Speculative risk is more measurable" },
+                                            { id: "D", text: "Pure risk always results in loss" }
+                                          ]
+                                        }
+                                      }
+                                    })
+                                  }}
+                                >
+                                  <Search className="h-4 w-4 mr-2" />
+                                  Check Similarity
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleOpenRefinement("What characteristic of pure risk makes it more acceptable for insurer...")}>
+                                  <Sparkle className="h-4 w-4 mr-2" />
+                                  Question Refinement
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem className="text-red-600">
+                                  <Trash2 className="h-4 w-4 mr-2" />
+                                  Delete
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                         </td>
                       </tr>
                       <tr className="border-b border-gray-200 hover:bg-gray-50">
@@ -959,45 +984,53 @@ const QuestionGenerator = () => {
                           </TooltipProvider>
                         </td>
                         <td className="p-4 text-sm text-gray-700">True/False</td>
-                        <td className="p-4 text-sm text-gray-700">Priya Sharma</td>
+                        <td className="p-4 text-sm" style={{ color: "#7e2a0c" }}>Risk Fundamentals</td>
                         <td className="p-4">
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="Preview">
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            Easy
+                          </span>
+                        </td>
+                        <td className="p-4 text-sm text-gray-500">
+                          <div className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            1 day ago
+                          </div>
                         </td>
                         <td className="p-4">
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="Edit">
-                            <Edit3 className="h-4 w-4" />
-                          </Button>
-                        </td>
-                        <td className="p-4">
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" aria-label="Delete">
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </td>
-                        <td className="p-4">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="More actions">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem onClick={() => handleRateQuestion("Pure risk always results in a loss or no loss situation.")}>
-                                <Star className="h-4 w-4 mr-2" /> Rate
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${bookCode}/check-similarity`)}>
-                                <GitCompare className="h-4 w-4 mr-2" /> Check Similarity
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => handleOpenRefinement("Pure risk always results in a loss or no loss situation.")}>
-                                <Sparkle className="h-4 w-4 mr-2" /> Refine
-                              </DropdownMenuItem>
-                              <DropdownMenuSeparator />
-                              <DropdownMenuItem className="text-red-600 focus:text-red-700">
-                                <Trash2 className="h-4 w-4 mr-2" /> Delete
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                          <div className="flex items-center gap-1">
+                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                              <Edit3 className="h-4 w-4" />
+                            </Button>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem onClick={() => handleRateQuestion("Pure risk always results in a loss or no loss situation.")}>
+                                  <Star className="h-4 w-4 mr-2" />
+                                  Rate Question
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  <GitCompare className="h-4 w-4 mr-2" />
+                                  Check Similarity
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleOpenRefinement("Pure risk always results in a loss or no loss situation.")}>
+                                  <Sparkle className="h-4 w-4 mr-2" />
+                                  Question Refinement
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem className="text-red-600">
+                                  <Trash2 className="h-4 w-4 mr-2" />
+                                  Delete
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                         </td>
                       </tr>
                       <tr className="border-b border-gray-200 hover:bg-gray-50">
@@ -1019,45 +1052,53 @@ const QuestionGenerator = () => {
                           </TooltipProvider>
                         </td>
                         <td className="p-4 text-sm text-gray-700">Short Answer</td>
-                        <td className="p-4 text-sm text-gray-700">Rahul Verma</td>
+                        <td className="p-4 text-sm" style={{ color: "#7e2a0c" }}>Cybersecurity</td>
                         <td className="p-4">
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="Preview">
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            Hard
+                          </span>
+                        </td>
+                        <td className="p-4 text-sm text-gray-500">
+                          <div className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            3 days ago
+                          </div>
                         </td>
                         <td className="p-4">
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="Edit">
-                            <Edit3 className="h-4 w-4" />
-                          </Button>
-                        </td>
-                        <td className="p-4">
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" aria-label="Delete">
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </td>
-                        <td className="p-4">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="More actions">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem onClick={() => handleRateQuestion("Explain the relationship between risk assessment and cybersecurity frameworks, and how organizations can apply both to mitigate emerging threats.")}>
-                                <Star className="h-4 w-4 mr-2" /> Rate
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${bookCode}/check-similarity`)}>
-                                <GitCompare className="h-4 w-4 mr-2" /> Check Similarity
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => handleOpenRefinement("Explain the relationship between risk assessment and cybersecurity frameworks, and how organizations can apply both to mitigate emerging threats.")}>
-                                <Sparkle className="h-4 w-4 mr-2" /> Refine
-                              </DropdownMenuItem>
-                              <DropdownMenuSeparator />
-                              <DropdownMenuItem className="text-red-600 focus:text-red-700">
-                                <Trash2 className="h-4 w-4 mr-2" /> Delete
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                          <div className="flex items-center gap-1">
+                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                              <Edit3 className="h-4 w-4" />
+                            </Button>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem onClick={() => handleRateQuestion("Explain the relationship between risk assessment and cybersecurity f...")}>
+                                  <Star className="h-4 w-4 mr-2" />
+                                  Rate Question
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  <GitCompare className="h-4 w-4 mr-2" />
+                                  Check Similarity
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleOpenRefinement("Explain the relationship between risk assessment and cybersecurity f...")}>
+                                  <Sparkle className="h-4 w-4 mr-2" />
+                                  Question Refinement
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem className="text-red-600">
+                                  <Trash2 className="h-4 w-4 mr-2" />
+                                  Delete
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                         </td>
                       </tr>
                     </tbody>
