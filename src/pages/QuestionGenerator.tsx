@@ -137,7 +137,10 @@ const QuestionPillToggle: React.FC<QuestionPillToggleProps> = ({ options, value,
 const QuestionGenerator = () => {
   const { bookCode } = useParams()
   const navigate = useNavigate()
-  const [activeTab, setActiveTab] = useState("generate")
+  const location = useLocation()
+  const [activeTab, setActiveTab] = useState<string>(
+    (location.state as any)?.activeTab ?? "generate"
+  )
   const [generationMode, setGenerationMode] = useState(true) // true for LLM, false for Knowledge Base
   const [ratingDialogOpen, setRatingDialogOpen] = useState(false)
   const [selectedQuestion, setSelectedQuestion] = useState<string>("")
