@@ -274,19 +274,26 @@ export default function Dashboard() {
 
             <div className="grid grid-cols-1 lg:grid-cols-[280px,1fr] gap-6">
               {/* Hero summary */}
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-5 flex flex-col">
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                  Total Flags
-                </div>
-                <div className="mt-1 flex items-baseline gap-2">
-                  <span className="text-4xl font-semibold tabular-nums text-slate-900 leading-none">
-                    {totalSignals.toLocaleString()}
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-5 flex flex-col gap-4">
+                <div className="flex items-end justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                      Total Flags
+                    </div>
+                    <div className="mt-1 flex items-baseline gap-1.5">
+                      <span className="text-3xl font-semibold tabular-nums text-slate-900 leading-none">
+                        {totalSignals.toLocaleString()}
+                      </span>
+                      <span className="text-xs font-medium text-slate-500">signals</span>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-medium text-slate-500 pb-0.5">
+                    {riskSignals.length} categories
                   </span>
-                  <span className="text-xs font-medium text-slate-500">signals</span>
                 </div>
 
                 {/* Stacked priority bar */}
-                <div className="mt-5 flex h-2 w-full overflow-hidden rounded-full bg-slate-200">
+                <div className="flex h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
                   {buckets.map(b => {
                     const w = totalSignals ? (b.count / totalSignals) * 100 : 0;
                     return w > 0 ? (
@@ -301,18 +308,28 @@ export default function Dashboard() {
                 </div>
 
                 {/* Priority breakdown */}
-                <div className="mt-4 flex flex-col gap-2.5">
-                  {buckets.map(b => (
-                    <div key={b.key} className="flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-2">
-                        <span className={`h-2 w-2 rounded-full ${b.dot}`} />
-                        <span className="font-medium text-slate-700">{b.label} priority</span>
+                <div className="grid grid-cols-3 gap-3 pt-3 border-t border-slate-200">
+                  {buckets.map(b => {
+                    const pct = totalSignals ? Math.round((b.count / totalSignals) * 100) : 0;
+                    return (
+                      <div key={b.key} className="flex flex-col gap-1">
+                        <div className="flex items-center gap-1.5">
+                          <span className={`h-1.5 w-1.5 rounded-full ${b.dot}`} />
+                          <span className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
+                            {b.label}
+                          </span>
+                        </div>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-base font-semibold tabular-nums text-slate-900 leading-none">
+                            {b.count.toLocaleString()}
+                          </span>
+                          <span className="text-[10px] font-medium text-slate-400 tabular-nums">
+                            {pct}%
+                          </span>
+                        </div>
                       </div>
-                      <span className="font-semibold tabular-nums text-slate-900">
-                        {b.count.toLocaleString()}
-                      </span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
