@@ -193,10 +193,10 @@ export default function Dashboard() {
                         {s.label}
                       </div>
                       <div className="flex items-baseline gap-2 mt-1">
-                        <span className="text-3xl font-bold tabular-nums leading-none text-slate-900">
+                        <span className="text-3xl font-bold tabular-nums leading-none">
                           {s.value.toLocaleString()}
                         </span>
-                        <span className="text-xs font-medium text-slate-700">items</span>
+                        <span className="text-xs font-medium opacity-80">items</span>
                       </div>
                     </div>
                     <div
@@ -207,7 +207,7 @@ export default function Dashboard() {
                       aria-valuemax={100}
                       aria-label={`${s.label} ${pct}%`}
                     >
-                      <div className="text-3xl font-bold tabular-nums leading-none text-slate-900">
+                      <div className="text-3xl font-bold tabular-nums leading-none">
                         {pct}
                         <span className="text-lg font-semibold ml-0.5">%</span>
                       </div>
