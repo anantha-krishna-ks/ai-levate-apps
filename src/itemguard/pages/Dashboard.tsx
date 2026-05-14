@@ -154,10 +154,6 @@ export default function Dashboard() {
                   animationDuration={800}
                   label={({ percent }) => `${Math.round((percent ?? 0) * 100)}%`}
                   labelLine={false}
-                  // @ts-expect-error recharts label style
-                  fontSize={11}
-                  fontWeight={600}
-                  fill="#ffffff"
                 >
                   {qualityPieData.map((_, i) => (
                     <Cell key={i} fill={`url(#qual-grad-${i})`} />
