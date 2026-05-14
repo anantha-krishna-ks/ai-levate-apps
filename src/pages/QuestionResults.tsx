@@ -39,6 +39,25 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
+import { Separator } from "@/components/ui/separator"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import TokenUsagePopover from "@/components/TokenUsagePopover"
+import { QuestionPillToggle } from "./QuestionGenerator"
+import { LogOut, Settings } from "lucide-react"
 
 const QuestionResults = () => {
   const navigate = useNavigate()
@@ -176,88 +195,118 @@ const QuestionResults = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-medium text-sm">AL</span>
-              </div>
-              <img 
-                src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
-                alt="AI-Levate" 
-                className="h-5 w-auto"
+      {/* Header - frosted glass, full width */}
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-card/95 border-b border-border">
+        <div className="flex h-16 items-center px-6 gap-4">
+          <div className="flex items-center gap-4 flex-shrink-0">
+            <Link to="/dashboard" className="flex-shrink-0">
+              <img
+                src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png"
+                alt="AI-Levate"
+                className="h-8 w-auto"
               />
-              <span className="text-sm text-gray-500">Cyber Risk</span>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-purple-600 rounded flex items-center justify-center">
-                <span className="text-white text-xs">✦</span>
-              </div>
-              <span className="text-sm text-purple-600 font-medium">Cyber Risk</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-                <span className="text-white text-xs">⚡</span>
-              </div>
-              <span className="text-sm text-blue-600 font-medium">7,762 Tokens</span>
-            </div>
-            <Link to="/item-generation">
-              <Button variant="ghost" size="sm" className="text-gray-600">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Knowledge Base
-              </Button>
             </Link>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="text-gray-600"
-              onClick={() => {
-                localStorage.removeItem('authToken')
-                localStorage.removeItem('userSession')
-                sessionStorage.clear()
-                window.location.href = "/"
-              }}
-            >
-              Sign Out
-            </Button>
+          </div>
+
+          <div className="flex items-center gap-3 ml-auto flex-shrink-0">
+            <TokenUsagePopover used={2238} total={10000} scopeLabel="Cyber Risk" />
+
+            <Separator orientation="vertical" className="hidden sm:block h-8" />
+
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="w-11 h-11 p-0 rounded-full border-2 border-primary/30 hover:border-primary/50 hover:bg-transparent"
+                >
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                    <span className="text-sm font-bold text-primary">A</span>
+                  </div>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-64 mt-2 p-2">
+                <div className="flex flex-col min-w-0 px-2 py-2">
+                  <span className="text-sm font-semibold text-foreground truncate">Anil Kumar</span>
+                  <span className="text-xs text-muted-foreground truncate">anil.kumar@ailevate.com</span>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer rounded-md px-2 py-2 text-sm text-foreground/80 transition-colors focus:bg-primary/10 focus:text-primary [&>svg]:text-muted-foreground focus:[&>svg]:text-primary">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer rounded-md px-2 py-2 text-sm text-foreground/80 transition-colors focus:bg-primary/10 focus:text-primary [&>svg]:text-muted-foreground focus:[&>svg]:text-primary">
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="cursor-pointer rounded-md px-2 py-2 text-sm text-destructive transition-colors focus:bg-destructive/10 focus:text-destructive [&>svg]:text-destructive/70 focus:[&>svg]:text-destructive"
+                  onClick={() => navigate("/")}
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Main Content */}
-      <div className="p-6 max-w-7xl mx-auto">
-        {/* Navigation Tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-2 max-w-lg">
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={() => setActiveTab("generate")}
-                className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
-                  activeTab === "generate"
-                    ? "bg-blue-600 text-white shadow-md"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                }`}
-              >
-                <Sparkle className="h-4 w-4" />
-                Generate Questions
-              </button>
-              <button
-                onClick={() => setActiveTab("repository")}
-                className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
-                  activeTab === "repository"
-                    ? "bg-blue-600 text-white shadow-md"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                }`}
-              >
-                <FileText className="h-4 w-4" />
-                Question Repository
-              </button>
+      <div className="pt-16 p-6 max-w-[1440px] mx-auto">
+        {/* Breadcrumb */}
+        <Breadcrumb className="pt-6 mb-3">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/dashboard">Dashboard</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/item-generation">Item Generation</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/question-generator/cyber-risk">Cyber Risk</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Generated Questions</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+
+        {/* Page Title + Pill Toggle */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div className="flex items-center gap-3">
+              <Link to="/question-generator/cyber-risk" aria-label="Back to question generator">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-9 rounded-full pl-2.5 pr-3.5 gap-1.5 border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-colors"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span className="text-sm font-medium">Back</span>
+                </Button>
+              </Link>
+              <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+              <h1 className="text-2xl font-medium text-gray-900">Cyber Risk</h1>
             </div>
+
+            <QuestionPillToggle
+              options={[
+                { key: "generate", label: "Generate Questions", icon: Sparkle },
+                { key: "repository", label: "Question Repository", icon: FileText },
+              ]}
+              value={activeTab}
+              onChange={setActiveTab}
+            />
           </div>
         </div>
 
