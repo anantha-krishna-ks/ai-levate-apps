@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate, useLocation } from "react-router-dom"
-import { ArrowLeft, Eye, GitCompare, FileQuestion, Hash, CheckCircle2, Sparkle, BookOpen, User, Target, ListChecks } from "lucide-react"
+import { ArrowLeft, Eye, GitCompare, FileQuestion, Hash, CheckCircle2, Sparkle, BookOpen, User, Target, ListChecks, Settings, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -8,6 +8,17 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
+import { Separator } from "@/components/ui/separator"
+import TokenUsagePopover from "@/components/TokenUsagePopover"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 
 const CheckSimilarity = () => {
   const navigate = useNavigate()
@@ -57,43 +68,102 @@ const CheckSimilarity = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-card border-b px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-medium text-sm">AL</span>
-              </div>
-              <img 
-                src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" 
-                alt="AI-Levate" 
-                className="h-5 w-auto"
+    <div className="min-h-screen bg-gray-50">
+      {/* Header - frosted glass, full width */}
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-card/95 border-b border-border">
+        <div className="flex h-16 items-center px-6 gap-4">
+          <div className="flex items-center gap-4 flex-shrink-0">
+            <Link to="/dashboard" className="flex-shrink-0">
+              <img
+                src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png"
+                alt="AI-Levate"
+                className="h-8 w-auto"
               />
-            </div>
+            </Link>
           </div>
-          
-          <div className="flex items-center gap-4">
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => navigate(-1)}
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back
-            </Button>
+
+          <div className="flex items-center gap-3 ml-auto flex-shrink-0">
+            <TokenUsagePopover used={2238} total={10000} scopeLabel="Check Similarity" />
+
+            <Separator orientation="vertical" className="hidden sm:block h-8" />
+
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="w-11 h-11 p-0 rounded-full border-2 border-primary/30 hover:border-primary/50 hover:bg-transparent"
+                >
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                    <span className="text-sm font-bold text-primary">A</span>
+                  </div>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-64 mt-2 p-2">
+                <div className="flex flex-col min-w-0 px-2 py-2">
+                  <span className="text-sm font-semibold text-foreground truncate">Anil Kumar</span>
+                  <span className="text-xs text-muted-foreground truncate">anil.kumar@ailevate.com</span>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer rounded-md px-2 py-2 text-sm text-foreground/80 transition-colors focus:bg-primary/10 focus:text-primary [&>svg]:text-muted-foreground focus:[&>svg]:text-primary">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer rounded-md px-2 py-2 text-sm text-foreground/80 transition-colors focus:bg-primary/10 focus:text-primary [&>svg]:text-muted-foreground focus:[&>svg]:text-primary">
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="cursor-pointer rounded-md px-2 py-2 text-sm text-destructive transition-colors focus:bg-destructive/10 focus:text-destructive [&>svg]:text-destructive/70 focus:[&>svg]:text-destructive"
+                  onClick={() => navigate("/")}
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Main Content */}
-      <div className="p-6 max-w-[1440px] mx-auto">
-        <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-primary/20">
-          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-            <GitCompare className="w-6 h-6 text-primary" />
+      <div className="pt-16 p-6 max-w-[1440px] mx-auto">
+        {/* Breadcrumb */}
+        <Breadcrumb className="pt-6 mb-3">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/dashboard">Dashboard</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/item-generation">Item Generation</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Check Similarity</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+
+        {/* Page Title + Back */}
+        <div className="mb-8">
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate(-1)}
+              className="h-9 rounded-full pl-2.5 pr-3.5 gap-1.5 border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span className="text-sm font-medium">Back</span>
+            </Button>
+            <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+            <h1 className="text-2xl font-medium text-gray-900">Check Similarity</h1>
           </div>
-          <h1 className="text-3xl font-medium text-foreground">Check Similarity</h1>
         </div>
 
         {/* Selected Question Details */}
