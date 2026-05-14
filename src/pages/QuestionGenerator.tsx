@@ -425,7 +425,8 @@ const QuestionGenerator = () => {
                         </div>
                       </div>
 
-                      {/* Knowledge Base Name */}
+                      {/* Knowledge Base Name - only when source is Knowledge Base */}
+                      {!generationMode && (
                       <FormField
                         control={form.control}
                         name="knowledgeBaseName"
@@ -450,6 +451,7 @@ const QuestionGenerator = () => {
                           </FormItem>
                         )}
                       />
+                      )}
 
                       {/* General Guidelines */}
                       <FormField
