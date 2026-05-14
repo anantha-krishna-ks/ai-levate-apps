@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IGSidebar } from "@/itemguard/components/IGSidebar";
+import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
 import Dashboard from "@/itemguard/pages/Dashboard";
 import ItemBank from "@/itemguard/pages/ItemBank";
 import AnalysisRuns from "@/itemguard/pages/AnalysisRuns";
@@ -21,9 +22,19 @@ import SettingsPage from "@/itemguard/pages/SettingsPage";
 
 const ItemValidation = () => {
   const navigate = useNavigate();
+  const sidebarCollapsed = useSidebarCollapsed();
 
   return (
     <div className="itemguard min-h-screen bg-gray-50">
+      {/* Desktop Sidebar (matches /dashboard) */}
+      <div
+        className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-[60] hidden lg:block transition-all duration-300 ${
+          sidebarCollapsed ? "w-16" : "w-52"
+        }`}
+      >
+        <IGSidebar />
+      </div>
+
       {/* Top header */}
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-card/95 border-b border-border">
         <div className="flex h-16 items-center px-6 gap-4">
@@ -60,7 +71,11 @@ const ItemValidation = () => {
       </header>
 
       {/* Page title row */}
-      <div className="pt-16">
+      <div
+        className={`pt-16 transition-all duration-300 ${
+          sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
+        }`}
+      >
         <div className="px-6 pt-6 pb-3 max-w-[1600px] mx-auto">
           <div className="flex items-center gap-3">
             <Link to="/dashboard" aria-label="Back to dashboard">
@@ -89,9 +104,8 @@ const ItemValidation = () => {
 
         {/* Sub-app: sidebar + routed content */}
         <div className="px-6 pb-6 max-w-[1600px] mx-auto">
-          <div className="flex border border-border rounded-lg overflow-hidden bg-card" style={{ minHeight: "calc(100vh - 180px)" }}>
-            <IGSidebar />
-            <main className="flex-1 overflow-auto bg-background">
+          <div className="border border-border rounded-lg overflow-hidden bg-card" style={{ minHeight: "calc(100vh - 180px)" }}>
+            <main className="overflow-auto bg-background">
               <div className="p-6">
                 <Routes>
                   <Route index element={<Dashboard />} />
