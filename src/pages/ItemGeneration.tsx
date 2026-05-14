@@ -230,7 +230,7 @@ const ItemGeneration = () => {
                     </div>
 
                     {/* Big value row */}
-                    <div className="flex items-end justify-between gap-3 mb-6">
+                    <div className="flex items-end justify-between gap-3 mb-5">
                       <div className="flex items-baseline gap-1.5">
                         <span className="text-[36px] leading-none font-medium tracking-tight tabular-nums">
                           {stat.value.toLocaleString()}
