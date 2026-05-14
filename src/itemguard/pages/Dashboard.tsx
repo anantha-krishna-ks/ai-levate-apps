@@ -459,7 +459,21 @@ export default function Dashboard() {
         </div>
 
         <ResponsiveContainer width="100%" height={260}>
-          <LineChart data={trendData} margin={{ top: 8, right: 12, left: 0, bottom: 0 }}>
+          <AreaChart data={trendData} margin={{ top: 8, right: 12, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="trendGreen" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stopColor="hsl(142,71%,45%)" stopOpacity={0.28} />
+                <stop offset="100%" stopColor="hsl(142,71%,45%)" stopOpacity={0} />
+              </linearGradient>
+              <linearGradient id="trendAmber" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stopColor="hsl(38,92%,50%)" stopOpacity={0.28} />
+                <stop offset="100%" stopColor="hsl(38,92%,50%)" stopOpacity={0} />
+              </linearGradient>
+              <linearGradient id="trendRed" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stopColor="hsl(0,72%,51%)" stopOpacity={0.28} />
+                <stop offset="100%" stopColor="hsl(0,72%,51%)" stopOpacity={0} />
+              </linearGradient>
+            </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(220,13%,91%)" vertical={false} />
             <XAxis
               dataKey="label"
@@ -485,34 +499,37 @@ export default function Dashboard() {
               }}
               labelStyle={{ fontWeight: 600, color: 'hsl(222, 47%, 11%)' }}
             />
-            <Line
+            <Area
               type="monotone"
               dataKey="green"
               name="Pass"
               stroke="hsl(142,71%,45%)"
               strokeWidth={2.25}
+              fill="url(#trendGreen)"
               dot={false}
               activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
             />
-            <Line
+            <Area
               type="monotone"
               dataKey="amber"
               name="Needs Review"
               stroke="hsl(38,92%,50%)"
               strokeWidth={2.25}
+              fill="url(#trendAmber)"
               dot={false}
               activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
             />
-            <Line
+            <Area
               type="monotone"
               dataKey="red"
               name="Fail"
               stroke="hsl(0,72%,51%)"
               strokeWidth={2.25}
+              fill="url(#trendRed)"
               dot={false}
               activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
             />
-          </LineChart>
+          </AreaChart>
         </ResponsiveContainer>
       </div>
 
