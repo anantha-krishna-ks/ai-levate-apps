@@ -88,7 +88,7 @@ const CheckSimilarity = () => {
       </div>
 
       {/* Main Content */}
-      <div className="p-6 max-w-7xl mx-auto">
+      <div className="p-6 max-w-[1440px] mx-auto">
         <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-primary/20">
           <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
             <GitCompare className="w-6 h-6 text-primary" />
