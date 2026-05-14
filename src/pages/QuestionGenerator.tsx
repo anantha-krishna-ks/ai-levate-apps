@@ -76,7 +76,7 @@ type QuestionPillToggleProps = {
   onChange: (v: string) => void;
 };
 
-const QuestionPillToggle: React.FC<QuestionPillToggleProps> = ({ options, value, onChange }) => {
+export const QuestionPillToggle: React.FC<QuestionPillToggleProps> = ({ options, value, onChange }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [indicator, setIndicator] = useState({ left: 4, width: 0 });
