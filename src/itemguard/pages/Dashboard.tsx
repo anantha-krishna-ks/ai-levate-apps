@@ -6,7 +6,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, AreaChart, Area, Legend,
 } from 'recharts';
-import { AlertTriangle, ShieldAlert, FileWarning, Users, CheckCircle2, XCircle, AlertCircle, Hash, BarChart3, PieChart as PieIcon, ShieldCheck } from 'lucide-react';
+import { AlertTriangle, ShieldAlert, FileWarning, Users, CheckCircle2, XCircle, AlertCircle, Hash, BarChart3, PieChart as PieIcon, ShieldCheck, Pin } from 'lucide-react';
 
 const kpi = mockDashboardKPI;
 
@@ -141,6 +141,37 @@ export default function Dashboard() {
               </span>
             </div>
           ))}
+        </div>
+
+        {/* Priority Summary */}
+        <div className="mt-5 pt-5 border-t border-dashed border-slate-200">
+          <div className="flex items-center gap-2 mb-3">
+            <Pin className="w-3.5 h-3.5 text-rose-500" />
+            <h4 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Priority Summary</h4>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="flex items-center gap-3 rounded-lg border border-emerald-100 bg-emerald-50 px-4 py-3">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="flex items-baseline justify-between flex-1 gap-2">
+                <span className="text-xs font-medium text-emerald-800">Pass Rate</span>
+                <span className="text-lg font-semibold text-emerald-900">{Math.round((kpi.green_count / (kpi.green_count + kpi.amber_count + kpi.red_count)) * 100)}%</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-lg border border-amber-100 bg-amber-50 px-4 py-3">
+              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+              <div className="flex items-baseline justify-between flex-1 gap-2">
+                <span className="text-xs font-medium text-amber-800">Needs Review</span>
+                <span className="text-lg font-semibold text-amber-900">{Math.round((kpi.amber_count / (kpi.green_count + kpi.amber_count + kpi.red_count)) * 100)}%</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-lg border border-red-100 bg-red-50 px-4 py-3">
+              <AlertTriangle className="w-4 h-4 text-red-600 shrink-0" />
+              <div className="flex items-baseline justify-between flex-1 gap-2">
+                <span className="text-xs font-medium text-red-800">Total Risk Flags</span>
+                <span className="text-lg font-semibold text-red-900">{(kpi.technical_accuracy_risk + kpi.bias_fairness_flags + kpi.answer_key_risk).toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
