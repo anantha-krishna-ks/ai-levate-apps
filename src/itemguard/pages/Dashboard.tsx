@@ -404,18 +404,115 @@ export default function Dashboard() {
       })()}
 
       <div className="ig-kpi-card mb-8">
-        <h3 className="text-sm font-semibold mb-4">Analysis Results Over Time</h3>
-        <ResponsiveContainer width="100%" height={250}>
-          <AreaChart data={mockTrendData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(220,13%,91%)" />
-            <XAxis dataKey="run_name" tick={{ fontSize: 11 }} />
-            <YAxis tick={{ fontSize: 11 }} />
-            <Tooltip />
-            <Legend />
-            <Area type="monotone" dataKey="green" stackId="1" fill="hsl(142,71%,45%)" stroke="hsl(142,71%,45%)" fillOpacity={0.6} name="Pass" />
-            <Area type="monotone" dataKey="amber" stackId="1" fill="hsl(38,92%,50%)" stroke="hsl(38,92%,50%)" fillOpacity={0.6} name="Needs Review" />
-            <Area type="monotone" dataKey="red" stackId="1" fill="hsl(0,72%,51%)" stroke="hsl(0,72%,51%)" fillOpacity={0.6} name="Fail" />
-          </AreaChart>
+        {/* Header: title + range filter */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <div className="flex items-center gap-2">
+            <TrendingUp className="w-4 h-4 text-blue-600" />
+            <div>
+              <h3 className="text-sm font-semibold text-slate-900 leading-tight">Analysis Results Over Time</h3>
+              <p className="text-[11px] text-slate-500 mt-0.5">Pass, Needs Review and Fail trends</p>
+            </div>
+          </div>
+
+          <div
+            role="tablist"
+            aria-label="Time range"
+            className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1"
+          >
+            {(['week', 'month', 'year'] as const).map((r) => {
+              const active = trendRange === r;
+              return (
+                <button
+                  key={r}
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setTrendRange(r)}
+                  className={`px-3 py-1 text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors ${
+                    active
+                      ? 'bg-white text-blue-700 shadow-[0_1px_2px_0_hsl(220_25%_10%/0.08)] ring-1 ring-slate-200'
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  {r === 'week' ? 'Week' : r === 'month' ? 'Month' : 'Year'}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Legend chips with totals */}
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          {[
+            { key: 'green',  label: 'Pass',         color: 'hsl(142, 71%, 45%)', value: trendTotals.green },
+            { key: 'amber',  label: 'Needs Review', color: 'hsl(38, 92%, 50%)',  value: trendTotals.amber },
+            { key: 'red',    label: 'Fail',         color: 'hsl(0, 72%, 51%)',   value: trendTotals.red   },
+          ].map((l) => (
+            <span
+              key={l.key}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700"
+            >
+              <span className="h-2 w-2 rounded-full" style={{ backgroundColor: l.color }} aria-hidden="true" />
+              {l.label}
+              <span className="tabular-nums font-semibold text-slate-900">{l.value.toLocaleString()}</span>
+            </span>
+          ))}
+        </div>
+
+        <ResponsiveContainer width="100%" height={260}>
+          <LineChart data={trendData} margin={{ top: 8, right: 12, left: 0, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(220,13%,91%)" vertical={false} />
+            <XAxis
+              dataKey="label"
+              tick={{ fontSize: 11, fill: 'hsl(215, 16%, 47%)' }}
+              axisLine={{ stroke: 'hsl(220,13%,91%)' }}
+              tickLine={false}
+              dy={6}
+            />
+            <YAxis
+              tick={{ fontSize: 11, fill: 'hsl(215, 16%, 47%)' }}
+              axisLine={false}
+              tickLine={false}
+              width={40}
+            />
+            <Tooltip
+              cursor={{ stroke: 'hsl(220,13%,85%)', strokeDasharray: '3 3' }}
+              contentStyle={{
+                background: 'rgba(255,255,255,0.98)',
+                border: '1px solid hsl(220, 13%, 91%)',
+                borderRadius: 10,
+                fontSize: 12,
+                boxShadow: '0 4px 12px -2px hsl(220 25% 10% / 0.08)',
+              }}
+              labelStyle={{ fontWeight: 600, color: 'hsl(222, 47%, 11%)' }}
+            />
+            <Line
+              type="monotone"
+              dataKey="green"
+              name="Pass"
+              stroke="hsl(142,71%,45%)"
+              strokeWidth={2.25}
+              dot={false}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+            />
+            <Line
+              type="monotone"
+              dataKey="amber"
+              name="Needs Review"
+              stroke="hsl(38,92%,50%)"
+              strokeWidth={2.25}
+              dot={false}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+            />
+            <Line
+              type="monotone"
+              dataKey="red"
+              name="Fail"
+              stroke="hsl(0,72%,51%)"
+              strokeWidth={2.25}
+              dot={false}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+            />
+          </LineChart>
         </ResponsiveContainer>
       </div>
 
