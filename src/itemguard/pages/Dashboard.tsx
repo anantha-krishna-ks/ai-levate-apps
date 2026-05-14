@@ -51,14 +51,6 @@ export default function Dashboard() {
     <div className="animate-fade-in">
       <PageHeader title="Dashboard" subtitle="Executive overview of item bank quality and analysis health" />
 
-      <div className="flex flex-wrap gap-2 mb-6">
-        {['Qualification', 'Unit', 'Topic', 'Learning Outcome', 'Level', 'Item Type', 'Status'].map(f => (
-          <select key={f} className="text-xs border border-border rounded-md px-3 py-1.5 bg-card text-foreground">
-            <option>{f}</option>
-          </select>
-        ))}
-      </div>
-
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
         {kpiCards.map(card => (
           <div key={card.label} className="ig-kpi-card">
