@@ -108,7 +108,7 @@ export default function Dashboard() {
       { label: 'Nov', green: 12400, amber: 3420, red: 1500 },
       { label: 'Dec', green: 13050, amber: 3510, red: 1620 },
     ],
-  } as const;
+  };
 
   const trendData = trendDatasets[trendRange];
   const trendTotals = trendData.reduce(
