@@ -1,5 +1,5 @@
 import React, { useState, useRef, useLayoutEffect } from "react"
-import { Search, Sparkle, ArrowRight, BarChart, Clock, Star, Users, FileText, Brain, Database, BookOpen, RefreshCw, GitCompare, Image, MessageSquare, ScanLine, PenTool, BarChart3, Bot, Mic, Menu, X, User, Settings, LogOut } from "lucide-react"
+import { Search, Sparkle, ArrowRight, BarChart, Clock, Star, Users, FileText, Brain, Database, BookOpen, RefreshCw, GitCompare, Image, MessageSquare, ScanLine, PenTool, BarChart3, Bot, Mic, Menu, X, User, Settings, LogOut, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -331,6 +331,18 @@ const Dashboard = () => {
       badge: "New",
       badgeColor: "bg-blue-500",
       icon: ScanLine,
+      subscriptionStatus: "active"
+    },
+    {
+      id: "item-validation",
+      title: "Item Validation",
+      description: "AI-powered validation tool that checks question quality, accuracy, and alignment with learning objectives.",
+      path: "/item-validation",
+      image: itemSimilarityImage,
+      category: "Assessment",
+      badge: "New",
+      badgeColor: "bg-blue-500",
+      icon: ShieldCheck,
       subscriptionStatus: "active"
     },
     {
