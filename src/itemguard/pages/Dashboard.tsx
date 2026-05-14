@@ -162,12 +162,16 @@ export default function Dashboard() {
                   />
                 </PieChart>
               </ResponsiveContainer>
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <span className="text-[10px] uppercase tracking-wider text-slate-400 font-medium">Avg Score</span>
-                <span className="text-3xl font-semibold text-slate-900 tabular-nums leading-none mt-1">
+              <div
+                className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+                role="img"
+                aria-label={`Average quality score ${kpi.average_quality_score.toFixed(1)} out of 100`}
+              >
+                <span className="text-[11px] uppercase tracking-wider text-slate-700 font-semibold">Avg Score</span>
+                <span className="text-3xl font-bold text-slate-900 tabular-nums leading-none mt-1">
                   {kpi.average_quality_score.toFixed(1)}
                 </span>
-                <span className="text-[10px] text-slate-400 mt-1">out of 100</span>
+                <span className="text-[11px] text-slate-600 mt-1 font-medium">out of 100</span>
               </div>
             </div>
 
@@ -179,22 +183,29 @@ export default function Dashboard() {
                 return (
                   <div
                     key={s.key}
-                    className={`flex items-center gap-4 rounded-2xl px-5 py-4 ${s.bg} ${s.ink}`}
+                    className={`flex items-center gap-4 rounded-2xl px-5 py-4 border border-slate-200 ${s.bg} ${s.ink}`}
                   >
-                    <span className="h-10 w-10 rounded-xl bg-white/70 flex items-center justify-center shrink-0">
-                      <Icon className="h-4.5 w-4.5" />
+                    <span className="h-10 w-10 rounded-xl bg-white flex items-center justify-center shrink-0 border border-slate-200">
+                      <Icon className="h-4 w-4" aria-hidden="true" />
                     </span>
                     <div className="flex-1 min-w-0">
                       <div className="text-sm font-semibold tracking-tight">{s.label}</div>
-                      <div className="text-[11px] opacity-70 mt-0.5">
+                      <div className="text-xs text-slate-700 mt-0.5 font-medium">
                         {s.value.toLocaleString()} items
                       </div>
                     </div>
                     <div className="flex items-center gap-3 shrink-0">
-                      <div className="w-20 h-1.5 rounded-full bg-white/60 overflow-hidden">
+                      <div
+                        className="w-20 h-1.5 rounded-full bg-white border border-slate-200 overflow-hidden"
+                        role="progressbar"
+                        aria-valuenow={pct}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                        aria-label={`${s.label} ${pct}%`}
+                      >
                         <div className={`h-full rounded-full ${s.fill}`} style={{ width: `${pct}%` }} />
                       </div>
-                      <span className="text-base font-semibold tabular-nums w-9 text-right">{pct}%</span>
+                      <span className="text-base font-bold tabular-nums w-10 text-right text-slate-900">{pct}%</span>
                     </div>
                   </div>
                 );

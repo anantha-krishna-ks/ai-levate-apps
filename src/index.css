@@ -38,13 +38,13 @@ All colors MUST be HSL.
     --pastel-lavender: 256 60% 96.5%;
     --pastel-lavender-ink: 256 45% 45%;
     --pastel-mint: 158 45% 94%;
-    --pastel-mint-ink: 158 45% 32%;
+    --pastel-mint-ink: 158 55% 24%;
     --pastel-peach: 22 80% 95.5%;
-    --pastel-peach-ink: 22 70% 42%;
+    --pastel-peach-ink: 22 80% 30%;
     --pastel-sky: 205 70% 95%;
-    --pastel-sky-ink: 205 70% 38%;
+    --pastel-sky-ink: 205 75% 28%;
     --pastel-rose: 340 70% 96%;
-    --pastel-rose-ink: 340 60% 44%;
+    --pastel-rose-ink: 340 65% 32%;
     
     /* Colorful accent colors for stats cards */
     --orange-50: 33 100% 96%;
