@@ -183,20 +183,20 @@ export default function Dashboard() {
                 return (
                   <div
                     key={s.key}
-                    className={`flex items-center gap-5 rounded-2xl px-5 py-5 border border-slate-200 ${s.bg} ${s.ink}`}
+                    className={`flex items-center gap-4 rounded-2xl px-4 py-3.5 border border-slate-200 ${s.bg} ${s.ink}`}
                   >
-                    <span className="h-12 w-12 rounded-xl bg-white flex items-center justify-center shrink-0 border border-slate-200">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    <span className="h-10 w-10 rounded-xl bg-white flex items-center justify-center shrink-0 border border-slate-200">
+                      <Icon className="h-4 w-4" aria-hidden="true" />
                     </span>
                     <div className="flex-1 min-w-0">
                       <div className="text-[11px] font-semibold uppercase tracking-wider opacity-90">
                         {s.label}
                       </div>
-                      <div className="flex items-baseline gap-2 mt-1">
-                        <span className="text-3xl font-bold tabular-nums leading-none">
+                      <div className="flex items-baseline gap-1.5 mt-0.5">
+                        <span className="text-xl font-semibold tabular-nums leading-none">
                           {s.value.toLocaleString()}
                         </span>
-                        <span className="text-xs font-medium opacity-80">items</span>
+                        <span className="text-[11px] font-medium opacity-75">items</span>
                       </div>
                     </div>
                     <div
@@ -207,11 +207,11 @@ export default function Dashboard() {
                       aria-valuemax={100}
                       aria-label={`${s.label} ${pct}%`}
                     >
-                      <div className="text-3xl font-bold tabular-nums leading-none">
+                      <div className="text-xl font-semibold tabular-nums leading-none">
                         {pct}
-                        <span className="text-lg font-semibold ml-0.5">%</span>
+                        <span className="text-sm font-medium ml-0.5">%</span>
                       </div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wider mt-1 opacity-80">
+                      <div className="text-[10px] font-semibold uppercase tracking-wider mt-1 opacity-75">
                         share
                       </div>
                     </div>
