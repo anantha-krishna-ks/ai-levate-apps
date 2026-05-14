@@ -271,7 +271,7 @@ export default function Dashboard() {
                   <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 truncate">
                     {s.label}
                   </div>
-                  <div className="text-xl font-semibold tabular-nums leading-none mt-0.5 text-slate-900">
+                  <div className="text-xl font-semibold tabular-nums leading-none mt-0.5 text-slate-700">
                     {s.value}
                   </div>
                   <span className={`inline-block mt-1.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${tone.chip}`}>
@@ -304,7 +304,7 @@ export default function Dashboard() {
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">{p.label}</div>
-                  <div className="text-xl font-semibold tabular-nums leading-none mt-1 text-slate-900">{p.value}</div>
+                  <div className="text-xl font-semibold tabular-nums leading-none mt-1 text-slate-700">{p.value}</div>
                 </div>
               </div>
             ))}
