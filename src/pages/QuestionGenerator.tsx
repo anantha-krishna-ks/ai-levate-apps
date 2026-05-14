@@ -899,17 +899,21 @@ const QuestionGenerator = () => {
                           </TooltipProvider>
                         </td>
                         <td className="p-4 text-sm text-gray-700">Multiple Choice</td>
-                        <td className="p-4 text-sm" style={{ color: "#7e2a0c" }}>Risk Management</td>
+                        <td className="p-4 text-sm text-gray-700">Anil Kumar</td>
                         <td className="p-4">
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                            Medium
-                          </span>
+                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                            <Eye className="h-4 w-4 text-gray-500" />
+                          </Button>
                         </td>
-                        <td className="p-4 text-sm text-gray-500">
-                          <div className="flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
-                            2 hours ago
-                          </div>
+                        <td className="p-4">
+                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                            <Edit3 className="h-4 w-4 text-gray-500" />
+                          </Button>
+                        </td>
+                        <td className="p-4">
+                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                            <Trash2 className="h-4 w-4 text-red-500" />
+                          </Button>
                         </td>
                         <td className="p-4">
                           <div className="flex items-center gap-1">
