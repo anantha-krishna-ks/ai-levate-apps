@@ -420,7 +420,7 @@ const KnowledgeBase = () => {
                       <div className="overflow-x-auto">
                         <Table>
                           <TableHeader>
-                            <TableRow className="bg-gray-50 border-b-2 border-gray-200 hover:bg-gray-50">
+                            <TableRow className="bg-muted border-b-2 border-gray-200 hover:bg-muted">
                               <TableHead className="font-medium text-gray-900 py-4">Guideline Name</TableHead>
                               <TableHead className="font-medium text-gray-900 py-4">Guideline Type</TableHead>
                               <TableHead className="font-medium text-gray-900 py-4">Actions</TableHead>
@@ -1128,7 +1128,7 @@ const KnowledgeBase = () => {
                 <div className="overflow-x-auto">
                   <Table className="w-full table-fixed">
                     <TableHeader>
-                      <TableRow className="bg-gray-100 border-b border-gray-300 hover:bg-gray-100">
+                      <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
                         <TableHead className="w-[32%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Knowledge Base Name</TableHead>
                         <TableHead className="w-[28%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Book Name</TableHead>
                         <TableHead className="w-[18%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Type</TableHead>
