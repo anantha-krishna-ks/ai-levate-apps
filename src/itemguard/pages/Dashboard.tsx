@@ -136,7 +136,7 @@ export default function Dashboard() {
 
       {/* Quality Outcome */}
       <section className="mb-6">
-        <div className="rounded-2xl border border-slate-200 bg-white p-6">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_1px_3px_0_hsl(220_25%_10%/0.06),0_1px_2px_-1px_hsl(220_25%_10%/0.04)]">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <PieIcon className="w-4 h-4 text-emerald-600" />
@@ -259,7 +259,7 @@ export default function Dashboard() {
           return order[a.priority] - order[b.priority];
         });
         return (
-          <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-6">
+          <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_1px_3px_0_hsl(220_25%_10%/0.06),0_1px_2px_-1px_hsl(220_25%_10%/0.04)]">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-amber-600" />
