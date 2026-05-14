@@ -444,7 +444,7 @@ const ItemRewriter = () => {
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="bg-gradient-to-r from-gray-100 to-gray-50 border-b border-gray-200">
+                      <tr className="bg-muted border-b border-gray-200">
                         <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide">Question No</th>
                         <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide">Passage</th>
                         <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide">Question(s)</th>
@@ -557,7 +557,7 @@ const ItemRewriter = () => {
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="bg-gradient-to-r from-purple-100 via-blue-50 to-purple-100 border-b border-gray-200">
+                      <tr className="bg-muted border-b border-gray-200">
                         <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide w-1/2">Original Question</th>
                         <th className="px-8 py-5 text-left font-medium text-gray-900 text-sm uppercase tracking-wide w-1/2">Rewritten Question</th>
                       </tr>
