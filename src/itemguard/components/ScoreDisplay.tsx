@@ -12,9 +12,9 @@ function getScoreStatus(score: number): Status {
 }
 
 const colorMap: Record<Status, string> = {
-  green: 'ig-text-status-green ig-border-status-green ig-bg-status-green-bg',
-  amber: 'ig-text-status-amber ig-border-status-amber ig-bg-status-amber-bg',
-  red: 'ig-text-status-red ig-border-status-red ig-bg-status-red-bg',
+  green: 'ig-text-statusfg-green ig-border-status-green ig-bg-status-green-bg',
+  amber: 'ig-text-statusfg-amber ig-border-status-amber ig-bg-status-amber-bg',
+  red:   'ig-text-statusfg-red   ig-border-status-red   ig-bg-status-red-bg',
 };
 
 const sizeMap = {
@@ -26,7 +26,11 @@ const sizeMap = {
 export function ScoreDisplay({ score, size = 'sm' }: ScoreDisplayProps) {
   const status = getScoreStatus(score);
   return (
-    <div className={`ig-score-circle border-2 ${colorMap[status]} ${sizeMap[size]}`}>
+    <div
+      role="img"
+      aria-label={`Score ${score} out of 100`}
+      className={`ig-score-circle border-2 font-semibold tabular-nums ${colorMap[status]} ${sizeMap[size]}`}
+    >
       {score}
     </div>
   );
