@@ -781,9 +781,9 @@ const QuestionGenerator = () => {
                       },
                     ].map((f) => (
                       <div key={f.label} className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">{f.label}</label>
+                        <label className="text-sm font-medium text-gray-900">{f.label}</label>
                         <Select defaultValue={f.defaultValue}>
-                          <SelectTrigger className="bg-white border-gray-200">
+                          <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-white border border-gray-200 shadow-lg">
