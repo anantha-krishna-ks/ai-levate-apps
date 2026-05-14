@@ -6,7 +6,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, AreaChart, Area, Legend,
 } from 'recharts';
-import { AlertTriangle, ShieldAlert, FileWarning, Users, CheckCircle2, XCircle, AlertCircle, Hash, BarChart3, PieChart as PieIcon, ShieldCheck } from 'lucide-react';
+import { AlertTriangle, ShieldAlert, FileWarning, Users, CheckCircle2, XCircle, AlertCircle, Hash, BarChart3, PieChart as PieIcon, ShieldCheck, Pin } from 'lucide-react';
 
 const kpi = mockDashboardKPI;
 
