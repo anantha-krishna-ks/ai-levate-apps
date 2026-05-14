@@ -311,6 +311,8 @@ const QuestionResults = () => {
           </div>
         </div>
 
+        {activeTab === "generate" && (
+        <>
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           {stats.map((stat, index) => (
@@ -565,6 +567,8 @@ const QuestionResults = () => {
             Generate More Questions
           </Button>
         </Card>
+        </>
+        )}
 
         {/* Footer */}
         {activeTab === "generate" && (
