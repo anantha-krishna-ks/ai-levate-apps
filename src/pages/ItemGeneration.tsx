@@ -245,7 +245,7 @@ const ItemGeneration = () => {
                 </AccordionTrigger>
 
                 {/* Content — breakdown grid */}
-                <AccordionContent className="px-6 pb-6">
+                <AccordionContent className="px-5 pb-5">
                   <div className="grid grid-cols-2 gap-2.5">
                     {stat.items.map((item, idx) => {
                       const QIcon = QTYPE_ICON[item.label] ?? FileText;
