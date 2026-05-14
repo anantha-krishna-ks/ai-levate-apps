@@ -104,8 +104,21 @@ export default function Dashboard() {
                 </div>
                 <p className="text-sm opacity-90 mt-1.5 mb-4">{s.caption}</p>
                 <div className="flex items-center gap-3">
-                  <div className="relative h-2.5 flex-1 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 overflow-hidden">
-                    <div className={`h-full rounded-full ${styles.fill}`} style={{ width: `${pct}%` }} />
+                  <div
+                    role="progressbar"
+                    aria-valuenow={pct}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-label={`${s.label} ${pct}%`}
+                    className="relative h-2.5 flex-1 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] overflow-visible"
+                  >
+                    <div
+                      className={`relative h-full rounded-full ${styles.fill} animate-progress-grow`}
+                      style={{ ["--progress-target" as never]: `${pct}%` }}
+                    >
+                      <span className="absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-white/35" />
+                      <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 h-3 w-3 rounded-full bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.12),0_0_10px_3px_rgba(255,255,255,0.95)] ring-1 ring-black/5" />
+                    </div>
                   </div>
                   <span className="text-sm font-medium tabular-nums">{pct}%</span>
                 </div>
