@@ -301,14 +301,14 @@ export default function Dashboard() {
                 </div>
 
                 {/* Priority breakdown */}
-                <div className="mt-4 flex flex-col gap-2.5">
+                <div className="mt-4 flex flex-col divide-y divide-slate-200 border-t border-slate-200">
                   {buckets.map(b => (
-                    <div key={b.key} className="flex items-center justify-between text-xs">
+                    <div key={b.key} className="flex items-center justify-between py-2.5 text-sm">
                       <div className="flex items-center gap-2">
                         <span className={`h-2 w-2 rounded-full ${b.dot}`} />
                         <span className="font-medium text-slate-700">{b.label} priority</span>
                       </div>
-                      <span className="font-semibold tabular-nums text-slate-900">
+                      <span className="text-base font-semibold tabular-nums text-slate-900">
                         {b.count.toLocaleString()}
                       </span>
                     </div>
