@@ -457,6 +457,7 @@ All colors MUST be HSL.
 ============================================================ */
 @layer base {
   .itemguard {
+    font-family: 'Open Sans', sans-serif;
     --status-green: 142 71% 45%;
     --status-green-bg: 142 76% 95%;
     --status-green-foreground: 142 72% 29%;
@@ -474,6 +475,19 @@ All colors MUST be HSL.
     --ig-sidebar-accent-fg: 0 0% 95%;
     --ig-sidebar-border: 220 20% 20%;
     --ig-sidebar-primary: 220 60% 60%;
+  }
+  .itemguard *,
+  .itemguard h1,
+  .itemguard h2,
+  .itemguard h3,
+  .itemguard h4,
+  .itemguard h5,
+  .itemguard h6,
+  .itemguard button,
+  .itemguard input,
+  .itemguard select,
+  .itemguard textarea {
+    font-family: 'Open Sans', sans-serif;
   }
 }
 
