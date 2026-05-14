@@ -6,7 +6,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, AreaChart, Area, Legend,
 } from 'recharts';
-import { TrendingUp, AlertTriangle, ShieldAlert, FileWarning, Users, CheckCircle2, XCircle, AlertCircle, Hash, BarChart3 } from 'lucide-react';
+import { AlertTriangle, ShieldAlert, FileWarning, Users, CheckCircle2, XCircle, AlertCircle, Hash, BarChart3, PieChart as PieIcon, ShieldCheck } from 'lucide-react';
 
 const kpi = mockDashboardKPI;
 
@@ -33,17 +33,25 @@ const problematicUnits = [
   { unit: 'UV30410 - Creative Barbering Techniques', items: 2100, avgScore: 79, redCount: 63 },
 ];
 
-const kpiCards = [
-  { label: 'Total Items', value: kpi.total_items.toLocaleString(), icon: Hash, accent: 'text-primary' },
-  { label: 'Items Analysed', value: kpi.items_analysed.toLocaleString(), icon: BarChart3, accent: 'text-primary' },
-  { label: 'Pass (Green)', value: kpi.green_count.toLocaleString(), icon: CheckCircle2, accent: 'ig-text-status-green' },
-  { label: 'Needs Review', value: kpi.amber_count.toLocaleString(), icon: AlertCircle, accent: 'ig-text-status-amber' },
-  { label: 'Fail (Red)', value: kpi.red_count.toLocaleString(), icon: XCircle, accent: 'ig-text-status-red' },
-  { label: 'Avg Quality Score', value: kpi.average_quality_score.toFixed(1), icon: TrendingUp, accent: 'text-primary' },
-  { label: 'Duplicate Count', value: kpi.duplicate_count.toLocaleString(), icon: Users, accent: 'ig-text-chart-purple' },
-  { label: 'Technical Risk', value: kpi.technical_accuracy_risk.toLocaleString(), icon: ShieldAlert, accent: 'ig-text-status-red' },
-  { label: 'Bias/Fairness Flags', value: kpi.bias_fairness_flags.toLocaleString(), icon: AlertTriangle, accent: 'ig-text-status-amber' },
-  { label: 'Answer Key Risk', value: kpi.answer_key_risk.toLocaleString(), icon: FileWarning, accent: 'ig-text-status-red' },
+const coveragePct = Math.round((kpi.items_analysed / kpi.total_items) * 100);
+
+const volumeStats = [
+  { label: 'Total Items', value: kpi.total_items.toLocaleString(), icon: Hash },
+  { label: 'Items Analysed', value: kpi.items_analysed.toLocaleString(), icon: BarChart3 },
+  { label: 'Coverage', value: `${coveragePct}%`, icon: ShieldCheck },
+];
+
+const qualityStats = [
+  { label: 'Pass', value: kpi.green_count.toLocaleString(), icon: CheckCircle2, dot: 'bg-emerald-500', text: 'text-emerald-700', bg: 'bg-emerald-50', border: 'border-emerald-100' },
+  { label: 'Needs Review', value: kpi.amber_count.toLocaleString(), icon: AlertCircle, dot: 'bg-amber-500', text: 'text-amber-700', bg: 'bg-amber-50', border: 'border-amber-100' },
+  { label: 'Fail', value: kpi.red_count.toLocaleString(), icon: XCircle, dot: 'bg-red-500', text: 'text-red-700', bg: 'bg-red-50', border: 'border-red-100' },
+];
+
+const riskSignals = [
+  { label: 'Duplicate Count', value: kpi.duplicate_count.toLocaleString(), priority: 'Low priority', icon: Users, tone: 'text-slate-600', priorityClass: 'bg-slate-100 text-slate-600' },
+  { label: 'Technical Risk', value: kpi.technical_accuracy_risk.toLocaleString(), priority: 'High priority', icon: ShieldAlert, tone: 'text-red-600', priorityClass: 'bg-red-50 text-red-700' },
+  { label: 'Bias / Fairness Flags', value: kpi.bias_fairness_flags.toLocaleString(), priority: 'Medium priority', icon: AlertTriangle, tone: 'text-amber-600', priorityClass: 'bg-amber-50 text-amber-700' },
+  { label: 'Answer Key Risk', value: kpi.answer_key_risk.toLocaleString(), priority: 'Medium priority', icon: FileWarning, tone: 'text-amber-600', priorityClass: 'bg-amber-50 text-amber-700' },
 ];
 
 export default function Dashboard() {
@@ -51,35 +59,93 @@ export default function Dashboard() {
     <div className="animate-fade-in">
       <PageHeader title="Dashboard" subtitle="Executive overview of item bank quality and analysis health" />
 
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
-        {kpiCards.map(card => (
-          <div key={card.label} className="ig-kpi-card">
-            <div className="flex items-center gap-2 mb-2">
-              <card.icon className={`w-4 h-4 ${card.accent}`} />
-              <span className="text-xs text-muted-foreground font-medium">{card.label}</span>
-            </div>
-            <div className="text-2xl font-bold text-foreground">{card.value}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className="ig-kpi-card">
-          <h3 className="text-sm font-semibold mb-4">Status Distribution</h3>
-          <ResponsiveContainer width="100%" height={220}>
-            <PieChart>
-              <Pie data={donutData} cx="50%" cy="50%" innerRadius={55} outerRadius={85} paddingAngle={3} dataKey="value">
-                {donutData.map((entry, i) => (
-                  <Cell key={i} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip formatter={(val: number) => val.toLocaleString()} />
-              <Legend verticalAlign="bottom" height={36} />
-            </PieChart>
-          </ResponsiveContainer>
+      {/* Volume & Coverage */}
+      <section className="mb-6 rounded-xl border border-slate-200 bg-white p-5">
+        <div className="flex items-center gap-2 mb-4">
+          <BarChart3 className="w-4 h-4 text-blue-600" />
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Volume & Coverage</h3>
         </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {volumeStats.map(s => (
+            <div key={s.label} className="rounded-lg border border-slate-200 bg-slate-50/60 p-4">
+              <div className="flex items-center gap-2 mb-1.5 text-slate-500">
+                <s.icon className="w-3.5 h-3.5" />
+                <span className="text-xs font-medium">{s.label}</span>
+              </div>
+              <div className="text-2xl font-semibold text-slate-900">{s.value}</div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4">
+          <div className="flex items-center justify-between text-xs text-slate-500 mb-1.5">
+            <span>Analysis coverage</span>
+            <span className="font-medium text-slate-700">{coveragePct}%</span>
+          </div>
+          <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+            <div className="h-full bg-blue-600 rounded-full" style={{ width: `${coveragePct}%` }} />
+          </div>
+        </div>
+      </section>
 
-        <div className="ig-kpi-card lg:col-span-2">
+      {/* Quality Outcome */}
+      <section className="mb-6 rounded-xl border border-slate-200 bg-white p-5">
+        <div className="flex items-center gap-2 mb-4">
+          <PieIcon className="w-4 h-4 text-emerald-600" />
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Quality Outcome</h3>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-center">
+          <div className="lg:col-span-2 relative">
+            <ResponsiveContainer width="100%" height={220}>
+              <PieChart>
+                <Pie data={donutData} cx="50%" cy="50%" innerRadius={60} outerRadius={88} paddingAngle={3} dataKey="value">
+                  {donutData.map((entry, i) => (<Cell key={i} fill={entry.color} />))}
+                </Pie>
+                <Tooltip formatter={(val: number) => val.toLocaleString()} />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <span className="text-[11px] uppercase tracking-wider text-slate-400">Avg Score</span>
+              <span className="text-3xl font-semibold text-slate-900">{kpi.average_quality_score.toFixed(1)}</span>
+            </div>
+          </div>
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {qualityStats.map(s => (
+              <div key={s.label} className={`rounded-lg border ${s.border} ${s.bg} p-4`}>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className={`h-2 w-2 rounded-full ${s.dot}`} />
+                  <span className={`text-xs font-medium ${s.text}`}>{s.label}</span>
+                </div>
+                <div className="text-2xl font-semibold text-slate-900">{s.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Risk Signals */}
+      <section className="mb-8 rounded-xl border border-slate-200 bg-white p-5">
+        <div className="flex items-center gap-2 mb-4">
+          <AlertTriangle className="w-4 h-4 text-amber-600" />
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Risk Signals</h3>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {riskSignals.map(s => (
+            <div key={s.label} className="rounded-lg border border-slate-200 p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <s.icon className={`w-3.5 h-3.5 ${s.tone}`} />
+                <span className="text-xs font-medium text-slate-600">{s.label}</span>
+              </div>
+              <div className="text-2xl font-semibold text-slate-900 mb-2">{s.value}</div>
+              <span className={`inline-flex items-center text-[10px] font-medium px-2 py-0.5 rounded-full ${s.priorityClass}`}>
+                {s.priority}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className="grid grid-cols-1 gap-6 mb-8">
+        <div className="ig-kpi-card">
           <h3 className="text-sm font-semibold mb-4">Issues by Category</h3>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={mockIssueCategories} layout="vertical" margin={{ left: 100 }}>
