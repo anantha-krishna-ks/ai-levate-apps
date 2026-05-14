@@ -45,6 +45,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import TokenUsagePopover from "@/components/TokenUsagePopover"
 import {
   Breadcrumb,
@@ -885,7 +886,16 @@ const QuestionGenerator = () => {
                         <td className="p-4 text-sm font-medium text-gray-900">1</td>
                         <td className="p-4 text-xs font-mono text-gray-600">C20_V2024_S11_L00_MC_L2_EN_ID2426</td>
                         <td className="p-4 text-sm text-gray-900 max-w-md">
-                          <p className="truncate">What characteristic of pure risk makes it more acceptable for insurer...</p>
+                          <TooltipProvider delayDuration={150}>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <p className="truncate cursor-default">What characteristic of pure risk makes it more acceptable for insurer...</p>
+                              </TooltipTrigger>
+                              <TooltipContent side="top" align="start" className="max-w-md text-sm leading-relaxed">
+                                What characteristic of pure risk makes it more acceptable for insurers to underwrite compared to speculative risk?
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </td>
                         <td className="p-4 text-sm text-gray-700">Multiple Choice</td>
                         <td className="p-4 text-sm" style={{ color: "#7e2a0c" }}>Risk Management</td>
