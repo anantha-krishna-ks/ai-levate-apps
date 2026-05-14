@@ -64,11 +64,17 @@ const qualityStats = [
 ];
 const qualityPieData = qualityStats.map(s => ({ name: s.label, value: s.value, color: s.color }));
 
-const riskSignals = [
-  { label: 'Duplicate Count', value: kpi.duplicate_count.toLocaleString(), priority: 'Low priority', icon: Users, tone: 'text-slate-600', priorityClass: 'bg-slate-100 text-slate-600' },
-  { label: 'Technical Risk', value: kpi.technical_accuracy_risk.toLocaleString(), priority: 'High priority', icon: ShieldAlert, tone: 'text-red-600', priorityClass: 'bg-red-50 text-red-700' },
-  { label: 'Bias / Fairness Flags', value: kpi.bias_fairness_flags.toLocaleString(), priority: 'Medium priority', icon: AlertTriangle, tone: 'text-amber-600', priorityClass: 'bg-amber-50 text-amber-700' },
-  { label: 'Answer Key Risk', value: kpi.answer_key_risk.toLocaleString(), priority: 'Medium priority', icon: FileWarning, tone: 'text-amber-600', priorityClass: 'bg-amber-50 text-amber-700' },
+type RiskPriority = 'high' | 'medium' | 'low';
+const RISK_TONES: Record<RiskPriority, { bg: string; ink: string; chip: string; label: string }> = {
+  high:   { bg: 'bg-pastel-rose',  ink: 'text-pastel-rose-ink',  chip: 'bg-white/80 text-pastel-rose-ink',  label: 'High priority' },
+  medium: { bg: 'bg-pastel-peach', ink: 'text-pastel-peach-ink', chip: 'bg-white/80 text-pastel-peach-ink', label: 'Medium priority' },
+  low:    { bg: 'bg-pastel-sky',   ink: 'text-pastel-sky-ink',   chip: 'bg-white/80 text-pastel-sky-ink',   label: 'Low priority' },
+};
+const riskSignals: { label: string; value: string; priority: RiskPriority; icon: typeof Users }[] = [
+  { label: 'Duplicate Count',      value: kpi.duplicate_count.toLocaleString(),         priority: 'low',    icon: Users },
+  { label: 'Technical Risk',       value: kpi.technical_accuracy_risk.toLocaleString(), priority: 'high',   icon: ShieldAlert },
+  { label: 'Bias / Fairness Flags',value: kpi.bias_fairness_flags.toLocaleString(),     priority: 'medium', icon: AlertTriangle },
+  { label: 'Answer Key Risk',      value: kpi.answer_key_risk.toLocaleString(),         priority: 'medium', icon: FileWarning },
 ];
 
 export default function Dashboard() {
@@ -237,54 +243,70 @@ export default function Dashboard() {
       </section>
 
       {/* Risk Signals */}
-      <section className="mb-8 rounded-xl border border-slate-200 bg-white p-5">
-        <div className="flex items-center gap-2 mb-4">
-          <AlertTriangle className="w-4 h-4 text-amber-600" />
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Risk Signals</h3>
+      <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-6">
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 text-amber-600" />
+            <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Risk Signals</h3>
+          </div>
+          <span className="text-[11px] font-medium text-slate-500">
+            {(kpi.technical_accuracy_risk + kpi.bias_fairness_flags + kpi.answer_key_risk + kpi.duplicate_count).toLocaleString()} total signals
+          </span>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {riskSignals.map(s => (
-            <div key={s.label} className="rounded-lg border border-slate-200 p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <s.icon className={`w-3.5 h-3.5 ${s.tone}`} />
-                <span className="text-xs font-medium text-slate-600">{s.label}</span>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {riskSignals.map(s => {
+            const tone = RISK_TONES[s.priority];
+            const Icon = s.icon;
+            return (
+              <div
+                key={s.label}
+                className={`flex items-center gap-4 rounded-2xl px-4 py-3.5 border border-slate-200 ${tone.bg} ${tone.ink}`}
+              >
+                <span className="h-10 w-10 rounded-xl bg-white flex items-center justify-center shrink-0 border border-slate-200">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[11px] font-semibold uppercase tracking-wider opacity-90 truncate">
+                    {s.label}
+                  </div>
+                  <div className="flex items-baseline gap-1.5 mt-0.5">
+                    <span className="text-xl font-semibold tabular-nums leading-none">{s.value}</span>
+                  </div>
+                  <span className={`inline-block mt-1.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${tone.chip}`}>
+                    {tone.label}
+                  </span>
+                </div>
               </div>
-              <div className="text-2xl font-semibold text-slate-900 mb-2">{s.value}</div>
-              <span className={`inline-flex items-center text-[10px] font-medium px-2 py-0.5 rounded-full ${s.priorityClass}`}>
-                {s.priority}
-              </span>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Priority Summary */}
-        <div className="mt-5 pt-5 border-t border-dashed border-slate-200">
-          <div className="flex items-center gap-2 mb-3">
+        <div className="mt-6 pt-5 border-t border-dashed border-slate-200">
+          <div className="flex items-center gap-2 mb-4">
             <Pin className="w-3.5 h-3.5 text-rose-500" />
             <h4 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Priority Summary</h4>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="flex items-center gap-3 rounded-lg border border-emerald-100 bg-emerald-50 px-4 py-3">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <div className="flex items-baseline justify-between flex-1 gap-2">
-                <span className="text-xs font-medium text-emerald-800">Pass Rate</span>
-                <span className="text-lg font-semibold text-emerald-900">{Math.round((kpi.green_count / (kpi.green_count + kpi.amber_count + kpi.red_count)) * 100)}%</span>
+            {[
+              { tone: 'mint',  label: 'Pass Rate',       value: `${Math.round((kpi.green_count / qualityTotal) * 100)}%`, icon: CheckCircle2, bg: 'bg-pastel-mint',  ink: 'text-pastel-mint-ink' },
+              { tone: 'peach', label: 'Needs Review',    value: `${Math.round((kpi.amber_count / qualityTotal) * 100)}%`, icon: AlertCircle,  bg: 'bg-pastel-peach', ink: 'text-pastel-peach-ink' },
+              { tone: 'rose',  label: 'Total Risk Flags',value: (kpi.technical_accuracy_risk + kpi.bias_fairness_flags + kpi.answer_key_risk).toLocaleString(), icon: AlertTriangle, bg: 'bg-pastel-rose',  ink: 'text-pastel-rose-ink' },
+            ].map(p => (
+              <div
+                key={p.label}
+                className={`flex items-center gap-4 rounded-2xl px-4 py-3.5 border border-slate-200 ${p.bg} ${p.ink}`}
+              >
+                <span className="h-10 w-10 rounded-xl bg-white flex items-center justify-center shrink-0 border border-slate-200">
+                  <p.icon className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[11px] font-semibold uppercase tracking-wider opacity-90">{p.label}</div>
+                  <div className="text-xl font-semibold tabular-nums leading-none mt-1">{p.value}</div>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-3 rounded-lg border border-amber-100 bg-amber-50 px-4 py-3">
-              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-              <div className="flex items-baseline justify-between flex-1 gap-2">
-                <span className="text-xs font-medium text-amber-800">Needs Review</span>
-                <span className="text-lg font-semibold text-amber-900">{Math.round((kpi.amber_count / (kpi.green_count + kpi.amber_count + kpi.red_count)) * 100)}%</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 rounded-lg border border-red-100 bg-red-50 px-4 py-3">
-              <AlertTriangle className="w-4 h-4 text-red-600 shrink-0" />
-              <div className="flex items-baseline justify-between flex-1 gap-2">
-                <span className="text-xs font-medium text-red-800">Total Risk Flags</span>
-                <span className="text-lg font-semibold text-red-900">{(kpi.technical_accuracy_risk + kpi.bias_fairness_flags + kpi.answer_key_risk).toLocaleString()}</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
