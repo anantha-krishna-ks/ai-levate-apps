@@ -319,13 +319,13 @@ export default function Dashboard() {
               {/* Risk list */}
               <div className="rounded-xl border border-slate-200 overflow-hidden">
                 <div className="grid grid-cols-[1fr,auto,auto] items-center gap-x-8 px-4 py-2.5 bg-slate-50 border-b border-slate-200">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-600">
                     Signal
                   </span>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 text-right">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 text-right">
                     Count
                   </span>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 text-right w-20">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 text-right w-24">
                     Priority
                   </span>
                 </div>
