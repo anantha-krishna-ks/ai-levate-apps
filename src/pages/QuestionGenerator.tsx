@@ -876,6 +876,7 @@ const QuestionGenerator = () => {
                         <th className="text-left p-4 text-sm font-medium text-gray-700 w-20">Preview</th>
                         <th className="text-left p-4 text-sm font-medium text-gray-700 w-20">Edit</th>
                         <th className="text-left p-4 text-sm font-medium text-gray-700 w-20">Delete</th>
+                        <th className="text-left p-4 text-sm font-medium text-gray-700 w-20">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -914,6 +915,30 @@ const QuestionGenerator = () => {
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </td>
+                        <td className="p-4">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="More actions">
+                                <MoreVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-44">
+                              <DropdownMenuItem onClick={() => handleRateQuestion("What characteristic of pure risk makes it more acceptable for insurers to underwrite compared to speculative risk?")}>
+                                <Star className="h-4 w-4 mr-2" /> Rate
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${bookCode}/check-similarity`)}>
+                                <GitCompare className="h-4 w-4 mr-2" /> Check Similarity
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => handleOpenRefinement("What characteristic of pure risk makes it more acceptable for insurers to underwrite compared to speculative risk?")}>
+                                <Sparkle className="h-4 w-4 mr-2" /> Refine
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem className="text-red-600 focus:text-red-700">
+                                <Trash2 className="h-4 w-4 mr-2" /> Delete
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </td>
                       </tr>
                       <tr className="border-b border-gray-200 hover:bg-gray-50">
                         <td className="p-4">
@@ -950,6 +975,30 @@ const QuestionGenerator = () => {
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </td>
+                        <td className="p-4">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="More actions">
+                                <MoreVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-44">
+                              <DropdownMenuItem onClick={() => handleRateQuestion("Pure risk always results in a loss or no loss situation.")}>
+                                <Star className="h-4 w-4 mr-2" /> Rate
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${bookCode}/check-similarity`)}>
+                                <GitCompare className="h-4 w-4 mr-2" /> Check Similarity
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => handleOpenRefinement("Pure risk always results in a loss or no loss situation.")}>
+                                <Sparkle className="h-4 w-4 mr-2" /> Refine
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem className="text-red-600 focus:text-red-700">
+                                <Trash2 className="h-4 w-4 mr-2" /> Delete
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </td>
                       </tr>
                       <tr className="border-b border-gray-200 hover:bg-gray-50">
                         <td className="p-4">
@@ -985,6 +1034,30 @@ const QuestionGenerator = () => {
                           <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" aria-label="Delete">
                             <Trash2 className="h-4 w-4" />
                           </Button>
+                        </td>
+                        <td className="p-4">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="More actions">
+                                <MoreVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-44">
+                              <DropdownMenuItem onClick={() => handleRateQuestion("Explain the relationship between risk assessment and cybersecurity frameworks, and how organizations can apply both to mitigate emerging threats.")}>
+                                <Star className="h-4 w-4 mr-2" /> Rate
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => navigate(`/question-generator/${bookCode}/check-similarity`)}>
+                                <GitCompare className="h-4 w-4 mr-2" /> Check Similarity
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => handleOpenRefinement("Explain the relationship between risk assessment and cybersecurity frameworks, and how organizations can apply both to mitigate emerging threats.")}>
+                                <Sparkle className="h-4 w-4 mr-2" /> Refine
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem className="text-red-600 focus:text-red-700">
+                                <Trash2 className="h-4 w-4 mr-2" /> Delete
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </td>
                       </tr>
                     </tbody>
