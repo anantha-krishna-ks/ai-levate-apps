@@ -263,7 +263,7 @@ const QuestionGenerator = () => {
       </header>
 
       {/* Main Content */}
-      <div className="pt-16 p-6 max-w-7xl mx-auto">
+      <div className="pt-16 p-6 w-full">
         {/* Breadcrumb */}
         <Breadcrumb className="pt-6 mb-3">
           <BreadcrumbList>
