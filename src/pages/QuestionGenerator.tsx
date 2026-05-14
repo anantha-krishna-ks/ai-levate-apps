@@ -935,6 +935,7 @@ const QuestionGenerator = () => {
                                   onClick={() => {
                                     navigate('/check-similarity', { 
                                       state: { 
+                                        from: location.pathname,
                                         question: {
                                           identifier: "C20_V2024_S11_L00_MC_L2_EN_ID2426",
                                           text: "What characteristic of pure risk makes it more acceptable for insurers to cover compared to speculative risk?",
