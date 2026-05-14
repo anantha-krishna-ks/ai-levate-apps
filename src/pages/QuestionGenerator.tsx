@@ -1,5 +1,5 @@
 import { useState, useRef, useLayoutEffect } from "react"
-import { Link, useParams, useNavigate } from "react-router-dom"
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -137,7 +137,10 @@ const QuestionPillToggle: React.FC<QuestionPillToggleProps> = ({ options, value,
 const QuestionGenerator = () => {
   const { bookCode } = useParams()
   const navigate = useNavigate()
-  const [activeTab, setActiveTab] = useState("generate")
+  const location = useLocation()
+  const [activeTab, setActiveTab] = useState<string>(
+    (location.state as any)?.activeTab ?? "generate"
+  )
   const [generationMode, setGenerationMode] = useState(true) // true for LLM, false for Knowledge Base
   const [ratingDialogOpen, setRatingDialogOpen] = useState(false)
   const [selectedQuestion, setSelectedQuestion] = useState<string>("")
@@ -932,6 +935,7 @@ const QuestionGenerator = () => {
                                   onClick={() => {
                                     navigate('/check-similarity', { 
                                       state: { 
+                                        from: location.pathname,
                                         question: {
                                           identifier: "C20_V2024_S11_L00_MC_L2_EN_ID2426",
                                           text: "What characteristic of pure risk makes it more acceptable for insurers to cover compared to speculative risk?",
