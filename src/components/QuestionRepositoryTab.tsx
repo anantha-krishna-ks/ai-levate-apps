@@ -203,31 +203,6 @@ export const QuestionRepositoryTab = () => {
 
   return (
     <div className="space-y-6">
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { label: "Total Questions", value: "1,247", note: "+15% this month", color: "#1c398e", iconBg: "bg-blue-100", Icon: Database, iconColor: "text-blue-600" },
-          { label: "AI Generated", value: "892", note: "High quality", color: "#0d542b", iconBg: "bg-purple-100", Icon: Sparkle, iconColor: "text-purple-600" },
-          { label: "This Week", value: "47", note: "New questions", color: "#59168b", iconBg: "bg-green-100", Icon: FileText, iconColor: "text-green-600" },
-          { label: "Contributors", value: "12", note: "Active authors", color: "#7e2a0c", iconBg: "bg-orange-100", Icon: User, iconColor: "text-orange-600" },
-        ].map((s) => (
-          <Card key={s.label} className="border border-gray-200">
-            <div className="p-6">
-              <div className="flex items-center justify-between">
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-gray-600">{s.label}</p>
-                  <p className="text-2xl font-medium" style={{ color: s.color, fontSize: "1.25rem" }}>{s.value}</p>
-                  <p className="text-xs text-gray-500">{s.note}</p>
-                </div>
-                <div className={`h-8 w-8 ${s.iconBg} rounded-lg flex items-center justify-center`}>
-                  <s.Icon className={`h-5 w-5 ${s.iconColor}`} />
-                </div>
-              </div>
-            </div>
-          </Card>
-        ))}
-      </div>
-
       {/* Filters & Search */}
       <Card className="border border-gray-200">
         <div className="p-6">
