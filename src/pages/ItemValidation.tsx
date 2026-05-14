@@ -104,23 +104,19 @@ const ItemValidation = () => {
 
         {/* Sub-app: sidebar + routed content */}
         <div className="px-6 pb-6 max-w-[1600px] mx-auto">
-          <div className="border border-border rounded-lg overflow-hidden bg-card" style={{ minHeight: "calc(100vh - 180px)" }}>
-            <main className="overflow-auto bg-background">
-              <div className="p-6">
-                <Routes>
-                  <Route index element={<Dashboard />} />
-                  <Route path="item-bank" element={<ItemBank />} />
-                  <Route path="analysis-runs" element={<AnalysisRuns />} />
-                  <Route path="item-reports" element={<ItemReports />} />
-                  <Route path="item-reports/:itemId" element={<ItemDetail />} />
-                  <Route path="guidelines" element={<Guidelines />} />
-                  <Route path="qualifications" element={<QualificationSpecs />} />
-                  <Route path="duplicates" element={<DuplicatesReview />} />
-                  <Route path="settings" element={<SettingsPage />} />
-                </Routes>
-              </div>
-            </main>
-          </div>
+          <main style={{ minHeight: "calc(100vh - 180px)" }}>
+            <Routes>
+              <Route index element={<Dashboard />} />
+              <Route path="item-bank" element={<ItemBank />} />
+              <Route path="analysis-runs" element={<AnalysisRuns />} />
+              <Route path="item-reports" element={<ItemReports />} />
+              <Route path="item-reports/:itemId" element={<ItemDetail />} />
+              <Route path="guidelines" element={<Guidelines />} />
+              <Route path="qualifications" element={<QualificationSpecs />} />
+              <Route path="duplicates" element={<DuplicatesReview />} />
+              <Route path="settings" element={<SettingsPage />} />
+            </Routes>
+          </main>
         </div>
       </div>
     </div>
