@@ -1129,10 +1129,10 @@ const KnowledgeBase = () => {
                   <Table className="w-full table-fixed">
                     <TableHeader>
                       <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
-                        <TableHead className="w-[32%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Knowledge Base Name</TableHead>
-                        <TableHead className="w-[28%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Book Name</TableHead>
-                        <TableHead className="w-[18%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide">Type</TableHead>
-                        <TableHead className="w-[22%] font-semibold text-gray-800 py-4 text-xs uppercase tracking-wide text-right pr-4">Actions</TableHead>
+                        <TableHead className="w-[32%]">Knowledge Base Name</TableHead>
+                        <TableHead className="w-[28%]">Book Name</TableHead>
+                        <TableHead className="w-[18%]">Type</TableHead>
+                        <TableHead className="w-[22%] text-right pr-4">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
