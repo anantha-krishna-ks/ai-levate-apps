@@ -64,6 +64,8 @@ const formSchema = z.object({
   questionFormat: z.string().min(1, "Question format is required"),
   pointValue: z.string().min(1, "Point value is required"),
   additionalInstructions: z.string().min(1, "Additional instructions are required"),
+  knowledgeBaseName: z.string().min(1, "Knowledge base is required"),
+  generalGuidelines: z.array(z.string()).default([]),
 })
 
 type QuestionPillOption = { key: string; label: string; icon: React.ComponentType<{ className?: string }> };
@@ -165,6 +167,8 @@ const QuestionGenerator = () => {
       questionFormat: "multiple-choice",
       pointValue: "1",
       additionalInstructions: "",
+      knowledgeBaseName: "",
+      generalGuidelines: [],
     },
   })
 
