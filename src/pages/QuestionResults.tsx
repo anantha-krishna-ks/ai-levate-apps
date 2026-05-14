@@ -58,6 +58,7 @@ import {
 import TokenUsagePopover from "@/components/TokenUsagePopover"
 import { QuestionPillToggle } from "./QuestionGenerator"
 import { LogOut, Settings } from "lucide-react"
+import { QuestionRepositoryTab } from "@/components/QuestionRepositoryTab"
 
 const QuestionResults = () => {
   const navigate = useNavigate()
