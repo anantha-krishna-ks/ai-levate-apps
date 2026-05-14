@@ -117,89 +117,92 @@ export default function Dashboard() {
 
       {/* Quality Outcome */}
       <section className="mb-6">
-        <div className="flex items-center justify-between mb-3 px-1">
-          <div className="flex items-center gap-2">
-            <PieIcon className="w-4 h-4 text-emerald-600" />
-            <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Quality Outcome</h3>
-          </div>
-          <span className="text-[11px] font-medium text-slate-500">
-            {qualityTotal.toLocaleString()} items analysed · Avg {kpi.average_quality_score.toFixed(1)}
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 items-stretch">
-          {/* Pie tile */}
-          <div className="relative overflow-hidden rounded-3xl border border-border/70 bg-white p-4 flex flex-col items-center">
-            <ResponsiveContainer width="100%" height={170}>
-              <PieChart>
-                <defs>
-                  {qualityPieData.map((d, i) => (
-                    <radialGradient key={i} id={`qual-grad-${i}`} cx="50%" cy="50%" r="65%">
-                      <stop offset="0%" stopColor={d.color} stopOpacity={1} />
-                      <stop offset="100%" stopColor={d.color} stopOpacity={0.8} />
-                    </radialGradient>
-                  ))}
-                </defs>
-                <Pie
-                  data={qualityPieData}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={70}
-                  innerRadius={0}
-                  paddingAngle={2}
-                  dataKey="value"
-                  stroke="#ffffff"
-                  strokeWidth={2}
-                  isAnimationActive
-                  animationDuration={800}
-                  label={({ percent }) => `${Math.round((percent ?? 0) * 100)}%`}
-                  labelLine={false}
-                >
-                  {qualityPieData.map((_, i) => (
-                    <Cell key={i} fill={`url(#qual-grad-${i})`} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  formatter={(val: number) => val.toLocaleString()}
-                  contentStyle={{
-                    background: 'rgba(255,255,255,0.95)',
-                    border: '1px solid hsl(220, 13%, 91%)',
-                    borderRadius: 10,
-                    fontSize: 11,
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-            <span className="mt-1 text-[11px] font-medium text-slate-500">Distribution</span>
+        <div className="rounded-xl border border-slate-200 bg-white p-5">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <PieIcon className="w-4 h-4 text-emerald-600" />
+              <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Quality Outcome</h3>
+            </div>
+            <span className="text-[11px] font-medium text-slate-500">
+              {qualityTotal.toLocaleString()} items analysed · Avg {kpi.average_quality_score.toFixed(1)}
+            </span>
           </div>
 
-          {/* Pastel stat tiles */}
-          {qualityStats.map((s) => {
-            const pct = Math.round((s.value / qualityTotal) * 100);
-            const Icon = s.icon;
-            return (
-              <div
-                key={s.key}
-                className={`relative overflow-hidden rounded-3xl border border-border/70 p-4 ${s.bg} ${s.ink}`}
-              >
-                <div className="flex items-center gap-2.5 mb-3">
-                  <div className="h-7 w-7 rounded-full bg-white/85 flex items-center justify-center shrink-0 ring-1 ring-black/5">
-                    <Icon className="h-3.5 w-3.5" />
+          <div className="grid grid-cols-1 lg:grid-cols-[260px,1fr] gap-6 items-center">
+            {/* Pie chart */}
+            <div className="relative mx-auto w-full max-w-[260px]">
+              <ResponsiveContainer width="100%" height={220}>
+                <PieChart>
+                  <defs>
+                    {qualityPieData.map((d, i) => (
+                      <radialGradient key={i} id={`qual-grad-${i}`} cx="50%" cy="50%" r="65%">
+                        <stop offset="0%" stopColor={d.color} stopOpacity={1} />
+                        <stop offset="100%" stopColor={d.color} stopOpacity={0.85} />
+                      </radialGradient>
+                    ))}
+                  </defs>
+                  <Pie
+                    data={qualityPieData}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={92}
+                    innerRadius={0}
+                    paddingAngle={2}
+                    dataKey="value"
+                    stroke="#ffffff"
+                    strokeWidth={2}
+                    isAnimationActive
+                    animationDuration={800}
+                    label={({ percent }) => `${Math.round((percent ?? 0) * 100)}%`}
+                    labelLine={false}
+                  >
+                    {qualityPieData.map((_, i) => (
+                      <Cell key={i} fill={`url(#qual-grad-${i})`} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(val: number) => val.toLocaleString()}
+                    contentStyle={{
+                      background: 'rgba(255,255,255,0.95)',
+                      border: '1px solid hsl(220, 13%, 91%)',
+                      borderRadius: 10,
+                      fontSize: 11,
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Stat rows */}
+            <div className="flex flex-col gap-2.5">
+              {qualityStats.map((s) => {
+                const pct = Math.round((s.value / qualityTotal) * 100);
+                const Icon = s.icon;
+                return (
+                  <div
+                    key={s.key}
+                    className={`flex items-center gap-3 rounded-2xl border border-border/70 px-4 py-3 ${s.bg} ${s.ink}`}
+                  >
+                    <div className="h-8 w-8 rounded-full bg-white/85 flex items-center justify-center shrink-0 ring-1 ring-black/5">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-sm font-medium tracking-tight">{s.label}</span>
+                        <span className="text-xs font-medium opacity-75 tabular-nums">{pct}%</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-1.5 flex-1 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 overflow-hidden">
+                          <div className={`h-full rounded-full ${s.fill}`} style={{ width: `${pct}%` }} />
+                        </div>
+                        <span className="text-sm font-semibold tabular-nums shrink-0">{s.value.toLocaleString()}</span>
+                      </div>
+                    </div>
                   </div>
-                  <span className="text-sm font-medium tracking-tight">{s.label}</span>
-                </div>
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-3xl leading-none font-medium tracking-tight">{s.value.toLocaleString()}</span>
-                  <span className="text-xs font-medium opacity-75 tabular-nums">{pct}%</span>
-                </div>
-                <div className="mt-3 flex items-center gap-2">
-                  <div className="relative h-2 flex-1 rounded-full bg-white/60 ring-1 ring-inset ring-black/5 overflow-hidden">
-                    <div className={`h-full rounded-full ${s.fill}`} style={{ width: `${pct}%` }} />
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
