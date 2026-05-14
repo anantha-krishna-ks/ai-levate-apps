@@ -24,6 +24,7 @@ const CheckSimilarity = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const selectedQuestion = location.state?.question
+  const fromPath = (location.state as any)?.from
   const [isPreviewDialogOpen, setIsPreviewDialogOpen] = useState(false)
   const [previewQuestion, setPreviewQuestion] = useState<any>(null)
   const [filterType, setFilterType] = useState("all")
@@ -155,7 +156,13 @@ const CheckSimilarity = () => {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => navigate(-1)}
+              onClick={() => {
+                if (fromPath) {
+                  navigate(fromPath, { state: { activeTab: "repository" } })
+                } else {
+                  navigate(-1)
+                }
+              }}
               className="h-9 rounded-full pl-2.5 pr-3.5 gap-1.5 border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
