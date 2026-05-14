@@ -450,3 +450,85 @@ All colors MUST be HSL.
     box-shadow: 0 0 0 1px hsl(var(--primary) / 0.2);
   }
 }
+
+/* ============================================================
+   ItemGuard (Item Validation) sub-app tokens & components
+   Scoped under .itemguard so it doesn't affect the main app.
+============================================================ */
+@layer base {
+  .itemguard {
+    --status-green: 142 71% 45%;
+    --status-green-bg: 142 76% 95%;
+    --status-green-foreground: 142 72% 29%;
+    --status-amber: 38 92% 50%;
+    --status-amber-bg: 38 100% 95%;
+    --status-amber-foreground: 30 80% 30%;
+    --status-red: 0 72% 51%;
+    --status-red-bg: 0 86% 96%;
+    --status-red-foreground: 0 72% 38%;
+    --chart-blue: 220 60% 50%;
+    --chart-purple: 262 52% 47%;
+    --ig-sidebar-bg: 220 25% 12%;
+    --ig-sidebar-fg: 220 15% 75%;
+    --ig-sidebar-accent: 220 20% 18%;
+    --ig-sidebar-accent-fg: 0 0% 95%;
+    --ig-sidebar-border: 220 20% 20%;
+    --ig-sidebar-primary: 220 60% 60%;
+  }
+}
+
+@layer components {
+  .itemguard .ig-status-badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .itemguard .ig-status-green {
+    background-color: hsl(var(--status-green-bg));
+    color: hsl(var(--status-green-foreground));
+  }
+  .itemguard .ig-status-amber {
+    background-color: hsl(var(--status-amber-bg));
+    color: hsl(var(--status-amber-foreground));
+  }
+  .itemguard .ig-status-red {
+    background-color: hsl(var(--status-red-bg));
+    color: hsl(var(--status-red-foreground));
+  }
+  .itemguard .ig-text-status-green { color: hsl(var(--status-green)); }
+  .itemguard .ig-text-status-amber { color: hsl(var(--status-amber)); }
+  .itemguard .ig-text-status-red   { color: hsl(var(--status-red)); }
+  .itemguard .ig-bg-status-green { background-color: hsl(var(--status-green)); }
+  .itemguard .ig-bg-status-amber { background-color: hsl(var(--status-amber)); }
+  .itemguard .ig-bg-status-red   { background-color: hsl(var(--status-red)); }
+  .itemguard .ig-bg-status-green-bg { background-color: hsl(var(--status-green-bg)); }
+  .itemguard .ig-bg-status-amber-bg { background-color: hsl(var(--status-amber-bg)); }
+  .itemguard .ig-bg-status-red-bg   { background-color: hsl(var(--status-red-bg)); }
+  .itemguard .ig-border-status-green { border-color: hsl(var(--status-green)); }
+  .itemguard .ig-border-status-amber { border-color: hsl(var(--status-amber)); }
+  .itemguard .ig-border-status-red   { border-color: hsl(var(--status-red)); }
+  .itemguard .ig-text-chart-purple { color: hsl(var(--chart-purple)); }
+
+  .itemguard .ig-kpi-card {
+    @apply bg-card rounded-xl border border-border p-5 transition-all duration-200;
+    box-shadow: 0 1px 2px 0 hsl(220 25% 10% / 0.05);
+  }
+  .itemguard .ig-kpi-card:hover {
+    box-shadow: 0 4px 6px -1px hsl(220 25% 10% / 0.07), 0 2px 4px -2px hsl(220 25% 10% / 0.05);
+  }
+
+  .itemguard .ig-page-header { @apply mb-6; }
+  .itemguard .ig-page-title { @apply text-xl font-bold tracking-tight text-foreground; }
+  .itemguard .ig-page-subtitle { @apply text-sm text-muted-foreground mt-1; }
+
+  .itemguard .ig-data-table { @apply w-full text-sm; }
+  .itemguard .ig-data-table th {
+    @apply text-left text-xs font-medium text-muted-foreground uppercase tracking-wider px-4 py-3 bg-muted/50 border-b border-border;
+  }
+  .itemguard .ig-data-table td {
+    @apply px-4 py-3 border-b border-border text-foreground;
+  }
+  .itemguard .ig-data-table tr:hover td { @apply bg-muted/30; }
+
+  .itemguard .ig-score-circle {
+    @apply inline-flex items-center justify-center rounded-full font-bold;
+  }
+}
