@@ -864,7 +864,7 @@ const QuestionGenerator = () => {
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-gray-200 bg-gray-50">
+                      <tr className="border-b border-gray-200 bg-muted">
                         <th className="text-left p-4 text-sm font-medium text-gray-700 w-12">
                           <input type="checkbox" className="rounded border-gray-300" />
                         </th>
