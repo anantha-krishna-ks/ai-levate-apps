@@ -534,45 +534,75 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="ig-kpi-card overflow-hidden">
-          <h3 className="text-sm font-semibold mb-4">Most Problematic Units</h3>
-          <div className="overflow-x-auto">
-            <table className="ig-data-table">
-              <thead>
-                <tr><th>Unit</th><th>Items</th><th>Avg Score</th><th>Red</th></tr>
-              </thead>
-              <tbody>
-                {problematicUnits.map(u => (
-                  <tr key={u.unit}>
-                    <td className="text-xs max-w-[200px] truncate">{u.unit}</td>
-                    <td>{u.items.toLocaleString()}</td>
-                    <td><ScoreDisplay score={u.avgScore} /></td>
-                    <td className="ig-text-status-red font-medium">{u.redCount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* Most Problematic Units */}
+        <div className="ig-kpi-card overflow-hidden !p-0">
+          <div className="flex items-center justify-between gap-3 px-5 pt-5 pb-4">
+            <div className="flex items-center gap-2">
+              <Layers className="w-4 h-4 text-amber-600" />
+              <div>
+                <h3 className="text-sm font-semibold text-slate-900 leading-tight">Most Problematic Units</h3>
+                <p className="text-[11px] text-slate-500 mt-0.5">Lowest average quality scores</p>
+              </div>
+            </div>
+            <span className="text-[11px] font-medium text-slate-500">{problematicUnits.length} units</span>
+          </div>
+          <div className="overflow-x-auto border-t border-slate-200">
+            <div className="grid grid-cols-[1fr,auto,auto,auto] gap-x-6 px-5 py-2.5 bg-slate-50 border-b border-slate-200">
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-600">Unit</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 text-right">Items</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 text-right">Avg Score</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 text-right w-12">Red</span>
+            </div>
+            <ul className="divide-y divide-slate-100">
+              {problematicUnits.map(u => (
+                <li
+                  key={u.unit}
+                  className="grid grid-cols-[1fr,auto,auto,auto] gap-x-6 items-center px-5 py-3 hover:bg-slate-50/60 transition-colors"
+                >
+                  <span className="text-sm font-medium text-slate-800 truncate" title={u.unit}>{u.unit}</span>
+                  <span className="text-sm tabular-nums text-slate-700 text-right">{u.items.toLocaleString()}</span>
+                  <div className="flex justify-end"><ScoreDisplay score={u.avgScore} /></div>
+                  <span className="inline-flex items-center justify-center min-w-[2.5rem] px-2 py-0.5 text-xs font-semibold rounded-md bg-rose-50 text-rose-700 border border-rose-100 tabular-nums w-12">
+                    {u.redCount}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="ig-kpi-card overflow-hidden">
-          <h3 className="text-sm font-semibold mb-4">Top 20 Highest-Risk Items</h3>
-          <div className="overflow-x-auto max-h-[320px] overflow-y-auto">
-            <table className="ig-data-table">
-              <thead>
-                <tr><th>Item ID</th><th>Score</th><th>Status</th><th>Unit</th></tr>
-              </thead>
-              <tbody>
-                {topRiskItems.map(r => (
-                  <tr key={r.result_id}>
-                    <td className="font-mono text-xs">{r.item_id}</td>
-                    <td><ScoreDisplay score={r.overall_score} /></td>
-                    <td><StatusBadge status={r.overall_status} /></td>
-                    <td className="text-xs max-w-[140px] truncate">{r.item?.unit_code}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* Top 20 Highest-Risk Items */}
+        <div className="ig-kpi-card overflow-hidden !p-0">
+          <div className="flex items-center justify-between gap-3 px-5 pt-5 pb-4">
+            <div className="flex items-center gap-2">
+              <Flame className="w-4 h-4 text-rose-600" />
+              <div>
+                <h3 className="text-sm font-semibold text-slate-900 leading-tight">Top 20 Highest-Risk Items</h3>
+                <p className="text-[11px] text-slate-500 mt-0.5">Items with the lowest overall scores</p>
+              </div>
+            </div>
+            <span className="text-[11px] font-medium text-slate-500">{topRiskItems.length} items</span>
+          </div>
+          <div className="overflow-x-auto border-t border-slate-200 max-h-[320px] overflow-y-auto">
+            <div className="grid grid-cols-[auto,auto,auto,1fr] gap-x-6 px-5 py-2.5 bg-slate-50 border-b border-slate-200 sticky top-0 z-10">
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-600">Item ID</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 text-right">Score</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-600">Status</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 text-right">Unit</span>
+            </div>
+            <ul className="divide-y divide-slate-100">
+              {topRiskItems.map(r => (
+                <li
+                  key={r.result_id}
+                  className="grid grid-cols-[auto,auto,auto,1fr] gap-x-6 items-center px-5 py-3 hover:bg-slate-50/60 transition-colors"
+                >
+                  <span className="font-mono text-xs text-slate-700">{r.item_id}</span>
+                  <div className="flex justify-end"><ScoreDisplay score={r.overall_score} /></div>
+                  <div><StatusBadge status={r.overall_status} /></div>
+                  <span className="text-xs text-slate-600 text-right truncate font-medium">{r.item?.unit_code}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
