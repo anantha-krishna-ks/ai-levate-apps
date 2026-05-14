@@ -872,9 +872,10 @@ const QuestionGenerator = () => {
                         <th className="text-left p-4 text-sm font-medium text-gray-700 w-48">Question ID</th>
                         <th className="text-left p-4 text-sm font-medium text-gray-700">Question</th>
                         <th className="text-left p-4 text-sm font-medium text-gray-700">Type</th>
-                        <th className="text-left p-4 text-sm font-medium text-gray-700">Topic</th>
-                        <th className="text-left p-4 text-sm font-medium text-gray-700">Difficulty</th>
-                        <th className="text-left p-4 text-sm font-medium text-gray-700">Created</th>
+                        <th className="text-left p-4 text-sm font-medium text-gray-700">User Name</th>
+                        <th className="text-left p-4 text-sm font-medium text-gray-700">Preview</th>
+                        <th className="text-left p-4 text-sm font-medium text-gray-700">Edit</th>
+                        <th className="text-left p-4 text-sm font-medium text-gray-700">Delete</th>
                         <th className="text-left p-4 text-sm font-medium text-gray-700 w-24">Actions</th>
                       </tr>
                     </thead>
