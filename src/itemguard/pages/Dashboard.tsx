@@ -65,10 +65,10 @@ const qualityStats = [
 const qualityPieData = qualityStats.map(s => ({ name: s.label, value: s.value, color: s.color }));
 
 type RiskPriority = 'high' | 'medium' | 'low';
-const RISK_TONES: Record<RiskPriority, { bg: string; ink: string; chip: string; label: string }> = {
-  high:   { bg: 'bg-pastel-rose',  ink: 'text-pastel-rose-ink',  chip: 'bg-white/80 text-pastel-rose-ink',  label: 'High priority' },
-  medium: { bg: 'bg-pastel-peach', ink: 'text-pastel-peach-ink', chip: 'bg-white/80 text-pastel-peach-ink', label: 'Medium priority' },
-  low:    { bg: 'bg-pastel-sky',   ink: 'text-pastel-sky-ink',   chip: 'bg-white/80 text-pastel-sky-ink',   label: 'Low priority' },
+const RISK_TONES: Record<RiskPriority, { dot: string; chip: string; label: string }> = {
+  high:   { dot: 'bg-rose-500',   chip: 'bg-rose-50 text-rose-700 border border-rose-100',     label: 'High priority' },
+  medium: { dot: 'bg-amber-500',  chip: 'bg-amber-50 text-amber-700 border border-amber-100',  label: 'Medium priority' },
+  low:    { dot: 'bg-slate-400',  chip: 'bg-slate-100 text-slate-600 border border-slate-200', label: 'Low priority' },
 };
 const riskSignals: { label: string; value: string; priority: RiskPriority; icon: typeof Users }[] = [
   { label: 'Duplicate Count',      value: kpi.duplicate_count.toLocaleString(),         priority: 'low',    icon: Users },
@@ -261,17 +261,18 @@ export default function Dashboard() {
             return (
               <div
                 key={s.label}
-                className={`flex items-center gap-4 rounded-2xl px-4 py-3.5 border border-slate-200 ${tone.bg} ${tone.ink}`}
+                className="relative flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5"
               >
-                <span className="h-10 w-10 rounded-xl bg-white flex items-center justify-center shrink-0 border border-slate-200">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
+                <span className={`absolute left-0 top-3 bottom-3 w-1 rounded-r-full ${tone.dot}`} />
+                <span className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-200">
+                  <Icon className="h-4 w-4 text-slate-600" aria-hidden="true" />
                 </span>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[11px] font-semibold uppercase tracking-wider opacity-90 truncate">
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 truncate">
                     {s.label}
                   </div>
-                  <div className="flex items-baseline gap-1.5 mt-0.5">
-                    <span className="text-xl font-semibold tabular-nums leading-none">{s.value}</span>
+                  <div className="text-xl font-semibold tabular-nums leading-none mt-0.5 text-slate-900">
+                    {s.value}
                   </div>
                   <span className={`inline-block mt-1.5 text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${tone.chip}`}>
                     {tone.label}
@@ -290,20 +291,20 @@ export default function Dashboard() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
-              { tone: 'mint',  label: 'Pass Rate',       value: `${Math.round((kpi.green_count / qualityTotal) * 100)}%`, icon: CheckCircle2, bg: 'bg-pastel-mint',  ink: 'text-pastel-mint-ink' },
-              { tone: 'peach', label: 'Needs Review',    value: `${Math.round((kpi.amber_count / qualityTotal) * 100)}%`, icon: AlertCircle,  bg: 'bg-pastel-peach', ink: 'text-pastel-peach-ink' },
-              { tone: 'rose',  label: 'Total Risk Flags',value: (kpi.technical_accuracy_risk + kpi.bias_fairness_flags + kpi.answer_key_risk).toLocaleString(), icon: AlertTriangle, bg: 'bg-pastel-rose',  ink: 'text-pastel-rose-ink' },
+              { label: 'Pass Rate',        value: `${Math.round((kpi.green_count / qualityTotal) * 100)}%`, icon: CheckCircle2,  iconColor: 'text-emerald-600' },
+              { label: 'Needs Review',     value: `${Math.round((kpi.amber_count / qualityTotal) * 100)}%`, icon: AlertCircle,   iconColor: 'text-amber-600' },
+              { label: 'Total Risk Flags', value: (kpi.technical_accuracy_risk + kpi.bias_fairness_flags + kpi.answer_key_risk).toLocaleString(), icon: AlertTriangle, iconColor: 'text-rose-600' },
             ].map(p => (
               <div
                 key={p.label}
-                className={`flex items-center gap-4 rounded-2xl px-4 py-3.5 border border-slate-200 ${p.bg} ${p.ink}`}
+                className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5"
               >
-                <span className="h-10 w-10 rounded-xl bg-white flex items-center justify-center shrink-0 border border-slate-200">
-                  <p.icon className="h-4 w-4" aria-hidden="true" />
+                <span className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-200">
+                  <p.icon className={`h-4 w-4 ${p.iconColor}`} aria-hidden="true" />
                 </span>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[11px] font-semibold uppercase tracking-wider opacity-90">{p.label}</div>
-                  <div className="text-xl font-semibold tabular-nums leading-none mt-1">{p.value}</div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">{p.label}</div>
+                  <div className="text-xl font-semibold tabular-nums leading-none mt-1 text-slate-900">{p.value}</div>
                 </div>
               </div>
             ))}
