@@ -64,6 +64,8 @@ const formSchema = z.object({
   questionFormat: z.string().min(1, "Question format is required"),
   pointValue: z.string().min(1, "Point value is required"),
   additionalInstructions: z.string().min(1, "Additional instructions are required"),
+  knowledgeBaseName: z.string().min(1, "Knowledge base is required"),
+  generalGuidelines: z.array(z.string()).default([]),
 })
 
 type QuestionPillOption = { key: string; label: string; icon: React.ComponentType<{ className?: string }> };
@@ -165,6 +167,8 @@ const QuestionGenerator = () => {
       questionFormat: "multiple-choice",
       pointValue: "1",
       additionalInstructions: "",
+      knowledgeBaseName: "",
+      generalGuidelines: [],
     },
   })
 
@@ -420,6 +424,101 @@ const QuestionGenerator = () => {
                           })}
                         </div>
                       </div>
+
+                      {/* Knowledge Base Name */}
+                      <FormField
+                        control={form.control}
+                        name="knowledgeBaseName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-sm font-medium text-gray-900">
+                              Knowledge Base Name <span className="text-red-500">*</span>
+                            </FormLabel>
+                            <FormControl>
+                              <Select onValueChange={field.onChange} value={field.value}>
+                                <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
+                                  <SelectValue placeholder="Select knowledge base" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="cyber-risk">Cyber Risk</SelectItem>
+                                  <SelectItem value="principles-insurance">Principles and Practice of Insurance</SelectItem>
+                                  <SelectItem value="financial-risk">Financial Risk Assessment</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      {/* General Guidelines */}
+                      <FormField
+                        control={form.control}
+                        name="generalGuidelines"
+                        render={({ field }) => {
+                          const options = [
+                            { value: "multiple_choice", label: "MULTIPLE_CHOICE" },
+                            { value: "remember", label: "REMEMBER" },
+                            { value: "moderate", label: "MODERATE" },
+                            { value: "apply", label: "APPLY" },
+                            { value: "understand", label: "UNDERSTAND" },
+                          ];
+                          const selected: string[] = field.value || [];
+                          const addItem = (val: string) => {
+                            if (!selected.includes(val)) field.onChange([...selected, val]);
+                          };
+                          const removeItem = (val: string) => {
+                            field.onChange(selected.filter((v) => v !== val));
+                          };
+                          return (
+                            <FormItem>
+                              <FormLabel className="text-sm font-medium text-gray-900">
+                                General Guidelines
+                              </FormLabel>
+                              <FormControl>
+                                <Select onValueChange={addItem} value="">
+                                  <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
+                                    <SelectValue placeholder="Select General Guidelines" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {options
+                                      .filter((o) => !selected.includes(o.value))
+                                      .map((o) => (
+                                        <SelectItem key={o.value} value={o.value}>
+                                          {o.label}
+                                        </SelectItem>
+                                      ))}
+                                  </SelectContent>
+                                </Select>
+                              </FormControl>
+                              {selected.length > 0 && (
+                                <div className="flex flex-wrap gap-2 mt-2 rounded-2xl bg-emerald-50/60 border border-emerald-100 p-2.5">
+                                  {selected.map((val) => {
+                                    const opt = options.find((o) => o.value === val);
+                                    return (
+                                      <span
+                                        key={val}
+                                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white text-emerald-700 text-[11px] font-semibold ring-1 ring-emerald-200"
+                                      >
+                                        {opt?.label ?? val}
+                                        <button
+                                          type="button"
+                                          onClick={() => removeItem(val)}
+                                          className="text-emerald-500 hover:text-emerald-700 transition-colors"
+                                          aria-label={`Remove ${opt?.label ?? val}`}
+                                        >
+                                          <X className="h-3 w-3" />
+                                        </button>
+                                      </span>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                              <FormMessage />
+                            </FormItem>
+                          );
+                        }}
+                      />
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
                         {/* Left side form */}
