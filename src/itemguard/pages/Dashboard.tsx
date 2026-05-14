@@ -318,7 +318,7 @@ export default function Dashboard() {
 
               {/* Risk list */}
               <div className="rounded-xl border border-slate-200 overflow-hidden">
-                <div className="grid grid-cols-[1fr,auto,auto] items-center gap-4 px-4 py-2.5 bg-slate-50 border-b border-slate-200">
+                <div className="grid grid-cols-[1fr,auto,auto] items-center gap-x-8 px-4 py-2.5 bg-slate-50 border-b border-slate-200">
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
                     Signal
                   </span>
@@ -336,7 +336,7 @@ export default function Dashboard() {
                     return (
                       <li
                         key={s.label}
-                        className="grid grid-cols-[1fr,auto,auto] items-center gap-4 px-4 py-3 hover:bg-slate-50/60 transition-colors"
+                        className="grid grid-cols-[1fr,auto,auto] items-center gap-x-8 px-4 py-3 hover:bg-slate-50/60 transition-colors"
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <span className="h-8 w-8 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0">
