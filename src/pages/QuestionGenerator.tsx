@@ -45,6 +45,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import TokenUsagePopover from "@/components/TokenUsagePopover"
 import {
   Breadcrumb,
@@ -885,7 +886,16 @@ const QuestionGenerator = () => {
                         <td className="p-4 text-sm font-medium text-gray-900">1</td>
                         <td className="p-4 text-xs font-mono text-gray-600">C20_V2024_S11_L00_MC_L2_EN_ID2426</td>
                         <td className="p-4 text-sm text-gray-900 max-w-md">
-                          <p className="truncate">What characteristic of pure risk makes it more acceptable for insurer...</p>
+                          <TooltipProvider delayDuration={150}>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <p className="truncate cursor-default">What characteristic of pure risk makes it more acceptable for insurer...</p>
+                              </TooltipTrigger>
+                              <TooltipContent side="top" align="start" className="max-w-md text-sm leading-relaxed">
+                                What characteristic of pure risk makes it more acceptable for insurers to underwrite compared to speculative risk?
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </td>
                         <td className="p-4 text-sm text-gray-700">Multiple Choice</td>
                         <td className="p-4 text-sm" style={{ color: "#7e2a0c" }}>Risk Management</td>
@@ -962,7 +972,16 @@ const QuestionGenerator = () => {
                         <td className="p-4 text-sm font-medium text-gray-900">2</td>
                         <td className="p-4 text-xs font-mono text-gray-600">C20_V2024_S11_L01_TF_L1_EN_ID2427</td>
                         <td className="p-4 text-sm text-gray-900 max-w-md">
-                          <p className="truncate">Pure risk always results in a loss or no loss situation.</p>
+                          <TooltipProvider delayDuration={150}>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <p className="truncate cursor-default">Pure risk always results in a loss or no loss situation.</p>
+                              </TooltipTrigger>
+                              <TooltipContent side="top" align="start" className="max-w-md text-sm leading-relaxed">
+                                Pure risk always results in a loss or no loss situation.
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </td>
                         <td className="p-4 text-sm text-gray-700">True/False</td>
                         <td className="p-4 text-sm" style={{ color: "#7e2a0c" }}>Risk Fundamentals</td>
@@ -1021,7 +1040,16 @@ const QuestionGenerator = () => {
                         <td className="p-4 text-sm font-medium text-gray-900">3</td>
                         <td className="p-4 text-xs font-mono text-gray-600">C20_V2024_S11_L02_SA_L3_EN_ID2428</td>
                         <td className="p-4 text-sm text-gray-900 max-w-md">
-                          <p className="truncate">Explain the relationship between risk assessment and cybersecurity f...</p>
+                          <TooltipProvider delayDuration={150}>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <p className="truncate cursor-default">Explain the relationship between risk assessment and cybersecurity f...</p>
+                              </TooltipTrigger>
+                              <TooltipContent side="top" align="start" className="max-w-md text-sm leading-relaxed">
+                                Explain the relationship between risk assessment and cybersecurity frameworks, and how organizations can apply both to mitigate emerging threats.
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </td>
                         <td className="p-4 text-sm text-gray-700">Short Answer</td>
                         <td className="p-4 text-sm" style={{ color: "#7e2a0c" }}>Cybersecurity</td>
