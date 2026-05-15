@@ -63,7 +63,8 @@ const formSchema = z.object({
   learningObjectives: z.string().min(1, "Learning objectives is required"),
   questionFormat: z.string().min(1, "Question format is required"),
   pointValue: z.string().min(1, "Point value is required"),
-  additionalInstructions: z.string().min(1, "Additional instructions are required"),
+  difficultyLevel: z.string().min(1, "Difficulty level is required"),
+  additionalInstructions: z.string().optional(),
   knowledgeBaseName: z.string().min(1, "Knowledge base is required"),
   generalGuidelines: z.array(z.string()).default([]),
 })
@@ -166,6 +167,7 @@ const QuestionGenerator = () => {
       learningObjectives: "explain-pure-risk", 
       questionFormat: "multiple-choice",
       pointValue: "1",
+      difficultyLevel: "moderate",
       additionalInstructions: "",
       knowledgeBaseName: "",
       generalGuidelines: [],
@@ -682,6 +684,32 @@ const QuestionGenerator = () => {
                           />
                         </div>
                       </div>
+
+                      {/* Difficulty Level - Full Width */}
+                      <FormField
+                        control={form.control}
+                        name="difficultyLevel"
+                        render={({ field }) => (
+                          <FormItem className="mt-5">
+                            <FormLabel className="text-sm font-medium text-gray-900">
+                              Difficulty Level <span className="text-red-500">*</span>
+                            </FormLabel>
+                            <FormControl>
+                              <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                                <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
+                                  <SelectValue placeholder="Select difficulty level" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="easy">Easy</SelectItem>
+                                  <SelectItem value="moderate">Moderate</SelectItem>
+                                  <SelectItem value="hard">Hard</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
                       {/* Additional Instructions - Full Width */}
                       <FormField
