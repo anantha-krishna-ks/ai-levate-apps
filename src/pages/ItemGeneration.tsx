@@ -185,7 +185,7 @@ const ItemGeneration = () => {
         </div>
 
         {/* Statistics Cards — Accordion */}
-        <Accordion type="multiple" defaultValue={[]} className="grid grid-cols-1 gap-2.5 mb-6">
+        <Accordion type="multiple" defaultValue={[]} className="grid grid-cols-1 gap-4 mb-6">
           {stats.map((stat, index) => {
             const TONE: Record<string, { bg: string; ink: string; fill: string }> = {
               lavender: { bg: "bg-pastel-lavender", ink: "text-pastel-lavender-ink", fill: "bg-pastel-lavender-ink" },
@@ -220,21 +220,21 @@ const ItemGeneration = () => {
                       </div>
                       <div className="flex flex-col min-w-0">
                         <div className="flex items-baseline gap-1.5 leading-none">
-                          <span className="text-3xl font-semibold tracking-tight tabular-nums">
+                          <span className="text-2xl font-semibold tracking-tight tabular-nums">
                             {stat.value.toLocaleString()}
                           </span>
-                          <span className="text-sm font-medium opacity-70 tabular-nums">/ {stat.total.toLocaleString()}</span>
+                          <span className="text-xs font-medium opacity-70 tabular-nums">/ {stat.total.toLocaleString()}</span>
                         </div>
-                        <span className="mt-1.5 text-sm font-medium tracking-tight truncate">{stat.label}</span>
+                        <span className="mt-1.5 text-xs font-medium tracking-tight truncate">{stat.label}</span>
                       </div>
                     </div>
 
                     {/* Right: caption + percent + chevron */}
                     <div className="flex items-center gap-4 shrink-0">
-                      <p className="hidden sm:block text-xs font-medium opacity-80 leading-tight text-right max-w-[160px]">
+                      <p className="hidden sm:block text-[11px] font-medium opacity-80 leading-tight text-right max-w-[160px]">
                         {stat.caption}
                       </p>
-                      <span className="text-2xl font-semibold tracking-tight tabular-nums">{pct}%</span>
+                      <span className="text-xl font-semibold tracking-tight tabular-nums">{pct}%</span>
                       <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white/85 ring-1 ring-black/[0.08] shadow-[0_2px_6px_rgba(0,0,0,0.06)] transition-transform duration-300 group-data-[state=open]:rotate-180">
                         <ChevronRight className="h-5 w-5 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
                       </div>
