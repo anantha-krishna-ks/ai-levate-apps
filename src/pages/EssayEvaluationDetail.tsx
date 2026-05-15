@@ -885,6 +885,7 @@ const EssayEvaluationDetail = () => {
           onClick={scrollToTop}
           className="fixed bottom-6 right-6 z-50 h-12 w-12 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-fade-in"
           size="icon"
+          aria-label="Back to top"
         >
           <ArrowUp className="h-5 w-5" />
         </Button>
