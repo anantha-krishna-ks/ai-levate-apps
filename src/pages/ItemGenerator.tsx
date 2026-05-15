@@ -121,7 +121,7 @@ const ItemGenerator = () => {
           <div className="flex-1 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Link to="/">
-                <Button variant="ghost" size="icon" className="hover:scale-110 transition-transform duration-200">
+                <Button variant="ghost" size="icon" aria-label="Back to home" className="hover:scale-110 transition-transform duration-200">
                   <ArrowLeft className="h-5 w-5" />
                 </Button>
               </Link>
