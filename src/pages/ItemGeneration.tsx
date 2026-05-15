@@ -208,35 +208,35 @@ const ItemGeneration = () => {
               <AccordionItem
                 key={index}
                 value={`stat-${index}`}
-                className={`relative overflow-hidden rounded-3xl border border-current/15 ring-1 ring-inset ring-white/60 shadow-soft-sm hover:shadow-soft-md ${s.bg} ${s.ink} data-[state=open]:shadow-soft-lg data-[state=open]:border-current/25 transition-all duration-300`}
+                className={`relative overflow-hidden rounded-3xl border-2 border-current/20 ring-1 ring-inset ring-white/70 shadow-soft-sm hover:shadow-soft-md hover:border-current/30 ${s.bg} ${s.ink} data-[state=open]:shadow-soft-lg data-[state=open]:border-current/40 transition-all duration-300`}
               >
                 {/* Trigger — header + big value */}
-                <AccordionTrigger className="w-full px-4 py-3 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 rounded-t-3xl [&>div:last-child]:hidden">
+                <AccordionTrigger className="w-full px-6 py-5 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 rounded-t-3xl [&>div:last-child]:hidden">
                   <div className="flex items-center justify-between gap-4 w-full text-left">
                     {/* Left: icon + value + label */}
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="h-10 w-10 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
-                        <Icon className="h-5 w-5" />
+                    <div className="flex items-center gap-4 min-w-0">
+                      <div className="h-12 w-12 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
+                        <Icon className="h-6 w-6" />
                       </div>
                       <div className="flex flex-col min-w-0">
                         <div className="flex items-baseline gap-1.5 leading-none">
-                          <span className="text-2xl font-medium tracking-tight tabular-nums">
+                          <span className="text-3xl font-semibold tracking-tight tabular-nums">
                             {stat.value.toLocaleString()}
                           </span>
-                          <span className="text-xs font-medium opacity-70 tabular-nums">/ {stat.total.toLocaleString()}</span>
+                          <span className="text-sm font-medium opacity-70 tabular-nums">/ {stat.total.toLocaleString()}</span>
                         </div>
-                        <span className="mt-1 text-xs font-medium tracking-tight truncate">{stat.label}</span>
+                        <span className="mt-1.5 text-sm font-medium tracking-tight truncate">{stat.label}</span>
                       </div>
                     </div>
 
                     {/* Right: caption + percent + chevron */}
-                    <div className="flex items-center gap-3 shrink-0">
-                      <p className="hidden sm:block text-[11px] font-medium opacity-80 leading-tight text-right max-w-[140px]">
+                    <div className="flex items-center gap-4 shrink-0">
+                      <p className="hidden sm:block text-xs font-medium opacity-80 leading-tight text-right max-w-[160px]">
                         {stat.caption}
                       </p>
-                      <span className="text-xs font-semibold opacity-80 tabular-nums">{pct}%</span>
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/80 ring-1 ring-black/[0.08] shadow-[0_2px_6px_rgba(0,0,0,0.06)] transition-transform duration-300 group-data-[state=open]:rotate-180">
-                        <ChevronRight className="h-4 w-4 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
+                      <span className="text-2xl font-semibold tracking-tight tabular-nums">{pct}%</span>
+                      <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white/85 ring-1 ring-black/[0.08] shadow-[0_2px_6px_rgba(0,0,0,0.06)] transition-transform duration-300 group-data-[state=open]:rotate-180">
+                        <ChevronRight className="h-5 w-5 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
                       </div>
                     </div>
                   </div>
