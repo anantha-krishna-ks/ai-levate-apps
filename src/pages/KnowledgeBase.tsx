@@ -436,7 +436,8 @@ const KnowledgeBase = () => {
                                 <div className="flex items-center gap-2">
                                   <Button 
                                     variant="ghost" 
-                                    size="icon" 
+                                    size="icon"
+                                    aria-label="Edit guideline" 
                                     className="h-9 w-9 hover:bg-blue-100"
                                     onClick={() => {
                                       setEditingGuideline({ name: 'Content', type: 'content' });
@@ -445,7 +446,7 @@ const KnowledgeBase = () => {
                                   >
                                     <Edit className="h-4 w-4 text-blue-600" />
                                   </Button>
-                                  <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-red-100">
+                                  <Button variant="ghost" size="icon" aria-label="Delete guideline" className="h-9 w-9 hover:bg-red-100">
                                     <Trash2 className="h-4 w-4 text-red-600" />
                                   </Button>
                                 </div>
@@ -458,7 +459,8 @@ const KnowledgeBase = () => {
                                 <div className="flex items-center gap-2">
                                   <Button 
                                     variant="ghost" 
-                                    size="icon" 
+                                    size="icon"
+                                    aria-label="Edit guideline" 
                                     className="h-9 w-9 hover:bg-blue-100"
                                     onClick={() => {
                                       setEditingGuideline({ name: 'CREATE_Validation', type: 'validation' });
@@ -467,7 +469,7 @@ const KnowledgeBase = () => {
                                   >
                                     <Edit className="h-4 w-4 text-blue-600" />
                                   </Button>
-                                  <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-red-100">
+                                  <Button variant="ghost" size="icon" aria-label="Delete guideline" className="h-9 w-9 hover:bg-red-100">
                                     <Trash2 className="h-4 w-4 text-red-600" />
                                   </Button>
                                 </div>
@@ -480,7 +482,8 @@ const KnowledgeBase = () => {
                                 <div className="flex items-center gap-2">
                                   <Button 
                                     variant="ghost" 
-                                    size="icon" 
+                                    size="icon"
+                                    aria-label="Edit guideline" 
                                     className="h-9 w-9 hover:bg-blue-100"
                                     onClick={() => {
                                       setEditingGuideline({ name: 'General rule validation', type: 'validation' });
@@ -489,7 +492,7 @@ const KnowledgeBase = () => {
                                   >
                                     <Edit className="h-4 w-4 text-blue-600" />
                                   </Button>
-                                  <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-red-100">
+                                  <Button variant="ghost" size="icon" aria-label="Delete guideline" className="h-9 w-9 hover:bg-red-100">
                                     <Trash2 className="h-4 w-4 text-red-600" />
                                   </Button>
                                 </div>
@@ -502,7 +505,8 @@ const KnowledgeBase = () => {
                                 <div className="flex items-center gap-2">
                                   <Button 
                                     variant="ghost" 
-                                    size="icon" 
+                                    size="icon"
+                                    aria-label="Edit guideline" 
                                     className="h-9 w-9 hover:bg-blue-100"
                                     onClick={() => {
                                       setEditingGuideline({ name: 'Multiple Choice Question', type: 'generation' });
@@ -511,7 +515,7 @@ const KnowledgeBase = () => {
                                   >
                                     <Edit className="h-4 w-4 text-blue-600" />
                                   </Button>
-                                  <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-red-100">
+                                  <Button variant="ghost" size="icon" aria-label="Delete guideline" className="h-9 w-9 hover:bg-red-100">
                                     <Trash2 className="h-4 w-4 text-red-600" />
                                   </Button>
                                 </div>
@@ -781,6 +785,7 @@ const KnowledgeBase = () => {
                                   variant="ghost"
                                   size="icon"
                                   onClick={() => removeDocumentFile(index)}
+                                  aria-label="Remove file"
                                   className="h-7 w-7 flex-shrink-0 hover:bg-red-100 ml-2"
                                 >
                                   <X className="h-4 w-4 text-red-600" />
@@ -829,6 +834,7 @@ const KnowledgeBase = () => {
                                   variant="ghost"
                                   size="icon"
                                   onClick={removeCoverImage}
+                                  aria-label="Remove cover image"
                                   className="h-7 w-7 flex-shrink-0 hover:bg-red-100 ml-2"
                                 >
                                   <X className="h-4 w-4 text-red-600" />
@@ -1165,12 +1171,14 @@ const KnowledgeBase = () => {
                                   size="icon" 
                                   className="h-9 w-9 hover:bg-blue-100 transition-colors"
                                   onClick={() => navigate(`/knowledge-base/edit/${kb.id}`)}
+                                  aria-label="Edit knowledge base"
                                 >
                                   <Edit className="h-4 w-4 text-blue-600" />
                                 </Button>
                                 <Button 
                                   variant="ghost" 
                                   size="icon" 
+                                  aria-label="View guidelines"
                                   className="h-9 w-9 hover:bg-purple-100 transition-colors"
                                   onClick={() => {
                                     setSelectedKBForGuidelines({ id: kb.id, name: kb.name });
@@ -1182,6 +1190,7 @@ const KnowledgeBase = () => {
                                 <Button 
                                   variant="ghost" 
                                   size="icon" 
+                                  aria-label="Chat with knowledge base"
                                   className="h-9 w-9 hover:bg-teal-100 transition-colors"
                                   onClick={() => {
                                     setSelectedKBForChat({ id: kb.id, name: kb.name, bookName: kb.bookName });
@@ -1194,6 +1203,7 @@ const KnowledgeBase = () => {
                                 <Button 
                                   variant="ghost" 
                                   size="icon" 
+                                  aria-label="Delete knowledge base"
                                   className="h-9 w-9 hover:bg-red-100 transition-colors"
                                   onClick={() => {
                                     setKbToDelete({ id: kb.id, name: kb.name, bookName: kb.bookName });
