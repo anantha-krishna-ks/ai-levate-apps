@@ -219,7 +219,7 @@ const ItemGeneration = () => {
                         <div className="h-10 w-10 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
                           <Icon className="h-5 w-5" />
                         </div>
-                        <span className="text-base font-medium tracking-tight">{stat.label}</span>
+                        <span className="text-sm font-medium tracking-tight">{stat.label}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-medium opacity-80 tabular-nums">{pct}%</span>
@@ -232,10 +232,10 @@ const ItemGeneration = () => {
                     {/* Big value row */}
                     <div className="flex items-end justify-between gap-3 mb-5">
                       <div className="flex items-baseline gap-1.5">
-                        <span className="text-[36px] leading-none font-medium tracking-tight tabular-nums">
+                        <span className="text-[28px] leading-none font-medium tracking-tight tabular-nums">
                           {stat.value.toLocaleString()}
                         </span>
-                        <span className="text-base font-medium opacity-70">/ {stat.total.toLocaleString()}</span>
+                        <span className="text-sm font-medium opacity-70">/ {stat.total.toLocaleString()}</span>
                       </div>
                       <p className="text-[11px] font-medium opacity-80 leading-tight pb-1 text-right max-w-[120px]">
                         {stat.caption}
