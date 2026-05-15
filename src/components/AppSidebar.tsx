@@ -1,10 +1,12 @@
 import { useState } from "react"
 import {
   LayoutDashboard,
-  Sparkle,
   Library,
   BarChart3,
   Users,
+  MessageSquareCheck,
+  BookOpen,
+  FileText,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -27,8 +29,10 @@ type NavItem = {
 
 const items: NavItem[] = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
-  { title: "AI Tools", url: "/ai-tools", icon: Sparkle },
-  { title: "Knowledge Base", url: "/knowledge-base", icon: Library },
+  { title: "Manage Knowledge Base", url: "/knowledge-base", icon: Library },
+  { title: "Manage Book Details", url: "/manage-book-details", icon: BookOpen },
+  { title: "Manage Guidelines", url: "/manage-guidelines", icon: FileText },
+  { title: "Feedback Approval", url: "/feedback-approval", icon: MessageSquareCheck },
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
   { title: "Collaboration", url: "/collaboration", icon: Users },
 ]
