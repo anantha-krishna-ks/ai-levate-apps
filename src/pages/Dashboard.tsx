@@ -545,6 +545,7 @@ const Dashboard = () => {
               size="icon"
               className="lg:hidden flex-shrink-0"
               onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />
             </Button>
@@ -574,6 +575,7 @@ const Dashboard = () => {
               size="icon"
               className="lg:hidden ml-auto"
               onClick={() => setMobileSearchOpen(true)}
+              aria-label="Open search"
             >
               <Search className="h-5 w-5" />
             </Button>

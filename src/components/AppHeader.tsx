@@ -50,6 +50,7 @@ export function AppHeader({
               size="icon"
               className="lg:hidden flex-shrink-0"
               onClick={onMenuClick}
+              aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />
             </Button>

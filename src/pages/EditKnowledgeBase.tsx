@@ -96,6 +96,7 @@ const EditKnowledgeBase = () => {
                 size="icon"
                 onClick={() => navigate("/knowledge-base")}
                 className="flex-shrink-0"
+                aria-label="Back to Knowledge Base"
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
@@ -314,6 +315,7 @@ const EditKnowledgeBase = () => {
                               size="icon"
                               onClick={() => removeDocumentFile(index)}
                               className="h-7 w-7 flex-shrink-0 hover:bg-red-100 ml-2"
+                              aria-label="Remove file"
                             >
                               <X className="h-4 w-4 text-red-600" />
                             </Button>
@@ -362,6 +364,7 @@ const EditKnowledgeBase = () => {
                               size="icon"
                               onClick={removeCoverImage}
                               className="h-7 w-7 flex-shrink-0 hover:bg-red-100 ml-2"
+                              aria-label="Remove cover image"
                             >
                               <X className="h-4 w-4 text-red-600" />
                             </Button>
