@@ -4,7 +4,7 @@ import {
   Library,
   BarChart3,
   Users,
-  MessageSquareCheck,
+  MessageSquare,
   BookOpen,
   FileText,
   ChevronDown,
@@ -32,7 +32,7 @@ const items: NavItem[] = [
   { title: "Manage Knowledge Base", url: "/knowledge-base", icon: Library },
   { title: "Manage Book Details", url: "/manage-book-details", icon: BookOpen },
   { title: "Manage Guidelines", url: "/manage-guidelines", icon: FileText },
-  { title: "Feedback Approval", url: "/feedback-approval", icon: MessageSquareCheck },
+  { title: "Feedback Approval", url: "/feedback-approval", icon: MessageSquare },
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
   { title: "Collaboration", url: "/collaboration", icon: Users },
 ]
