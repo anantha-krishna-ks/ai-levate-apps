@@ -203,9 +203,9 @@ const KnowledgeBase = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="rounded-full border-slate-200 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 text-xs h-8"
+                    className="rounded-full border-primary/30 bg-white text-primary hover:bg-primary/5 hover:text-primary text-xs h-8"
                   >
-                    <FileText className="w-3 h-3 mr-1.5" />
+                    <FileText className="w-3 h-3 mr-1.5 text-primary" />
                     Manual
                   </Button>
                 )}
