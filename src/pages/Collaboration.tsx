@@ -385,8 +385,8 @@ const Collaboration = () => {
         <main className="p-6">
           <div className="max-w-7xl mx-auto space-y-6">
             {/* Search Bar */}
-            <div className="flex gap-4">
-              <div className="relative flex-1">
+            <div className="flex gap-4 justify-end">
+              <div className="relative w-full max-w-xs">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
                   type="text"
