@@ -6,7 +6,7 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Label } from "@/components/ui/label";
-import { Search, Edit, Trash2, Package, Menu, Plus, Users as UsersIcon, X } from "lucide-react";
+import { Search, Edit, Trash2, Package, Menu, Plus, Library, X } from "lucide-react";
 import { AppSidebar } from "@/components/AppSidebar";
 import { AppHeader } from "@/components/AppHeader";
 import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
@@ -125,25 +125,34 @@ const Collaboration = () => {
         }`}
       >
         {/* Page Title Section */}
-        <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
-          <div className="flex items-center justify-between gap-3 flex-wrap">
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center flex-shrink-0">
-                <UsersIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+        <div className="relative bg-white border-b border-slate-200">
+          <div className="relative px-4 sm:px-6 py-3">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
+                  <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                    <Library className="h-4 w-4 text-white" />
+                  </div>
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <h1 className="text-base sm:text-lg font-medium text-slate-900 leading-tight tracking-tight truncate">
+                    Collaboration
+                  </h1>
+                  <p className="text-xs text-slate-500 truncate">
+                    Manage users and access for your workspace
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <h2 className="text-base sm:text-lg font-medium text-gray-900">
-                  Collaboration
-                </h2>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <Button
+                  className="bg-blue-600 hover:bg-blue-700 text-white rounded-full text-sm h-10 px-5"
+                  onClick={() => setIsAddingUser(true)}
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add User
+                </Button>
               </div>
             </div>
-            <Button 
-              className="bg-blue-600 hover:bg-blue-700 text-white flex-shrink-0"
-              onClick={() => setIsAddingUser(true)}
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Add User
-            </Button>
           </div>
         </div>
 
