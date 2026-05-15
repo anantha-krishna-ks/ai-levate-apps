@@ -208,7 +208,7 @@ const ItemGeneration = () => {
               <AccordionItem
                 key={index}
                 value={`stat-${index}`}
-                className={`relative overflow-hidden rounded-3xl border border-border/60 shadow-soft-xs ${s.bg} ${s.ink} data-[state=open]:shadow-soft-md transition-shadow duration-300`}
+                className={`relative overflow-hidden rounded-3xl border border-current/15 ring-1 ring-inset ring-white/60 shadow-soft-sm hover:shadow-soft-md ${s.bg} ${s.ink} data-[state=open]:shadow-soft-lg data-[state=open]:border-current/25 transition-all duration-300`}
               >
                 {/* Trigger — header + big value */}
                 <AccordionTrigger className="w-full px-5 pt-5 pb-0 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 rounded-t-3xl [&>div:last-child]:hidden">
