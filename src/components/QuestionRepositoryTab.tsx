@@ -142,7 +142,7 @@ const FILTER_SECTIONS = [
         ],
       },
       {
-        label: "Creativity Level",
+        label: "Difficulty Level",
         defaultValue: "all",
         options: [
           { value: "all", label: "All" },
@@ -459,7 +459,7 @@ export const QuestionRepositoryTab = () => {
               { label: "Question Type", value: refinementQuestionType, set: setRefinementQuestionType, options: ["multiple-choice", "true-false", "short-answer", "essay"] },
               { label: "Number of Questions", value: refinementNumQuestions, set: setRefinementNumQuestions, options: ["1", "2", "3", "5", "10"] },
               { label: "Taxonomy", value: refinementTaxonomy, set: setRefinementTaxonomy, options: ["remember", "understand", "apply", "analyze", "evaluate", "create"] },
-              { label: "Creativity Level", value: refinementCreativity, set: setRefinementCreativity, options: ["low", "moderate", "high"] },
+              { label: "Difficulty Level", value: refinementCreativity, set: setRefinementCreativity, options: ["low", "moderate", "high"] },
               { label: "Number of Response Options", value: refinementNumOptions, set: setRefinementNumOptions, options: ["2", "3", "4", "5"] },
               { label: "Source Type", value: refinementSourceType, set: setRefinementSourceType, options: ["Book", "LLM"] },
             ].map((f) => (
