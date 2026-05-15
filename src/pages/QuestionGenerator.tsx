@@ -685,6 +685,32 @@ const QuestionGenerator = () => {
                         </div>
                       </div>
 
+                      {/* Difficulty Level - Full Width */}
+                      <FormField
+                        control={form.control}
+                        name="difficultyLevel"
+                        render={({ field }) => (
+                          <FormItem className="mt-5">
+                            <FormLabel className="text-sm font-medium text-gray-900">
+                              Difficulty Level <span className="text-red-500">*</span>
+                            </FormLabel>
+                            <FormControl>
+                              <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                                <SelectTrigger className="w-full h-11 bg-gray-50/60 border-gray-200 rounded-full">
+                                  <SelectValue placeholder="Select difficulty level" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="easy">Easy</SelectItem>
+                                  <SelectItem value="moderate">Moderate</SelectItem>
+                                  <SelectItem value="hard">Hard</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
                       {/* Additional Instructions - Full Width */}
                       <FormField
                         control={form.control}
