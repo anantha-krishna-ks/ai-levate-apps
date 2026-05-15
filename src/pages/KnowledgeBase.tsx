@@ -167,6 +167,7 @@ const KnowledgeBase = () => {
                       setSelectedKBForChat(null);
                     }}
                     className="h-8 w-8 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900"
+                    aria-label="Back"
                   >
                     <ArrowLeft className="w-4 h-4" />
                   </Button>
@@ -289,6 +290,7 @@ const KnowledgeBase = () => {
                         onClick={handleSendMessage}
                         disabled={!chatInput.trim()}
                         className="h-9 w-9 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-full flex-shrink-0"
+                        aria-label="Send message"
                       >
                         <Send className="h-4 w-4 text-white" />
                       </Button>
