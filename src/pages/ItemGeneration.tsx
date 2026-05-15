@@ -185,7 +185,7 @@ const ItemGeneration = () => {
         </div>
 
         {/* Statistics Cards — Accordion */}
-        <Accordion type="multiple" defaultValue={[]} className="grid grid-cols-1 gap-4 mb-8">
+        <Accordion type="multiple" defaultValue={[]} className="grid grid-cols-1 gap-2.5 mb-6">
           {stats.map((stat, index) => {
             const TONE: Record<string, { bg: string; ink: string; fill: string }> = {
               lavender: { bg: "bg-pastel-lavender", ink: "text-pastel-lavender-ink", fill: "bg-pastel-lavender-ink" },
@@ -211,42 +211,40 @@ const ItemGeneration = () => {
                 className={`relative overflow-hidden rounded-3xl border border-current/15 ring-1 ring-inset ring-white/60 shadow-soft-sm hover:shadow-soft-md ${s.bg} ${s.ink} data-[state=open]:shadow-soft-lg data-[state=open]:border-current/25 transition-all duration-300`}
               >
                 {/* Trigger — header + big value */}
-                <AccordionTrigger className="w-full px-5 pt-5 pb-0 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 rounded-t-3xl [&>div:last-child]:hidden">
-                  <div className="flex flex-col w-full text-left">
-                    {/* Header row */}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <span className="text-sm font-medium tracking-tight">{stat.label}</span>
+                <AccordionTrigger className="w-full px-4 py-3 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0 rounded-t-3xl [&>div:last-child]:hidden">
+                  <div className="flex items-center justify-between gap-4 w-full text-left">
+                    {/* Left: icon + value + label */}
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="h-10 w-10 rounded-full bg-white/90 flex items-center justify-center shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_10px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/5">
+                        <Icon className="h-5 w-5" />
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-medium opacity-80 tabular-nums">{pct}%</span>
-                        <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white/80 ring-1 ring-black/[0.08] shadow-[0_2px_6px_rgba(0,0,0,0.06)] transition-transform duration-300 group-data-[state=open]:rotate-180">
-                          <ChevronRight className="h-5 w-5 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
+                      <div className="flex flex-col min-w-0">
+                        <div className="flex items-baseline gap-1.5 leading-none">
+                          <span className="text-2xl font-medium tracking-tight tabular-nums">
+                            {stat.value.toLocaleString()}
+                          </span>
+                          <span className="text-xs font-medium opacity-70 tabular-nums">/ {stat.total.toLocaleString()}</span>
                         </div>
+                        <span className="mt-1 text-xs font-medium tracking-tight truncate">{stat.label}</span>
                       </div>
                     </div>
 
-                    {/* Big value row */}
-                    <div className="flex items-end justify-between gap-3 mb-5">
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="text-[28px] leading-none font-medium tracking-tight tabular-nums">
-                          {stat.value.toLocaleString()}
-                        </span>
-                        <span className="text-sm font-medium opacity-70">/ {stat.total.toLocaleString()}</span>
-                      </div>
-                      <p className="text-[11px] font-medium opacity-80 leading-tight pb-1 text-right max-w-[120px]">
+                    {/* Right: caption + percent + chevron */}
+                    <div className="flex items-center gap-3 shrink-0">
+                      <p className="hidden sm:block text-[11px] font-medium opacity-80 leading-tight text-right max-w-[140px]">
                         {stat.caption}
                       </p>
+                      <span className="text-xs font-semibold opacity-80 tabular-nums">{pct}%</span>
+                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/80 ring-1 ring-black/[0.08] shadow-[0_2px_6px_rgba(0,0,0,0.06)] transition-transform duration-300 group-data-[state=open]:rotate-180">
+                        <ChevronRight className="h-4 w-4 opacity-70 -rotate-90 group-data-[state=open]:rotate-90" />
+                      </div>
                     </div>
                   </div>
                 </AccordionTrigger>
 
                 {/* Content — breakdown grid */}
-                <AccordionContent className="px-5 pb-5">
-                  <div className="grid grid-cols-2 gap-2.5">
+                <AccordionContent className="px-4 pb-4 pt-0">
+                  <div className="grid grid-cols-2 gap-2">
                     {stat.items.map((item, idx) => {
                       const QIcon = QTYPE_ICON[item.label] ?? FileText;
                       return (
