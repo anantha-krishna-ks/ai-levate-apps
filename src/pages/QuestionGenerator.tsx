@@ -890,7 +890,7 @@ const QuestionGenerator = () => {
                           ],
                         },
                         {
-                          label: "Creativity Level",
+                          label: "Difficulty Level",
                           defaultValue: "all",
                           options: [
                             { value: "all", label: "All" },
@@ -1412,9 +1412,9 @@ const QuestionGenerator = () => {
               </Select>
             </div>
 
-            {/* Creativity Level */}
+            {/* Difficulty Level */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">Creativity Level</label>
+              <label className="text-sm font-medium text-foreground">Difficulty Level</label>
               <Select value={refinementCreativity} onValueChange={setRefinementCreativity}>
                 <SelectTrigger>
                   <SelectValue />
