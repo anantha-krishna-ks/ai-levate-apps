@@ -438,12 +438,12 @@ const QuestionResults = () => {
               <p className="text-sm text-gray-500">Review and manage your generated questions</p>
             </div>
             <div className="flex gap-3">
-              <Button variant="outline" className="text-gray-600">
-                <FileText className="w-4 h-4 mr-2" />
+              <Button variant="outline" className="text-primary border-primary/30 hover:bg-primary/5 hover:text-primary">
+                <FileText className="w-4 h-4 mr-2 text-primary" />
                 Export to Word
               </Button>
-              <Button variant="outline" className="text-gray-600">
-                <FileSpreadsheet className="w-4 h-4 mr-2" />
+              <Button variant="outline" className="text-primary border-primary/30 hover:bg-primary/5 hover:text-primary">
+                <FileSpreadsheet className="w-4 h-4 mr-2 text-primary" />
                 Export to Excel
               </Button>
               <Button 
