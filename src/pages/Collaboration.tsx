@@ -383,7 +383,7 @@ const Collaboration = () => {
 
         {/* Main Content */}
         <main className="p-6">
-          <div className="max-w-7xl mx-auto space-y-6">
+          <div className="w-full space-y-6">
             {/* Search Bar */}
             <div className="flex gap-4 justify-end">
               <div className="relative w-full max-w-xs">
