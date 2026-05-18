@@ -5,6 +5,7 @@ import { StatusBadge } from '../components/StatusBadge';
 import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Search, Download, PlayCircle } from 'lucide-react';
 
 export default function ItemBank() {
@@ -85,40 +86,48 @@ export default function ItemBank() {
         </select>
       </div>
 
-      <div className="ig-kpi-card overflow-hidden p-0">
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="ig-data-table">
-            <thead>
-              <tr>
-                <th className="cursor-pointer" onClick={() => toggleSort('item_id')}>Item ID {sortField === 'item_id' ? (sortDir === 'asc' ? '↑' : '↓') : ''}</th>
-                <th className="cursor-pointer" onClick={() => toggleSort('qualification')}>Qualification</th>
-                <th>Unit</th>
-                <th>Topic</th>
-                <th>ILO</th>
-                <th>Level</th>
-                <th>Type</th>
-                <th className="max-w-[200px]">Stem Preview</th>
-                <th className="cursor-pointer" onClick={() => toggleSort('overall_score')}>Score {sortField === 'overall_score' ? (sortDir === 'asc' ? '↑' : '↓') : ''}</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
+          <Table className="w-full">
+            <TableHeader>
+              <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('item_id')}>
+                  Item ID {sortField === 'item_id' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
+                </TableHead>
+                <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('qualification')}>Qualification</TableHead>
+                <TableHead className="whitespace-nowrap">Unit</TableHead>
+                <TableHead className="whitespace-nowrap">Topic</TableHead>
+                <TableHead className="whitespace-nowrap">ILO</TableHead>
+                <TableHead className="whitespace-nowrap">Level</TableHead>
+                <TableHead className="whitespace-nowrap">Type</TableHead>
+                <TableHead className="whitespace-nowrap">Stem Preview</TableHead>
+                <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('overall_score')}>
+                  Score {sortField === 'overall_score' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
+                </TableHead>
+                <TableHead className="whitespace-nowrap">Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {filtered.map(item => (
-                <tr key={item.item_id} className="cursor-pointer" onClick={() => navigate(`/item-validation/item-reports/${item.item_id}`)}>
-                  <td className="font-mono text-xs font-medium">{item.item_id}</td>
-                  <td className="text-xs max-w-[140px] truncate">{item.qualification.replace('VTCT ', '')}</td>
-                  <td className="text-xs font-mono">{item.unit_code}</td>
-                  <td className="text-xs max-w-[100px] truncate">{item.topic}</td>
-                  <td className="text-xs max-w-[120px] truncate">{item.intended_learning_outcome}</td>
-                  <td className="text-xs">{item.qualification_level}</td>
-                  <td className="text-xs">{item.item_type}</td>
-                  <td className="text-xs max-w-[200px] truncate">{item.stem}</td>
-                  <td><ScoreDisplay score={item.overall_score} /></td>
-                  <td><StatusBadge status={item.overall_status} /></td>
-                </tr>
+                <TableRow
+                  key={item.item_id}
+                  className="cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
+                  onClick={() => navigate(`/item-validation/item-reports/${item.item_id}`)}
+                >
+                  <TableCell className="font-mono text-xs font-medium">{item.item_id}</TableCell>
+                  <TableCell className="text-xs max-w-[180px] truncate">{item.qualification.replace('VTCT ', '')}</TableCell>
+                  <TableCell className="text-xs font-mono">{item.unit_code}</TableCell>
+                  <TableCell className="text-xs max-w-[140px] truncate">{item.topic}</TableCell>
+                  <TableCell className="text-xs max-w-[160px] truncate">{item.intended_learning_outcome}</TableCell>
+                  <TableCell className="text-xs whitespace-nowrap">{item.qualification_level}</TableCell>
+                  <TableCell className="text-xs whitespace-nowrap">{item.item_type}</TableCell>
+                  <TableCell className="text-xs max-w-[260px] truncate">{item.stem}</TableCell>
+                  <TableCell><ScoreDisplay score={item.overall_score} /></TableCell>
+                  <TableCell><StatusBadge status={item.overall_status} /></TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       </div>
     </div>
