@@ -95,7 +95,7 @@ export function IGSidebar({
                     : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                 )}
               >
-                <Icon className={cn("h-[18px] w-[18px] flex-shrink-0", active && "fill-current")} />
+                <Icon className="h-[18px] w-[18px] flex-shrink-0" />
                 {!collapsed && <span>{item.title}</span>}
               </NavLink>
             );
