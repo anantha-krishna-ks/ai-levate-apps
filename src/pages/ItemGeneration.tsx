@@ -1,4 +1,4 @@
-import { ArrowLeft, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Info, User, Settings, LogOut, ListChecks, CheckSquare, ToggleLeft, TextCursorInput, PenLine, Grid3x3, BarChart3, type LucideIcon } from "lucide-react";
+import { ArrowLeft, FileText, Bookmark, ChevronRight, Zap, CheckCircle, Clock, Info, User, Settings, LogOut, ListChecks, CheckSquare, ToggleLeft, TextCursorInput, PenLine, Grid3x3, BarChart3, type LucideIcon , Sparkle } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -352,10 +352,8 @@ const ItemGeneration = () => {
 
         {/* Footer */}
         <div className="mt-12 text-center">
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-            <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-              <span className="text-white text-xs">⚡</span>
-            </div>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card text-xs text-muted-foreground">
+            <Sparkle className="h-3.5 w-3.5 text-primary" />
             <span>Powered by advanced AI technology</span>
           </div>
         </div>

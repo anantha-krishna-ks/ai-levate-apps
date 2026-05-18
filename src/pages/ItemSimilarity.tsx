@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Upload, Download, FileText, Scan, Trash2, Clock, BarChart3, Target, AlertTriangle, Eye, Search, Filter } from "lucide-react";
+import { ArrowLeft, Upload, Download, FileText, Scan, Trash2, Clock, BarChart3, Target, AlertTriangle, Eye, Search, Filter , Sparkle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -1342,10 +1342,8 @@ const ItemSimilarity = () => {
 
         {/* Footer */}
         <div className="mt-12 text-center">
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-            <div className="w-4 h-4 bg-purple-600 rounded flex items-center justify-center">
-              <span className="text-white text-xs">⚡</span>
-            </div>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card text-xs text-muted-foreground">
+            <Sparkle className="h-3.5 w-3.5 text-primary" />
             <span>Powered by advanced AI similarity detection</span>
           </div>
         </div>
