@@ -1238,12 +1238,10 @@ const QuestionGenerator = () => {
 
 
         {/* Footer */}
-        <div className="mt-12 text-center">
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-            <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-              <span className="text-white text-xs">⚡</span>
-            </div>
-            <span>Powered by advanced AI technology</span>
+        <div className="mt-12 flex justify-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card text-xs text-muted-foreground">
+            <Sparkles className="h-3.5 w-3.5 text-primary" />
+            <span>Powered by advanced AI</span>
           </div>
         </div>
       </div>
