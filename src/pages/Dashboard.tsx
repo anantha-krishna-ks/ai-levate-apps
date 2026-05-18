@@ -636,9 +636,26 @@ const Dashboard = () => {
         }`}
       >
         {/* Page Title */}
-        <div className="p-2">
-          
-          
+        <div className="relative bg-white border-b border-slate-200">
+          <div className="relative px-4 sm:px-6 py-3">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="h-10 w-10 rounded-xl bg-blue-100 p-1">
+                  <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                    <Sparkle className="h-4 w-4 text-white" />
+                  </div>
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <h1 className="text-base sm:text-lg font-medium text-slate-900 leading-tight tracking-tight truncate">
+                    AI Tools Dashboard
+                  </h1>
+                  <p className="text-xs text-slate-500 truncate">
+                    Explore our comprehensive suite of AI-powered educational tools.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Subscription Filter + Welcome */}
