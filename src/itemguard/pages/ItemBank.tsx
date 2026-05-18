@@ -114,14 +114,14 @@ export default function ItemBank() {
                   className="cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
                   onClick={() => navigate(`/item-validation/item-reports/${item.item_id}`)}
                 >
-                  <TableCell className="font-mono text-xs font-medium">{item.item_id}</TableCell>
-                  <TableCell className="text-xs max-w-[180px] truncate">{item.qualification.replace('VTCT ', '')}</TableCell>
-                  <TableCell className="text-xs font-mono">{item.unit_code}</TableCell>
-                  <TableCell className="text-xs max-w-[140px] truncate">{item.topic}</TableCell>
-                  <TableCell className="text-xs max-w-[160px] truncate">{item.intended_learning_outcome}</TableCell>
-                  <TableCell className="text-xs whitespace-nowrap">{item.qualification_level}</TableCell>
-                  <TableCell className="text-xs whitespace-nowrap">{item.item_type}</TableCell>
-                  <TableCell className="text-xs max-w-[260px] truncate">{item.stem}</TableCell>
+                  <TableCell className="font-mono text-xs font-medium" title={item.item_id}>{item.item_id}</TableCell>
+                  <TableCell className="text-xs max-w-[180px] truncate" title={item.qualification}>{item.qualification.replace('VTCT ', '')}</TableCell>
+                  <TableCell className="text-xs font-mono" title={item.unit_code}>{item.unit_code}</TableCell>
+                  <TableCell className="text-xs max-w-[140px] truncate" title={item.topic}>{item.topic}</TableCell>
+                  <TableCell className="text-xs max-w-[160px] truncate" title={item.intended_learning_outcome}>{item.intended_learning_outcome}</TableCell>
+                  <TableCell className="text-xs whitespace-nowrap" title={String(item.qualification_level)}>{item.qualification_level}</TableCell>
+                  <TableCell className="text-xs whitespace-nowrap" title={item.item_type}>{item.item_type}</TableCell>
+                  <TableCell className="text-xs max-w-[260px] truncate" title={item.stem}>{item.stem}</TableCell>
                   <TableCell><ScoreDisplay score={item.overall_score} /></TableCell>
                   <TableCell><StatusBadge status={item.overall_status} /></TableCell>
                 </TableRow>
