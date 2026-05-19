@@ -300,6 +300,7 @@ export default function ItemBank() {
                     checked={filtered.length > 0 && selectedItems.length === filtered.length}
                     onCheckedChange={toggleSelectAll}
                     aria-label="Select all items"
+                    className="rounded-none"
                   />
                 </TableHead>
                 <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('item_id')}>
@@ -330,6 +331,7 @@ export default function ItemBank() {
                       checked={selectedItems.includes(item.item_id)}
                       onCheckedChange={() => toggleSelectItem(item.item_id)}
                       aria-label={`Select ${item.item_id}`}
+                      className="rounded-none"
                     />
                   </TableCell>
                   <TableCell className="font-mono text-xs font-medium" title={item.item_id}>{item.item_id}</TableCell>
