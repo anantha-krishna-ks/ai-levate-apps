@@ -6,7 +6,7 @@ import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Search, Download, PlayCircle } from 'lucide-react';
+import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight } from 'lucide-react';
 
 export default function ItemBank() {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ export default function ItemBank() {
   const [qualFilter, setQualFilter] = useState<string>('all');
   const [sortField, setSortField] = useState<string>('item_id');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
+  const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
 
   const itemsWithResults = useMemo(() => {
     return mockItems.map(item => {
@@ -23,8 +24,22 @@ export default function ItemBank() {
     });
   }, []);
 
+  const folders = useMemo(() => {
+    const map = new Map<string, { name: string; count: number; pass: number; review: number; fail: number }>();
+    itemsWithResults.forEach(i => {
+      const key = i.qualification;
+      const entry = map.get(key) ?? { name: key, count: 0, pass: 0, review: 0, fail: 0 };
+      entry.count += 1;
+      if (i.overall_status === 'green') entry.pass += 1;
+      else if (i.overall_status === 'amber') entry.review += 1;
+      else if (i.overall_status === 'red') entry.fail += 1;
+      map.set(key, entry);
+    });
+    return Array.from(map.values()).sort((a, b) => a.name.localeCompare(b.name));
+  }, [itemsWithResults]);
+
   const filtered = useMemo(() => {
-    let list = itemsWithResults;
+    let list = selectedFolder ? itemsWithResults.filter(i => i.qualification === selectedFolder) : itemsWithResults;
     if (search) {
       const s = search.toLowerCase();
       list = list.filter(i => i.item_id.toLowerCase().includes(s) || i.stem.toLowerCase().includes(s) || i.unit_code.toLowerCase().includes(s));
@@ -40,7 +55,7 @@ export default function ItemBank() {
       return sortDir === 'desc' ? -cmp : cmp;
     });
     return list;
-  }, [search, statusFilter, qualFilter, sortField, sortDir, itemsWithResults]);
+  }, [search, statusFilter, qualFilter, sortField, sortDir, itemsWithResults, selectedFolder]);
 
   const qualifications = [...new Set(mockItems.map(i => i.qualification))];
 
@@ -49,13 +64,61 @@ export default function ItemBank() {
     else { setSortField(field); setSortDir('asc'); }
   };
 
+  if (!selectedFolder) {
+    return (
+      <div className="animate-fade-in">
+        <PageHeader
+          title="Item Bank"
+          subtitle={`${folders.length} folders · ${mockItems.length} items total`}
+          actions={
+            <div className="flex gap-2">
+              <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />Export</Button>
+              <Button size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis</Button>
+            </div>
+          }
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {folders.map(f => (
+            <button
+              key={f.name}
+              type="button"
+              onClick={() => setSelectedFolder(f.name)}
+              className="group text-left bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all p-4 flex items-start gap-3"
+            >
+              <div className="h-10 w-10 rounded-xl bg-blue-100 p-1 flex-shrink-0">
+                <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                  <Folder className="h-4 w-4 text-white" />
+                </div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="text-sm font-medium text-slate-900 truncate" title={f.name}>{f.name}</h3>
+                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 flex-shrink-0" />
+                </div>
+                <p className="text-xs text-slate-500 mt-0.5">{f.count} items</p>
+                <div className="flex items-center gap-2 mt-2 text-[11px]">
+                  <span className="px-1.5 py-0.5 rounded bg-green-50 text-green-700">Pass {f.pass}</span>
+                  <span className="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700">Review {f.review}</span>
+                  <span className="px-1.5 py-0.5 rounded bg-red-50 text-red-700">Fail {f.fail}</span>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="animate-fade-in">
       <PageHeader
-        title="Item Bank"
-        subtitle={`${mockItems.length} items loaded · Showing ${filtered.length} results`}
+        title={selectedFolder}
+        subtitle={`Item Bank · Showing ${filtered.length} of ${itemsWithResults.filter(i => i.qualification === selectedFolder).length} items`}
         actions={
           <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={() => setSelectedFolder(null)}>
+              <ArrowLeft className="w-3.5 h-3.5 mr-1.5" />Back to Folders
+            </Button>
             <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />Export</Button>
             <Button size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis</Button>
           </div>
