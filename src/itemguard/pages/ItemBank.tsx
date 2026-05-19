@@ -7,7 +7,7 @@ import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus, Plus, FileDown, FileText, FileArchive } from 'lucide-react';
-import { Trash2 } from 'lucide-react';
+import { Trash2, Copy } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -35,6 +35,8 @@ export default function ItemBank() {
   const [importFileName, setImportFileName] = useState('');
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [folderActionTarget, setFolderActionTarget] = useState<string | null>(null);
+  const [folderDeleteOpen, setFolderDeleteOpen] = useState(false);
 
   const itemsWithResults = useMemo(() => {
     return mockItems.map(item => {
@@ -124,6 +126,27 @@ export default function ItemBank() {
     setDeleteConfirmOpen(false);
   };
 
+  const handleRunAnalysis = (folderName: string) => {
+    toast({ title: 'Analysis started', description: `Running analysis on "${folderName}".` });
+  };
+  const handleDuplicateFolder = (folderName: string) => {
+    const base = `${folderName} (Copy)`;
+    let name = base;
+    let i = 2;
+    while (folders.some(f => f.name.toLowerCase() === name.toLowerCase())) {
+      name = `${base} ${i++}`;
+    }
+    setCustomFolders(prev => [...prev, name]);
+    toast({ title: 'Folder duplicated', description: `Created "${name}".` });
+  };
+  const handleDeleteFolder = () => {
+    if (!folderActionTarget) return;
+    setCustomFolders(prev => prev.filter(n => n !== folderActionTarget));
+    toast({ title: 'Folder deleted', description: `"${folderActionTarget}" was removed.` });
+    setFolderDeleteOpen(false);
+    setFolderActionTarget(null);
+  };
+
   if (!selectedFolder) {
     return (
       <div className="animate-fade-in">
@@ -157,32 +180,83 @@ export default function ItemBank() {
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {folders.map(f => (
-            <button
+            <div
               key={f.name}
-              type="button"
-              onClick={() => setSelectedFolder(f.name)}
-              className="group text-left bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all p-4 flex items-start gap-3"
+              className="group bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all flex flex-col"
             >
-              <div className="h-10 w-10 rounded-xl bg-blue-100 p-1 flex-shrink-0">
-                <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
-                  <Folder className="h-4 w-4 text-white" />
+              <button
+                type="button"
+                onClick={() => setSelectedFolder(f.name)}
+                className="text-left p-4 flex items-start gap-3 w-full"
+              >
+                <div className="h-10 w-10 rounded-xl bg-blue-100 p-1 flex-shrink-0">
+                  <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                    <Folder className="h-4 w-4 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-sm font-medium text-slate-900 truncate" title={f.name}>{f.name}</h3>
+                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 flex-shrink-0" />
+                  </div>
+                  <p className="text-xs text-slate-500 mt-0.5">{f.count} items</p>
+                  <div className="flex items-center gap-2 mt-2 text-[11px]">
+                    <span className="px-1.5 py-0.5 rounded bg-green-50 text-green-700">Pass {f.pass}</span>
+                    <span className="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700">Review {f.review}</span>
+                    <span className="px-1.5 py-0.5 rounded bg-red-50 text-red-700">Fail {f.fail}</span>
+                  </div>
+                </div>
+              </button>
+              <div className="flex items-center justify-between gap-2 px-3 py-2 border-t border-gray-100 bg-slate-50/60 rounded-b-lg">
+                <Button
+                  size="sm"
+                  onClick={(e) => { e.stopPropagation(); handleRunAnalysis(f.name); }}
+                  className="h-8 px-3 text-xs"
+                >
+                  <PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis
+                </Button>
+                <div className="flex items-center gap-1">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={(e) => { e.stopPropagation(); handleDuplicateFolder(f.name); }}
+                    className="h-8 w-8 p-0 text-slate-500 hover:text-blue-600 hover:bg-blue-50"
+                    title="Duplicate folder"
+                    aria-label={`Duplicate ${f.name}`}
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={(e) => { e.stopPropagation(); setFolderActionTarget(f.name); setFolderDeleteOpen(true); }}
+                    className="h-8 w-8 p-0 text-slate-500 hover:text-red-600 hover:bg-red-50"
+                    title="Delete folder"
+                    aria-label={`Delete ${f.name}`}
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </Button>
                 </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-sm font-medium text-slate-900 truncate" title={f.name}>{f.name}</h3>
-                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 flex-shrink-0" />
-                </div>
-                <p className="text-xs text-slate-500 mt-0.5">{f.count} items</p>
-                <div className="flex items-center gap-2 mt-2 text-[11px]">
-                  <span className="px-1.5 py-0.5 rounded bg-green-50 text-green-700">Pass {f.pass}</span>
-                  <span className="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700">Review {f.review}</span>
-                  <span className="px-1.5 py-0.5 rounded bg-red-50 text-red-700">Fail {f.fail}</span>
-                </div>
-              </div>
-            </button>
+            </div>
           ))}
         </div>
+        <AlertDialog open={folderDeleteOpen} onOpenChange={setFolderDeleteOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete folder?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This will permanently remove "{folderActionTarget}" and cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDeleteFolder} className="bg-red-600 hover:bg-red-700">
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
         <Dialog open={newFolderOpen} onOpenChange={setNewFolderOpen}>
           <DialogContent className="sm:rounded-lg">
             <DialogHeader>
