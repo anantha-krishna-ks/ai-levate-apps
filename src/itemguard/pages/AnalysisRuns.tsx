@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { mockRuns } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
@@ -122,7 +123,7 @@ function Stat({ label, value, accent = 'text-slate-900', dot }: { label: string;
   );
 }
 
-function Meta({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function Meta({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
   return (
     <div className="flex items-start gap-2 min-w-0">
       <span className="text-slate-400 mt-0.5 flex-shrink-0">{icon}</span>
