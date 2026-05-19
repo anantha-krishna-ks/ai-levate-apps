@@ -1,4 +1,4 @@
-import { ArrowLeft, Info, User, Settings, LogOut } from "lucide-react";
+import { ArrowLeft, Info, User, Settings, LogOut, PlayCircle } from "lucide-react";
 import { Link, useNavigate, Routes, Route } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -99,6 +99,12 @@ const ItemValidation = () => {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
+            <Link to="/item-validation/item-bank" className="ml-auto">
+              <Button size="sm" className="h-9 rounded-full px-4 gap-1.5">
+                <PlayCircle className="w-4 h-4" />
+                <span className="text-sm font-medium">Start Validation</span>
+              </Button>
+            </Link>
           </div>
         </div>
 
