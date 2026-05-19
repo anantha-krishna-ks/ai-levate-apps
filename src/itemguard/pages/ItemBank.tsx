@@ -357,6 +357,7 @@ export default function ItemBank() {
             )}
 
             {/* Templates */}
+            {importMode === 'upload' && (
             <div className="rounded-lg bg-blue-50/60 border border-blue-100 p-4">
               <div className="flex items-start justify-between gap-3 mb-3">
                 <div>
@@ -376,6 +377,7 @@ export default function ItemBank() {
                 </Button>
               </div>
             </div>
+            )}
           </div>
 
           <DialogFooter className="px-6 py-4 border-t border-slate-200 bg-slate-50/60">
