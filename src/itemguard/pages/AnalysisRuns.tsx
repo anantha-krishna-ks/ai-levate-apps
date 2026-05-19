@@ -1,9 +1,12 @@
 import type { ReactNode } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { mockRuns } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { PlayCircle, RotateCcw, Eye, Download, GitCompare, User, Calendar, Layers, FileText } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import type { AnalysisRun } from '../lib/types';
 
 const statusStyles: Record<string, { badge: string; dot: string; label: string; iconBg: string; iconFg: string }> = {
   draft:     { badge: 'text-slate-600 bg-slate-100 border-slate-200', dot: 'bg-slate-400', label: 'Draft',     iconBg: 'bg-slate-100', iconFg: 'text-slate-500' },
@@ -13,6 +16,50 @@ const statusStyles: Record<string, { badge: string; dot: string; label: string; 
 };
 
 export default function AnalysisRuns() {
+  const [params] = useSearchParams();
+  const folderParam = params.get('folder');
+  const highlightRef = useRef<HTMLDivElement | null>(null);
+
+  const runs = useMemo<AnalysisRun[]>(() => {
+    if (!folderParam) return mockRuns;
+    const exists = mockRuns.some(r => r.scope === folderParam);
+    if (exists) return mockRuns;
+    const now = new Date().toISOString();
+    const total = 120 + Math.floor(Math.random() * 80);
+    const green = Math.floor(total * 0.62);
+    const amber = Math.floor(total * 0.25);
+    const red = total - green - amber;
+    const synthetic: AnalysisRun = {
+      run_id: `RUN-${String(900 + Math.floor(Math.random() * 99))}`,
+      run_name: `${folderParam} — Analysis`,
+      scope: folderParam,
+      ruleset_used: 'Standard v2.1',
+      knowledge_base_used: 'QS 2025-26',
+      initiated_by: 'You',
+      run_status: 'completed',
+      created_at: now,
+      completed_at: now,
+      items_processed: total,
+      total_items: total,
+      average_score: 82,
+      green_count: green,
+      amber_count: amber,
+      red_count: red,
+    };
+    return [synthetic, ...mockRuns];
+  }, [folderParam]);
+
+  const highlightId = useMemo(() => {
+    if (!folderParam) return null;
+    return runs.find(r => r.scope === folderParam)?.run_id ?? null;
+  }, [runs, folderParam]);
+
+  useEffect(() => {
+    if (highlightId && highlightRef.current) {
+      highlightRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [highlightId]);
+
   return (
     <div className="animate-fade-in">
       <PageHeader
@@ -22,13 +69,19 @@ export default function AnalysisRuns() {
       />
 
       <div className="space-y-3">
-        {mockRuns.map(run => {
+        {runs.map(run => {
           const progress = run.total_items > 0 ? Math.round((run.items_processed / run.total_items) * 100) : 0;
           const style = statusStyles[run.run_status] ?? statusStyles.draft;
+          const isHighlighted = run.run_id === highlightId;
           return (
             <div
               key={run.run_id}
-              className="group bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors"
+              ref={isHighlighted ? highlightRef : undefined}
+              className={`group bg-white rounded-xl border transition-colors ${
+                isHighlighted
+                  ? 'border-blue-400 ring-2 ring-blue-200'
+                  : 'border-slate-200 hover:border-slate-300'
+              }`}
             >
               {/* Header band */}
               <div className="flex items-start justify-between gap-4 px-5 pt-4 pb-3">
