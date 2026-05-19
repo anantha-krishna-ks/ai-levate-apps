@@ -7,7 +7,10 @@ import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus, Plus, FileDown, FileText, FileArchive } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
@@ -30,6 +33,8 @@ export default function ItemBank() {
   const [importMode, setImportMode] = useState<'upload' | 'name'>('upload');
   const [importFile, setImportFile] = useState<File | null>(null);
   const [importFileName, setImportFileName] = useState('');
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
 
   const itemsWithResults = useMemo(() => {
     return mockItems.map(item => {
@@ -104,6 +109,19 @@ export default function ItemBank() {
     setImportFile(null);
     setImportFileName('');
     setImportOpen(false);
+  };
+
+  const toggleSelectItem = (id: string) => {
+    setSelectedItems(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
+  };
+  const toggleSelectAll = () => {
+    if (selectedItems.length === filtered.length) setSelectedItems([]);
+    else setSelectedItems(filtered.map(i => i.item_id));
+  };
+  const handleDeleteSelected = () => {
+    toast({ title: 'Items deleted', description: `${selectedItems.length} item${selectedItems.length === 1 ? '' : 's'} removed from "${selectedFolder}".` });
+    setSelectedItems([]);
+    setDeleteConfirmOpen(false);
   };
 
   if (!selectedFolder) {
@@ -257,6 +275,19 @@ export default function ItemBank() {
           <option value="all">All Qualifications</option>
           {qualifications.map(q => <option key={q} value={q}>{q}</option>)}
         </select>
+        {selectedItems.length > 0 && (
+          <div className="flex items-center gap-2 ml-auto">
+            <span className="text-xs text-slate-600">{selectedItems.length} selected</span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setDeleteConfirmOpen(true)}
+              className="text-red-600 border-red-200 hover:bg-red-50 hover:text-red-700 hover:border-red-300"
+            >
+              <Trash2 className="w-3.5 h-3.5 mr-1.5" />Delete
+            </Button>
+          </div>
+        )}
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
@@ -264,6 +295,13 @@ export default function ItemBank() {
           <Table className="w-full">
             <TableHeader>
               <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                <TableHead className="w-10">
+                  <Checkbox
+                    checked={filtered.length > 0 && selectedItems.length === filtered.length}
+                    onCheckedChange={toggleSelectAll}
+                    aria-label="Select all items"
+                  />
+                </TableHead>
                 <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('item_id')}>
                   Item ID {sortField === 'item_id' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
                 </TableHead>
@@ -287,6 +325,13 @@ export default function ItemBank() {
                   className="cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
                   onClick={() => navigate(`/item-validation/item-reports/${item.item_id}`)}
                 >
+                  <TableCell className="w-10" onClick={(e) => e.stopPropagation()}>
+                    <Checkbox
+                      checked={selectedItems.includes(item.item_id)}
+                      onCheckedChange={() => toggleSelectItem(item.item_id)}
+                      aria-label={`Select ${item.item_id}`}
+                    />
+                  </TableCell>
                   <TableCell className="font-mono text-xs font-medium" title={item.item_id}>{item.item_id}</TableCell>
                   <TableCell className="text-xs max-w-[180px] truncate" title={item.qualification}>{item.qualification.replace('VTCT ', '')}</TableCell>
                   <TableCell className="text-xs font-mono" title={item.unit_code}>{item.unit_code}</TableCell>
@@ -303,6 +348,21 @@ export default function ItemBank() {
           </Table>
         </div>
       </div>
+
+      <AlertDialog open={deleteConfirmOpen} onOpenChange={setDeleteConfirmOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete {selectedItems.length} item{selectedItems.length === 1 ? '' : 's'}?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will permanently remove the selected item{selectedItems.length === 1 ? '' : 's'} from "{selectedFolder}". This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteSelected} className="bg-red-600 hover:bg-red-700 text-white">Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       <Dialog open={importOpen} onOpenChange={setImportOpen}>
         <DialogContent className="sm:rounded-2xl sm:max-w-2xl p-0 overflow-hidden">
