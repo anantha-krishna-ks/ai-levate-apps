@@ -6,7 +6,11 @@ import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight } from 'lucide-react';
+import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { toast } from '@/hooks/use-toast';
 
 export default function ItemBank() {
   const navigate = useNavigate();
@@ -16,6 +20,9 @@ export default function ItemBank() {
   const [sortField, setSortField] = useState<string>('item_id');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
+  const [customFolders, setCustomFolders] = useState<string[]>([]);
+  const [newFolderOpen, setNewFolderOpen] = useState(false);
+  const [newFolderName, setNewFolderName] = useState('');
 
   const itemsWithResults = useMemo(() => {
     return mockItems.map(item => {
@@ -35,8 +42,11 @@ export default function ItemBank() {
       else if (i.overall_status === 'red') entry.fail += 1;
       map.set(key, entry);
     });
+    customFolders.forEach(name => {
+      if (!map.has(name)) map.set(name, { name, count: 0, pass: 0, review: 0, fail: 0 });
+    });
     return Array.from(map.values()).sort((a, b) => a.name.localeCompare(b.name));
-  }, [itemsWithResults]);
+  }, [itemsWithResults, customFolders]);
 
   const filtered = useMemo(() => {
     let list = selectedFolder ? itemsWithResults.filter(i => i.qualification === selectedFolder) : itemsWithResults;
@@ -64,6 +74,19 @@ export default function ItemBank() {
     else { setSortField(field); setSortDir('asc'); }
   };
 
+  const handleCreateFolder = () => {
+    const name = newFolderName.trim();
+    if (!name) return;
+    if (folders.some(f => f.name.toLowerCase() === name.toLowerCase())) {
+      toast({ title: 'Folder already exists', description: `"${name}" is already a folder.`, variant: 'destructive' });
+      return;
+    }
+    setCustomFolders(prev => [...prev, name]);
+    toast({ title: 'Folder created', description: `"${name}" was added to Item Bank.` });
+    setNewFolderName('');
+    setNewFolderOpen(false);
+  };
+
   if (!selectedFolder) {
     return (
       <div className="animate-fade-in">
@@ -72,8 +95,11 @@ export default function ItemBank() {
           subtitle={`${folders.length} folders · ${mockItems.length} items total`}
           actions={
             <div className="flex gap-2">
+              <Button size="sm" onClick={() => setNewFolderOpen(true)}>
+                <FolderPlus className="w-3.5 h-3.5 mr-1.5" />New Folder
+              </Button>
               <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />Export</Button>
-              <Button size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis</Button>
+              <Button variant="outline" size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis</Button>
             </div>
           }
         />
@@ -105,6 +131,29 @@ export default function ItemBank() {
             </button>
           ))}
         </div>
+        <Dialog open={newFolderOpen} onOpenChange={setNewFolderOpen}>
+          <DialogContent className="sm:rounded-lg">
+            <DialogHeader>
+              <DialogTitle>Create Item Bank Folder</DialogTitle>
+              <DialogDescription>Group items under a new folder. You can move items into it from the table view.</DialogDescription>
+            </DialogHeader>
+            <div className="space-y-2">
+              <Label htmlFor="folder-name">Folder name</Label>
+              <Input
+                id="folder-name"
+                value={newFolderName}
+                onChange={e => setNewFolderName(e.target.value)}
+                placeholder="e.g. Pilot 2025 — Level 3"
+                onKeyDown={e => { if (e.key === 'Enter') handleCreateFolder(); }}
+                autoFocus
+              />
+            </div>
+            <DialogFooter>
+              <Button variant="outline" size="sm" onClick={() => setNewFolderOpen(false)}>Cancel</Button>
+              <Button size="sm" onClick={handleCreateFolder} disabled={!newFolderName.trim()}>Create Folder</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }
