@@ -1,5 +1,5 @@
 import { ArrowLeft, Info, User, Settings, LogOut, PlayCircle } from "lucide-react";
-import { Link, useNavigate, Routes, Route } from "react-router-dom";
+import { Link, useNavigate, Routes, Route, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -23,6 +23,10 @@ import SettingsPage from "@/itemguard/pages/SettingsPage";
 const ItemValidation = () => {
   const navigate = useNavigate();
   const sidebarCollapsed = useSidebarCollapsed();
+  const location = useLocation();
+  const isDashboard =
+    location.pathname === "/item-validation" ||
+    location.pathname === "/item-validation/";
 
   return (
     <div className="itemguard min-h-screen bg-gray-50">
@@ -99,12 +103,14 @@ const ItemValidation = () => {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-            <Link to="/item-validation/item-bank" className="ml-auto">
-              <Button size="sm" className="h-9 rounded-full px-4 gap-1.5">
-                <PlayCircle className="w-4 h-4" />
-                <span className="text-sm font-medium">Start Validation</span>
-              </Button>
-            </Link>
+            {isDashboard && (
+              <Link to="/item-validation/item-bank" className="ml-auto">
+                <Button size="sm" className="h-9 rounded-full px-4 gap-1.5">
+                  <PlayCircle className="w-4 h-4" />
+                  <span className="text-sm font-medium">Start Validation</span>
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
 
