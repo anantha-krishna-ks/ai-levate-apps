@@ -388,10 +388,6 @@ export default function ItemBank() {
                 <TableHead className="whitespace-nowrap">Level</TableHead>
                 <TableHead className="whitespace-nowrap">Type</TableHead>
                 <TableHead className="whitespace-nowrap">Stem Preview</TableHead>
-                <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('overall_score')}>
-                  Score {sortField === 'overall_score' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
-                </TableHead>
-                <TableHead className="whitespace-nowrap">Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -417,8 +413,6 @@ export default function ItemBank() {
                   <TableCell className="text-xs whitespace-nowrap" title={String(item.qualification_level)}>{item.qualification_level}</TableCell>
                   <TableCell className="text-xs whitespace-nowrap" title={item.item_type}>{item.item_type}</TableCell>
                   <TableCell className="text-xs max-w-[260px] truncate" title={item.stem}>{item.stem}</TableCell>
-                  <TableCell><ScoreDisplay score={item.overall_score} /></TableCell>
-                  <TableCell><StatusBadge status={item.overall_status} /></TableCell>
                 </TableRow>
               ))}
             </TableBody>
