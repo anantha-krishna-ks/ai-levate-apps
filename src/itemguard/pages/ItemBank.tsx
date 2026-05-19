@@ -109,6 +109,21 @@ export default function ItemBank() {
   if (!selectedFolder) {
     return (
       <div className="animate-fade-in">
+        <nav aria-label="Breadcrumb" className="mb-3">
+          <ol className="flex items-center gap-1.5 text-xs text-slate-500">
+            <li>
+              <button
+                type="button"
+                onClick={() => navigate('/item-validation')}
+                className="hover:text-blue-600 hover:underline font-medium transition-colors"
+              >
+                Item Validation
+              </button>
+            </li>
+            <li aria-hidden="true"><ChevronRight className="w-3.5 h-3.5 text-slate-400" /></li>
+            <li className="text-slate-700 font-medium">Item Bank</li>
+          </ol>
+        </nav>
         <PageHeader
           title="Item Bank"
           subtitle={`${folders.length} folders · ${mockItems.length} items total`}
@@ -181,6 +196,16 @@ export default function ItemBank() {
     <div className="animate-fade-in">
       <nav aria-label="Breadcrumb" className="mb-3">
         <ol className="flex items-center gap-1.5 text-xs text-slate-500">
+          <li>
+            <button
+              type="button"
+              onClick={() => navigate('/item-validation')}
+              className="hover:text-blue-600 hover:underline font-medium transition-colors"
+            >
+              Item Validation
+            </button>
+          </li>
+          <li aria-hidden="true"><ChevronRight className="w-3.5 h-3.5 text-slate-400" /></li>
           <li>
             <button
               type="button"
