@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useEffect, useMemo, useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { mockRuns } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,7 @@ const statusStyles: Record<string, { badge: string; dot: string; label: string; 
 
 export default function AnalysisRuns() {
   const [params] = useSearchParams();
+  const navigate = useNavigate();
   const folderParam = params.get('folder');
   const highlightRef = useRef<HTMLDivElement | null>(null);
 
@@ -91,9 +92,13 @@ export default function AnalysisRuns() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="text-[15px] font-semibold text-slate-900 tracking-tight truncate">
+                      <button
+                        type="button"
+                        onClick={() => navigate(`/item-validation/analysis-runs/${run.run_id}?scope=${encodeURIComponent(run.scope)}`)}
+                        className="text-left text-[15px] font-semibold text-slate-900 tracking-tight truncate hover:text-blue-600 transition-colors"
+                      >
                         {run.run_name}
-                      </h3>
+                      </button>
                       <span className={`inline-flex items-center gap-1.5 text-[11px] font-medium px-2 py-0.5 rounded-full border ${style.badge}`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${style.dot} ${run.run_status === 'running' ? 'animate-pulse' : ''}`} />
                         {style.label}
@@ -106,7 +111,13 @@ export default function AnalysisRuns() {
                 <div className="flex items-center gap-1">
                   {run.run_status === 'completed' && (
                     <>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-500 hover:text-blue-600 hover:bg-blue-50" title="View report">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0 text-slate-500 hover:text-blue-600 hover:bg-blue-50"
+                        title="View items"
+                        onClick={() => navigate(`/item-validation/analysis-runs/${run.run_id}?scope=${encodeURIComponent(run.scope)}`)}
+                      >
                         <Eye className="w-3.5 h-3.5" />
                       </Button>
                       <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-500 hover:text-blue-600 hover:bg-blue-50" title="Download">

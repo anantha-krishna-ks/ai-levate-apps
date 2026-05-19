@@ -14,6 +14,7 @@ import Dashboard from "@/itemguard/pages/Dashboard";
 import ItemBank from "@/itemguard/pages/ItemBank";
 import AnalysisRuns from "@/itemguard/pages/AnalysisRuns";
 import AnalysisRunLoading from "@/itemguard/pages/AnalysisRunLoading";
+import AnalysisRunDetail from "@/itemguard/pages/AnalysisRunDetail";
 import ItemReports from "@/itemguard/pages/ItemReports";
 import ItemDetail from "@/itemguard/pages/ItemDetail";
 import Guidelines from "@/itemguard/pages/Guidelines";
@@ -123,6 +124,7 @@ const ItemValidation = () => {
               <Route path="item-bank" element={<ItemBank />} />
               <Route path="analysis-runs" element={<AnalysisRuns />} />
               <Route path="analysis-running" element={<AnalysisRunLoading />} />
+              <Route path="analysis-runs/:runId" element={<AnalysisRunDetail />} />
               <Route path="item-reports" element={<ItemReports />} />
               <Route path="item-reports/:itemId" element={<ItemDetail />} />
               <Route path="guidelines" element={<Guidelines />} />
