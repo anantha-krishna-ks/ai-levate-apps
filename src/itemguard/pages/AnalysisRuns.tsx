@@ -87,7 +87,7 @@ export default function AnalysisRuns() {
               <div className="flex items-start justify-between gap-4 px-5 pt-4 pb-3">
                 <div className="flex items-start gap-3 min-w-0 flex-1">
                   <div className={`h-10 w-10 rounded-lg flex items-center justify-center flex-shrink-0 ${style.iconBg}`}>
-                    <PlayCircle className={`w-4.5 h-4.5 ${style.iconFg}`} strokeWidth={2} />
+                    <PlayCircle className={`w-5 h-5 ${style.iconFg}`} strokeWidth={2} />
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
