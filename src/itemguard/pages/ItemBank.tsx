@@ -128,6 +128,7 @@ export default function ItemBank() {
 
   const handleRunAnalysis = (folderName: string) => {
     toast({ title: 'Analysis started', description: `Running analysis on "${folderName}".` });
+    navigate(`/item-validation/analysis-running?folder=${encodeURIComponent(folderName)}`);
   };
   const handleDuplicateFolder = (folderName: string) => {
     const base = `${folderName} (Copy)`;
