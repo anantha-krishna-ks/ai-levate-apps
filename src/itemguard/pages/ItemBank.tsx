@@ -345,7 +345,7 @@ export default function ItemBank() {
                   <SelectTrigger id="import-file-name" className="w-full">
                     <SelectValue placeholder="Select a file..." />
                   </SelectTrigger>
-                  <SelectContent className="z-[100]">
+                  <SelectContent className="z-[200]">
                     <SelectItem value="items-sample-qti12.zip">items-sample-qti12.zip</SelectItem>
                     <SelectItem value="items-sample-qti30.zip">items-sample-qti30.zip</SelectItem>
                     <SelectItem value="items-word-template.docx">items-word-template.docx</SelectItem>
