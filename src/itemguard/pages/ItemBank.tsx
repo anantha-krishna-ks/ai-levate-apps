@@ -6,11 +6,12 @@ import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus } from 'lucide-react';
+import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus, Plus, FileDown, FileText, FileArchive } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 export default function ItemBank() {
   const navigate = useNavigate();
@@ -23,6 +24,11 @@ export default function ItemBank() {
   const [customFolders, setCustomFolders] = useState<string[]>([]);
   const [newFolderOpen, setNewFolderOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState('');
+  const [importOpen, setImportOpen] = useState(false);
+  const [qtiVersion, setQtiVersion] = useState('1.2');
+  const [importMode, setImportMode] = useState<'upload' | 'name'>('upload');
+  const [importFile, setImportFile] = useState<File | null>(null);
+  const [importFileName, setImportFileName] = useState('');
 
   const itemsWithResults = useMemo(() => {
     return mockItems.map(item => {
@@ -85,6 +91,18 @@ export default function ItemBank() {
     toast({ title: 'Folder created', description: `"${name}" was added to Item Bank.` });
     setNewFolderName('');
     setNewFolderOpen(false);
+  };
+
+  const handleImport = () => {
+    const ok = importMode === 'upload' ? !!importFile : !!importFileName.trim();
+    if (!ok) {
+      toast({ title: 'Missing input', description: importMode === 'upload' ? 'Please choose a file.' : 'Please enter a file name.', variant: 'destructive' });
+      return;
+    }
+    toast({ title: 'Items imported', description: `QTI ${qtiVersion} · ${importMode === 'upload' ? importFile?.name : importFileName}` });
+    setImportFile(null);
+    setImportFileName('');
+    setImportOpen(false);
   };
 
   if (!selectedFolder) {
