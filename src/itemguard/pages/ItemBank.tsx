@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function ItemBank() {
   const navigate = useNavigate();
@@ -340,12 +341,18 @@ export default function ItemBank() {
             ) : (
               <div className="space-y-2">
                 <Label htmlFor="import-file-name" className="text-xs font-semibold text-slate-700 uppercase tracking-wide">File Name</Label>
-                <Input
-                  id="import-file-name"
-                  value={importFileName}
-                  onChange={e => setImportFileName(e.target.value)}
-                  placeholder="Enter file name..."
-                />
+                <Select value={importFileName} onValueChange={setImportFileName}>
+                  <SelectTrigger id="import-file-name" className="w-full">
+                    <SelectValue placeholder="Select a file..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="items-sample-qti12.zip">items-sample-qti12.zip</SelectItem>
+                    <SelectItem value="items-sample-qti30.zip">items-sample-qti30.zip</SelectItem>
+                    <SelectItem value="items-word-template.docx">items-word-template.docx</SelectItem>
+                    <SelectItem value="pilot-2025-level3.zip">pilot-2025-level3.zip</SelectItem>
+                    <SelectItem value="vtct-bank-export.zip">vtct-bank-export.zip</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             )}
 
