@@ -186,8 +186,11 @@ export default function ItemBank() {
             <Button variant="outline" size="sm" onClick={() => setSelectedFolder(null)}>
               <ArrowLeft className="w-3.5 h-3.5 mr-1.5" />Back to Folders
             </Button>
+            <Button size="sm" onClick={() => setImportOpen(true)}>
+              <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
+            </Button>
             <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />Export</Button>
-            <Button size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis</Button>
+            <Button variant="outline" size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis</Button>
           </div>
         }
       />
@@ -260,6 +263,95 @@ export default function ItemBank() {
           </Table>
         </div>
       </div>
+
+      <Dialog open={importOpen} onOpenChange={setImportOpen}>
+        <DialogContent className="sm:rounded-lg sm:max-w-xl p-0 overflow-hidden">
+          <DialogHeader className="px-6 pt-6 pb-4 border-b border-slate-200">
+            <div className="flex items-start gap-3">
+              <div className="h-10 w-10 rounded-xl bg-blue-100 p-1 flex-shrink-0">
+                <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                  <FileDown className="h-4 w-4 text-white" />
+                </div>
+              </div>
+              <div>
+                <DialogTitle>Import Items</DialogTitle>
+                <DialogDescription>This file contains sample data for import into the inventory management system</DialogDescription>
+              </div>
+            </div>
+          </DialogHeader>
+
+          <div className="px-6 py-5 space-y-5">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">QTI Version</Label>
+              <RadioGroup value={qtiVersion} onValueChange={setQtiVersion} className="flex items-center gap-6">
+                {['1.2', '2.0', '3.0'].map(v => (
+                  <div key={v} className="flex items-center gap-2">
+                    <RadioGroupItem value={v} id={`qti-${v}`} />
+                    <Label htmlFor={`qti-${v}`} className="text-sm font-normal cursor-pointer">{v}</Label>
+                  </div>
+                ))}
+              </RadioGroup>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">Import file using</Label>
+              <RadioGroup value={importMode} onValueChange={(v) => setImportMode(v as 'upload' | 'name')} className="flex items-center gap-6">
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="upload" id="mode-upload" />
+                  <Label htmlFor="mode-upload" className="text-sm font-normal cursor-pointer">File Upload</Label>
+                </div>
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="name" id="mode-name" />
+                  <Label htmlFor="mode-name" className="text-sm font-normal cursor-pointer">File Name</Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            {importMode === 'upload' ? (
+              <div className="space-y-2">
+                <Label className="text-sm font-medium">Select File</Label>
+                <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5">
+                  <input
+                    type="file"
+                    onChange={e => setImportFile(e.target.files?.[0] ?? null)}
+                    className="text-sm w-full file:mr-3 file:rounded-md file:border file:border-slate-300 file:bg-white file:px-3 file:py-1 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-50"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <Label htmlFor="import-file-name" className="text-sm font-medium">File Name</Label>
+                <Input
+                  id="import-file-name"
+                  value={importFileName}
+                  onChange={e => setImportFileName(e.target.value)}
+                  placeholder="Enter file name..."
+                />
+              </div>
+            )}
+
+            <div className="flex justify-end gap-2 pt-2">
+              <Button variant="outline" size="sm" onClick={() => setImportOpen(false)}>Cancel</Button>
+              <Button size="sm" onClick={handleImport}>Import</Button>
+            </div>
+
+            <div className="pt-4 border-t border-slate-200 space-y-3">
+              <p className="text-sm font-medium text-slate-900">Download the file format here</p>
+              <div className="flex flex-wrap gap-2">
+                <Button variant="outline" size="sm" className="border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
+                  <FileText className="w-3.5 h-3.5 mr-1.5" />Word Template
+                </Button>
+                <Button variant="outline" size="sm" className="border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
+                  <FileArchive className="w-3.5 h-3.5 mr-1.5" />QTI 1.2 Zip
+                </Button>
+                <Button variant="outline" size="sm" className="border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
+                  <FileArchive className="w-3.5 h-3.5 mr-1.5" />QTI 3.0 Zip
+                </Button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
