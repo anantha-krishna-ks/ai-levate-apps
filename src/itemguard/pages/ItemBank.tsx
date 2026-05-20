@@ -236,6 +236,122 @@ export default function ItemBank() {
     toast({ title: 'Item deleted', description: `${id} has been removed.` });
   };
 
+  const importDialog = (
+    <Dialog open={importOpen} onOpenChange={setImportOpen}>
+      <DialogContent className="sm:rounded-2xl sm:max-w-2xl p-0 overflow-hidden">
+        <DialogHeader className="px-6 pt-6 pb-5 border-b border-slate-200 bg-slate-50/60">
+          <div className="flex items-start gap-3">
+            <div className="h-10 w-10 rounded-xl bg-blue-100 p-1 flex-shrink-0">
+              <div className="h-full w-full rounded-md bg-blue-600 flex items-center justify-center">
+                <FileDown className="h-4 w-4 text-white" />
+              </div>
+            </div>
+            <div className="text-left">
+              <DialogTitle className="text-base font-semibold text-slate-900">Import Items</DialogTitle>
+              <DialogDescription className="text-xs text-slate-500 mt-0.5">
+                Upload a QTI package or Word template to bring items into the Item Bank.
+              </DialogDescription>
+            </div>
+          </div>
+        </DialogHeader>
+        <div className="px-6 py-5 space-y-5 max-h-[70vh] overflow-y-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="rounded-lg border border-slate-200 p-3.5">
+              <Label className="text-xs font-semibold text-slate-700 uppercase tracking-wide">QTI Version</Label>
+              <RadioGroup value={qtiVersion} onValueChange={setQtiVersion} className="flex items-center gap-5 mt-3">
+                {['1.2', '2.0', '3.0'].map(v => (
+                  <div key={v} className="flex items-center gap-2">
+                    <RadioGroupItem value={v} id={`qti2-${v}`} />
+                    <Label htmlFor={`qti2-${v}`} className="text-sm font-normal cursor-pointer text-slate-700">{v}</Label>
+                  </div>
+                ))}
+              </RadioGroup>
+            </div>
+            <div className="rounded-lg border border-slate-200 p-3.5">
+              <Label className="text-xs font-semibold text-slate-700 uppercase tracking-wide">Import Using</Label>
+              <RadioGroup value={importMode} onValueChange={(v) => setImportMode(v as 'upload' | 'name')} className="flex items-center gap-5 mt-3">
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="upload" id="mode2-upload" />
+                  <Label htmlFor="mode2-upload" className="text-sm font-normal cursor-pointer text-slate-700">File Upload</Label>
+                </div>
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="name" id="mode2-name" />
+                  <Label htmlFor="mode2-name" className="text-sm font-normal cursor-pointer text-slate-700">File Name</Label>
+                </div>
+              </RadioGroup>
+            </div>
+          </div>
+          {importMode === 'upload' ? (
+            <div className="space-y-2">
+              <Label className="text-xs font-semibold text-slate-700 uppercase tracking-wide">Select File</Label>
+              <label
+                htmlFor="import-file-input-2"
+                className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 px-4 py-6 cursor-pointer hover:border-blue-400 hover:bg-blue-50/40 transition-colors"
+              >
+                <div className="h-10 w-10 rounded-full bg-white border border-slate-200 flex items-center justify-center mb-2">
+                  <FileDown className="w-4 h-4 text-blue-600" />
+                </div>
+                <p className="text-sm font-medium text-slate-700">
+                  {importFile ? importFile.name : 'Click to choose a file'}
+                </p>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  {importFile ? `${(importFile.size / 1024).toFixed(1)} KB` : 'QTI .zip or Word .docx'}
+                </p>
+                <input
+                  id="import-file-input-2"
+                  type="file"
+                  className="hidden"
+                  onChange={e => setImportFile(e.target.files?.[0] ?? null)}
+                />
+              </label>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <Label htmlFor="import-file-name-2" className="text-xs font-semibold text-slate-700 uppercase tracking-wide">File Name</Label>
+              <Select value={importFileName} onValueChange={setImportFileName}>
+                <SelectTrigger id="import-file-name-2" className="w-full">
+                  <SelectValue placeholder="Select a file..." />
+                </SelectTrigger>
+                <SelectContent className="z-[200]">
+                  <SelectItem value="items-sample-qti12.zip">items-sample-qti12.zip</SelectItem>
+                  <SelectItem value="items-sample-qti30.zip">items-sample-qti30.zip</SelectItem>
+                  <SelectItem value="items-word-template.docx">items-word-template.docx</SelectItem>
+                  <SelectItem value="pilot-2025-level3.zip">pilot-2025-level3.zip</SelectItem>
+                  <SelectItem value="vtct-bank-export.zip">vtct-bank-export.zip</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+          {importMode === 'upload' && (
+            <div className="rounded-lg bg-blue-50/60 border border-blue-100 p-4">
+              <div className="mb-3">
+                <p className="text-sm font-semibold text-slate-900">Need a starting point?</p>
+                <p className="text-xs text-slate-600 mt-0.5">Download a template that matches the selected QTI version.</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Button variant="outline" size="sm" className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
+                  <FileText className="w-3.5 h-3.5 mr-1.5" />Word Template
+                </Button>
+                <Button variant="outline" size="sm" className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
+                  <FileArchive className="w-3.5 h-3.5 mr-1.5" />QTI 1.2 Zip
+                </Button>
+                <Button variant="outline" size="sm" className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
+                  <FileArchive className="w-3.5 h-3.5 mr-1.5" />QTI 3.0 Zip
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+        <DialogFooter className="px-6 py-4 border-t border-slate-200 bg-slate-50/60">
+          <Button variant="outline" size="sm" onClick={() => setImportOpen(false)}>Cancel</Button>
+          <Button size="sm" onClick={handleImport}>
+            <FileDown className="w-3.5 h-3.5 mr-1.5" />Import
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+
   if (!selectedFolder) {
     return (
       <div className="animate-fade-in">
