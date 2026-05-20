@@ -188,18 +188,18 @@ export default function ItemBank() {
         />
 
         {/* iOS-style segmented tabs */}
-        <div className="mb-5 flex justify-center sm:justify-start">
+        <div className="mb-6 flex justify-center">
           <div
             role="tablist"
             aria-label="Item Bank view"
-            className="relative inline-flex items-center p-1 rounded-full bg-slate-100/80 border border-slate-200/80 backdrop-blur-sm"
+            className="relative inline-flex items-center p-1.5 rounded-full bg-slate-100/80 border border-slate-200/80 backdrop-blur-sm"
           >
             <span
               aria-hidden="true"
-              className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full bg-white shadow-[0_1px_2px_rgba(15,23,42,0.08),0_1px_1px_rgba(15,23,42,0.04)] ring-1 ring-slate-200/70 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] rounded-full bg-white shadow-[0_1px_3px_rgba(15,23,42,0.1),0_1px_2px_rgba(15,23,42,0.06)] ring-1 ring-slate-200/70 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                 view === 'items' ? 'translate-x-0' : 'translate-x-full'
               }`}
-              style={{ left: 4 }}
+              style={{ left: 6 }}
             />
             {([
               { key: 'items', label: 'Items', icon: FileText },
@@ -214,13 +214,13 @@ export default function ItemBank() {
                   aria-selected={active}
                   type="button"
                   onClick={() => setView(t.key)}
-                  className={`relative z-10 inline-flex items-center gap-1.5 px-5 sm:px-7 h-8 rounded-full text-xs font-semibold tracking-tight transition-colors duration-200 ${
+                  className={`relative z-10 inline-flex items-center gap-2 px-7 sm:px-10 h-11 rounded-full text-sm font-semibold tracking-tight transition-colors duration-200 ${
                     active ? 'text-slate-900' : 'text-slate-500 hover:text-slate-700'
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5" />
+                  <Icon className="w-4 h-4" />
                   {t.label}
-                  <span className={`ml-1 inline-flex items-center justify-center min-w-[20px] h-[18px] px-1.5 rounded-full text-[10px] font-semibold transition-colors ${
+                  <span className={`ml-1 inline-flex items-center justify-center min-w-[22px] h-[20px] px-1.5 rounded-full text-[11px] font-semibold transition-colors ${
                     active ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-600'
                   }`}>
                     {t.key === 'items' ? mockItems.length : folders.length}
