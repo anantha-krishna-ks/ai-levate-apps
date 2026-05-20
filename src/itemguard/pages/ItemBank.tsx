@@ -372,7 +372,7 @@ export default function ItemBank() {
         </nav>
         <PageHeader
           title="Item Bank"
-          subtitle={view === 'folders' ? `${folders.length} folders · ${mockItems.length} items total` : `${mockItems.length} items across ${folders.length} folders`}
+          subtitle={mockItems.length === 0 ? undefined : (view === 'folders' ? `${folders.length} folders · ${mockItems.length} items total` : `${mockItems.length} items across ${folders.length} folders`)}
           actions={
             <div className="flex gap-2">
               {view === 'folders' ? (
