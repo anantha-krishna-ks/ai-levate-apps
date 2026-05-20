@@ -730,6 +730,31 @@ export default function ItemBank() {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+
+        {/* Bulk delete confirm (items tab) */}
+        <AlertDialog open={deleteConfirmOpen} onOpenChange={setDeleteConfirmOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete {selectedItems.length} item{selectedItems.length === 1 ? '' : 's'}?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This will permanently remove the selected item{selectedItems.length === 1 ? '' : 's'} from the Item Bank. This action cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => {
+                  toast({ title: 'Items deleted', description: `${selectedItems.length} item${selectedItems.length === 1 ? '' : 's'} removed.` });
+                  setSelectedItems([]);
+                  setDeleteConfirmOpen(false);
+                }}
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     );
   }
