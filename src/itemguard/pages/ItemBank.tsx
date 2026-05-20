@@ -1026,6 +1026,7 @@ export default function ItemBank() {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+        {importDialog}
       </div>
     );
   }
