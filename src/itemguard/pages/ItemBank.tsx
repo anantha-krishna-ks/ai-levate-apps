@@ -509,6 +509,52 @@ export default function ItemBank() {
           ))}
         </div>
         ) : (
+          !itemsLoaded ? (
+            <div className="animate-fade-in bg-white rounded-2xl border border-gray-200 px-6 py-14 flex flex-col items-center text-center">
+              <div className="relative w-48 h-48 mb-5">
+                <svg viewBox="0 0 200 200" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="emptyBg" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#eff6ff" />
+                      <stop offset="100%" stopColor="#dbeafe" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="100" cy="100" r="78" fill="url(#emptyBg)" />
+                  {/* floating shapes */}
+                  <g style={{ transformOrigin: '60px 60px', animation: 'float-a 4s ease-in-out infinite' }}>
+                    <rect x="42" y="44" width="34" height="34" rx="8" fill="#bfdbfe" opacity="0.85" />
+                  </g>
+                  <g style={{ transformOrigin: '150px 70px', animation: 'float-b 5s ease-in-out infinite' }}>
+                    <circle cx="150" cy="70" r="14" fill="#93c5fd" opacity="0.9" />
+                  </g>
+                  <g style={{ transformOrigin: '150px 145px', animation: 'float-a 6s ease-in-out infinite reverse' }}>
+                    <rect x="138" y="132" width="26" height="26" rx="6" fill="#bfdbfe" opacity="0.7" />
+                  </g>
+                  {/* main folder/document card */}
+                  <g style={{ transformOrigin: '100px 110px', animation: 'float-main 5s ease-in-out infinite' }}>
+                    <rect x="60" y="78" width="80" height="64" rx="10" fill="#ffffff" stroke="#3b82f6" strokeWidth="2.5" />
+                    <rect x="70" y="92" width="44" height="5" rx="2.5" fill="#bfdbfe" />
+                    <rect x="70" y="104" width="60" height="5" rx="2.5" fill="#dbeafe" />
+                    <rect x="70" y="116" width="36" height="5" rx="2.5" fill="#dbeafe" />
+                    <circle cx="128" cy="84" r="10" fill="#3b82f6" />
+                    <path d="M124 84 L127 87 L132 81" stroke="#ffffff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  </g>
+                </svg>
+                <style>{`
+                  @keyframes float-main { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+                  @keyframes float-a { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-4px) rotate(2deg)} }
+                  @keyframes float-b { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+                `}</style>
+              </div>
+              <h3 className="text-base font-semibold text-slate-900">No items yet</h3>
+              <p className="text-sm text-slate-500 mt-1 max-w-sm">
+                Your Item Bank is empty. Import a QTI package or Word template to start curating, analyzing, and grouping items.
+              </p>
+              <Button size="sm" onClick={() => setImportOpen(true)} className="mt-5 h-9 rounded-full px-5 gap-1.5">
+                <Plus className="w-3.5 h-3.5" />Add Items
+              </Button>
+            </div>
+          ) : (
           <div className="animate-fade-in">
             <div className="flex flex-wrap gap-3 mb-5">
               <div className="relative flex-1 min-w-[240px]">
