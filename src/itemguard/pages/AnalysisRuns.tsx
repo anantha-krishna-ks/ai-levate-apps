@@ -145,15 +145,13 @@ export default function AnalysisRuns() {
               {/* Running progress */}
               {run.run_status === 'running' && (
                 <div className="px-5 pt-3 pb-4 border-t border-slate-100 bg-slate-50/60 rounded-b-xl">
-                  <div className="flex justify-between items-baseline text-xs mb-1.5">
-                    <span className="text-slate-600">
-                      Processing <span className="font-semibold text-slate-900 tabular-nums">{run.items_processed.toLocaleString()}</span>
-                      <span className="text-slate-400"> of </span>
-                      <span className="font-semibold text-slate-900 tabular-nums">{run.total_items.toLocaleString()}</span> items
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75 animate-ping" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500" />
                     </span>
-                    <span className="font-semibold text-blue-600 tabular-nums">{progress}%</span>
+                    <span className="font-medium text-slate-700">Analysis in progress</span>
                   </div>
-                  <Progress value={progress} className="h-1.5" />
                 </div>
               )}
 
