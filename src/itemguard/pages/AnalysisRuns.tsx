@@ -8,6 +8,7 @@ import { PlayCircle, RotateCcw, Eye, Download, GitCompare, User, Calendar, Layer
 import { Progress } from '@/components/ui/progress';
 import type { AnalysisRun } from '../lib/types';
 import { toast } from '@/hooks/use-toast';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const statusStyles: Record<string, { badge: string; dot: string; label: string; iconBg: string; iconFg: string }> = {
   draft:     { badge: 'text-slate-600 bg-slate-100 border-slate-200', dot: 'bg-slate-400', label: 'Draft',     iconBg: 'bg-slate-100', iconFg: 'text-slate-500' },
@@ -115,33 +116,25 @@ export default function AnalysisRuns() {
           title="Select Item Set Folder"
           description="Choose the folder of items you want to analyse."
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {folders.map(f => {
-              const active = selectedFolder === f.name;
-              return (
-                <button
-                  key={f.name}
-                  type="button"
-                  onClick={() => setSelectedFolder(f.name)}
-                  className={`text-left p-4 rounded-lg border transition-all flex items-start gap-3 ${
-                    active ? 'border-blue-500 bg-blue-50/60 ring-2 ring-blue-200/60' : 'border-slate-200 bg-white hover:border-blue-300'
-                  }`}
-                >
-                  <div className={`h-9 w-9 rounded-lg flex items-center justify-center flex-shrink-0 ${active ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'}`}>
-                    <Folder className="w-4 h-4" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-slate-900 truncate">{f.name}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{f.count} items</p>
-                  </div>
-                  {active && (
-                    <span className="h-5 w-5 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0">
-                      <Check className="w-3 h-3" />
+          <div className="max-w-xl">
+            <Select value={selectedFolder ?? undefined} onValueChange={(v) => setSelectedFolder(v)}>
+              <SelectTrigger className="h-11 rounded-full bg-white">
+                <div className="flex items-center gap-2 min-w-0">
+                  <Folder className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                  <SelectValue placeholder="Choose an item set folder…" />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                {folders.map(f => (
+                  <SelectItem key={f.name} value={f.name}>
+                    <span className="flex items-center justify-between gap-3 w-full">
+                      <span className="truncate">{f.name}</span>
+                      <span className="text-xs text-slate-500">{f.count} items</span>
                     </span>
-                  )}
-                </button>
-              );
-            })}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </SetupSection>
 
