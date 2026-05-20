@@ -342,3 +342,48 @@ function Meta({ icon, label, value }: { icon: ReactNode; label: string; value: s
     </div>
   );
 }
+
+function SetupSection({ step, title, description, children }: { step: number; title: string; description: string; children: ReactNode }) {
+  return (
+    <section className="bg-white rounded-xl border border-slate-200 p-5">
+      <div className="flex items-start gap-3 mb-4">
+        <span className="h-7 w-7 rounded-full bg-blue-600 text-white text-xs font-semibold flex items-center justify-center flex-shrink-0">{step}</span>
+        <div>
+          <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
+          <p className="text-xs text-slate-500 mt-0.5">{description}</p>
+        </div>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+function RefColumn({ icon, title, count, children }: { icon: ReactNode; title: string; count: number; children: ReactNode }) {
+  return (
+    <div className="rounded-lg border border-slate-200 bg-slate-50/40 flex flex-col">
+      <div className="flex items-center justify-between px-3 py-2 border-b border-slate-200 bg-white rounded-t-lg">
+        <div className="flex items-center gap-2 text-sm font-medium text-slate-800">
+          <span className="text-slate-500">{icon}</span>
+          {title}
+        </div>
+        <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${count > 0 ? 'bg-blue-100 text-blue-700' : 'bg-slate-200 text-slate-500'}`}>{count} selected</span>
+      </div>
+      <div className="max-h-72 overflow-y-auto p-2 space-y-1">{children}</div>
+    </div>
+  );
+}
+
+function CheckRow({ checked, onChange, title, meta }: { checked: boolean; onChange: () => void; title: string; meta?: string }) {
+  return (
+    <label className={`flex items-start gap-2.5 px-2.5 py-2 rounded-md cursor-pointer transition-colors ${checked ? 'bg-blue-50' : 'hover:bg-white'}`}>
+      <span className={`mt-0.5 h-4 w-4 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${checked ? 'bg-blue-600 border-blue-600 text-white' : 'border-slate-300 bg-white'}`}>
+        {checked && <Check className="w-3 h-3" strokeWidth={3} />}
+      </span>
+      <input type="checkbox" className="sr-only" checked={checked} onChange={onChange} />
+      <span className="min-w-0 flex-1">
+        <span className="block text-xs font-medium text-slate-800 leading-snug">{title}</span>
+        {meta && <span className="block text-[11px] text-slate-500 mt-0.5">{meta}</span>}
+      </span>
+    </label>
+  );
+}
