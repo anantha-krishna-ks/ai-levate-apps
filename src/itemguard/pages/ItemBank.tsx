@@ -25,6 +25,7 @@ export default function ItemBank() {
   const [sortField, setSortField] = useState<string>('item_id');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
+  const [view, setView] = useState<'items' | 'folders'>('items');
   const [customFolders, setCustomFolders] = useState<string[]>([]);
   const [newFolderOpen, setNewFolderOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState('');
