@@ -1154,100 +1154,56 @@ export default function ItemBank() {
           </DialogHeader>
 
           <div className="px-6 py-5 space-y-5 max-h-[70vh] overflow-y-auto">
-            {/* QTI Version + Import mode in two-column grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="rounded-lg border border-slate-200 p-3.5">
-                <Label className="text-xs font-semibold text-slate-700 uppercase tracking-wide">QTI Version</Label>
-                <RadioGroup value={qtiVersion} onValueChange={setQtiVersion} className="flex items-center gap-5 mt-3">
-                  {['1.2', '2.0', '3.0'].map(v => (
-                    <div key={v} className="flex items-center gap-2">
-                      <RadioGroupItem value={v} id={`qti-${v}`} />
-                      <Label htmlFor={`qti-${v}`} className="text-sm font-normal cursor-pointer text-slate-700">{v}</Label>
-                    </div>
-                  ))}
-                </RadioGroup>
-              </div>
-
-              <div className="rounded-lg border border-slate-200 p-3.5">
-                <Label className="text-xs font-semibold text-slate-700 uppercase tracking-wide">Import Using</Label>
-                <RadioGroup value={importMode} onValueChange={(v) => setImportMode(v as 'upload' | 'name')} className="flex items-center gap-5 mt-3">
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="upload" id="mode-upload" />
-                    <Label htmlFor="mode-upload" className="text-sm font-normal cursor-pointer text-slate-700">File Upload</Label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="name" id="mode-name" />
-                    <Label htmlFor="mode-name" className="text-sm font-normal cursor-pointer text-slate-700">File Name</Label>
-                  </div>
-                </RadioGroup>
-              </div>
+            <div className="space-y-2">
+              <Label className="text-xs font-semibold text-slate-700 uppercase tracking-wide">
+                Select File <span className="text-red-500">*</span>
+              </Label>
+              <label
+                htmlFor="import-file-input"
+                className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 px-4 py-6 cursor-pointer hover:border-blue-400 hover:bg-blue-50/40 transition-colors"
+              >
+                <div className="h-10 w-10 rounded-full bg-white border border-slate-200 flex items-center justify-center mb-2">
+                  <FileDown className="w-4 h-4 text-blue-600" />
+                </div>
+                <p className="text-sm font-medium text-slate-700">
+                  {importFile ? importFile.name : 'Click to choose a file'}
+                </p>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  {importFile ? `${(importFile.size / 1024).toFixed(1)} KB` : 'CSV, XLSX, XML or QTI .zip'}
+                </p>
+                <input
+                  id="import-file-input"
+                  type="file"
+                  required
+                  accept=".csv,.xlsx,.xml,.zip"
+                  className="hidden"
+                  onChange={e => setImportFile(e.target.files?.[0] ?? null)}
+                />
+              </label>
             </div>
 
-            {/* File input area */}
-            {importMode === 'upload' ? (
-              <div className="space-y-2">
-                <Label className="text-xs font-semibold text-slate-700 uppercase tracking-wide">Select File</Label>
-                <label
-                  htmlFor="import-file-input"
-                  className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 px-4 py-6 cursor-pointer hover:border-blue-400 hover:bg-blue-50/40 transition-colors"
-                >
-                  <div className="h-10 w-10 rounded-full bg-white border border-slate-200 flex items-center justify-center mb-2">
-                    <FileDown className="w-4 h-4 text-blue-600" />
-                  </div>
-                  <p className="text-sm font-medium text-slate-700">
-                    {importFile ? importFile.name : 'Click to choose a file'}
-                  </p>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    {importFile ? `${(importFile.size / 1024).toFixed(1)} KB` : 'QTI .zip or Word .docx'}
-                  </p>
-                  <input
-                    id="import-file-input"
-                    type="file"
-                    className="hidden"
-                    onChange={e => setImportFile(e.target.files?.[0] ?? null)}
-                  />
-                </label>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                <Label htmlFor="import-file-name" className="text-xs font-semibold text-slate-700 uppercase tracking-wide">File Name</Label>
-                <Select value={importFileName} onValueChange={setImportFileName}>
-                  <SelectTrigger id="import-file-name" className="w-full">
-                    <SelectValue placeholder="Select a file..." />
-                  </SelectTrigger>
-                  <SelectContent className="z-[200]">
-                    <SelectItem value="items-sample-qti12.zip">items-sample-qti12.zip</SelectItem>
-                    <SelectItem value="items-sample-qti30.zip">items-sample-qti30.zip</SelectItem>
-                    <SelectItem value="items-word-template.docx">items-word-template.docx</SelectItem>
-                    <SelectItem value="pilot-2025-level3.zip">pilot-2025-level3.zip</SelectItem>
-                    <SelectItem value="vtct-bank-export.zip">vtct-bank-export.zip</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
-
-            {/* Templates */}
-            {importMode === 'upload' && (
             <div className="rounded-lg bg-blue-50/60 border border-blue-100 p-4">
               <div className="flex items-start justify-between gap-3 mb-3">
                 <div>
                   <p className="text-sm font-semibold text-slate-900">Need a starting point?</p>
-                  <p className="text-xs text-slate-600 mt-0.5">Download a template that matches the selected QTI version.</p>
+                  <p className="text-xs text-slate-600 mt-0.5">Download a template that matches your file format.</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button variant="outline" size="sm" className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
-                  <FileText className="w-3.5 h-3.5 mr-1.5" />Word Template
+                  <FileText className="w-3.5 h-3.5 mr-1.5" />CSV Template
                 </Button>
                 <Button variant="outline" size="sm" className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
-                  <FileArchive className="w-3.5 h-3.5 mr-1.5" />QTI 1.2 Zip
+                  <FileText className="w-3.5 h-3.5 mr-1.5" />XLSX Template
                 </Button>
                 <Button variant="outline" size="sm" className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
-                  <FileArchive className="w-3.5 h-3.5 mr-1.5" />QTI 3.0 Zip
+                  <FileText className="w-3.5 h-3.5 mr-1.5" />XML Template
+                </Button>
+                <Button variant="outline" size="sm" className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-700">
+                  <FileArchive className="w-3.5 h-3.5 mr-1.5" />QTI Zip
                 </Button>
               </div>
             </div>
-            )}
           </div>
 
           <DialogFooter className="px-6 py-4 border-t border-slate-200 bg-slate-50/60">
