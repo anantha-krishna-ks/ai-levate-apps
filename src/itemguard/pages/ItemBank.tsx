@@ -607,6 +607,100 @@ export default function ItemBank() {
                   </TableBody>
                 </Table>
               </div>
+              {filtered.length > 0 && (
+                <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-t border-gray-200 bg-slate-50/60">
+                  <div className="flex items-center gap-3 text-xs text-slate-600">
+                    <span>
+                      Showing <span className="font-semibold text-slate-900">{pageStart + 1}</span>
+                      –<span className="font-semibold text-slate-900">{Math.min(pageStart + pageSize, filtered.length)}</span>
+                      {' '}of <span className="font-semibold text-slate-900">{filtered.length}</span>
+                    </span>
+                    <span className="hidden sm:inline h-3 w-px bg-slate-300" />
+                    <div className="hidden sm:flex items-center gap-1.5">
+                      <span>Rows</span>
+                      <select
+                        value={pageSize}
+                        onChange={e => setPageSize(Number(e.target.value))}
+                        className="h-7 rounded-md border border-slate-200 bg-white px-1.5 text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                      >
+                        {[10, 20, 50, 100].map(n => <option key={n} value={n}>{n}</option>)}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Button
+                      variant="ghost" size="sm"
+                      onClick={() => setPage(1)}
+                      disabled={currentPage === 1}
+                      className="h-8 w-8 p-0 rounded-full text-slate-500 hover:text-slate-900 disabled:opacity-30"
+                      aria-label="First page"
+                    >
+                      <ChevronsLeft className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost" size="sm"
+                      onClick={() => setPage(p => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="h-8 w-8 p-0 rounded-full text-slate-500 hover:text-slate-900 disabled:opacity-30"
+                      aria-label="Previous page"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </Button>
+                    {(() => {
+                      const pages: (number | 'gap')[] = [];
+                      const add = (n: number) => pages.push(n);
+                      if (totalPages <= 7) {
+                        for (let i = 1; i <= totalPages; i++) add(i);
+                      } else {
+                        add(1);
+                        if (currentPage > 4) pages.push('gap');
+                        const start = Math.max(2, currentPage - 1);
+                        const end = Math.min(totalPages - 1, currentPage + 1);
+                        for (let i = start; i <= end; i++) add(i);
+                        if (currentPage < totalPages - 3) pages.push('gap');
+                        add(totalPages);
+                      }
+                      return pages.map((p, idx) =>
+                        p === 'gap' ? (
+                          <span key={`gap-${idx}`} className="px-1 text-slate-400 text-xs">…</span>
+                        ) : (
+                          <button
+                            key={p}
+                            type="button"
+                            onClick={() => setPage(p)}
+                            aria-current={currentPage === p ? 'page' : undefined}
+                            className={`min-w-[32px] h-8 px-2 rounded-full text-xs font-semibold tracking-tight transition-all ${
+                              currentPage === p
+                                ? 'bg-blue-600 text-white shadow-sm'
+                                : 'text-slate-600 hover:bg-white hover:text-slate-900 hover:ring-1 hover:ring-slate-200'
+                            }`}
+                          >
+                            {p}
+                          </button>
+                        )
+                      );
+                    })()}
+                    <Button
+                      variant="ghost" size="sm"
+                      onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="h-8 w-8 p-0 rounded-full text-slate-500 hover:text-slate-900 disabled:opacity-30"
+                      aria-label="Next page"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost" size="sm"
+                      onClick={() => setPage(totalPages)}
+                      disabled={currentPage === totalPages}
+                      className="h-8 w-8 p-0 rounded-full text-slate-500 hover:text-slate-900 disabled:opacity-30"
+                      aria-label="Last page"
+                    >
+                      <ChevronsRight className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
