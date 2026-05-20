@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { StatusBadge } from '../components/StatusBadge';
@@ -6,7 +6,7 @@ import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus, Plus, FileDown, FileText, FileArchive, Lock, Sparkles, Info, FolderInput } from 'lucide-react';
+import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, ChevronLeft, FolderPlus, Plus, FileDown, FileText, FileArchive, Lock, Sparkles, Info, FolderInput, FlaskConical, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { Trash2, Copy } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
@@ -44,6 +44,8 @@ export default function ItemBank() {
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [folderActionTarget, setFolderActionTarget] = useState<string | null>(null);
   const [folderDeleteOpen, setFolderDeleteOpen] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   // Deterministic field-test lock flag (~25% of items locked)
   const isInFieldTest = (id: string) => {
