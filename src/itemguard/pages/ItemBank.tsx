@@ -866,6 +866,7 @@ export default function ItemBank() {
               )}
             </div>
           </div>
+          )
         )}
         <AlertDialog open={folderDeleteOpen} onOpenChange={setFolderDeleteOpen}>
           <AlertDialogContent>
