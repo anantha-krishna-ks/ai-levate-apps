@@ -815,7 +815,7 @@ export default function ItemBank() {
                 <AlertDialogHeader>
                   <AlertDialogTitle>Deletion Blocked — Folder Set in Use</AlertDialogTitle>
                   <AlertDialogDescription>
-                    This folder is linked to an active analysis run and cannot be deleted now. Please complete or remove the associated analysis run, then try again.
+                    "{folderActionTarget}" is linked to an active analysis run and cannot be deleted now. Please complete or remove the associated analysis run, then try again.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
