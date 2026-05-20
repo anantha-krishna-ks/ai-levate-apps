@@ -842,18 +842,34 @@ export default function ItemBank() {
         )}
         <AlertDialog open={folderDeleteOpen} onOpenChange={setFolderDeleteOpen}>
           <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete folder?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This will permanently remove "{folderActionTarget}" and cannot be undone.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDeleteFolder} className="bg-red-600 hover:bg-red-700">
-                Delete
-              </AlertDialogAction>
-            </AlertDialogFooter>
+            {folderActionTarget && !customFolders.includes(folderActionTarget) ? (
+              <>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Can't delete this folder set</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    "{folderActionTarget}" is currently linked to an active analysis run, so it can't be deleted right now. Remove or complete the associated analysis run first, then try again.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Got it</AlertDialogCancel>
+                </AlertDialogFooter>
+              </>
+            ) : (
+              <>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete folder?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will permanently remove "{folderActionTarget}" and cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleDeleteFolder} className="bg-red-600 hover:bg-red-700">
+                    Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </>
+            )}
           </AlertDialogContent>
         </AlertDialog>
         <Dialog open={newFolderOpen} onOpenChange={setNewFolderOpen}>
