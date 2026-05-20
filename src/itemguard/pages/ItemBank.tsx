@@ -46,6 +46,7 @@ export default function ItemBank() {
   const [folderDeleteOpen, setFolderDeleteOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [itemsLoaded, setItemsLoaded] = useState(false);
 
   // Deterministic field-test lock flag (~25% of items locked)
   const isInFieldTest = (id: string) => {
@@ -152,6 +153,7 @@ export default function ItemBank() {
     setImportFile(null);
     setImportFileName('');
     setImportOpen(false);
+    setItemsLoaded(true);
   };
 
   const toggleSelectItem = (id: string) => {
