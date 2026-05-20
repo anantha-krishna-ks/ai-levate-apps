@@ -544,17 +544,20 @@ export default function ItemBank() {
                   className="w-full pl-9 pr-4 py-2 text-sm border border-border rounded-lg bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 />
               </div>
-              <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)}
-                className="text-sm border border-border rounded-lg px-3 py-2 bg-card text-foreground">
-                <option value="all">All Statuses</option>
-                <option value="green">Pass</option>
-                <option value="amber">Needs Review</option>
-                <option value="red">Fail</option>
-              </select>
               <select value={qualFilter} onChange={e => setQualFilter(e.target.value)}
                 className="text-sm border border-border rounded-lg px-3 py-2 bg-card text-foreground">
-                <option value="all">All Folders</option>
+                <option value="all">Qualification</option>
                 {qualifications.map(q => <option key={q} value={q}>{q}</option>)}
+              </select>
+              <select value={levelFilter} onChange={e => setLevelFilter(e.target.value)}
+                className="text-sm border border-border rounded-lg px-3 py-2 bg-card text-foreground">
+                <option value="all">Level</option>
+                {levels.map(l => <option key={l} value={l}>{l}</option>)}
+              </select>
+              <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)}
+                className="text-sm border border-border rounded-lg px-3 py-2 bg-card text-foreground">
+                <option value="all">Type</option>
+                {itemTypes.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
             </div>
 
