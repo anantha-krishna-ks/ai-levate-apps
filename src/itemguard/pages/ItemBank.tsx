@@ -551,10 +551,9 @@ export default function ItemBank() {
                                 {locked && (
                                   <Tooltip>
                                     <TooltipTrigger asChild>
-                                      <span className="group/ft inline-flex items-center gap-1 pl-1 pr-2 py-[3px] rounded-full bg-amber-50 ring-1 ring-amber-200/80 text-amber-800 text-[10px] font-semibold tracking-wide leading-none transition-colors hover:bg-amber-100">
-                                        <span className="relative flex items-center justify-center w-3.5 h-3.5 rounded-full bg-amber-500/15">
-                                          <span className="absolute inset-0 rounded-full bg-amber-400/40 animate-ping" />
-                                          <FlaskConical className="w-2.5 h-2.5 text-amber-700 relative" />
+                                      <span className="inline-flex items-center gap-1 pl-1 pr-2 py-[3px] rounded-full bg-amber-50 ring-1 ring-amber-200/80 text-amber-800 text-[10px] font-semibold tracking-wide leading-none transition-colors hover:bg-amber-100">
+                                        <span className="flex items-center justify-center w-3.5 h-3.5 rounded-full bg-amber-500/15">
+                                          <FlaskConical className="w-2.5 h-2.5 text-amber-700" />
                                         </span>
                                         Field Test
                                       </span>
