@@ -636,6 +636,100 @@ export default function ItemBank() {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+
+        {/* Add to Item Set dialog */}
+        <Dialog open={addToSetOpen} onOpenChange={setAddToSetOpen}>
+          <DialogContent className="sm:rounded-xl">
+            <DialogHeader>
+              <div className="flex items-start gap-3">
+                <div className="h-10 w-10 rounded-xl bg-blue-100 p-1 flex-shrink-0">
+                  <div className="h-full w-full rounded-md bg-blue-600 flex items-center justify-center">
+                    <FolderInput className="h-4 w-4 text-white" />
+                  </div>
+                </div>
+                <div className="text-left">
+                  <DialogTitle>Create Item Set</DialogTitle>
+                  <DialogDescription>
+                    Group the {selectedItems.length} selected items into a new folder set.
+                  </DialogDescription>
+                </div>
+              </div>
+            </DialogHeader>
+            <div className="space-y-2">
+              <Label htmlFor="set-name">Folder set name</Label>
+              <Input
+                id="set-name"
+                value={newSetName}
+                onChange={e => setNewSetName(e.target.value)}
+                placeholder="e.g. Pilot Batch — Spring 2026"
+                onKeyDown={e => { if (e.key === 'Enter') handleConfirmAddToSet(); }}
+                autoFocus
+              />
+              <p className="text-[11px] text-slate-500">
+                The new folder set will appear in the Folders tab immediately.
+              </p>
+            </div>
+            <DialogFooter>
+              <Button variant="outline" size="sm" onClick={() => setAddToSetOpen(false)}>Cancel</Button>
+              <Button size="sm" onClick={handleConfirmAddToSet} disabled={!newSetName.trim()}>
+                <FolderInput className="w-3.5 h-3.5 mr-1.5" />Create Set
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Blocked delete explanation */}
+        <AlertDialog open={blockedDeleteOpen} onOpenChange={setBlockedDeleteOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <div className="flex items-start gap-3">
+                <div className="h-10 w-10 rounded-xl bg-amber-100 flex-shrink-0 flex items-center justify-center">
+                  <Lock className="h-4 w-4 text-amber-700" />
+                </div>
+                <div>
+                  <AlertDialogTitle>Some items can't be deleted</AlertDialogTitle>
+                  <AlertDialogDescription className="mt-1">
+                    {selectedLockedIds.length > 0
+                      ? `${selectedLockedIds.length} of your selected item${selectedLockedIds.length === 1 ? ' is' : 's are'} currently part of an active field test run and are locked from deletion.`
+                      : 'This item is currently part of an active field test run and is locked from deletion.'}
+                  </AlertDialogDescription>
+                </div>
+              </div>
+            </AlertDialogHeader>
+            {selectedLockedIds.length > 0 && (
+              <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-3 max-h-40 overflow-y-auto">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-amber-800 mb-2">Locked items</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {selectedLockedIds.map(id => (
+                    <span key={id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white border border-amber-200 text-[11px] font-mono text-amber-800">
+                      <Lock className="w-2.5 h-2.5" />{id}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="flex items-start gap-2 text-[12px] text-slate-600 bg-slate-50 border border-slate-200 rounded-lg p-3">
+              <Info className="w-3.5 h-3.5 mt-0.5 text-blue-600 flex-shrink-0" />
+              <span>
+                Items used in a field test must stay intact to preserve the integrity of the run. Once the field test concludes, the lock will be released automatically.
+              </span>
+            </div>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Close</AlertDialogCancel>
+              {selectedItems.length - selectedLockedIds.length > 0 && (
+                <AlertDialogAction
+                  onClick={() => {
+                    setSelectedItems(prev => prev.filter(id => !isInFieldTest(id)));
+                    setBlockedDeleteOpen(false);
+                    setTimeout(() => setDeleteConfirmOpen(true), 150);
+                  }}
+                >
+                  Skip locked & delete {selectedItems.length - selectedLockedIds.length}
+                </AlertDialogAction>
+              )}
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     );
   }
