@@ -6,8 +6,9 @@ import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus, Plus, FileDown, FileText, FileArchive } from 'lucide-react';
+import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus, Plus, FileDown, FileText, FileArchive, Lock, Sparkles, Info, FolderInput } from 'lucide-react';
 import { Trash2, Copy } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -27,6 +28,11 @@ export default function ItemBank() {
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
   const [view, setView] = useState<'items' | 'folders'>('items');
   const [customFolders, setCustomFolders] = useState<string[]>([]);
+  const [customFolderItems, setCustomFolderItems] = useState<Record<string, string[]>>({});
+  const [addToSetOpen, setAddToSetOpen] = useState(false);
+  const [newSetName, setNewSetName] = useState('');
+  const [highlightFolder, setHighlightFolder] = useState<string | null>(null);
+  const [blockedDeleteOpen, setBlockedDeleteOpen] = useState(false);
   const [newFolderOpen, setNewFolderOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState('');
   const [importOpen, setImportOpen] = useState(false);
@@ -38,6 +44,12 @@ export default function ItemBank() {
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [folderActionTarget, setFolderActionTarget] = useState<string | null>(null);
   const [folderDeleteOpen, setFolderDeleteOpen] = useState(false);
+
+  // Deterministic field-test lock flag (~25% of items locked)
+  const isInFieldTest = (id: string) => {
+    const n = parseInt(id.replace(/\D/g, ''), 10) || 0;
+    return n % 4 === 0;
+  };
 
   const itemsWithResults = useMemo(() => {
     return mockItems.map(item => {
@@ -58,13 +70,31 @@ export default function ItemBank() {
       map.set(key, entry);
     });
     customFolders.forEach(name => {
-      if (!map.has(name)) map.set(name, { name, count: 0, pass: 0, review: 0, fail: 0 });
+      if (!map.has(name)) {
+        const ids = customFolderItems[name] ?? [];
+        const members = itemsWithResults.filter(i => ids.includes(i.item_id));
+        map.set(name, {
+          name,
+          count: members.length,
+          pass: members.filter(m => m.overall_status === 'green').length,
+          review: members.filter(m => m.overall_status === 'amber').length,
+          fail: members.filter(m => m.overall_status === 'red').length,
+        });
+      }
     });
     return Array.from(map.values()).sort((a, b) => a.name.localeCompare(b.name));
-  }, [itemsWithResults, customFolders]);
+  }, [itemsWithResults, customFolders, customFolderItems]);
 
   const filtered = useMemo(() => {
-    let list = selectedFolder ? itemsWithResults.filter(i => i.qualification === selectedFolder) : itemsWithResults;
+    let list = itemsWithResults;
+    if (selectedFolder) {
+      if (customFolderItems[selectedFolder]) {
+        const ids = customFolderItems[selectedFolder];
+        list = itemsWithResults.filter(i => ids.includes(i.item_id));
+      } else {
+        list = itemsWithResults.filter(i => i.qualification === selectedFolder);
+      }
+    }
     if (search) {
       const s = search.toLowerCase();
       list = list.filter(i => i.item_id.toLowerCase().includes(s) || i.stem.toLowerCase().includes(s) || i.unit_code.toLowerCase().includes(s));
@@ -80,7 +110,7 @@ export default function ItemBank() {
       return sortDir === 'desc' ? -cmp : cmp;
     });
     return list;
-  }, [search, statusFilter, qualFilter, sortField, sortDir, itemsWithResults, selectedFolder]);
+  }, [search, statusFilter, qualFilter, sortField, sortDir, itemsWithResults, selectedFolder, customFolderItems]);
 
   const qualifications = [...new Set(mockItems.map(i => i.qualification))];
 
@@ -144,9 +174,54 @@ export default function ItemBank() {
   const handleDeleteFolder = () => {
     if (!folderActionTarget) return;
     setCustomFolders(prev => prev.filter(n => n !== folderActionTarget));
+    setCustomFolderItems(prev => {
+      const { [folderActionTarget]: _, ...rest } = prev;
+      return rest;
+    });
     toast({ title: 'Folder deleted', description: `"${folderActionTarget}" was removed.` });
     setFolderDeleteOpen(false);
     setFolderActionTarget(null);
+  };
+
+  // ===== Selection-based bulk actions for the Items tab =====
+  const selectedLockedIds = selectedItems.filter(isInFieldTest);
+  const canBulkDelete = selectedItems.length > 0 && selectedLockedIds.length === 0;
+  const canAddToSet = selectedItems.length >= 20;
+
+  const handleConfirmAddToSet = () => {
+    const name = newSetName.trim();
+    if (!name) return;
+    if (folders.some(f => f.name.toLowerCase() === name.toLowerCase())) {
+      toast({ title: 'Folder already exists', description: `"${name}" is already a folder.`, variant: 'destructive' });
+      return;
+    }
+    const ids = [...selectedItems];
+    setCustomFolders(prev => [...prev, name]);
+    setCustomFolderItems(prev => ({ ...prev, [name]: ids }));
+    setNewSetName('');
+    setAddToSetOpen(false);
+    setSelectedItems([]);
+    toast({ title: 'Item set created', description: `${ids.length} items added to "${name}".` });
+    // Switch to Folders tab and highlight the new card
+    setHighlightFolder(name);
+    setTimeout(() => setView('folders'), 250);
+    setTimeout(() => setHighlightFolder(null), 3200);
+  };
+
+  const handleBulkDeleteClick = () => {
+    if (selectedLockedIds.length > 0) {
+      setBlockedDeleteOpen(true);
+      return;
+    }
+    setDeleteConfirmOpen(true);
+  };
+
+  const handleSingleDelete = (id: string) => {
+    if (isInFieldTest(id)) {
+      setBlockedDeleteOpen(true);
+      return;
+    }
+    toast({ title: 'Item deleted', description: `${id} has been removed.` });
   };
 
   if (!selectedFolder) {
@@ -236,8 +311,18 @@ export default function ItemBank() {
           {folders.map(f => (
             <div
               key={f.name}
-              className="group bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all flex flex-col"
+              className={`group bg-white rounded-lg border transition-all flex flex-col ${
+                highlightFolder === f.name
+                  ? 'border-blue-500 ring-4 ring-blue-200/70 animate-scale-in shadow-lg'
+                  : 'border-gray-200 hover:border-blue-400 hover:shadow-sm'
+              }`}
             >
+              {highlightFolder === f.name && (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 border-b border-blue-100 text-blue-700 text-[11px] font-semibold rounded-t-lg">
+                  <Sparkles className="w-3 h-3" />
+                  Newly created
+                </div>
+              )}
               <button
                 type="button"
                 onClick={() => setSelectedFolder(f.name)}
@@ -320,11 +405,102 @@ export default function ItemBank() {
                 {qualifications.map(q => <option key={q} value={q}>{q}</option>)}
               </select>
             </div>
+
+            {/* Selection action bar */}
+            {selectedItems.length > 0 && (
+              <TooltipProvider delayDuration={150}>
+                <div className="mb-4 flex flex-wrap items-center gap-3 px-4 py-2.5 rounded-xl bg-blue-50 border border-blue-200 animate-fade-in">
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="inline-flex items-center justify-center min-w-[26px] h-[22px] px-1.5 rounded-full bg-blue-600 text-white text-xs font-semibold">
+                      {selectedItems.length}
+                    </span>
+                    <span className="font-medium text-slate-800">selected</span>
+                    {selectedLockedIds.length > 0 && (
+                      <span className="ml-1 inline-flex items-center gap-1 text-[11px] font-medium text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">
+                        <Lock className="w-3 h-3" /> {selectedLockedIds.length} locked
+                      </span>
+                    )}
+                  </div>
+                  <div className="ml-auto flex items-center gap-2">
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span>
+                          <Button
+                            size="sm"
+                            onClick={() => setAddToSetOpen(true)}
+                            disabled={!canAddToSet}
+                            className="h-9 rounded-full px-4 gap-1.5"
+                          >
+                            <FolderInput className="w-3.5 h-3.5" />
+                            Add to Item Set
+                            {!canAddToSet && (
+                              <span className="ml-1 text-[10px] font-medium opacity-90">
+                                ({selectedItems.length}/20)
+                              </span>
+                            )}
+                          </Button>
+                        </span>
+                      </TooltipTrigger>
+                      {!canAddToSet && (
+                        <TooltipContent side="bottom">
+                          Minimum 20 items required ({20 - selectedItems.length} more to go)
+                        </TooltipContent>
+                      )}
+                    </Tooltip>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={handleBulkDeleteClick}
+                            disabled={!canBulkDelete}
+                            className={`h-9 rounded-full px-4 gap-1.5 ${
+                              canBulkDelete
+                                ? 'text-red-600 border-red-200 hover:bg-red-50 hover:text-red-700 hover:border-red-300'
+                                : 'text-slate-400 border-slate-200'
+                            }`}
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                            Delete
+                          </Button>
+                        </span>
+                      </TooltipTrigger>
+                      {!canBulkDelete && (
+                        <TooltipContent side="bottom">
+                          {selectedLockedIds.length} selected item{selectedLockedIds.length === 1 ? ' is' : 's are'} in a field test run and cannot be deleted
+                        </TooltipContent>
+                      )}
+                    </Tooltip>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setSelectedItems([])}
+                      className="h-9 rounded-full px-3 text-xs text-slate-600 hover:text-slate-900"
+                    >
+                      Clear
+                    </Button>
+                  </div>
+                </div>
+              </TooltipProvider>
+            )}
+
             <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
               <div className="overflow-x-auto">
                 <Table className="w-full">
                   <TableHeader>
                     <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                      <TableHead className="w-10">
+                        <Checkbox
+                          checked={filtered.length > 0 && filtered.every(i => selectedItems.includes(i.item_id))}
+                          onCheckedChange={(c) => {
+                            if (c) setSelectedItems(prev => Array.from(new Set([...prev, ...filtered.map(i => i.item_id)])));
+                            else setSelectedItems(prev => prev.filter(id => !filtered.some(i => i.item_id === id)));
+                          }}
+                          aria-label="Select all"
+                          className="rounded-none border-slate-400 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                        />
+                      </TableHead>
                       <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('item_id')}>
                         Item ID {sortField === 'item_id' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
                       </TableHead>
@@ -335,25 +511,86 @@ export default function ItemBank() {
                       <TableHead className="whitespace-nowrap">Level</TableHead>
                       <TableHead className="whitespace-nowrap">Type</TableHead>
                       <TableHead className="whitespace-nowrap">Stem Preview</TableHead>
+                      <TableHead className="w-12 text-right whitespace-nowrap">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {filtered.map(item => (
-                      <TableRow
-                        key={item.item_id}
-                        className="cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
-                        onClick={() => navigate(`/item-validation/item-reports/${item.item_id}`)}
-                      >
-                        <TableCell className="font-mono text-xs font-medium" title={item.item_id}>{item.item_id}</TableCell>
-                        <TableCell className="text-xs max-w-[180px] truncate" title={item.qualification}>{item.qualification.replace('VTCT ', '')}</TableCell>
-                        <TableCell className="text-xs font-mono" title={item.unit_code}>{item.unit_code}</TableCell>
-                        <TableCell className="text-xs max-w-[140px] truncate" title={item.topic}>{item.topic}</TableCell>
-                        <TableCell className="text-xs max-w-[160px] truncate" title={item.intended_learning_outcome}>{item.intended_learning_outcome}</TableCell>
-                        <TableCell className="text-xs whitespace-nowrap" title={String(item.qualification_level)}>{item.qualification_level}</TableCell>
-                        <TableCell className="text-xs whitespace-nowrap" title={item.item_type}>{item.item_type}</TableCell>
-                        <TableCell className="text-xs max-w-[260px] truncate" title={item.stem}>{item.stem}</TableCell>
-                      </TableRow>
-                    ))}
+                    <TooltipProvider delayDuration={150}>
+                      {filtered.map(item => {
+                        const locked = isInFieldTest(item.item_id);
+                        const isSelected = selectedItems.includes(item.item_id);
+                        return (
+                          <TableRow
+                            key={item.item_id}
+                            className={`cursor-pointer transition-colors border-b border-gray-100 last:border-b-0 ${
+                              isSelected ? 'bg-blue-50/60 hover:bg-blue-50' : 'hover:bg-gray-50'
+                            }`}
+                            onClick={() => navigate(`/item-validation/item-reports/${item.item_id}`)}
+                          >
+                            <TableCell className="w-10" onClick={(e) => e.stopPropagation()}>
+                              <Checkbox
+                                checked={isSelected}
+                                onCheckedChange={() => toggleSelectItem(item.item_id)}
+                                aria-label={`Select ${item.item_id}`}
+                                className="rounded-none border-slate-400 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                              />
+                            </TableCell>
+                            <TableCell className="font-mono text-xs font-medium" title={item.item_id}>
+                              <div className="flex items-center gap-1.5">
+                                {item.item_id}
+                                {locked && (
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-1 py-0.5 rounded">
+                                        <Lock className="w-2.5 h-2.5" />
+                                        Field test
+                                      </span>
+                                    </TooltipTrigger>
+                                    <TooltipContent side="right" className="max-w-xs">
+                                      In an active field test run — locked from deletion.
+                                    </TooltipContent>
+                                  </Tooltip>
+                                )}
+                              </div>
+                            </TableCell>
+                            <TableCell className="text-xs max-w-[180px] truncate" title={item.qualification}>{item.qualification.replace('VTCT ', '')}</TableCell>
+                            <TableCell className="text-xs font-mono" title={item.unit_code}>{item.unit_code}</TableCell>
+                            <TableCell className="text-xs max-w-[140px] truncate" title={item.topic}>{item.topic}</TableCell>
+                            <TableCell className="text-xs max-w-[160px] truncate" title={item.intended_learning_outcome}>{item.intended_learning_outcome}</TableCell>
+                            <TableCell className="text-xs whitespace-nowrap" title={String(item.qualification_level)}>{item.qualification_level}</TableCell>
+                            <TableCell className="text-xs whitespace-nowrap" title={item.item_type}>{item.item_type}</TableCell>
+                            <TableCell className="text-xs max-w-[260px] truncate" title={item.stem}>{item.stem}</TableCell>
+                            <TableCell className="w-12 text-right" onClick={(e) => e.stopPropagation()}>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <span>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={() => handleSingleDelete(item.item_id)}
+                                      disabled={locked}
+                                      className={`h-7 w-7 p-0 ${
+                                        locked
+                                          ? 'text-slate-300 cursor-not-allowed'
+                                          : 'text-slate-500 hover:text-red-600 hover:bg-red-50'
+                                      }`}
+                                      aria-label={`Delete ${item.item_id}`}
+                                    >
+                                      {locked ? <Lock className="w-3.5 h-3.5" /> : <Trash2 className="w-3.5 h-3.5" />}
+                                    </Button>
+                                  </span>
+                                </TooltipTrigger>
+                                <TooltipContent side="left">
+                                  {locked
+                                    ? 'Locked: item is in a field test run'
+                                    : 'Delete item'}
+                                </TooltipContent>
+                              </Tooltip>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TooltipProvider>
                   </TableBody>
                 </Table>
               </div>
@@ -399,6 +636,125 @@ export default function ItemBank() {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+
+        {/* Add to Item Set dialog */}
+        <Dialog open={addToSetOpen} onOpenChange={setAddToSetOpen}>
+          <DialogContent className="sm:rounded-xl">
+            <DialogHeader>
+              <div className="flex items-start gap-3">
+                <div className="h-10 w-10 rounded-xl bg-blue-100 p-1 flex-shrink-0">
+                  <div className="h-full w-full rounded-md bg-blue-600 flex items-center justify-center">
+                    <FolderInput className="h-4 w-4 text-white" />
+                  </div>
+                </div>
+                <div className="text-left">
+                  <DialogTitle>Create Item Set</DialogTitle>
+                  <DialogDescription>
+                    Group the {selectedItems.length} selected items into a new folder set.
+                  </DialogDescription>
+                </div>
+              </div>
+            </DialogHeader>
+            <div className="space-y-2">
+              <Label htmlFor="set-name">Folder set name</Label>
+              <Input
+                id="set-name"
+                value={newSetName}
+                onChange={e => setNewSetName(e.target.value)}
+                placeholder="e.g. Pilot Batch — Spring 2026"
+                onKeyDown={e => { if (e.key === 'Enter') handleConfirmAddToSet(); }}
+                autoFocus
+              />
+              <p className="text-[11px] text-slate-500">
+                The new folder set will appear in the Folders tab immediately.
+              </p>
+            </div>
+            <DialogFooter>
+              <Button variant="outline" size="sm" onClick={() => setAddToSetOpen(false)}>Cancel</Button>
+              <Button size="sm" onClick={handleConfirmAddToSet} disabled={!newSetName.trim()}>
+                <FolderInput className="w-3.5 h-3.5 mr-1.5" />Create Set
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Blocked delete explanation */}
+        <AlertDialog open={blockedDeleteOpen} onOpenChange={setBlockedDeleteOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <div className="flex items-start gap-3">
+                <div className="h-10 w-10 rounded-xl bg-amber-100 flex-shrink-0 flex items-center justify-center">
+                  <Lock className="h-4 w-4 text-amber-700" />
+                </div>
+                <div>
+                  <AlertDialogTitle>Some items can't be deleted</AlertDialogTitle>
+                  <AlertDialogDescription className="mt-1">
+                    {selectedLockedIds.length > 0
+                      ? `${selectedLockedIds.length} of your selected item${selectedLockedIds.length === 1 ? ' is' : 's are'} currently part of an active field test run and are locked from deletion.`
+                      : 'This item is currently part of an active field test run and is locked from deletion.'}
+                  </AlertDialogDescription>
+                </div>
+              </div>
+            </AlertDialogHeader>
+            {selectedLockedIds.length > 0 && (
+              <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-3 max-h-40 overflow-y-auto">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-amber-800 mb-2">Locked items</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {selectedLockedIds.map(id => (
+                    <span key={id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white border border-amber-200 text-[11px] font-mono text-amber-800">
+                      <Lock className="w-2.5 h-2.5" />{id}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="flex items-start gap-2 text-[12px] text-slate-600 bg-slate-50 border border-slate-200 rounded-lg p-3">
+              <Info className="w-3.5 h-3.5 mt-0.5 text-blue-600 flex-shrink-0" />
+              <span>
+                Items used in a field test must stay intact to preserve the integrity of the run. Once the field test concludes, the lock will be released automatically.
+              </span>
+            </div>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Close</AlertDialogCancel>
+              {selectedItems.length - selectedLockedIds.length > 0 && (
+                <AlertDialogAction
+                  onClick={() => {
+                    setSelectedItems(prev => prev.filter(id => !isInFieldTest(id)));
+                    setBlockedDeleteOpen(false);
+                    setTimeout(() => setDeleteConfirmOpen(true), 150);
+                  }}
+                >
+                  Skip locked & delete {selectedItems.length - selectedLockedIds.length}
+                </AlertDialogAction>
+              )}
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Bulk delete confirm (items tab) */}
+        <AlertDialog open={deleteConfirmOpen} onOpenChange={setDeleteConfirmOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete {selectedItems.length} item{selectedItems.length === 1 ? '' : 's'}?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This will permanently remove the selected item{selectedItems.length === 1 ? '' : 's'} from the Item Bank. This action cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => {
+                  toast({ title: 'Items deleted', description: `${selectedItems.length} item${selectedItems.length === 1 ? '' : 's'} removed.` });
+                  setSelectedItems([]);
+                  setDeleteConfirmOpen(false);
+                }}
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     );
   }
