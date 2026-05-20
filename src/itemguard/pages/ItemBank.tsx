@@ -813,9 +813,9 @@ export default function ItemBank() {
             {folderActionTarget && !customFolders.includes(folderActionTarget) ? (
               <>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Can't delete this folder set</AlertDialogTitle>
+                  <AlertDialogTitle>Deletion Blocked — Folder Set in Use</AlertDialogTitle>
                   <AlertDialogDescription>
-                    "{folderActionTarget}" is currently linked to an active analysis run, so it can't be deleted right now. Remove or complete the associated analysis run first, then try again.
+                    This folder is linked to an active analysis run and cannot be deleted now. Please complete or remove the associated analysis run, then try again.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
