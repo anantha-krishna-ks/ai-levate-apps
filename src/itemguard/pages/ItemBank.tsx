@@ -461,10 +461,7 @@ export default function ItemBank() {
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-sm font-medium text-slate-900 truncate" title={f.name}>{f.name}</h3>
-                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 flex-shrink-0" />
-                  </div>
+                  <h3 className="text-sm font-medium text-slate-900 truncate pr-8" title={f.name}>{f.name}</h3>
                   <p className="text-xs text-slate-500 mt-0.5">{f.count} items</p>
                   <div className="flex items-center gap-2 mt-2 text-[11px]">
                     <span className="px-1.5 py-0.5 rounded bg-green-50 text-green-700">Pass {f.pass}</span>
@@ -478,7 +475,7 @@ export default function ItemBank() {
                 onClick={(e) => { e.stopPropagation(); setFolderActionTarget(f.name); setFolderDeleteOpen(true); }}
                 title="Delete folder"
                 aria-label={`Delete ${f.name}`}
-                className="absolute top-2 right-2 h-7 w-7 inline-flex items-center justify-center rounded-md text-slate-400 opacity-0 group-hover:opacity-100 hover:text-red-600 hover:bg-red-50 transition-opacity"
+                className="absolute top-2 right-2 h-7 w-7 inline-flex items-center justify-center rounded-md text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors"
               >
                 <Trash2 className="w-3.5 h-3.5" />
               </button>
