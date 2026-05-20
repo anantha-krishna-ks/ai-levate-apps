@@ -970,7 +970,7 @@ export default function ItemBank() {
             <div className="flex items-start gap-2 text-[12px] text-slate-600 bg-slate-50 border border-slate-200 rounded-lg p-3">
               <Info className="w-3.5 h-3.5 mt-0.5 text-blue-600 flex-shrink-0" />
               <span>
-                Items used in a analysis run must stay intact to preserve the integrity of the run. Once the analysis run concludes, the lock will be released automatically.
+                Items used in an analysis run must stay intact to preserve the integrity of the run. Once the analysis run concludes, the lock will be released automatically.
               </span>
             </div>
             <AlertDialogFooter>
