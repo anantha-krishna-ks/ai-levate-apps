@@ -311,8 +311,18 @@ export default function ItemBank() {
           {folders.map(f => (
             <div
               key={f.name}
-              className="group bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all flex flex-col"
+              className={`group bg-white rounded-lg border transition-all flex flex-col ${
+                highlightFolder === f.name
+                  ? 'border-blue-500 ring-4 ring-blue-200/70 animate-scale-in shadow-lg'
+                  : 'border-gray-200 hover:border-blue-400 hover:shadow-sm'
+              }`}
             >
+              {highlightFolder === f.name && (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 border-b border-blue-100 text-blue-700 text-[11px] font-semibold rounded-t-lg">
+                  <Sparkles className="w-3 h-3" />
+                  Newly created
+                </div>
+              )}
               <button
                 type="button"
                 onClick={() => setSelectedFolder(f.name)}
