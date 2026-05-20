@@ -274,14 +274,14 @@ export default function AnalysisRuns() {
               </div>
 
               {/* Metadata chip row */}
-              <div className="px-5 pb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[11px] text-slate-600">
-                <MetaChip icon={<Layers className="w-3 h-3" />} value={run.scope} />
+              <div className="px-5 pb-4 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-[13px] text-slate-600">
+                <MetaChip icon={<Layers className="w-3.5 h-3.5" />} value={run.scope} />
                 <Dot />
-                <MetaChip icon={<FileText className="w-3 h-3" />} value={run.ruleset_used} />
+                <MetaChip icon={<FileText className="w-3.5 h-3.5" />} value={run.ruleset_used} />
                 <Dot />
-                <MetaChip icon={<User className="w-3 h-3" />} value={run.initiated_by} />
+                <MetaChip icon={<User className="w-3.5 h-3.5" />} value={run.initiated_by} />
                 <Dot />
-                <MetaChip icon={<Calendar className="w-3 h-3" />} value={new Date(run.created_at).toLocaleDateString()} />
+                <MetaChip icon={<Calendar className="w-3.5 h-3.5" />} value={new Date(run.created_at).toLocaleDateString()} />
               </div>
 
               {/* Running progress */}
