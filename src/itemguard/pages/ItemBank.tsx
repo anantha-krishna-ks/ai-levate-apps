@@ -174,9 +174,54 @@ export default function ItemBank() {
   const handleDeleteFolder = () => {
     if (!folderActionTarget) return;
     setCustomFolders(prev => prev.filter(n => n !== folderActionTarget));
+    setCustomFolderItems(prev => {
+      const { [folderActionTarget]: _, ...rest } = prev;
+      return rest;
+    });
     toast({ title: 'Folder deleted', description: `"${folderActionTarget}" was removed.` });
     setFolderDeleteOpen(false);
     setFolderActionTarget(null);
+  };
+
+  // ===== Selection-based bulk actions for the Items tab =====
+  const selectedLockedIds = selectedItems.filter(isInFieldTest);
+  const canBulkDelete = selectedItems.length > 0 && selectedLockedIds.length === 0;
+  const canAddToSet = selectedItems.length >= 20;
+
+  const handleConfirmAddToSet = () => {
+    const name = newSetName.trim();
+    if (!name) return;
+    if (folders.some(f => f.name.toLowerCase() === name.toLowerCase())) {
+      toast({ title: 'Folder already exists', description: `"${name}" is already a folder.`, variant: 'destructive' });
+      return;
+    }
+    const ids = [...selectedItems];
+    setCustomFolders(prev => [...prev, name]);
+    setCustomFolderItems(prev => ({ ...prev, [name]: ids }));
+    setNewSetName('');
+    setAddToSetOpen(false);
+    setSelectedItems([]);
+    toast({ title: 'Item set created', description: `${ids.length} items added to "${name}".` });
+    // Switch to Folders tab and highlight the new card
+    setHighlightFolder(name);
+    setTimeout(() => setView('folders'), 250);
+    setTimeout(() => setHighlightFolder(null), 3200);
+  };
+
+  const handleBulkDeleteClick = () => {
+    if (selectedLockedIds.length > 0) {
+      setBlockedDeleteOpen(true);
+      return;
+    }
+    setDeleteConfirmOpen(true);
+  };
+
+  const handleSingleDelete = (id: string) => {
+    if (isInFieldTest(id)) {
+      setBlockedDeleteOpen(true);
+      return;
+    }
+    toast({ title: 'Item deleted', description: `${id} has been removed.` });
   };
 
   if (!selectedFolder) {
