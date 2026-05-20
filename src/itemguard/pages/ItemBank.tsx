@@ -405,11 +405,102 @@ export default function ItemBank() {
                 {qualifications.map(q => <option key={q} value={q}>{q}</option>)}
               </select>
             </div>
+
+            {/* Selection action bar */}
+            {selectedItems.length > 0 && (
+              <TooltipProvider delayDuration={150}>
+                <div className="mb-4 flex flex-wrap items-center gap-3 px-4 py-2.5 rounded-xl bg-blue-50 border border-blue-200 animate-fade-in">
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="inline-flex items-center justify-center min-w-[26px] h-[22px] px-1.5 rounded-full bg-blue-600 text-white text-xs font-semibold">
+                      {selectedItems.length}
+                    </span>
+                    <span className="font-medium text-slate-800">selected</span>
+                    {selectedLockedIds.length > 0 && (
+                      <span className="ml-1 inline-flex items-center gap-1 text-[11px] font-medium text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">
+                        <Lock className="w-3 h-3" /> {selectedLockedIds.length} locked
+                      </span>
+                    )}
+                  </div>
+                  <div className="ml-auto flex items-center gap-2">
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span>
+                          <Button
+                            size="sm"
+                            onClick={() => setAddToSetOpen(true)}
+                            disabled={!canAddToSet}
+                            className="h-9 rounded-full px-4 gap-1.5"
+                          >
+                            <FolderInput className="w-3.5 h-3.5" />
+                            Add to Item Set
+                            {!canAddToSet && (
+                              <span className="ml-1 text-[10px] font-medium opacity-90">
+                                ({selectedItems.length}/20)
+                              </span>
+                            )}
+                          </Button>
+                        </span>
+                      </TooltipTrigger>
+                      {!canAddToSet && (
+                        <TooltipContent side="bottom">
+                          Minimum 20 items required ({20 - selectedItems.length} more to go)
+                        </TooltipContent>
+                      )}
+                    </Tooltip>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={handleBulkDeleteClick}
+                            disabled={!canBulkDelete}
+                            className={`h-9 rounded-full px-4 gap-1.5 ${
+                              canBulkDelete
+                                ? 'text-red-600 border-red-200 hover:bg-red-50 hover:text-red-700 hover:border-red-300'
+                                : 'text-slate-400 border-slate-200'
+                            }`}
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                            Delete
+                          </Button>
+                        </span>
+                      </TooltipTrigger>
+                      {!canBulkDelete && (
+                        <TooltipContent side="bottom">
+                          {selectedLockedIds.length} selected item{selectedLockedIds.length === 1 ? ' is' : 's are'} in a field test run and cannot be deleted
+                        </TooltipContent>
+                      )}
+                    </Tooltip>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setSelectedItems([])}
+                      className="h-9 rounded-full px-3 text-xs text-slate-600 hover:text-slate-900"
+                    >
+                      Clear
+                    </Button>
+                  </div>
+                </div>
+              </TooltipProvider>
+            )}
+
             <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
               <div className="overflow-x-auto">
                 <Table className="w-full">
                   <TableHeader>
                     <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                      <TableHead className="w-10">
+                        <Checkbox
+                          checked={filtered.length > 0 && filtered.every(i => selectedItems.includes(i.item_id))}
+                          onCheckedChange={(c) => {
+                            if (c) setSelectedItems(prev => Array.from(new Set([...prev, ...filtered.map(i => i.item_id)])));
+                            else setSelectedItems(prev => prev.filter(id => !filtered.some(i => i.item_id === id)));
+                          }}
+                          aria-label="Select all"
+                          className="rounded-none border-slate-400 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                        />
+                      </TableHead>
                       <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('item_id')}>
                         Item ID {sortField === 'item_id' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
                       </TableHead>
@@ -420,25 +511,86 @@ export default function ItemBank() {
                       <TableHead className="whitespace-nowrap">Level</TableHead>
                       <TableHead className="whitespace-nowrap">Type</TableHead>
                       <TableHead className="whitespace-nowrap">Stem Preview</TableHead>
+                      <TableHead className="w-12 text-right whitespace-nowrap">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {filtered.map(item => (
-                      <TableRow
-                        key={item.item_id}
-                        className="cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
-                        onClick={() => navigate(`/item-validation/item-reports/${item.item_id}`)}
-                      >
-                        <TableCell className="font-mono text-xs font-medium" title={item.item_id}>{item.item_id}</TableCell>
-                        <TableCell className="text-xs max-w-[180px] truncate" title={item.qualification}>{item.qualification.replace('VTCT ', '')}</TableCell>
-                        <TableCell className="text-xs font-mono" title={item.unit_code}>{item.unit_code}</TableCell>
-                        <TableCell className="text-xs max-w-[140px] truncate" title={item.topic}>{item.topic}</TableCell>
-                        <TableCell className="text-xs max-w-[160px] truncate" title={item.intended_learning_outcome}>{item.intended_learning_outcome}</TableCell>
-                        <TableCell className="text-xs whitespace-nowrap" title={String(item.qualification_level)}>{item.qualification_level}</TableCell>
-                        <TableCell className="text-xs whitespace-nowrap" title={item.item_type}>{item.item_type}</TableCell>
-                        <TableCell className="text-xs max-w-[260px] truncate" title={item.stem}>{item.stem}</TableCell>
-                      </TableRow>
-                    ))}
+                    <TooltipProvider delayDuration={150}>
+                      {filtered.map(item => {
+                        const locked = isInFieldTest(item.item_id);
+                        const isSelected = selectedItems.includes(item.item_id);
+                        return (
+                          <TableRow
+                            key={item.item_id}
+                            className={`cursor-pointer transition-colors border-b border-gray-100 last:border-b-0 ${
+                              isSelected ? 'bg-blue-50/60 hover:bg-blue-50' : 'hover:bg-gray-50'
+                            }`}
+                            onClick={() => navigate(`/item-validation/item-reports/${item.item_id}`)}
+                          >
+                            <TableCell className="w-10" onClick={(e) => e.stopPropagation()}>
+                              <Checkbox
+                                checked={isSelected}
+                                onCheckedChange={() => toggleSelectItem(item.item_id)}
+                                aria-label={`Select ${item.item_id}`}
+                                className="rounded-none border-slate-400 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                              />
+                            </TableCell>
+                            <TableCell className="font-mono text-xs font-medium" title={item.item_id}>
+                              <div className="flex items-center gap-1.5">
+                                {item.item_id}
+                                {locked && (
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-1 py-0.5 rounded">
+                                        <Lock className="w-2.5 h-2.5" />
+                                        Field test
+                                      </span>
+                                    </TooltipTrigger>
+                                    <TooltipContent side="right" className="max-w-xs">
+                                      In an active field test run — locked from deletion.
+                                    </TooltipContent>
+                                  </Tooltip>
+                                )}
+                              </div>
+                            </TableCell>
+                            <TableCell className="text-xs max-w-[180px] truncate" title={item.qualification}>{item.qualification.replace('VTCT ', '')}</TableCell>
+                            <TableCell className="text-xs font-mono" title={item.unit_code}>{item.unit_code}</TableCell>
+                            <TableCell className="text-xs max-w-[140px] truncate" title={item.topic}>{item.topic}</TableCell>
+                            <TableCell className="text-xs max-w-[160px] truncate" title={item.intended_learning_outcome}>{item.intended_learning_outcome}</TableCell>
+                            <TableCell className="text-xs whitespace-nowrap" title={String(item.qualification_level)}>{item.qualification_level}</TableCell>
+                            <TableCell className="text-xs whitespace-nowrap" title={item.item_type}>{item.item_type}</TableCell>
+                            <TableCell className="text-xs max-w-[260px] truncate" title={item.stem}>{item.stem}</TableCell>
+                            <TableCell className="w-12 text-right" onClick={(e) => e.stopPropagation()}>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <span>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={() => handleSingleDelete(item.item_id)}
+                                      disabled={locked}
+                                      className={`h-7 w-7 p-0 ${
+                                        locked
+                                          ? 'text-slate-300 cursor-not-allowed'
+                                          : 'text-slate-500 hover:text-red-600 hover:bg-red-50'
+                                      }`}
+                                      aria-label={`Delete ${item.item_id}`}
+                                    >
+                                      {locked ? <Lock className="w-3.5 h-3.5" /> : <Trash2 className="w-3.5 h-3.5" />}
+                                    </Button>
+                                  </span>
+                                </TooltipTrigger>
+                                <TooltipContent side="left">
+                                  {locked
+                                    ? 'Locked: item is in a field test run'
+                                    : 'Delete item'}
+                                </TooltipContent>
+                              </Tooltip>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TooltipProvider>
                   </TableBody>
                 </Table>
               </div>
