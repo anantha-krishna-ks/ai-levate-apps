@@ -116,6 +116,14 @@ export default function ItemBank() {
 
   const qualifications = [...new Set(mockItems.map(i => i.qualification))];
 
+  // Reset to first page when filters/search change
+  useEffect(() => { setPage(1); }, [search, statusFilter, qualFilter, pageSize, view, selectedFolder]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const currentPage = Math.min(page, totalPages);
+  const pageStart = (currentPage - 1) * pageSize;
+  const paged = filtered.slice(pageStart, pageStart + pageSize);
+
   const toggleSort = (field: string) => {
     if (sortField === field) setSortDir(d => d === 'asc' ? 'desc' : 'asc');
     else { setSortField(field); setSortDir('asc'); }
