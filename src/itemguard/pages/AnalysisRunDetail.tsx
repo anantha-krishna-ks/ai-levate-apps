@@ -110,11 +110,14 @@ export default function AnalysisRunDetail() {
 
       {/* Run summary */}
       <div className="bg-white rounded-xl border border-slate-200 mb-5">
-        <div className="px-5 py-4 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-3 border-b border-slate-100">
-          <Meta icon={<Layers className="w-3.5 h-3.5" />} label="Scope" value={run.scope} />
-          <Meta icon={<FileText className="w-3.5 h-3.5" />} label="Ruleset" value={run.ruleset_used} />
-          <Meta icon={<User className="w-3.5 h-3.5" />} label="Initiated by" value={run.initiated_by} />
-          <Meta icon={<Calendar className="w-3.5 h-3.5" />} label="Created" value={new Date(run.created_at).toLocaleDateString()} />
+        <div className="px-5 py-3 flex flex-wrap items-center text-[13px] text-slate-600 border-b border-slate-100 gap-y-1">
+          <MetaChip icon={<Layers className="w-3.5 h-3.5" />} value={run.scope} />
+          <Dot />
+          <MetaChip icon={<FileText className="w-3.5 h-3.5" />} value={run.ruleset_used} />
+          <Dot />
+          <MetaChip icon={<User className="w-3.5 h-3.5" />} value={run.initiated_by} />
+          <Dot />
+          <MetaChip icon={<Calendar className="w-3.5 h-3.5" />} value={new Date(run.created_at).toLocaleDateString()} />
         </div>
         <div className="px-5 py-3 grid grid-cols-2 md:grid-cols-5 divide-x divide-slate-200/70 bg-slate-50/60 rounded-b-xl">
           <Stat label="Items" value={total.toLocaleString()} />
@@ -229,4 +232,17 @@ function Meta({ icon, label, value }: { icon: React.ReactNode; label: string; va
       </div>
     </div>
   );
+}
+
+function MetaChip({ icon, value }: { icon: React.ReactNode; value: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 min-w-0">
+      <span className="text-slate-400 flex-shrink-0">{icon}</span>
+      <span className="truncate text-slate-700" title={value}>{value}</span>
+    </span>
+  );
+}
+
+function Dot() {
+  return <span className="text-slate-300 select-none mx-2">·</span>;
 }
