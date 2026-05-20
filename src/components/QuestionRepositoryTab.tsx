@@ -16,6 +16,8 @@ import {
   GitCompare,
   ThumbsUp,
   ThumbsDown,
+  PlayCircle,
+  Loader2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -46,6 +48,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Textarea } from "@/components/ui/textarea"
+import { toast } from "sonner"
 
 type RowQuestion = {
   id: number
@@ -189,6 +192,30 @@ export const QuestionRepositoryTab = () => {
   const [refinementCreativity, setRefinementCreativity] = useState("moderate")
   const [refinementNumOptions, setRefinementNumOptions] = useState("4")
   const [refinementSourceType, setRefinementSourceType] = useState("Book")
+  const [selectedIds, setSelectedIds] = useState<number[]>([])
+  const [isLaunching, setIsLaunching] = useState(false)
+
+  const allSelected = selectedIds.length === ROWS.length && ROWS.length > 0
+  const toggleAll = (checked: boolean) =>
+    setSelectedIds(checked ? ROWS.map((r) => r.id) : [])
+  const toggleOne = (id: number, checked: boolean) =>
+    setSelectedIds((prev) =>
+      checked ? [...prev, id] : prev.filter((x) => x !== id)
+    )
+
+  const handleRunAnalysis = () => {
+    if (selectedIds.length === 0 || isLaunching) return
+    setIsLaunching(true)
+    toast.success(
+      `Launching analysis for ${selectedIds.length} question${selectedIds.length > 1 ? "s" : ""}...`,
+      { description: "Preparing your analysis run. Hang tight." }
+    )
+    setTimeout(() => {
+      navigate("/item-validation/analysis-runs", {
+        state: { selectedCount: selectedIds.length },
+      })
+    }, 850)
+  }
 
   const handleRateQuestion = (q: string) => {
     setSelectedQuestion(q)
@@ -289,7 +316,12 @@ export const QuestionRepositoryTab = () => {
               <thead>
                 <tr className="border-b border-gray-200 bg-muted">
                   <th className="text-left p-4 text-sm font-medium text-gray-700 w-12">
-                    <input type="checkbox" className="rounded border-gray-300" />
+                    <input
+                      type="checkbox"
+                      className="rounded border-gray-300"
+                      checked={allSelected}
+                      onChange={(e) => toggleAll(e.target.checked)}
+                    />
                   </th>
                   <th className="text-left p-4 text-sm font-medium text-gray-700 w-16">#</th>
                   <th className="text-left p-4 text-sm font-medium text-gray-700 w-48">Question ID</th>
@@ -306,7 +338,12 @@ export const QuestionRepositoryTab = () => {
                 {ROWS.map((q) => (
                   <tr key={q.id} className="border-b border-gray-200 hover:bg-gray-50">
                     <td className="p-4">
-                      <input type="checkbox" className="rounded border-gray-300" />
+                      <input
+                        type="checkbox"
+                        className="rounded border-gray-300"
+                        checked={selectedIds.includes(q.id)}
+                        onChange={(e) => toggleOne(q.id, e.target.checked)}
+                      />
                     </td>
                     <td className="p-4 text-sm font-medium text-gray-900">{q.id}</td>
                     <td className="p-4 text-xs font-mono text-gray-600">{q.identifier}</td>
@@ -484,6 +521,46 @@ export const QuestionRepositoryTab = () => {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Floating Run Analysis bar */}
+      <div
+        className={`fixed bottom-6 left-1/2 z-40 -translate-x-1/2 transform transition-all duration-300 ease-out ${
+          selectedIds.length > 0 && !isLaunching
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-6 opacity-0"
+        }`}
+      >
+        <div className="flex items-center gap-4 rounded-full border border-gray-200 bg-white px-5 py-2.5 shadow-xl">
+          <span className="text-sm font-medium text-gray-700">
+            {selectedIds.length} question{selectedIds.length > 1 ? "s" : ""} selected
+          </span>
+          <span className="h-5 w-px bg-gray-200" />
+          <Button
+            onClick={handleRunAnalysis}
+            className="h-9 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+          >
+            <PlayCircle className="h-4 w-4" />
+            Run Analysis
+          </Button>
+        </div>
+      </div>
+
+      {/* Launch transition overlay */}
+      <div
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-white/85 backdrop-blur-sm transition-opacity duration-300 ${
+          isLaunching ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Loader2 className="h-10 w-10 animate-spin text-primary" />
+          <div>
+            <p className="text-base font-semibold text-gray-900">Starting analysis run</p>
+            <p className="mt-1 text-sm text-gray-500">
+              Taking you to the analysis runs workspace...
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
