@@ -169,18 +169,70 @@ export default function ItemBank() {
         </nav>
         <PageHeader
           title="Item Bank"
-          subtitle={`${folders.length} folders · ${mockItems.length} items total`}
+          subtitle={view === 'folders' ? `${folders.length} folders · ${mockItems.length} items total` : `${mockItems.length} items across ${folders.length} folders`}
           actions={
             <div className="flex gap-2">
-              <Button size="sm" onClick={() => setNewFolderOpen(true)}>
-                <FolderPlus className="w-3.5 h-3.5 mr-1.5" />New Folder
-              </Button>
+              {view === 'folders' ? (
+                <Button size="sm" onClick={() => setNewFolderOpen(true)}>
+                  <FolderPlus className="w-3.5 h-3.5 mr-1.5" />New Folder
+                </Button>
+              ) : (
+                <Button size="sm" onClick={() => setImportOpen(true)}>
+                  <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
+                </Button>
+              )}
               <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />Export</Button>
               <Button variant="outline" size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis</Button>
             </div>
           }
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        {/* iOS-style segmented tabs */}
+        <div className="mb-5 flex justify-center sm:justify-start">
+          <div
+            role="tablist"
+            aria-label="Item Bank view"
+            className="relative inline-flex items-center p-1 rounded-full bg-slate-100/80 border border-slate-200/80 backdrop-blur-sm"
+          >
+            <span
+              aria-hidden="true"
+              className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full bg-white shadow-[0_1px_2px_rgba(15,23,42,0.08),0_1px_1px_rgba(15,23,42,0.04)] ring-1 ring-slate-200/70 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                view === 'items' ? 'translate-x-0' : 'translate-x-full'
+              }`}
+              style={{ left: 4 }}
+            />
+            {([
+              { key: 'items', label: 'Items', icon: FileText },
+              { key: 'folders', label: 'Folders', icon: Folder },
+            ] as const).map(t => {
+              const Icon = t.icon;
+              const active = view === t.key;
+              return (
+                <button
+                  key={t.key}
+                  role="tab"
+                  aria-selected={active}
+                  type="button"
+                  onClick={() => setView(t.key)}
+                  className={`relative z-10 inline-flex items-center gap-1.5 px-5 sm:px-7 h-8 rounded-full text-xs font-semibold tracking-tight transition-colors duration-200 ${
+                    active ? 'text-slate-900' : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {t.label}
+                  <span className={`ml-1 inline-flex items-center justify-center min-w-[20px] h-[18px] px-1.5 rounded-full text-[10px] font-semibold transition-colors ${
+                    active ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-600'
+                  }`}>
+                    {t.key === 'items' ? mockItems.length : folders.length}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {view === 'folders' ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 animate-fade-in">
           {folders.map(f => (
             <div
               key={f.name}
@@ -243,6 +295,71 @@ export default function ItemBank() {
             </div>
           ))}
         </div>
+        ) : (
+          <div className="animate-fade-in">
+            <div className="flex flex-wrap gap-3 mb-5">
+              <div className="relative flex-1 min-w-[240px]">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <input
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                  placeholder="Search by ID, stem, or unit code..."
+                  className="w-full pl-9 pr-4 py-2 text-sm border border-border rounded-lg bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+              </div>
+              <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)}
+                className="text-sm border border-border rounded-lg px-3 py-2 bg-card text-foreground">
+                <option value="all">All Statuses</option>
+                <option value="green">Pass</option>
+                <option value="amber">Needs Review</option>
+                <option value="red">Fail</option>
+              </select>
+              <select value={qualFilter} onChange={e => setQualFilter(e.target.value)}
+                className="text-sm border border-border rounded-lg px-3 py-2 bg-card text-foreground">
+                <option value="all">All Folders</option>
+                {qualifications.map(q => <option key={q} value={q}>{q}</option>)}
+              </select>
+            </div>
+            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+              <div className="overflow-x-auto">
+                <Table className="w-full">
+                  <TableHeader>
+                    <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                      <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('item_id')}>
+                        Item ID {sortField === 'item_id' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
+                      </TableHead>
+                      <TableHead className="cursor-pointer whitespace-nowrap" onClick={() => toggleSort('qualification')}>Qualification</TableHead>
+                      <TableHead className="whitespace-nowrap">Unit</TableHead>
+                      <TableHead className="whitespace-nowrap">Topic</TableHead>
+                      <TableHead className="whitespace-nowrap">ILO</TableHead>
+                      <TableHead className="whitespace-nowrap">Level</TableHead>
+                      <TableHead className="whitespace-nowrap">Type</TableHead>
+                      <TableHead className="whitespace-nowrap">Stem Preview</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filtered.map(item => (
+                      <TableRow
+                        key={item.item_id}
+                        className="cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
+                        onClick={() => navigate(`/item-validation/item-reports/${item.item_id}`)}
+                      >
+                        <TableCell className="font-mono text-xs font-medium" title={item.item_id}>{item.item_id}</TableCell>
+                        <TableCell className="text-xs max-w-[180px] truncate" title={item.qualification}>{item.qualification.replace('VTCT ', '')}</TableCell>
+                        <TableCell className="text-xs font-mono" title={item.unit_code}>{item.unit_code}</TableCell>
+                        <TableCell className="text-xs max-w-[140px] truncate" title={item.topic}>{item.topic}</TableCell>
+                        <TableCell className="text-xs max-w-[160px] truncate" title={item.intended_learning_outcome}>{item.intended_learning_outcome}</TableCell>
+                        <TableCell className="text-xs whitespace-nowrap" title={String(item.qualification_level)}>{item.qualification_level}</TableCell>
+                        <TableCell className="text-xs whitespace-nowrap" title={item.item_type}>{item.item_type}</TableCell>
+                        <TableCell className="text-xs max-w-[260px] truncate" title={item.stem}>{item.stem}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          </div>
+        )}
         <AlertDialog open={folderDeleteOpen} onOpenChange={setFolderDeleteOpen}>
           <AlertDialogContent>
             <AlertDialogHeader>
