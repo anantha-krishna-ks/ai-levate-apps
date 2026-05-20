@@ -385,7 +385,6 @@ export default function ItemBank() {
                 </Button>
               )}
               <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />Export</Button>
-              <Button variant="outline" size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis</Button>
             </div>
           }
         />
@@ -474,14 +473,7 @@ export default function ItemBank() {
                   </div>
                 </div>
               </button>
-              <div className="flex items-center justify-between gap-2 px-3 py-2 border-t border-gray-100 bg-slate-50/60 rounded-b-lg">
-                <Button
-                  size="sm"
-                  onClick={(e) => { e.stopPropagation(); handleRunAnalysis(f.name); }}
-                  className="h-8 px-3 text-xs"
-                >
-                  <PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis
-                </Button>
+              <div className="flex items-center justify-end gap-2 px-3 py-2 border-t border-gray-100 bg-slate-50/60 rounded-b-lg">
                 <div className="flex items-center gap-1">
                   <Button
                     variant="ghost"
@@ -1069,7 +1061,6 @@ export default function ItemBank() {
               <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
             </Button>
             <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />Export</Button>
-            <Button variant="outline" size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Run Analysis</Button>
           </div>
         }
       />
