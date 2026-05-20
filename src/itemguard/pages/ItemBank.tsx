@@ -422,11 +422,6 @@ export default function ItemBank() {
                 >
                   <Icon className="w-4 h-4" />
                   {t.label}
-                  <span className={`ml-1 inline-flex items-center justify-center min-w-[22px] h-[20px] px-1.5 rounded-full text-[11px] font-semibold transition-colors ${
-                    active ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-600'
-                  }`}>
-                    {t.key === 'items' ? mockItems.length : folders.length}
-                  </span>
                 </button>
               );
             })}
