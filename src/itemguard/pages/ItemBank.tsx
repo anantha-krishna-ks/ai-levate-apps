@@ -150,12 +150,11 @@ export default function ItemBank() {
   };
 
   const handleImport = () => {
-    const ok = importMode === 'upload' ? !!importFile : !!importFileName.trim();
-    if (!ok) {
-      toast({ title: 'Missing input', description: importMode === 'upload' ? 'Please choose a file.' : 'Please enter a file name.', variant: 'destructive' });
+    if (!importFile) {
+      toast({ title: 'File required', description: 'Please choose a file to import.', variant: 'destructive' });
       return;
     }
-    toast({ title: 'Items imported', description: `QTI ${qtiVersion} · ${importMode === 'upload' ? importFile?.name : importFileName}` });
+    toast({ title: 'Items imported', description: importFile.name });
     setImportFile(null);
     setImportFileName('');
     setImportOpen(false);
