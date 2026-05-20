@@ -308,6 +308,26 @@ export const QuestionRepositoryTab = () => {
                 <FileSpreadsheet className="h-4 w-4 mr-1" />
                 Export to Excel
               </Button>
+              <div
+                className={`flex items-center gap-3 overflow-hidden transition-all duration-300 ease-out ${
+                  selectedIds.length > 0 && !isLaunching
+                    ? "ml-1 max-w-xs opacity-100"
+                    : "ml-0 max-w-0 opacity-0"
+                }`}
+              >
+                <span className="h-6 w-px bg-gray-200 shrink-0" aria-hidden="true" />
+                <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
+                  {selectedIds.length} selected
+                </span>
+                <Button
+                  size="sm"
+                  onClick={handleRunAnalysis}
+                  className="h-9 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+                >
+                  <PlayCircle className="h-4 w-4 mr-1" />
+                  Run Analysis
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -521,29 +541,6 @@ export const QuestionRepositoryTab = () => {
           </div>
         </DialogContent>
       </Dialog>
-
-      {/* Floating Run Analysis bar */}
-      <div
-        className={`fixed bottom-6 left-1/2 z-40 -translate-x-1/2 transform transition-all duration-300 ease-out ${
-          selectedIds.length > 0 && !isLaunching
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none translate-y-6 opacity-0"
-        }`}
-      >
-        <div className="flex items-center gap-4 rounded-full border border-gray-200 bg-white px-5 py-2.5 shadow-xl">
-          <span className="text-sm font-medium text-gray-700">
-            {selectedIds.length} question{selectedIds.length > 1 ? "s" : ""} selected
-          </span>
-          <span className="h-5 w-px bg-gray-200" />
-          <Button
-            onClick={handleRunAnalysis}
-            className="h-9 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
-          >
-            <PlayCircle className="h-4 w-4" />
-            Run Analysis
-          </Button>
-        </div>
-      </div>
 
       {/* Launch transition overlay */}
       <div
