@@ -6,8 +6,9 @@ import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus, Plus, FileDown, FileText, FileArchive } from 'lucide-react';
+import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus, Plus, FileDown, FileText, FileArchive, Lock, Sparkles, Info, FolderInput } from 'lucide-react';
 import { Trash2, Copy } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -27,6 +28,11 @@ export default function ItemBank() {
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
   const [view, setView] = useState<'items' | 'folders'>('items');
   const [customFolders, setCustomFolders] = useState<string[]>([]);
+  const [customFolderItems, setCustomFolderItems] = useState<Record<string, string[]>>({});
+  const [addToSetOpen, setAddToSetOpen] = useState(false);
+  const [newSetName, setNewSetName] = useState('');
+  const [highlightFolder, setHighlightFolder] = useState<string | null>(null);
+  const [blockedDeleteOpen, setBlockedDeleteOpen] = useState(false);
   const [newFolderOpen, setNewFolderOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState('');
   const [importOpen, setImportOpen] = useState(false);
@@ -38,6 +44,12 @@ export default function ItemBank() {
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [folderActionTarget, setFolderActionTarget] = useState<string | null>(null);
   const [folderDeleteOpen, setFolderDeleteOpen] = useState(false);
+
+  // Deterministic field-test lock flag (~25% of items locked)
+  const isInFieldTest = (id: string) => {
+    const n = parseInt(id.replace(/\D/g, ''), 10) || 0;
+    return n % 4 === 0;
+  };
 
   const itemsWithResults = useMemo(() => {
     return mockItems.map(item => {
@@ -58,13 +70,31 @@ export default function ItemBank() {
       map.set(key, entry);
     });
     customFolders.forEach(name => {
-      if (!map.has(name)) map.set(name, { name, count: 0, pass: 0, review: 0, fail: 0 });
+      if (!map.has(name)) {
+        const ids = customFolderItems[name] ?? [];
+        const members = itemsWithResults.filter(i => ids.includes(i.item_id));
+        map.set(name, {
+          name,
+          count: members.length,
+          pass: members.filter(m => m.overall_status === 'green').length,
+          review: members.filter(m => m.overall_status === 'amber').length,
+          fail: members.filter(m => m.overall_status === 'red').length,
+        });
+      }
     });
     return Array.from(map.values()).sort((a, b) => a.name.localeCompare(b.name));
-  }, [itemsWithResults, customFolders]);
+  }, [itemsWithResults, customFolders, customFolderItems]);
 
   const filtered = useMemo(() => {
-    let list = selectedFolder ? itemsWithResults.filter(i => i.qualification === selectedFolder) : itemsWithResults;
+    let list = itemsWithResults;
+    if (selectedFolder) {
+      if (customFolderItems[selectedFolder]) {
+        const ids = customFolderItems[selectedFolder];
+        list = itemsWithResults.filter(i => ids.includes(i.item_id));
+      } else {
+        list = itemsWithResults.filter(i => i.qualification === selectedFolder);
+      }
+    }
     if (search) {
       const s = search.toLowerCase();
       list = list.filter(i => i.item_id.toLowerCase().includes(s) || i.stem.toLowerCase().includes(s) || i.unit_code.toLowerCase().includes(s));
@@ -80,7 +110,7 @@ export default function ItemBank() {
       return sortDir === 'desc' ? -cmp : cmp;
     });
     return list;
-  }, [search, statusFilter, qualFilter, sortField, sortDir, itemsWithResults, selectedFolder]);
+  }, [search, statusFilter, qualFilter, sortField, sortDir, itemsWithResults, selectedFolder, customFolderItems]);
 
   const qualifications = [...new Set(mockItems.map(i => i.qualification))];
 
