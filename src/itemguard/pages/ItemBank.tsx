@@ -390,7 +390,6 @@ export default function ItemBank() {
                   <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
                 </Button>
               )}
-              <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />Export</Button>
             </div>
           }
         />
@@ -1065,7 +1064,6 @@ export default function ItemBank() {
             <Button size="sm" onClick={() => setImportOpen(true)}>
               <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
             </Button>
-            <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />Export</Button>
           </div>
         }
       />
