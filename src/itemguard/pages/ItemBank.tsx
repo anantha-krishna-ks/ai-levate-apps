@@ -438,7 +438,7 @@ export default function ItemBank() {
           {folders.map(f => (
             <div
               key={f.name}
-              className={`group bg-white rounded-lg border transition-all flex flex-col ${
+              className={`group relative bg-white rounded-lg border transition-all flex flex-col ${
                 highlightFolder === f.name
                   ? 'border-blue-500 ring-4 ring-blue-200/70 animate-scale-in shadow-lg'
                   : 'border-gray-200 hover:border-blue-400 hover:shadow-sm'
@@ -473,30 +473,15 @@ export default function ItemBank() {
                   </div>
                 </div>
               </button>
-              <div className="flex items-center justify-end gap-2 px-3 py-2 border-t border-gray-100 bg-slate-50/60 rounded-b-lg">
-                <div className="flex items-center gap-1">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={(e) => { e.stopPropagation(); handleDuplicateFolder(f.name); }}
-                    className="h-8 w-8 p-0 text-slate-500 hover:text-blue-600 hover:bg-blue-50"
-                    title="Duplicate folder"
-                    aria-label={`Duplicate ${f.name}`}
-                  >
-                    <Copy className="w-3.5 h-3.5" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={(e) => { e.stopPropagation(); setFolderActionTarget(f.name); setFolderDeleteOpen(true); }}
-                    className="h-8 w-8 p-0 text-slate-500 hover:text-red-600 hover:bg-red-50"
-                    title="Delete folder"
-                    aria-label={`Delete ${f.name}`}
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </Button>
-                </div>
-              </div>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setFolderActionTarget(f.name); setFolderDeleteOpen(true); }}
+                title="Delete folder"
+                aria-label={`Delete ${f.name}`}
+                className="absolute top-2 right-2 h-7 w-7 inline-flex items-center justify-center rounded-md text-slate-400 opacity-0 group-hover:opacity-100 hover:text-red-600 hover:bg-red-50 transition-opacity"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+              </button>
             </div>
           ))}
         </div>
