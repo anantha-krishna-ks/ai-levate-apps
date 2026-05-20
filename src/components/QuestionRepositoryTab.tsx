@@ -521,6 +521,46 @@ export const QuestionRepositoryTab = () => {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Floating Run Analysis bar */}
+      <div
+        className={`fixed bottom-6 left-1/2 z-40 -translate-x-1/2 transform transition-all duration-300 ease-out ${
+          selectedIds.length > 0 && !isLaunching
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-6 opacity-0"
+        }`}
+      >
+        <div className="flex items-center gap-4 rounded-full border border-gray-200 bg-white px-5 py-2.5 shadow-xl">
+          <span className="text-sm font-medium text-gray-700">
+            {selectedIds.length} question{selectedIds.length > 1 ? "s" : ""} selected
+          </span>
+          <span className="h-5 w-px bg-gray-200" />
+          <Button
+            onClick={handleRunAnalysis}
+            className="h-9 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+          >
+            <PlayCircle className="h-4 w-4" />
+            Run Analysis
+          </Button>
+        </div>
+      </div>
+
+      {/* Launch transition overlay */}
+      <div
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-white/85 backdrop-blur-sm transition-opacity duration-300 ${
+          isLaunching ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Loader2 className="h-10 w-10 animate-spin text-primary" />
+          <div>
+            <p className="text-base font-semibold text-gray-900">Starting analysis run</p>
+            <p className="mt-1 text-sm text-gray-500">
+              Taking you to the analysis runs workspace...
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
