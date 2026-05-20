@@ -614,7 +614,7 @@ export default function ItemBank() {
                       </TooltipTrigger>
                       {!canBulkDelete && (
                         <TooltipContent side="bottom">
-                          {selectedLockedIds.length} selected item{selectedLockedIds.length === 1 ? ' is' : 's are'} in a field test run and cannot be deleted
+                          {selectedLockedIds.length} selected item{selectedLockedIds.length === 1 ? ' is' : 's are'} in a analysis run and cannot be deleted
                         </TooltipContent>
                       )}
                     </Tooltip>
@@ -691,11 +691,11 @@ export default function ItemBank() {
                                         <span className="flex items-center justify-center w-3.5 h-3.5 rounded-full bg-amber-500/15">
                                           <FlaskConical className="w-2.5 h-2.5 text-amber-700" />
                                         </span>
-                                        Field Test
+                                        Analysis Run
                                       </span>
                                     </TooltipTrigger>
                                     <TooltipContent side="right" className="max-w-xs">
-                                      Live in an active field test run — locked from deletion until the test concludes.
+                                      Live in an active analysis run — locked from deletion until the test concludes.
                                     </TooltipContent>
                                   </Tooltip>
                                 )}
@@ -730,7 +730,7 @@ export default function ItemBank() {
                                 </TooltipTrigger>
                                 <TooltipContent side="left">
                                   {locked
-                                    ? 'Locked: item is in a field test run'
+                                    ? 'Locked: item is in a analysis run'
                                     : 'Delete item'}
                                 </TooltipContent>
                               </Tooltip>
@@ -949,8 +949,8 @@ export default function ItemBank() {
                   <AlertDialogTitle>Some items can't be deleted</AlertDialogTitle>
                   <AlertDialogDescription className="mt-1">
                     {selectedLockedIds.length > 0
-                      ? `${selectedLockedIds.length} of your selected item${selectedLockedIds.length === 1 ? ' is' : 's are'} currently part of an active field test run and are locked from deletion.`
-                      : 'This item is currently part of an active field test run and is locked from deletion.'}
+                      ? `${selectedLockedIds.length} of your selected item${selectedLockedIds.length === 1 ? ' is' : 's are'} currently part of an active analysis run and are locked from deletion.`
+                      : 'This item is currently part of an active analysis run and is locked from deletion.'}
                   </AlertDialogDescription>
                 </div>
               </div>
@@ -970,7 +970,7 @@ export default function ItemBank() {
             <div className="flex items-start gap-2 text-[12px] text-slate-600 bg-slate-50 border border-slate-200 rounded-lg p-3">
               <Info className="w-3.5 h-3.5 mt-0.5 text-blue-600 flex-shrink-0" />
               <span>
-                Items used in a field test must stay intact to preserve the integrity of the run. Once the field test concludes, the lock will be released automatically.
+                Items used in an analysis run must stay intact to preserve the integrity of the run. Once the analysis run concludes, the lock will be released automatically.
               </span>
             </div>
             <AlertDialogFooter>
