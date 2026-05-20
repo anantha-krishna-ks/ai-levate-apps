@@ -23,6 +23,8 @@ export default function ItemBank() {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [qualFilter, setQualFilter] = useState<string>('all');
+  const [levelFilter, setLevelFilter] = useState<string>('all');
+  const [typeFilter, setTypeFilter] = useState<string>('all');
   const [sortField, setSortField] = useState<string>('item_id');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
@@ -104,6 +106,8 @@ export default function ItemBank() {
     }
     if (statusFilter !== 'all') list = list.filter(i => i.overall_status === statusFilter);
     if (qualFilter !== 'all') list = list.filter(i => i.qualification === qualFilter);
+    if (levelFilter !== 'all') list = list.filter(i => String(i.qualification_level) === levelFilter);
+    if (typeFilter !== 'all') list = list.filter(i => i.item_type === typeFilter);
 
     list = [...list].sort((a, b) => {
       let cmp = 0;
@@ -113,12 +117,14 @@ export default function ItemBank() {
       return sortDir === 'desc' ? -cmp : cmp;
     });
     return list;
-  }, [search, statusFilter, qualFilter, sortField, sortDir, itemsWithResults, selectedFolder, customFolderItems]);
+  }, [search, statusFilter, qualFilter, levelFilter, typeFilter, sortField, sortDir, itemsWithResults, selectedFolder, customFolderItems]);
 
   const qualifications = [...new Set(mockItems.map(i => i.qualification))];
+  const levels = [...new Set(mockItems.map(i => String(i.qualification_level)))];
+  const itemTypes = [...new Set(mockItems.map(i => i.item_type))];
 
   // Reset to first page when filters/search change
-  useEffect(() => { setPage(1); }, [search, statusFilter, qualFilter, pageSize, view, selectedFolder]);
+  useEffect(() => { setPage(1); }, [search, statusFilter, qualFilter, levelFilter, typeFilter, pageSize, view, selectedFolder]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const currentPage = Math.min(page, totalPages);
