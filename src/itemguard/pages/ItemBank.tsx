@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { StatusBadge } from '../components/StatusBadge';
@@ -6,7 +6,7 @@ import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, FolderPlus, Plus, FileDown, FileText, FileArchive, Lock, Sparkles, Info, FolderInput } from 'lucide-react';
+import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, ChevronLeft, FolderPlus, Plus, FileDown, FileText, FileArchive, Lock, Sparkles, Info, FolderInput, FlaskConical, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { Trash2, Copy } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
@@ -44,6 +44,8 @@ export default function ItemBank() {
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [folderActionTarget, setFolderActionTarget] = useState<string | null>(null);
   const [folderDeleteOpen, setFolderDeleteOpen] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   // Deterministic field-test lock flag (~25% of items locked)
   const isInFieldTest = (id: string) => {
@@ -113,6 +115,14 @@ export default function ItemBank() {
   }, [search, statusFilter, qualFilter, sortField, sortDir, itemsWithResults, selectedFolder, customFolderItems]);
 
   const qualifications = [...new Set(mockItems.map(i => i.qualification))];
+
+  // Reset to first page when filters/search change
+  useEffect(() => { setPage(1); }, [search, statusFilter, qualFilter, pageSize, view, selectedFolder]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const currentPage = Math.min(page, totalPages);
+  const pageStart = (currentPage - 1) * pageSize;
+  const paged = filtered.slice(pageStart, pageStart + pageSize);
 
   const toggleSort = (field: string) => {
     if (sortField === field) setSortDir(d => d === 'asc' ? 'desc' : 'asc');
@@ -516,7 +526,7 @@ export default function ItemBank() {
                   </TableHeader>
                   <TableBody>
                     <TooltipProvider delayDuration={150}>
-                      {filtered.map(item => {
+                      {paged.map(item => {
                         const locked = isInFieldTest(item.item_id);
                         const isSelected = selectedItems.includes(item.item_id);
                         return (
@@ -536,18 +546,21 @@ export default function ItemBank() {
                               />
                             </TableCell>
                             <TableCell className="font-mono text-xs font-medium" title={item.item_id}>
-                              <div className="flex items-center gap-1.5">
-                                {item.item_id}
+                              <div className="flex items-center gap-2">
+                                <span>{item.item_id}</span>
                                 {locked && (
                                   <Tooltip>
                                     <TooltipTrigger asChild>
-                                      <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-1 py-0.5 rounded">
-                                        <Lock className="w-2.5 h-2.5" />
-                                        Field test
+                                      <span className="group/ft inline-flex items-center gap-1 pl-1 pr-2 py-[3px] rounded-full bg-amber-50 ring-1 ring-amber-200/80 text-amber-800 text-[10px] font-semibold tracking-wide leading-none transition-colors hover:bg-amber-100">
+                                        <span className="relative flex items-center justify-center w-3.5 h-3.5 rounded-full bg-amber-500/15">
+                                          <span className="absolute inset-0 rounded-full bg-amber-400/40 animate-ping" />
+                                          <FlaskConical className="w-2.5 h-2.5 text-amber-700 relative" />
+                                        </span>
+                                        Field Test
                                       </span>
                                     </TooltipTrigger>
                                     <TooltipContent side="right" className="max-w-xs">
-                                      In an active field test run — locked from deletion.
+                                      Live in an active field test run — locked from deletion until the test concludes.
                                     </TooltipContent>
                                   </Tooltip>
                                 )}
@@ -594,6 +607,100 @@ export default function ItemBank() {
                   </TableBody>
                 </Table>
               </div>
+              {filtered.length > 0 && (
+                <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-t border-gray-200 bg-slate-50/60">
+                  <div className="flex items-center gap-3 text-xs text-slate-600">
+                    <span>
+                      Showing <span className="font-semibold text-slate-900">{pageStart + 1}</span>
+                      –<span className="font-semibold text-slate-900">{Math.min(pageStart + pageSize, filtered.length)}</span>
+                      {' '}of <span className="font-semibold text-slate-900">{filtered.length}</span>
+                    </span>
+                    <span className="hidden sm:inline h-3 w-px bg-slate-300" />
+                    <div className="hidden sm:flex items-center gap-1.5">
+                      <span>Rows</span>
+                      <select
+                        value={pageSize}
+                        onChange={e => setPageSize(Number(e.target.value))}
+                        className="h-7 rounded-md border border-slate-200 bg-white px-1.5 text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                      >
+                        {[10, 20, 50, 100].map(n => <option key={n} value={n}>{n}</option>)}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Button
+                      variant="ghost" size="sm"
+                      onClick={() => setPage(1)}
+                      disabled={currentPage === 1}
+                      className="h-8 w-8 p-0 rounded-full text-slate-500 hover:text-slate-900 disabled:opacity-30"
+                      aria-label="First page"
+                    >
+                      <ChevronsLeft className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost" size="sm"
+                      onClick={() => setPage(p => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="h-8 w-8 p-0 rounded-full text-slate-500 hover:text-slate-900 disabled:opacity-30"
+                      aria-label="Previous page"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </Button>
+                    {(() => {
+                      const pages: (number | 'gap')[] = [];
+                      const add = (n: number) => pages.push(n);
+                      if (totalPages <= 7) {
+                        for (let i = 1; i <= totalPages; i++) add(i);
+                      } else {
+                        add(1);
+                        if (currentPage > 4) pages.push('gap');
+                        const start = Math.max(2, currentPage - 1);
+                        const end = Math.min(totalPages - 1, currentPage + 1);
+                        for (let i = start; i <= end; i++) add(i);
+                        if (currentPage < totalPages - 3) pages.push('gap');
+                        add(totalPages);
+                      }
+                      return pages.map((p, idx) =>
+                        p === 'gap' ? (
+                          <span key={`gap-${idx}`} className="px-1 text-slate-400 text-xs">…</span>
+                        ) : (
+                          <button
+                            key={p}
+                            type="button"
+                            onClick={() => setPage(p)}
+                            aria-current={currentPage === p ? 'page' : undefined}
+                            className={`min-w-[32px] h-8 px-2 rounded-full text-xs font-semibold tracking-tight transition-all ${
+                              currentPage === p
+                                ? 'bg-blue-600 text-white shadow-sm'
+                                : 'text-slate-600 hover:bg-white hover:text-slate-900 hover:ring-1 hover:ring-slate-200'
+                            }`}
+                          >
+                            {p}
+                          </button>
+                        )
+                      );
+                    })()}
+                    <Button
+                      variant="ghost" size="sm"
+                      onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="h-8 w-8 p-0 rounded-full text-slate-500 hover:text-slate-900 disabled:opacity-30"
+                      aria-label="Next page"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost" size="sm"
+                      onClick={() => setPage(totalPages)}
+                      disabled={currentPage === totalPages}
+                      className="h-8 w-8 p-0 rounded-full text-slate-500 hover:text-slate-900 disabled:opacity-30"
+                      aria-label="Last page"
+                    >
+                      <ChevronsRight className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
