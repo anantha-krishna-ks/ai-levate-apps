@@ -339,6 +339,19 @@ function Meta({ icon, label, value }: { icon: ReactNode; label: string; value: s
   );
 }
 
+function MetaChip({ icon, value }: { icon: ReactNode; value: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 min-w-0 max-w-full" title={value}>
+      <span className="text-slate-400 flex-shrink-0">{icon}</span>
+      <span className="truncate text-slate-700">{value}</span>
+    </span>
+  );
+}
+
+function Dot() {
+  return <span className="text-slate-300 select-none">·</span>;
+}
+
 function SetupSection({ step, title, description, children }: { step: number; title: string; description: string; children: ReactNode }) {
   return (
     <section className="bg-white rounded-xl border border-slate-200 p-5">
