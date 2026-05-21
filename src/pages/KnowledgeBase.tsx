@@ -5398,7 +5398,7 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={searchType} onValueChange={(v) => setSearchType(v as 'mmr' | 'similarity' | 'hybrid' || 'hybrid')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue />
+                              <SelectValue placeholder="Select retrieval strategy" />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {retrievalOptions.map(o => (
@@ -5458,7 +5458,7 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={chunkSize} onValueChange={(v) => setChunkSize(v || '1000')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue />
+                              <SelectValue placeholder="Select chunk size (e.g. 1000)" />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {chunkSizeOptions.map(o => (
@@ -5484,7 +5484,7 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={overlap} onValueChange={v => setOverlap(v || '20')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue />
+                              <SelectValue placeholder="Select overlap % (e.g. 20%)" />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {overlapOptions.map(o => (
@@ -5510,7 +5510,7 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={chunkingStrategy} onValueChange={v => setChunkingStrategy(v || 'recursive')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue />
+                              <SelectValue placeholder="Select chunking strategy" />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {chunkingOptions.map(o => (
@@ -5536,7 +5536,7 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={vectorDb} onValueChange={v => setVectorDb(v || 'faiss')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue />
+                              <SelectValue placeholder="Select database type" />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {dbTypeOptions.map(o => (
@@ -5562,7 +5562,7 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={embeddingModel} onValueChange={v => setEmbeddingModel(v || 'text-embedding-ada-002')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue />
+                              <SelectValue placeholder="Select embedding model" />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {getFilteredEmbeddingOptions().map(o => (
