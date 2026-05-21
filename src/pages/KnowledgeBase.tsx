@@ -3261,7 +3261,7 @@ const KnowledgeBase = () => {
                           chatMessages.map((message, index) => (
                             <div key={index} className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                               {message.role === 'assistant' && (
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center flex-shrink-0">
+                                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
                                   <Bot className="h-5 w-5 text-white" />
                                 </div>
                               )}
@@ -3432,7 +3432,7 @@ const KnowledgeBase = () => {
                   {selectedKBForGuidelines?.id === 0 && guidelineScope === 'org_specific' && (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                        {!isSSO && (
-                      <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                      <Card className="border-2 border-purple-100 bg-purple-50">
                         <CardContent className="p-6">
                           <div className="flex items-center gap-3 mb-4">
                             <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -3450,7 +3450,7 @@ const KnowledgeBase = () => {
                       </Card>
                        )}
    {!isSSO && (
-                      <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                      <Card className="border-2 border-purple-100 bg-purple-50">
                         <CardContent className="p-6">
                           <div className="flex items-center gap-3 mb-4">
                             <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -3467,7 +3467,7 @@ const KnowledgeBase = () => {
                         </CardContent>
                       </Card>
  )}
-                      <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                      <Card className="border-2 border-purple-100 bg-purple-50">
                         <CardContent className="p-6">
                           <div className="flex items-center gap-3 mb-4">
                             <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -5662,7 +5662,7 @@ const KnowledgeBase = () => {
                 <>
                   {/* Existing List View */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                    <Card className="border-2 border-purple-100 bg-purple-50">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -5717,7 +5717,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                    <Card className="border-2 border-purple-100 bg-purple-50">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -5764,7 +5764,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                    <Card className="border-2 border-purple-100 bg-purple-50">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -5835,7 +5835,7 @@ const KnowledgeBase = () => {
                           </Button>
                           <Button
                             onClick={() => setIsCreatingStudyLO(true)}
-                            className="px-6 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white"
+                            className="px-6 bg-purple-600 hover:bg-purple-700 text-white"
                             disabled={selectedCustomerCode === '_ALL'}
                             title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
                           >
