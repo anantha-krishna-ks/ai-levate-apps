@@ -3405,9 +3405,9 @@ const KnowledgeBase = () => {
 
                   {/* Guideline Scope dropdown (only for Create New Guideline flow / kbid=0) */}
                   {selectedKBForGuidelines?.id === 0 && (
-                    <Card className="border-2 border-indigo-100 bg-indigo-50">
-                      <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-indigo-900">Guideline Scope</h3>
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-gray-900">Guideline Scope</h3>
                         <Select
                           value={guidelineScope}
                           onValueChange={(v) => {
@@ -3416,7 +3416,7 @@ const KnowledgeBase = () => {
                             setAppsOptions([]);
                           }}
                         >
-                          <SelectTrigger className="bg-white border-indigo-200 focus:border-indigo-400 focus:ring-indigo-400/20">
+                          <SelectTrigger className="h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm text-gray-900">
                             <SelectValue placeholder="Select scope" />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -3432,49 +3432,34 @@ const KnowledgeBase = () => {
                   {selectedKBForGuidelines?.id === 0 && guidelineScope === 'org_specific' && (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                        {!isSSO && (
-                      <Card className="border-2 border-purple-100 bg-purple-50">
-                        <CardContent className="p-6">
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 bg-purple-600 text-white rounded-lg">
-                              <Search className="h-5 w-5" />
-                            </div>
-                            <h2 className="text-xl font-semibold text-purple-800">Select Customer</h2>
-                          </div>
+                      <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                        <CardContent className="p-5 space-y-3">
+                          <h3 className="text-sm font-medium text-gray-900">Select Customer</h3>
                           <Input
                             type="text"
                             value={getSelectedCustomerName()}
                             disabled
-                            className="w-full bg-white border-purple-200 opacity-80"
+                            className="w-full h-10 rounded-lg bg-white border-gray-200 text-sm text-gray-900 opacity-80"
                           />
                         </CardContent>
                       </Card>
                        )}
    {!isSSO && (
-                      <Card className="border-2 border-purple-100 bg-purple-50">
-                        <CardContent className="p-6">
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 bg-purple-600 text-white rounded-lg">
-                              <Search className="h-5 w-5" />
-                            </div>
-                            <h2 className="text-xl font-semibold text-purple-800">Select Organization</h2>
-                          </div>
+                      <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                        <CardContent className="p-5 space-y-3">
+                          <h3 className="text-sm font-medium text-gray-900">Select Organization</h3>
                           <Input
                             type="text"
                             value={orgSearchQuery || ""}
                             disabled
-                            className="w-full bg-white border-purple-200 opacity-80"
+                            className="w-full h-10 rounded-lg bg-white border-gray-200 text-sm text-gray-900 opacity-80"
                           />
                         </CardContent>
                       </Card>
  )}
-                      <Card className="border-2 border-purple-100 bg-purple-50">
-                        <CardContent className="p-6">
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 bg-purple-600 text-white rounded-lg">
-                              <Search className="h-5 w-5" />
-                            </div>
-                            <h2 className="text-xl font-semibold text-purple-800">Apps Details</h2>
-                          </div>
+                      <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                        <CardContent className="p-5 space-y-3">
+                          <h3 className="text-sm font-medium text-gray-900">Apps Details</h3>
                           <Select
                             value={selectedApp ?? ''}
                             onValueChange={(v) => setSelectedApp(v)}
@@ -3483,7 +3468,7 @@ const KnowledgeBase = () => {
                             }}
                           >
                             <SelectTrigger
-                              className="bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20"
+                              className="h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm text-gray-900"
                               disabled={appsLoading || !selectedOrganization}
                             >
                               <SelectValue placeholder={appsLoading ? "Loading apps..." : (!selectedOrganization ? "Select an organization first" : "Select an app (optional)")} />
@@ -3501,20 +3486,20 @@ const KnowledgeBase = () => {
 
                   {/* Existing Guidelines Selection Table */}
                   {selectedKBForGuidelines?.id !== 0 && guidelineCreationType === 'existing' && (
-                    <Card className="border-2 border-amber-100 bg-amber-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between gap-4">
-                          <h3 className="text-lg font-semibold text-gray-900">Select General Guideline</h3>
+                          <h3 className="text-base font-medium text-gray-900">Select General Guideline</h3>
                           <Button
                             variant="default"
-                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5"
                             onClick={handleTagGuidelines}
                             disabled={Object.values(selectedExistingGuidelines).filter(Boolean).length === 0}
                           >
                             Tag Selected Guidelines
                           </Button>
                         </div>
-                        <div className="bg-white rounded-lg border-2 border-gray-200 overflow-hidden">
+                        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                           {existingGuidelinesLoading ? (
                             <div className="p-6 text-center text-gray-700">Loading guidelines...</div>
                           ) : guidelinesError ? (
@@ -3523,10 +3508,10 @@ const KnowledgeBase = () => {
                             <div className="overflow-x-auto">
                               <Table>
                                 <TableHeader>
-                                  <TableRow className="bg-gray-50 border-b-2 border-gray-200 hover:bg-gray-50">
-                                    <TableHead className="font-semibold text-gray-900 py-4">Guideline Name</TableHead>
-                                    <TableHead className="font-semibold text-gray-900 py-4">Select Guideline</TableHead>
-                                    <TableHead className="font-semibold text-gray-900 py-4">Preview</TableHead>
+                                  <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Guideline Name</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Select Guideline</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Preview</TableHead>
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -3579,20 +3564,20 @@ const KnowledgeBase = () => {
 
                   {/* Organization Specific Guidelines Selection Table */}
                   {selectedKBForGuidelines?.id !== 0 && guidelineCreationType === 'org_specific' && (
-                    <Card className="border-2 border-amber-100 bg-amber-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between gap-4">
-                          <h3 className="text-lg font-semibold text-gray-900">Organization specific guidelines</h3>
+                          <h3 className="text-base font-medium text-gray-900">Organization specific guidelines</h3>
                           <Button
                             variant="default"
-                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5"
                             onClick={handleTagGuidelines}
                             disabled={Object.values(selectedOrgSpecificGuidelines).filter(Boolean).length === 0}
                           >
                             Tag  Organization Specific Guidelines
                           </Button>
                         </div>
-                        <div className="bg-white rounded-lg border-2 border-gray-200 overflow-hidden">
+                        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                           {orgSpecificGuidelinesLoading ? (
                             <div className="p-6 text-center text-gray-700">Loading guidelines...</div>
                           ) : guidelinesError ? (
@@ -3601,10 +3586,10 @@ const KnowledgeBase = () => {
                             <div className="overflow-x-auto">
                               <Table>
                                 <TableHeader>
-                                  <TableRow className="bg-gray-50 border-b-2 border-gray-200 hover:bg-gray-50">
-                                    <TableHead className="font-semibold text-gray-900 py-4">Guideline Name</TableHead>
-                                    <TableHead className="font-semibold text-gray-900 py-4">Select Guideline</TableHead>
-                                    <TableHead className="font-semibold text-gray-900 py-4">Preview</TableHead>
+                                  <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Guideline Name</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Select Guideline</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Preview</TableHead>
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -3656,17 +3641,17 @@ const KnowledgeBase = () => {
                   )}
                   {/* Add New Guideline Card */}
                   {!(selectedKBForGuidelines?.id !== 0 && (guidelineCreationType === 'existing' || guidelineCreationType === 'org_specific')) && (
-                    <Card id="add-guideline-section" className="border-2 border-teal-100 bg-teal-50">
+                    <Card id="add-guideline-section" className="border border-gray-200/70 bg-white rounded-2xl">
 
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between">
-                          <h3 className="text-lg font-semibold text-gray-900">
+                          <h3 className="text-base font-medium text-gray-900">
                             {isGuidelineEditing ? 'Edit Guideline' : 'Add New Guideline'}
                           </h3>
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <HelpCircle className="h-5 w-5 text-gray-500 cursor-pointer hover:text-gray-700 transition-colors" />
+                                <HelpCircle className="h-4 w-4 text-gray-500 cursor-pointer hover:text-gray-700 transition-colors" />
                               </TooltipTrigger>
                               <TooltipContent className="max-w-md bg-white text-black border-gray-200 px-4 py-3 rounded-lg ">
                                 <div className="space-y-2 text-sm leading-relaxed">
@@ -3698,7 +3683,7 @@ const KnowledgeBase = () => {
                               disabled={isGuidelineEditing}
                               required={!isGuidelineEditing}
                             >
-                              <SelectTrigger className="bg-white border-gray-300">
+                              <SelectTrigger className="h-10 rounded-lg bg-white border-gray-200 text-sm text-gray-900">
                                 <SelectValue placeholder="Select guideline type" />
                               </SelectTrigger>
                               <SelectContent className="bg-white">
@@ -3722,7 +3707,7 @@ const KnowledgeBase = () => {
                               disabled={isGuidelineEditing}
                               required={!isGuidelineEditing}
                             >
-                              <SelectTrigger className="bg-white border-gray-300">
+                              <SelectTrigger className="h-10 rounded-lg bg-white border-gray-200 text-sm text-gray-900">
                                 <SelectValue placeholder="Select subtype" />
                               </SelectTrigger>
                               <SelectContent className="bg-white max-h-60 overflow-y-auto">
@@ -3794,7 +3779,7 @@ const KnowledgeBase = () => {
                             </Label>
                             <Input
                               placeholder="Enter guideline name"
-                              className="bg-white border-gray-300"
+                              className="h-10 rounded-lg bg-white border-gray-200 text-sm text-gray-900"
                               value={guidelineName}
                               onChange={(e) => {
                                 setGuidelineName(e.target.value);
@@ -3813,7 +3798,7 @@ const KnowledgeBase = () => {
                             placeholder="Enter guidelines here..."
                             value={guidelinesText}
                             onChange={(e) => setGuidelinesText(e.target.value)}
-                            className="bg-white border-gray-300 min-h-[120px]"
+                            className="bg-white border-gray-200 rounded-lg min-h-[120px] text-sm text-gray-900"
                           />
                         </div>
 
@@ -3829,7 +3814,7 @@ const KnowledgeBase = () => {
                             onChange={handleGuidelineFileChange}
                           />
                           <div
-                            className={`bg-white border-2 border-dashed ${isDraggingOver ? 'border-blue-500' : 'border-gray-300'} rounded-lg p-8 text-center space-y-3 hover:border-gray-400 transition-colors cursor-pointer`}
+                            className={`bg-white border-2 border-dashed ${isDraggingOver ? 'border-blue-500 bg-blue-50/40' : 'border-gray-200'} rounded-lg p-8 text-center space-y-3 hover:border-gray-300 transition-colors cursor-pointer`}
                             onDragOver={(e) => {
                               e.preventDefault();
                               setIsDraggingOver(true);
@@ -3849,8 +3834,8 @@ const KnowledgeBase = () => {
                             onClick={() => (document.getElementById("guideline-file-upload") as HTMLInputElement | null)?.click()}
                           >
                             <div className="flex justify-center">
-                              <div className="p-3 bg-yellow-100 rounded-lg">
-                                <FileText className="h-8 w-8 text-yellow-600" />
+                              <div className="p-3 bg-gray-100 rounded-lg">
+                                <FileText className="h-8 w-8 text-gray-500" />
                               </div>
                             </div>
                             <div>
@@ -3903,7 +3888,7 @@ const KnowledgeBase = () => {
 
                         <div className="flex justify-start gap-3">
                           <Button
-                            className="bg-yellow-600 hover:bg-yellow-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5"
                             disabled={guidelinesLoading}
                             onClick={async () => {
                               // Validation
@@ -4075,14 +4060,14 @@ const KnowledgeBase = () => {
 
                   {/* All Guidelines Card */}
                   {!(selectedKBForGuidelines?.id !== 0 && (guidelineCreationType === 'existing' || guidelineCreationType === 'org_specific')) && (
-                    <Card className="border-2 border-purple-100 bg-purple-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between">
-                          <h3 className="text-lg font-semibold text-gray-900">All Guidelines</h3>
+                          <h3 className="text-base font-medium text-gray-900">All Guidelines</h3>
                           <Button
                             variant="outline"
                             size="sm"
-                            className="gap-2"
+                            className="gap-2 rounded-full border-gray-200 text-gray-700 hover:bg-gray-50"
                             onClick={handleRefreshGuidelines}
                             disabled={isRefreshing}
                           >
@@ -4091,14 +4076,14 @@ const KnowledgeBase = () => {
                           </Button>
                         </div>
 
-                        <div className="bg-white rounded-lg border-2 border-gray-200 overflow-hidden">
+                        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                           <div className="overflow-x-auto">
                             <Table>
                               <TableHeader>
-                                <TableRow className="bg-gray-50 border-b-2 border-gray-200 hover:bg-gray-50">
-                                  <TableHead className="font-semibold text-gray-900 py-4">Guideline Name</TableHead>
-                                  <TableHead className="font-semibold text-gray-900 py-4">Guideline Type</TableHead>
-                                  <TableHead className="font-semibold text-gray-900 py-4">Actions</TableHead>
+                                <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Guideline Name</TableHead>
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Guideline Type</TableHead>
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Actions</TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
@@ -4189,9 +4174,9 @@ const KnowledgeBase = () => {
                   {/* Organization and Apps Details - Same Row (for Tag Agents) */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     {/* Select Organization Card */}
-                    <Card className="border-2 border-purple-100 bg-purple-50 flex-1">
-                      <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-purple-900">Select Organization</h3>
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-gray-900">Select Organization</h3>
                         <Select
                           value={selectedOrganization ?? ''}
                           onValueChange={(value) => {
@@ -4204,7 +4189,7 @@ const KnowledgeBase = () => {
                           }}
                           disabled
                         >
-                          <SelectTrigger className="bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20">
+                          <SelectTrigger className="h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm text-gray-900">
                             <SelectValue placeholder={organizationLoading ? "Loading organizations..." : "Select an organization"} />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -4214,20 +4199,20 @@ const KnowledgeBase = () => {
                           </SelectContent>
                         </Select>
                         {organizationLoading && (
-                          <p className="text-sm text-purple-600 mt-1">Loading organizations...</p>
+                          <p className="text-xs text-gray-500 mt-1">Loading organizations...</p>
                         )}
                       </CardContent>
                     </Card>
                     {/* Apps Details Card */}
-                    <Card className="border-2 border-indigo-100 bg-indigo-50 flex-1">
-                      <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-indigo-900">Apps Details</h3>
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-gray-900">Apps Details</h3>
                         <Select
                           value={selectedApp ?? ''}
                           onValueChange={setSelectedApp}
                           disabled
                         >
-                          <SelectTrigger className="bg-white border-indigo-200 focus:border-indigo-400 focus:ring-indigo-400/20">
+                          <SelectTrigger className="h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm text-gray-900">
                             <SelectValue placeholder={appsLoading ? "Loading apps..." : (!selectedOrganization ? "Select an organization first" : "Select an app")} />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -4237,7 +4222,7 @@ const KnowledgeBase = () => {
                           </SelectContent>
                         </Select>
                         {appsLoading && (
-                          <p className="text-sm text-indigo-600 mt-1">Loading apps...</p>
+                          <p className="text-xs text-gray-500 mt-1">Loading apps...</p>
                         )}
                       </CardContent>
                     </Card>
@@ -4245,21 +4230,19 @@ const KnowledgeBase = () => {
 
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border-2 border-purple-100 bg-purple-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-purple-600 text-white rounded-lg">
-                            <Bot className="h-5 w-5" />
-                          </div>
-                          <h3 className="text-lg font-semibold text-purple-800">Agent Configuration</h3>
+                        <div className="flex items-center gap-2 mb-4">
+                          <Bot className="h-4 w-4 text-gray-500" />
+                          <h3 className="text-base font-medium text-gray-900">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
-                            <svg className="animate-spin h-8 w-8 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg className="animate-spin h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                             </svg>
-                            <span className="ml-2 text-purple-700">Loading agent configuration...</span>
+                            <span className="ml-2 text-sm text-gray-600">Loading agent configuration...</span>
                           </div>
                         )}
                         {agentConfigError && (
@@ -4268,14 +4251,14 @@ const KnowledgeBase = () => {
                           </div>
                         )}
                         {!agentConfigLoading && (
-                          <div className="bg-white rounded-lg border-2 border-purple-200 overflow-hidden">
+                          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                             <div className="overflow-x-auto">
                               <Table>
                                 <TableHeader>
-                                  <TableRow className="bg-purple-50 border-b-2 border-purple-200 hover:bg-purple-50">
-                                    <TableHead className="font-semibold text-purple-900 py-4">Agent Name</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Select</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Priority</TableHead>
+                                  <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Agent Name</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Select</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Priority</TableHead>
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -4296,7 +4279,7 @@ const KnowledgeBase = () => {
                                       const isSelected = isFixed ? true : !!selectedAgents[key];
                                       const currentP = displayPriority[key] || null;
                                       return (
-                                        <TableRow key={key} className="hover:bg-purple-50/50 transition-colors border-b border-purple-100">
+                                        <TableRow key={key} className="hover:bg-gray-50 transition-colors border-b border-gray-100">
                                           <TableCell className="font-medium text-gray-900 py-4">{key}</TableCell>
                                           <TableCell className="py-4">
                                             <input
@@ -4304,7 +4287,7 @@ const KnowledgeBase = () => {
                                               checked={isSelected}
                                               disabled={isFixed || !editable}
                                               title={isFixed ? "Default agent - always enabled" : editable ? "" : "Always enabled"}
-                                              className="h-4 w-4 text-purple-600 border-gray-300 rounded disabled:opacity-50"
+                                              className="h-4 w-4 text-blue-600 border-gray-300 rounded disabled:opacity-50"
                                               onChange={
                                                 editable && !isFixed
                                                   ? (e) => {
@@ -4348,7 +4331,7 @@ const KnowledgeBase = () => {
                         <div className="flex justify-end mt-4">
                           <Button
                             onClick={handleAddAgents}
-                            className="bg-purple-600 hover:bg-purple-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5"
                             disabled={!selectedOrganization || !selectedApp || agentConfigLoading}
                           >
                             Tag Agents
