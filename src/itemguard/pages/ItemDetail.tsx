@@ -53,7 +53,7 @@ export default function ItemDetail() {
         }
       />
 
-      <div className="ig-kpi-card mb-6 flex items-center gap-6">
+      <div className="ig-kpi-card mb-6 flex items-center gap-6 shadow-sm hover:shadow-md transition-shadow">
         <ScoreDisplay score={result.overall_score} size="lg" />
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-1">
@@ -71,7 +71,7 @@ export default function ItemDetail() {
 
       {/* Row 1: Question Stem + Qualification Metadata */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-center gap-2 mb-4">
             <div className="h-8 w-8 rounded-lg bg-blue-50 flex items-center justify-center">
               <BookOpen className="h-4 w-4 text-blue-600" />
@@ -111,28 +111,28 @@ export default function ItemDetail() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden">
-          <div className="flex items-center gap-2.5 px-5 py-4 border-b border-slate-100">
-            <div className="h-9 w-9 rounded-lg bg-blue-50 flex items-center justify-center">
-              <ClipboardList className="h-4.5 w-4.5 text-blue-600" />
+        <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center gap-2.5 px-4 sm:px-5 py-4 border-b border-slate-100">
+            <div className="h-9 w-9 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+              <ClipboardList className="h-4 w-4 text-blue-600" />
             </div>
-            <div>
-              <h3 className="text-sm font-semibold text-slate-900 leading-tight">Qualification Metadata</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Curriculum & item attributes</p>
+            <div className="min-w-0">
+              <h3 className="text-sm font-semibold text-slate-900 leading-tight truncate">Qualification Metadata</h3>
+              <p className="text-xs text-slate-500 mt-0.5 truncate">Curriculum & item attributes</p>
             </div>
           </div>
 
-          <div className="p-4 space-y-2.5">
+          <div className="p-3 sm:p-4 space-y-2.5">
             {/* Featured Qualification */}
-            <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-3.5">
+            <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-3 sm:p-3.5">
               <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-blue-700 mb-1.5">
                 <GraduationCap className="h-3.5 w-3.5" /> Qualification
               </div>
-              <p className="text-sm font-semibold text-slate-900 leading-snug">{item.qualification}</p>
+              <p className="text-sm font-semibold text-slate-900 leading-snug break-words">{item.qualification}</p>
             </div>
 
             {/* Unit */}
-            <div className="rounded-xl border border-slate-200 p-3.5">
+            <div className="rounded-xl border border-slate-200 p-3 sm:p-3.5">
               <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-slate-500 mb-1.5">
                 <Layers className="h-3.5 w-3.5" /> Unit
               </div>
@@ -140,42 +140,42 @@ export default function ItemDetail() {
                 <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-900 text-white text-xs font-mono font-semibold">
                   {item.unit_code}
                 </span>
-                <span className="text-sm text-slate-800 font-medium">{item.unit_name}</span>
+                <span className="text-sm text-slate-800 font-medium break-words min-w-0">{item.unit_name}</span>
               </div>
             </div>
 
             {/* Topic + ILO */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <div className="rounded-xl border border-slate-200 p-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2.5">
+              <div className="rounded-xl border border-slate-200 p-3 sm:p-3.5 min-w-0">
                 <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-slate-500 mb-1.5">
                   <Target className="h-3.5 w-3.5" /> Topic
                 </div>
-                <p className="text-sm font-medium text-slate-800 leading-snug">{item.topic}</p>
+                <p className="text-sm font-medium text-slate-800 leading-snug break-words">{item.topic}</p>
               </div>
-              <div className="rounded-xl border border-slate-200 p-3.5">
+              <div className="rounded-xl border border-slate-200 p-3 sm:p-3.5 min-w-0">
                 <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-slate-500 mb-1.5">
                   <Compass className="h-3.5 w-3.5" /> ILO
                 </div>
-                <p className="text-sm font-medium text-slate-800 leading-snug">{item.intended_learning_outcome}</p>
+                <p className="text-sm font-medium text-slate-800 leading-snug break-words">{item.intended_learning_outcome}</p>
               </div>
             </div>
 
             {/* Level / Bloom's / Item Type chips */}
             <div className="grid grid-cols-3 gap-2.5">
-              <div className="rounded-xl border border-slate-200 p-3 text-center">
+              <div className="rounded-xl border border-slate-200 p-2.5 sm:p-3 text-center min-w-0">
                 <BarChart3 className="h-4 w-4 text-blue-600 mx-auto mb-1" />
                 <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">Level</div>
-                <div className="text-sm font-semibold text-slate-900 mt-0.5 leading-tight">{item.qualification_level}</div>
+                <div className="text-xs sm:text-sm font-semibold text-slate-900 mt-0.5 leading-tight break-words">{item.qualification_level}</div>
               </div>
-              <div className="rounded-xl border border-slate-200 p-3 text-center">
+              <div className="rounded-xl border border-slate-200 p-2.5 sm:p-3 text-center min-w-0">
                 <Brain className="h-4 w-4 text-blue-600 mx-auto mb-1" />
                 <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">Bloom's</div>
-                <div className="text-sm font-semibold text-slate-900 mt-0.5 leading-tight">{item.intended_blooms_level}</div>
+                <div className="text-xs sm:text-sm font-semibold text-slate-900 mt-0.5 leading-tight break-words">{item.intended_blooms_level}</div>
               </div>
-              <div className="rounded-xl border border-slate-200 p-3 text-center">
+              <div className="rounded-xl border border-slate-200 p-2.5 sm:p-3 text-center min-w-0">
                 <FileType2 className="h-4 w-4 text-blue-600 mx-auto mb-1" />
                 <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">Type</div>
-                <div className="text-sm font-semibold text-slate-900 mt-0.5 leading-tight">{item.item_type}</div>
+                <div className="text-xs sm:text-sm font-semibold text-slate-900 mt-0.5 leading-tight break-words">{item.item_type}</div>
               </div>
             </div>
           </div>
@@ -183,7 +183,7 @@ export default function ItemDetail() {
       </div>
 
       {/* Row 2: Quality Report Card with master/detail layout */}
-      <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden mb-6">
+      <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden mb-6 shadow-sm hover:shadow-md transition-shadow">
         <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-200">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-lg bg-blue-50 flex items-center justify-center">
@@ -263,7 +263,7 @@ export default function ItemDetail() {
       {/* Row 3: Similar Items + Reviewer Notes */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {similarItems.length > 0 && (
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
             <h3 className="text-sm font-semibold text-slate-900 mb-3">Similar Items ({similarItems.length})</h3>
             <div className="space-y-2">
               {similarItems.slice(0, 5).map(sim => (
@@ -281,7 +281,7 @@ export default function ItemDetail() {
           </div>
         )}
 
-        <div className={`rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 ${similarItems.length > 0 ? 'lg:col-span-2' : 'lg:col-span-3'}`}>
+        <div className={`rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow ${similarItems.length > 0 ? 'lg:col-span-2' : 'lg:col-span-3'}`}>
             <h3 className="text-sm font-semibold mb-3">Reviewer Notes</h3>
             <textarea
               value={reviewerNotes}
