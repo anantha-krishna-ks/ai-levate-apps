@@ -3405,7 +3405,7 @@ const KnowledgeBase = () => {
 
                   {/* Guideline Scope dropdown (only for Create New Guideline flow / kbid=0) */}
                   {selectedKBForGuidelines?.id === 0 && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Guideline Scope</h3>
                         <Select
@@ -3432,7 +3432,7 @@ const KnowledgeBase = () => {
                   {selectedKBForGuidelines?.id === 0 && guidelineScope === 'org_specific' && (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                        {!isSSO && (
-                      <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                      <Card className="border border-gray-300 bg-white rounded-2xl">
                         <CardContent className="p-5 space-y-3">
                           <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Customer</h3>
                           <Input
@@ -3445,7 +3445,7 @@ const KnowledgeBase = () => {
                       </Card>
                        )}
    {!isSSO && (
-                      <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                      <Card className="border border-gray-300 bg-white rounded-2xl">
                         <CardContent className="p-5 space-y-3">
                           <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Organization</h3>
                           <Input
@@ -3457,7 +3457,7 @@ const KnowledgeBase = () => {
                         </CardContent>
                       </Card>
  )}
-                      <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                      <Card className="border border-gray-300 bg-white rounded-2xl">
                         <CardContent className="p-5 space-y-3">
                           <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Apps Details</h3>
                           <Select
@@ -3486,7 +3486,7 @@ const KnowledgeBase = () => {
 
                   {/* Existing Guidelines Selection Table */}
                   {selectedKBForGuidelines?.id !== 0 && guidelineCreationType === 'existing' && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between gap-4">
                           <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Select General Guideline</h3>
@@ -3564,7 +3564,7 @@ const KnowledgeBase = () => {
 
                   {/* Organization Specific Guidelines Selection Table */}
                   {selectedKBForGuidelines?.id !== 0 && guidelineCreationType === 'org_specific' && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between gap-4">
                           <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Organization specific guidelines</h3>
@@ -3641,7 +3641,7 @@ const KnowledgeBase = () => {
                   )}
                   {/* Add New Guideline Card */}
                   {!(selectedKBForGuidelines?.id !== 0 && (guidelineCreationType === 'existing' || guidelineCreationType === 'org_specific')) && (
-                    <Card id="add-guideline-section" className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card id="add-guideline-section" className="border border-gray-300 bg-white rounded-2xl">
 
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between">
@@ -4060,7 +4060,7 @@ const KnowledgeBase = () => {
 
                   {/* All Guidelines Card */}
                   {!(selectedKBForGuidelines?.id !== 0 && (guidelineCreationType === 'existing' || guidelineCreationType === 'org_specific')) && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between">
                           <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />All Guidelines</h3>
@@ -4174,7 +4174,7 @@ const KnowledgeBase = () => {
                   {/* Organization and Apps Details - Same Row (for Tag Agents) */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     {/* Select Organization Card */}
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                    <Card className="border border-gray-300 bg-white rounded-2xl flex-1">
                       <CardContent className="p-5 space-y-3">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Organization</h3>
                         <Select
@@ -4204,7 +4204,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
                     {/* Apps Details Card */}
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                    <Card className="border border-gray-300 bg-white rounded-2xl flex-1">
                       <CardContent className="p-5 space-y-3">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Apps Details</h3>
                         <Select
@@ -4230,7 +4230,7 @@ const KnowledgeBase = () => {
 
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-2 mb-4">
                           <Bot className="h-4 w-4 text-gray-500" />
@@ -4345,7 +4345,7 @@ const KnowledgeBase = () => {
                 // ----- CREATE STUDY LO (full ported block from abc.tsx) -----
                 <>
                   {/* Select Book Card - Full Width */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-300 bg-white rounded-2xl">
                     <CardContent className="p-5 space-y-3">
                       <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Book</h3>
                       <Popover
@@ -4452,7 +4452,7 @@ const KnowledgeBase = () => {
                   {/* Organization and Apps Details - Same Row */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     {/* Select Organization Card */}
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                    <Card className="border border-gray-300 bg-white rounded-2xl flex-1">
                       <CardContent className="p-5 space-y-3">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Organization</h3>
                         <Select
@@ -4483,7 +4483,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
                     {/* Apps Details Card */}
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                    <Card className="border border-gray-300 bg-white rounded-2xl flex-1">
                       <CardContent className="p-5 space-y-3">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Apps Details</h3>
                         <Select
@@ -4512,7 +4512,7 @@ const KnowledgeBase = () => {
 
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-2 mb-4">
                           <Bot className="h-4 w-4 text-gray-500" />
@@ -4629,7 +4629,7 @@ const KnowledgeBase = () => {
                     </Card>
                   )}
                   {/* Chapter & LO Details Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-300 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-2">
@@ -4853,7 +4853,7 @@ const KnowledgeBase = () => {
                     </CardContent>
                   </Card>
                   {/* Upload Study LO Documents Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-300 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-3">
                       <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Upload Study LO Documents</h3>
                       <div className={`bg-white border-2 border-dashed rounded-lg p-12 text-center space-y-4 transition-colors cursor-pointer ${isDraggingStudyLO
@@ -4936,7 +4936,7 @@ const KnowledgeBase = () => {
                   </Card>
                   {/* Preview Section */}
                   {studyLOPreview.length > 0 && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-2 mb-4">
                           <Eye className="h-4 w-4 text-gray-500" />
@@ -4977,7 +4977,7 @@ const KnowledgeBase = () => {
                     </Card>
                   )}
                   {/* Action Buttons Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-300 bg-white rounded-2xl">
                     <CardContent className="p-6">
                       <div className="flex justify-end">
                         <Button
@@ -4995,7 +4995,7 @@ const KnowledgeBase = () => {
                 /* Create Form */
                 <>
                   {/* Level Type Selection Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-300 bg-white rounded-2xl">
                     <CardContent className="p-6">
                       <div className="mb-4">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Knowledge Base Type</h3>
@@ -5073,7 +5073,7 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Organization and Apps Selection */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-300 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="mb-4">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Organization and Apps</h3>
@@ -5123,7 +5123,7 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Basic Information Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-300 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="mb-4">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Basic Information</h3>
@@ -5242,7 +5242,7 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Upload Section Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-300 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="mb-4">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />File Uploads</h3>
@@ -5375,7 +5375,7 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Processing Settings Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-300 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="mb-4">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Processing Settings</h3>
@@ -5623,7 +5623,7 @@ const KnowledgeBase = () => {
                 <>
                   {/* Existing List View */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Customer</h3>
 
@@ -5673,7 +5673,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Organization</h3>
 
@@ -5715,7 +5715,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-300 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
                         <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Apps Details</h3>
 
