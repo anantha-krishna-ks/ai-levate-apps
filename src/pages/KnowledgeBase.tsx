@@ -26,7 +26,7 @@ const KnowledgeBase = () => {
   const [kbNameInput, setKbNameInput] = useState("");
   const [kbNameCheckStatus, setKbNameCheckStatus] = useState("unknown"); // "unknown", "checking", "exists", "not_exists", "error"
   const [kbNameCheckMsg, setKbNameCheckMsg] = useState("");
-  const [kbNameCheckTimer, setKbNameCheckTimer] = useState<NodeJS.Timeout | null>(null);
+  const [kbNameCheckTimer, setKbNameCheckTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
   // Guideline delete dialog and pending guideline state
   const [guidelinePendingDelete, setGuidelinePendingDelete] = useState(null);
   const [showGuidelineDeleteDialog, setShowGuidelineDeleteDialog] = useState(false);
@@ -3205,7 +3205,7 @@ const KnowledgeBase = () => {
 
           {/* Main Content */}
           <main className="p-6">
-            <BackToTop loading={kbLoading || isCreating || isCreatingStudyLO} />
+            <BackToTop />
             {/* Full Page Loader Overlay for Chat */}
             {chatLoading && (
               <div style={{
