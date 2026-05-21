@@ -3101,108 +3101,112 @@ const KnowledgeBase = () => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#F4F8FC]">
+        <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />
+
         {/* Desktop Sidebar */}
-        <div className="fixed left-0 top-0 h-full w-52 z-40 hidden lg:block">
+        <div
+          className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-[60] hidden lg:block transition-all duration-300 ${
+            sidebarCollapsed ? "w-16" : "w-52"
+          }`}
+        >
           {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
         </div>
 
         {/* Mobile Menu Sheet */}
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <SheetContent side="left" className="w-64 p-0">
-            {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
+            {isSuperAdmin ? (
+              <SuperAdminSidebar />
+            ) : (
+              <AppSidebar
+                forceExpanded
+                hideToggle
+                onNavigate={() => setMobileMenuOpen(false)}
+              />
+            )}
           </SheetContent>
         </Sheet>
 
-        <div className="ml-0 lg:ml-52 flex flex-col">
-          {/* Header */}
-          <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-            <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
-              <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
-                {/* Mobile Menu Button */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="lg:hidden flex-shrink-0"
-                  onClick={() => setMobileMenuOpen(true)}
-                >
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </div>
-
-              <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 ">
-                <div className="hidden sm:flex items-center gap-2">
-                  <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-                    <span className="text-white text-xs">✦</span>
-                  </div>
-                  <span className="text-xs sm:text-sm text-blue-600 font-medium whitespace-nowrap">4,651</span>
-                </div>
-
-                <ProfileDropdown />
-              </div>
-            </div>
-          </header>
-
+        <div
+          className={`ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
+            sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
+          }`}
+        >
           {/* Page Title Section */}
-          <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
-            <div className="flex items-center justify-between gap-3 flex-wrap">
-              <div className="flex items-center gap-2 sm:gap-3">
-                {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode || isTaggingAgents) && (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    title="back to page"
-                    onClick={handleBackNavigation}
-                    className="flex-shrink-0">
-                    <ArrowLeft className="w-5 h-5" />
-                  </Button>
-                )}
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <div className="flex flex-col">
-                  <h2 className="text-base sm:text-lg font-semibold text-gray-900">
-                    {isCreating
-                      ? "Create New Knowledge Base"
-                      : isCreatingStudyLO
-                        ? "Create Study LO"
-                        : isTaggingAgents
-                          ? "Tag Agents"
-                          : isViewingGuidelines
-                            ? "Guideline Data"
-                            : isChatMode && chatKbDetails?.knowladgebasename
-                              ? `Knowledge Base: ${chatKbDetails.knowladgebasename}`
-                              : isChatMode && selectedKBForChat?.bookName
-                                ? `Knowledge Base: ${selectedKBForChat.bookName}`
-                                : "Knowledge Base System"}
-                  </h2>
-                  {isChatMode && selectedKBForChat && (
-                    <p className="text-sm text-gray-600">
-                      Customer: {
-                        customers.find((c) => c.customercode === selectedCustomerCode)?.customername || selectedCustomerCode
-                      }
+          <div className="relative bg-white border-b border-slate-200">
+            <div className="relative px-4 sm:px-6 py-3">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3 min-w-0">
+                  {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode || isTaggingAgents) && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      title="back to page"
+                      onClick={handleBackNavigation}
+                      className="h-8 w-8 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900"
+                      aria-label="Back"
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                    </Button>
+                  )}
+                  <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
+                    <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                      <Library className="h-4 w-4 text-white" />
+                    </div>
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <h1 className="text-base sm:text-lg font-medium text-slate-900 leading-tight tracking-tight truncate">
+                      {isCreating
+                        ? "Create New Knowledge Base"
+                        : isCreatingStudyLO
+                          ? "Create Study LO"
+                          : isTaggingAgents
+                            ? "Tag Agents"
+                            : isViewingGuidelines
+                              ? "Guideline Data"
+                              : isChatMode && chatKbDetails?.knowladgebasename
+                                ? `Knowledge Base: ${chatKbDetails.knowladgebasename}`
+                                : isChatMode && selectedKBForChat?.bookName
+                                  ? `Knowledge Base: ${selectedKBForChat.bookName}`
+                                  : "Knowledge Base"}
+                    </h1>
+                    <p className="text-xs text-slate-500 truncate">
+                      {isCreating
+                        ? "Configure a new knowledge base for your content"
+                        : isCreatingStudyLO
+                          ? "Upload a CSV to create study learning outcomes"
+                          : isTaggingAgents
+                            ? "Assign and configure agents for this knowledge base"
+                            : isViewingGuidelines
+                              ? "Manage guideline documents for this knowledge base"
+                              : isChatMode && selectedKBForChat
+                                ? `Customer: ${customers.find((c) => c.customercode === selectedCustomerCode)?.customername || selectedCustomerCode}`
+                                : "Manage your knowledge bases and study materials"}
                     </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {isCreatingStudyLO ? (
+                    <Button
+                      className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full text-xs h-8"
+                      onClick={() => window.open(API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE, "_blank")}
+                    >
+                      Download Template
+                    </Button>
+                  ) : !isCreating && !isViewingGuidelines && !isTaggingAgents && !isChatMode && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-primary/30 bg-white text-primary hover:bg-primary/5 hover:text-primary text-xs h-8"
+                      onClick={() => window.open("/document.html", "_blank")}
+                    >
+                      <FileText className="w-3 h-3 mr-1.5 text-primary" />
+                      Manual
+                    </Button>
                   )}
                 </div>
               </div>
-              {isCreatingStudyLO ? (
-                <Button
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white flex-shrink-0"
-                  onClick={() => window.open(API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE, "_blank")}
-                >
-                  Download Template
-                </Button>
-              ) : !isCreating && !isViewingGuidelines && !isTaggingAgents && !isChatMode && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-gray-600 hover:text-gray-900 flex-shrink-0"
-                  onClick={() => window.open("/document.html", "_blank")}
-                >
-                  <FileText className="w-4 h-4 mr-2" />
-                  Knowledge Base Manual
-                </Button>
-              )}
             </div>
           </div>
 
