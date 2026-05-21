@@ -993,33 +993,34 @@ export default function ItemBank() {
   return (
     <div className="animate-fade-in">
       <nav aria-label="Breadcrumb" className="mb-4">
-        <ol className="inline-flex items-center gap-1 text-sm bg-white border border-slate-200 rounded-full pl-2 pr-4 py-1.5 shadow-sm max-w-full">
+        <ol className="flex items-center gap-2 text-sm flex-wrap">
           <li>
             <button
               type="button"
               onClick={() => navigate('/item-validation')}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-slate-600 hover:text-blue-700 hover:bg-blue-50 font-medium transition-colors"
+              className="inline-flex items-center gap-1.5 text-slate-500 hover:text-blue-700 font-medium transition-colors"
             >
-              <Home className="w-3.5 h-3.5" />
+              <Home className="w-4 h-4" />
               Item Validation
             </button>
           </li>
-          <li aria-hidden="true"><ChevronRight className="w-4 h-4 text-slate-300" /></li>
+          <li aria-hidden="true" className="text-slate-300">/</li>
           <li>
             <button
               type="button"
               onClick={() => setSelectedFolder(null)}
-              className="px-2.5 py-1 rounded-full text-slate-600 hover:text-blue-700 hover:bg-blue-50 font-medium transition-colors"
+              className="text-slate-500 hover:text-blue-700 font-medium transition-colors"
             >
               Item Bank
             </button>
           </li>
-          <li aria-hidden="true"><ChevronRight className="w-4 h-4 text-slate-300" /></li>
-          <li className="px-2.5 py-1 text-slate-900 font-semibold truncate max-w-[320px]" title={selectedFolder}>
+          <li aria-hidden="true" className="text-slate-300">/</li>
+          <li className="text-slate-900 font-semibold truncate max-w-[320px]" title={selectedFolder} aria-current="page">
             {selectedFolder}
           </li>
         </ol>
       </nav>
+
 
       <PageHeader
         title={selectedFolder}
