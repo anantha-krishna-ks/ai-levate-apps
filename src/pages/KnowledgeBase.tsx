@@ -3095,7 +3095,7 @@ const KnowledgeBase = () => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogAction onClick={() => setPreviewGuideline(null)} className="bg-blue-600 hover:bg-blue-700 text-white">
+            <AlertDialogAction onClick={() => setPreviewGuideline(null)} className="bg-blue-600 hover:bg-blue-700 text-white rounded-full">
               Close
             </AlertDialogAction>
           </AlertDialogFooter>
@@ -3229,7 +3229,7 @@ const KnowledgeBase = () => {
                 alignItems: "center",
                 justifyContent: "center",
               }}>
-                <div className="flex flex-col items-center space-y-4 p-8 bg-white rounded-lg shadow-xl border border-gray-200">
+                <div className="flex flex-col items-center space-y-4 p-8 bg-white rounded-lg  border border-gray-200">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                   <p className="text-gray-700 font-medium">Processing your question...</p>
                 </div>
@@ -3354,7 +3354,7 @@ const KnowledgeBase = () => {
                       alignItems: "center",
                       justifyContent: "center",
                     }}>
-                      <div className="flex flex-col items-center space-y-4 p-8 bg-white rounded-lg shadow-xl border border-gray-200">
+                      <div className="flex flex-col items-center space-y-4 p-8 bg-white rounded-lg  border border-gray-200">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                         <p className="text-gray-700 font-medium">
                           {isGuidelineEditing ? 'Updating Guideline...' : 'Uploading Guideline...'}
@@ -3507,7 +3507,7 @@ const KnowledgeBase = () => {
                           <h3 className="text-lg font-semibold text-gray-900">Select General Guideline</h3>
                           <Button
                             variant="default"
-                            className="bg-blue-600 hover:bg-blue-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                             onClick={handleTagGuidelines}
                             disabled={Object.values(selectedExistingGuidelines).filter(Boolean).length === 0}
                           >
@@ -3585,7 +3585,7 @@ const KnowledgeBase = () => {
                           <h3 className="text-lg font-semibold text-gray-900">Organization specific guidelines</h3>
                           <Button
                             variant="default"
-                            className="bg-blue-600 hover:bg-blue-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                             onClick={handleTagGuidelines}
                             disabled={Object.values(selectedOrgSpecificGuidelines).filter(Boolean).length === 0}
                           >
@@ -3668,7 +3668,7 @@ const KnowledgeBase = () => {
                               <TooltipTrigger asChild>
                                 <HelpCircle className="h-5 w-5 text-gray-500 cursor-pointer hover:text-gray-700 transition-colors" />
                               </TooltipTrigger>
-                              <TooltipContent className="max-w-md bg-white text-black border-gray-200 px-4 py-3 rounded-lg shadow-lg">
+                              <TooltipContent className="max-w-md bg-white text-black border-gray-200 px-4 py-3 rounded-lg ">
                                 <div className="space-y-2 text-sm leading-relaxed">
                                   <p>Guideline Type can be selected from the Guideline Type dropdown.</p>
                                   <p>Guideline Subtype can be selected from the Guideline Subtype dropdown. If you select a Guideline Subtype, the same value will be used as the Guideline Name automatically. Guideline Subtype is optional.</p>
@@ -5004,7 +5004,7 @@ const KnowledgeBase = () => {
                     <CardContent className="p-6">
                       <div className="flex justify-end">
                         <Button
-                          className="bg-blue-600 hover:bg-blue-700 text-white"
+                          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                           disabled={!selectedBook || studyLODocuments.length === 0}
                           onClick={handleStudyLOSubmit}
                         >
@@ -5030,7 +5030,7 @@ const KnowledgeBase = () => {
                         <button
                           onClick={() => setLevelType("book")}
                           className={`relative p-3 rounded-lg border-2 text-left transition-all ${levelType === "book"
-                              ? "border-purple-600 bg-white shadow-md"
+                              ? "border-purple-600 bg-white "
                               : "border-purple-200 bg-white hover:border-purple-300"
                             }`}
                         >
@@ -5063,7 +5063,7 @@ const KnowledgeBase = () => {
                         <button
                           onClick={() => setLevelType("study")}
                           className={`relative p-3 rounded-lg border-2 text-left transition-all ${levelType === "study"
-                              ? "border-purple-600 bg-white shadow-md"
+                              ? "border-purple-600 bg-white "
                               : "border-purple-200 bg-white hover:border-purple-300"
                             }`}
                         >
@@ -5429,7 +5429,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Retrieval Strategy decides how search results are ranked and selected</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5455,7 +5455,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how many of the initially retrieved results are considered during retrieval (allowed range: 1–8). Smaller values are faster; larger are more thorough but slower.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5489,7 +5489,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how large each text segment is when splitting documents for retrieval. Smaller chunks give more precise matches but less context, larger chunks preserve more context but may include irrelevant material.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5515,7 +5515,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how much consecutive text chunks overlap when splitting documents. Higher overlap preserves more context across chunks but increases redundancy and processing cost.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5541,7 +5541,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Controls how documents are split into smaller parts for retrieval. Affects accuracy, context, and speed.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5567,7 +5567,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how data is stored for retrieval, impacting speed, scalability, and accuracy.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5593,7 +5593,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Converts text into vectors for similarity search</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5635,7 +5635,7 @@ const KnowledgeBase = () => {
                         >
                           Cancel
                         </Button>
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white" onClick={handleCreateKnowledgeBase}>
+                        <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full" onClick={handleCreateKnowledgeBase}>
                           Create Knowledge Base
                         </Button>
                       </div>
@@ -5687,7 +5687,7 @@ const KnowledgeBase = () => {
                           </div>
 
                           {showCustomerDropdown && !customersLoading && !customerLocked && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md  z-50 max-h-60 overflow-y-auto">
                               {isSuperAdmin && (
                                 <div
                                   className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100"
@@ -5742,7 +5742,7 @@ const KnowledgeBase = () => {
                           </div>
 
                           {showOrgDropdown && !organizationLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md  z-50 max-h-60 overflow-y-auto">
                               <div
                                 className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100"
                                 onClick={() => handleOrgSelect('', 'All')}
@@ -5789,7 +5789,7 @@ const KnowledgeBase = () => {
                           </div>
 
                           {showAppDropdown && !appsLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && ((selectedOrganization || organizationLocked) || !!appSearchQuery) && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md  z-50 max-h-60 overflow-y-auto">
                               {(appsOptions || []).filter(a => !appSearchQuery.trim() || a.label.toLowerCase().includes(appSearchQuery.toLowerCase())).map((app: any) => (
                                 <div
                                   key={app.value}
@@ -5813,7 +5813,7 @@ const KnowledgeBase = () => {
                   </div>
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border-2 border-blue-100 bg-gradient-to-br from-blue-50 to-blue-100">
+                  <Card className="border-2 border-blue-100 bg-blue-600">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div className="flex items-center gap-3">
@@ -5826,7 +5826,7 @@ const KnowledgeBase = () => {
                           
                           <Button
                             onClick={() => { fetchAppsData(); setIsCreating(true); }}
-                            className="px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                            className="px-6 bg-blue-600 hover:from-blue-700 hover:to-blue-800 text-white"
                             disabled={selectedCustomerCode === '_ALL'}
                             title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
                           >
@@ -5849,7 +5849,7 @@ const KnowledgeBase = () => {
                               setIsViewingGuidelines(true);
                               clearGuidelinesState();
                             }}
-                            className="bg-green-600 text-white hover:bg-green-700 transition-colors duration-300 ease-in-out shadow-md dark:bg-green-500 dark:hover:bg-green-600 mr-2"
+                            className="bg-green-600 text-white hover:bg-green-700 transition-colors duration-300 ease-in-out  dark:bg-green-500 dark:hover:bg-green-600 mr-2"
                           >
                             <Plus className="w-4 h-4 mr-2" />
                             Create New Guideline
@@ -6247,7 +6247,7 @@ const KnowledgeBase = () => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogAction
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                 autoFocus
                 onClick={() => {
                   setShowChapterLOSuccessDialog(false);
@@ -6408,7 +6408,7 @@ const KnowledgeBase = () => {
               <p className="text-gray-700 mb-5">{successDialogMessage}</p>
               <div className="flex justify-end gap-3">
                 <Button
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                   onClick={() => {
                     setSuccessDialogOpen(false);
                     setIsCreating(false);
