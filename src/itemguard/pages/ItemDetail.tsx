@@ -207,17 +207,17 @@ export default function ItemDetail() {
                   <li key={p.key}>
                     <button
                       onClick={() => setActiveParamKey(p.key)}
-                      className={`group w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors ${
+                      className={`group w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
                         isActive
                           ? 'bg-white border border-slate-200 shadow-sm'
-                          : 'border border-transparent hover:bg-white'
+                          : 'border border-transparent hover:bg-white hover:border-slate-200/60'
                       }`}
                     >
-                      <span className={`h-2 w-2 rounded-full shrink-0 ${dot}`} />
-                      <span className={`text-xs flex-1 truncate ${isActive ? 'font-semibold text-slate-900' : 'text-slate-700'}`}>
+                      <span className={`h-2.5 w-2.5 rounded-full shrink-0 ${dot}`} />
+                      <span className={`text-sm flex-1 truncate ${isActive ? 'font-semibold text-slate-900' : 'text-slate-700'}`}>
                         {p.name}
                       </span>
-                      <span className={`text-xs tabular-nums font-semibold ${
+                      <span className={`text-sm tabular-nums font-bold ${
                         p.status === 'green' ? 'text-emerald-600' : p.status === 'amber' ? 'text-amber-600' : 'text-rose-600'
                       }`}>
                         {p.score}
