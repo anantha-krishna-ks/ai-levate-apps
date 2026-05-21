@@ -44,9 +44,18 @@ const ItemValidation = () => {
       {/* Top header */}
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-card/95 border-b border-border">
         <div className="flex h-16 items-center px-6 gap-4">
-          <Link to="/dashboard" className="flex-shrink-0">
-            <img src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" alt="AI-Levate" className="h-8 w-auto" />
-          </Link>
+          <TooltipProvider delayDuration={100}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link to="/dashboard" className="flex-shrink-0" aria-label="Back to dashboard">
+                  <img src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" alt="AI-Levate" className="h-11 w-auto" />
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                <p>Back to dashboard</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <div className="flex items-center gap-3 ml-auto">
             <TokenUsagePopover used={5349} total={10000} scopeLabel="This course" />
             <Separator orientation="vertical" className="hidden sm:block h-8" />
