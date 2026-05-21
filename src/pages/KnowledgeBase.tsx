@@ -5662,12 +5662,12 @@ const KnowledgeBase = () => {
                 <>
                   {/* Existing List View */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <Card className="border border-slate-200 bg-white">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-slate-900">Select Customer</h3>
+                        <h3 className="text-sm font-medium text-gray-900">Select Customer</h3>
 
                         <div className="relative customer-dropdown-container">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 z-10" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
                           <div className="relative">
                             <Input
                               type="text"
@@ -5675,17 +5675,17 @@ const KnowledgeBase = () => {
                               onChange={(e) => handleCustomerInputChange(e.target.value)}
                               onClick={handleCustomerInputFocus}
                               placeholder={customersLoading ? "Loading..." : getSelectedCustomerName()}
-                              className="w-full pl-9 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer text-sm"
+                              className="w-full pl-9 h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer text-sm text-gray-900"
                               disabled={customersLoading || customerLocked}
                             />
-                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                           </div>
 
                           {showCustomerDropdown && !customersLoading && !customerLocked && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg z-50 max-h-60 overflow-y-auto text-sm">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg z-50 max-h-60 overflow-y-auto text-sm shadow-sm">
                               {isSuperAdmin && (
                                 <div
-                                  className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100"
+                                  className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100"
                                   onClick={() => handleCustomerSelect("_ALL", "All")}
                                 >
                                   All
@@ -5695,14 +5695,14 @@ const KnowledgeBase = () => {
                                 filteredCustomers.map((customer: any) => (
                                   <div
                                     key={customer.customercode}
-                                    className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100 last:border-b-0"
+                                    className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
                                     onClick={() => handleCustomerSelect(customer.customercode, customer.customername)}
                                   >
                                     <div className="cursor-pointer">{customer.customername}</div>
                                   </div>
                                 ))
                               ) : (
-                                <div className="px-3 py-2 text-slate-500 text-center">
+                                <div className="px-3 py-2 text-gray-500 text-center">
                                   No customers found
                                 </div>
                               )}
@@ -5712,12 +5712,12 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border border-slate-200 bg-white">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-slate-900">Select Organization</h3>
+                        <h3 className="text-sm font-medium text-gray-900">Select Organization</h3>
 
                         <div className="relative org-dropdown-container">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 z-10" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
                           <div className="relative">
                             <Input
                               type="text"
@@ -5725,16 +5725,16 @@ const KnowledgeBase = () => {
                               onChange={(e) => handleOrgInputChange(e.target.value)}
                               onClick={handleOrgInputFocus}
                               placeholder={organizationLoading ? "Loading..." : (orgSearchQuery || "Select Organization")}
-                              className="w-full pl-9 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer text-sm"
+                              className="w-full pl-9 h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer text-sm text-gray-900"
                               disabled={organizationLocked || organizationLoading || !selectedCustomerCode || selectedCustomerCode === '_ALL'}
                             />
-                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                           </div>
 
                           {showOrgDropdown && !organizationLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg z-50 max-h-60 overflow-y-auto text-sm">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg z-50 max-h-60 overflow-y-auto text-sm shadow-sm">
                               <div
-                                className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100"
+                                className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100"
                                 onClick={() => handleOrgSelect('', 'All')}
                               >
                                 All
@@ -5742,7 +5742,7 @@ const KnowledgeBase = () => {
                               {(organizationOptions || []).filter(o => !orgSearchQuery.trim() || o.label.toLowerCase().includes(orgSearchQuery.toLowerCase())).map((org: any) => (
                                 <div
                                   key={org.value}
-                                  className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100 last:border-b-0"
+                                  className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
                                   onClick={() => handleOrgSelect(org.value, org.label)}
                                 >
                                   <div className="cursor-pointer">{org.label}</div>
@@ -5754,12 +5754,12 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border border-slate-200 bg-white">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-slate-900">Apps Details</h3>
+                        <h3 className="text-sm font-medium text-gray-900">Apps Details</h3>
 
                         <div className="relative app-dropdown-container">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 z-10" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
                           <div className="relative">
                             <Input
                               type="text"
@@ -5767,18 +5767,18 @@ const KnowledgeBase = () => {
                               onChange={(e) => handleAppInputChange(e.target.value)}
                               onClick={handleAppInputFocus}
                               placeholder={appsLoading ? "Loading..." : (appSearchQuery || "Select App")}
-                              className="w-full pl-9 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer text-sm"
+                              className="w-full pl-9 h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer text-sm text-gray-900"
                               disabled={appsLoading || !selectedCustomerCode || selectedCustomerCode === '_ALL' || (!selectedOrganization && !organizationLocked && !appSearchQuery)}
                             />
-                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                           </div>
 
                           {showAppDropdown && !appsLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && ((selectedOrganization || organizationLocked) || !!appSearchQuery) && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg z-50 max-h-60 overflow-y-auto text-sm">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg z-50 max-h-60 overflow-y-auto text-sm shadow-sm">
                               {(appsOptions || []).filter(a => !appSearchQuery.trim() || a.label.toLowerCase().includes(appSearchQuery.toLowerCase())).map((app: any) => (
                                 <div
                                   key={app.value}
-                                  className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100 last:border-b-0"
+                                  className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
                                   onClick={() => handleAppSelect(app.value, app.label)}
                                 >
                                   <div className="cursor-pointer">{app.label}</div>
