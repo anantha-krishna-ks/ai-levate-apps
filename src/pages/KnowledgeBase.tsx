@@ -17,11 +17,14 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { AppSidebar } from "@/components/AppSidebar";
 import { SuperAdminSidebar } from "@/components/SuperAdminSidebar";
 import { ProfileDropdown } from "@/components/ProfileDropdown";
+import { AppHeader } from "@/components/AppHeader";
+import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
 import BackToTop from "@/components/BackToTop";
 import { API_ENDPOINTS } from "../config";
 import config from "../config";
 
 const KnowledgeBase = () => {
+  const sidebarCollapsed = useSidebarCollapsed();
   // --- KB Name Availability state ---
   const [kbNameInput, setKbNameInput] = useState("");
   const [kbNameCheckStatus, setKbNameCheckStatus] = useState("unknown"); // "unknown", "checking", "exists", "not_exists", "error"
@@ -3092,114 +3095,118 @@ const KnowledgeBase = () => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogAction onClick={() => setPreviewGuideline(null)} className="bg-blue-600 hover:bg-blue-700 text-white">
+            <AlertDialogAction onClick={() => setPreviewGuideline(null)} className="bg-blue-600 hover:bg-blue-700 text-white rounded-full">
               Close
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#F4F8FC]">
+        <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />
+
         {/* Desktop Sidebar */}
-        <div className="fixed left-0 top-0 h-full w-52 z-40 hidden lg:block">
+        <div
+          className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-[60] hidden lg:block transition-all duration-300 ${
+            sidebarCollapsed ? "w-16" : "w-52"
+          }`}
+        >
           {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
         </div>
 
         {/* Mobile Menu Sheet */}
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <SheetContent side="left" className="w-64 p-0">
-            {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
+            {isSuperAdmin ? (
+              <SuperAdminSidebar />
+            ) : (
+              <AppSidebar
+                forceExpanded
+                hideToggle
+                onNavigate={() => setMobileMenuOpen(false)}
+              />
+            )}
           </SheetContent>
         </Sheet>
 
-        <div className="ml-0 lg:ml-52 flex flex-col">
-          {/* Header */}
-          <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-            <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
-              <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
-                {/* Mobile Menu Button */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="lg:hidden flex-shrink-0"
-                  onClick={() => setMobileMenuOpen(true)}
-                >
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </div>
-
-              <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 ">
-                <div className="hidden sm:flex items-center gap-2">
-                  <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-                    <span className="text-white text-xs">✦</span>
-                  </div>
-                  <span className="text-xs sm:text-sm text-blue-600 font-medium whitespace-nowrap">4,651</span>
-                </div>
-
-                <ProfileDropdown />
-              </div>
-            </div>
-          </header>
-
+        <div
+          className={`ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
+            sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
+          }`}
+        >
           {/* Page Title Section */}
-          <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
-            <div className="flex items-center justify-between gap-3 flex-wrap">
-              <div className="flex items-center gap-2 sm:gap-3">
-                {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode || isTaggingAgents) && (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    title="back to page"
-                    onClick={handleBackNavigation}
-                    className="flex-shrink-0">
-                    <ArrowLeft className="w-5 h-5" />
-                  </Button>
-                )}
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <div className="flex flex-col">
-                  <h2 className="text-base sm:text-lg font-semibold text-gray-900">
-                    {isCreating
-                      ? "Create New Knowledge Base"
-                      : isCreatingStudyLO
-                        ? "Create Study LO"
-                        : isTaggingAgents
-                          ? "Tag Agents"
-                          : isViewingGuidelines
-                            ? "Guideline Data"
-                            : isChatMode && chatKbDetails?.knowladgebasename
-                              ? `Knowledge Base: ${chatKbDetails.knowladgebasename}`
-                              : isChatMode && selectedKBForChat?.bookName
-                                ? `Knowledge Base: ${selectedKBForChat.bookName}`
-                                : "Knowledge Base System"}
-                  </h2>
-                  {isChatMode && selectedKBForChat && (
-                    <p className="text-sm text-gray-600">
-                      Customer: {
-                        customers.find((c) => c.customercode === selectedCustomerCode)?.customername || selectedCustomerCode
-                      }
+          <div className="relative bg-white border-b border-slate-200">
+            <div className="relative px-4 sm:px-6 py-3">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3 min-w-0">
+                  {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode || isTaggingAgents) && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      title="back to page"
+                      onClick={handleBackNavigation}
+                      className="h-8 w-8 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900"
+                      aria-label="Back"
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                    </Button>
+                  )}
+                  <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
+                    <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                      <Library className="h-4 w-4 text-white" />
+                    </div>
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <h1 className="text-base sm:text-lg font-medium text-slate-900 leading-tight tracking-tight truncate">
+                      {isCreating
+                        ? "Create New Knowledge Base"
+                        : isCreatingStudyLO
+                          ? "Create Study LO"
+                          : isTaggingAgents
+                            ? "Tag Agents"
+                            : isViewingGuidelines
+                              ? "Guideline Data"
+                              : isChatMode && chatKbDetails?.knowladgebasename
+                                ? `Knowledge Base: ${chatKbDetails.knowladgebasename}`
+                                : isChatMode && selectedKBForChat?.bookName
+                                  ? `Knowledge Base: ${selectedKBForChat.bookName}`
+                                  : "Knowledge Base"}
+                    </h1>
+                    <p className="text-xs text-slate-500 truncate">
+                      {isCreating
+                        ? "Configure a new knowledge base for your content"
+                        : isCreatingStudyLO
+                          ? "Upload a CSV to create study learning outcomes"
+                          : isTaggingAgents
+                            ? "Assign and configure agents for this knowledge base"
+                            : isViewingGuidelines
+                              ? "Manage guideline documents for this knowledge base"
+                              : isChatMode && selectedKBForChat
+                                ? `Customer: ${customers.find((c) => c.customercode === selectedCustomerCode)?.customername || selectedCustomerCode}`
+                                : "Manage your knowledge bases and study materials"}
                     </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {isCreatingStudyLO ? (
+                    <Button
+                      className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full text-xs h-8"
+                      onClick={() => window.open(API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE, "_blank")}
+                    >
+                      Download Template
+                    </Button>
+                  ) : !isCreating && !isViewingGuidelines && !isTaggingAgents && !isChatMode && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-primary/30 bg-white text-primary hover:bg-primary/5 hover:text-primary text-xs h-8"
+                      onClick={() => window.open("/document.html", "_blank")}
+                    >
+                      <FileText className="w-3 h-3 mr-1.5 text-primary" />
+                      Manual
+                    </Button>
                   )}
                 </div>
               </div>
-              {isCreatingStudyLO ? (
-                <Button
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white flex-shrink-0"
-                  onClick={() => window.open(API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE, "_blank")}
-                >
-                  Download Template
-                </Button>
-              ) : !isCreating && !isViewingGuidelines && !isTaggingAgents && !isChatMode && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-gray-600 hover:text-gray-900 flex-shrink-0"
-                  onClick={() => window.open("/document.html", "_blank")}
-                >
-                  <FileText className="w-4 h-4 mr-2" />
-                  Knowledge Base Manual
-                </Button>
-              )}
             </div>
           </div>
 
@@ -3222,7 +3229,7 @@ const KnowledgeBase = () => {
                 alignItems: "center",
                 justifyContent: "center",
               }}>
-                <div className="flex flex-col items-center space-y-4 p-8 bg-white rounded-lg shadow-xl border border-gray-200">
+                <div className="flex flex-col items-center space-y-4 p-8 bg-white rounded-lg  border border-gray-200">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                   <p className="text-gray-700 font-medium">Processing your question...</p>
                 </div>
@@ -3254,7 +3261,7 @@ const KnowledgeBase = () => {
                           chatMessages.map((message, index) => (
                             <div key={index} className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                               {message.role === 'assistant' && (
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center flex-shrink-0">
+                                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
                                   <Bot className="h-5 w-5 text-white" />
                                 </div>
                               )}
@@ -3347,7 +3354,7 @@ const KnowledgeBase = () => {
                       alignItems: "center",
                       justifyContent: "center",
                     }}>
-                      <div className="flex flex-col items-center space-y-4 p-8 bg-white rounded-lg shadow-xl border border-gray-200">
+                      <div className="flex flex-col items-center space-y-4 p-8 bg-white rounded-lg  border border-gray-200">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                         <p className="text-gray-700 font-medium">
                           {isGuidelineEditing ? 'Updating Guideline...' : 'Uploading Guideline...'}
@@ -3425,7 +3432,7 @@ const KnowledgeBase = () => {
                   {selectedKBForGuidelines?.id === 0 && guidelineScope === 'org_specific' && (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                        {!isSSO && (
-                      <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                      <Card className="border-2 border-purple-100 bg-purple-50">
                         <CardContent className="p-6">
                           <div className="flex items-center gap-3 mb-4">
                             <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -3443,7 +3450,7 @@ const KnowledgeBase = () => {
                       </Card>
                        )}
    {!isSSO && (
-                      <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                      <Card className="border-2 border-purple-100 bg-purple-50">
                         <CardContent className="p-6">
                           <div className="flex items-center gap-3 mb-4">
                             <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -3460,7 +3467,7 @@ const KnowledgeBase = () => {
                         </CardContent>
                       </Card>
  )}
-                      <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                      <Card className="border-2 border-purple-100 bg-purple-50">
                         <CardContent className="p-6">
                           <div className="flex items-center gap-3 mb-4">
                             <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -3500,7 +3507,7 @@ const KnowledgeBase = () => {
                           <h3 className="text-lg font-semibold text-gray-900">Select General Guideline</h3>
                           <Button
                             variant="default"
-                            className="bg-blue-600 hover:bg-blue-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                             onClick={handleTagGuidelines}
                             disabled={Object.values(selectedExistingGuidelines).filter(Boolean).length === 0}
                           >
@@ -3578,7 +3585,7 @@ const KnowledgeBase = () => {
                           <h3 className="text-lg font-semibold text-gray-900">Organization specific guidelines</h3>
                           <Button
                             variant="default"
-                            className="bg-blue-600 hover:bg-blue-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                             onClick={handleTagGuidelines}
                             disabled={Object.values(selectedOrgSpecificGuidelines).filter(Boolean).length === 0}
                           >
@@ -3661,7 +3668,7 @@ const KnowledgeBase = () => {
                               <TooltipTrigger asChild>
                                 <HelpCircle className="h-5 w-5 text-gray-500 cursor-pointer hover:text-gray-700 transition-colors" />
                               </TooltipTrigger>
-                              <TooltipContent className="max-w-md bg-white text-black border-gray-200 px-4 py-3 rounded-lg shadow-lg">
+                              <TooltipContent className="max-w-md bg-white text-black border-gray-200 px-4 py-3 rounded-lg ">
                                 <div className="space-y-2 text-sm leading-relaxed">
                                   <p>Guideline Type can be selected from the Guideline Type dropdown.</p>
                                   <p>Guideline Subtype can be selected from the Guideline Subtype dropdown. If you select a Guideline Subtype, the same value will be used as the Guideline Name automatically. Guideline Subtype is optional.</p>
@@ -4997,7 +5004,7 @@ const KnowledgeBase = () => {
                     <CardContent className="p-6">
                       <div className="flex justify-end">
                         <Button
-                          className="bg-blue-600 hover:bg-blue-700 text-white"
+                          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                           disabled={!selectedBook || studyLODocuments.length === 0}
                           onClick={handleStudyLOSubmit}
                         >
@@ -5023,7 +5030,7 @@ const KnowledgeBase = () => {
                         <button
                           onClick={() => setLevelType("book")}
                           className={`relative p-3 rounded-lg border-2 text-left transition-all ${levelType === "book"
-                              ? "border-purple-600 bg-white shadow-md"
+                              ? "border-purple-600 bg-white "
                               : "border-purple-200 bg-white hover:border-purple-300"
                             }`}
                         >
@@ -5056,7 +5063,7 @@ const KnowledgeBase = () => {
                         <button
                           onClick={() => setLevelType("study")}
                           className={`relative p-3 rounded-lg border-2 text-left transition-all ${levelType === "study"
-                              ? "border-purple-600 bg-white shadow-md"
+                              ? "border-purple-600 bg-white "
                               : "border-purple-200 bg-white hover:border-purple-300"
                             }`}
                         >
@@ -5422,7 +5429,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Retrieval Strategy decides how search results are ranked and selected</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5448,7 +5455,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how many of the initially retrieved results are considered during retrieval (allowed range: 1–8). Smaller values are faster; larger are more thorough but slower.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5482,7 +5489,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how large each text segment is when splitting documents for retrieval. Smaller chunks give more precise matches but less context, larger chunks preserve more context but may include irrelevant material.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5508,7 +5515,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how much consecutive text chunks overlap when splitting documents. Higher overlap preserves more context across chunks but increases redundancy and processing cost.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5534,7 +5541,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Controls how documents are split into smaller parts for retrieval. Affects accuracy, context, and speed.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5560,7 +5567,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how data is stored for retrieval, impacting speed, scalability, and accuracy.</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5586,7 +5593,7 @@ const KnowledgeBase = () => {
                                 <TooltipTrigger asChild>
                                   <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
                                 </TooltipTrigger>
-                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Converts text into vectors for similarity search</p>
                                 </TooltipContent>
                               </Tooltip>
@@ -5628,7 +5635,7 @@ const KnowledgeBase = () => {
                         >
                           Cancel
                         </Button>
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white" onClick={handleCreateKnowledgeBase}>
+                        <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full" onClick={handleCreateKnowledgeBase}>
                           Create Knowledge Base
                         </Button>
                       </div>
@@ -5655,7 +5662,7 @@ const KnowledgeBase = () => {
                 <>
                   {/* Existing List View */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                    <Card className="border-2 border-purple-100 bg-purple-50">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -5680,7 +5687,7 @@ const KnowledgeBase = () => {
                           </div>
 
                           {showCustomerDropdown && !customersLoading && !customerLocked && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md  z-50 max-h-60 overflow-y-auto">
                               {isSuperAdmin && (
                                 <div
                                   className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100"
@@ -5710,7 +5717,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                    <Card className="border-2 border-purple-100 bg-purple-50">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -5735,7 +5742,7 @@ const KnowledgeBase = () => {
                           </div>
 
                           {showOrgDropdown && !organizationLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md  z-50 max-h-60 overflow-y-auto">
                               <div
                                 className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100"
                                 onClick={() => handleOrgSelect('', 'All')}
@@ -5757,7 +5764,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                    <Card className="border-2 border-purple-100 bg-purple-50">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-purple-600 text-white rounded-lg">
@@ -5782,7 +5789,7 @@ const KnowledgeBase = () => {
                           </div>
 
                           {showAppDropdown && !appsLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && ((selectedOrganization || organizationLocked) || !!appSearchQuery) && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md  z-50 max-h-60 overflow-y-auto">
                               {(appsOptions || []).filter(a => !appSearchQuery.trim() || a.label.toLowerCase().includes(appSearchQuery.toLowerCase())).map((app: any) => (
                                 <div
                                   key={app.value}
@@ -5806,7 +5813,7 @@ const KnowledgeBase = () => {
                   </div>
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border-2 border-blue-100 bg-gradient-to-br from-blue-50 to-blue-100">
+                  <Card className="border-2 border-blue-100 bg-blue-600">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div className="flex items-center gap-3">
@@ -5819,7 +5826,7 @@ const KnowledgeBase = () => {
                           
                           <Button
                             onClick={() => { fetchAppsData(); setIsCreating(true); }}
-                            className="px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                            className="px-6 bg-blue-600 hover:from-blue-700 hover:to-blue-800 text-white"
                             disabled={selectedCustomerCode === '_ALL'}
                             title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
                           >
@@ -5828,7 +5835,7 @@ const KnowledgeBase = () => {
                           </Button>
                           <Button
                             onClick={() => setIsCreatingStudyLO(true)}
-                            className="px-6 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white"
+                            className="px-6 bg-purple-600 hover:bg-purple-700 text-white"
                             disabled={selectedCustomerCode === '_ALL'}
                             title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
                           >
@@ -5842,7 +5849,7 @@ const KnowledgeBase = () => {
                               setIsViewingGuidelines(true);
                               clearGuidelinesState();
                             }}
-                            className="bg-green-600 text-white hover:bg-green-700 transition-colors duration-300 ease-in-out shadow-md dark:bg-green-500 dark:hover:bg-green-600 mr-2"
+                            className="bg-green-600 text-white hover:bg-green-700 transition-colors duration-300 ease-in-out  dark:bg-green-500 dark:hover:bg-green-600 mr-2"
                           >
                             <Plus className="w-4 h-4 mr-2" />
                             Create New Guideline
@@ -6240,7 +6247,7 @@ const KnowledgeBase = () => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogAction
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                 autoFocus
                 onClick={() => {
                   setShowChapterLOSuccessDialog(false);
@@ -6401,7 +6408,7 @@ const KnowledgeBase = () => {
               <p className="text-gray-700 mb-5">{successDialogMessage}</p>
               <div className="flex justify-end gap-3">
                 <Button
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                   onClick={() => {
                     setSuccessDialogOpen(false);
                     setIsCreating(false);
