@@ -5003,71 +5003,55 @@ const KnowledgeBase = () => {
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {/* Book Level Option */}
-                        <button
-                          onClick={() => setLevelType("book")}
-                          className={`relative p-3 rounded-lg border-2 text-left transition-all ${levelType === "book"
-                              ? "border-blue-600 bg-blue-50/30"
-                              : "border-gray-200 bg-white hover:border-gray-300"
-                            }`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className={`p-2 rounded-lg transition-colors ${levelType === "book"
-                                ? "bg-blue-600 text-white"
-                                : "bg-gray-100 text-gray-500"
-                              }`}>
-                              <Library className="h-5 w-5" />
-                            </div>
-                            <div className="flex-1">
-                              <h4 className={`font-medium text-sm transition-colors ${levelType === "book" ? "text-gray-900" : "text-gray-700"
-                                }`}>
-                                Book Level
-                              </h4>
-                            </div>
-                            {levelType === "book" && (
-                              <div className="absolute top-3 right-3">
-                                <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-                                  <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                  </svg>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </button>
-
-                        {/* Study Level Option */}
-                        <button
-                          onClick={() => setLevelType("study")}
-                          className={`relative p-3 rounded-lg border-2 text-left transition-all ${levelType === "study"
-                              ? "border-blue-600 bg-blue-50/30"
-                              : "border-gray-200 bg-white hover:border-gray-300"
-                            }`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className={`p-2 rounded-lg transition-colors ${levelType === "study"
-                                ? "bg-blue-600 text-white"
-                                : "bg-gray-100 text-gray-500"
-                              }`}>
-                              <GraduationCap className="h-5 w-5" />
-                            </div>
-                            <div className="flex-1">
-                              <h4 className={`font-medium text-sm transition-colors ${levelType === "study" ? "text-gray-900" : "text-gray-700"
-                                }`}>
-                                Study Level
-                              </h4>
-                            </div>
-                            {levelType === "study" && (
-                              <div className="absolute top-3 right-3">
-                                <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-                                  <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                  </svg>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </button>
+                        {[
+                          { key: "book" as const, label: "Book Level", desc: "Organize by a single book", icon: Library },
+                          { key: "study" as const, label: "Study Level", desc: "Organize by study program", icon: GraduationCap },
+                        ].map((opt) => {
+                          const Icon = opt.icon;
+                          const selected = levelType === opt.key;
+                          return (
+                            <button
+                              key={opt.key}
+                              type="button"
+                              role="radio"
+                              aria-checked={selected}
+                              onClick={() => setLevelType(opt.key)}
+                              className={`group relative flex items-center gap-3 rounded-xl border px-4 py-3 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 ${
+                                selected
+                                  ? "border-blue-600 bg-blue-50/40"
+                                  : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
+                              }`}
+                            >
+                              <span
+                                className={`flex h-10 w-10 items-center justify-center rounded-xl shrink-0 transition-colors ${
+                                  selected ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-500 group-hover:bg-gray-200"
+                                }`}
+                              >
+                                <Icon className="h-[18px] w-[18px]" />
+                              </span>
+                              <span className="flex flex-col leading-tight flex-1 min-w-0">
+                                <span className={`text-sm font-semibold ${selected ? "text-blue-700" : "text-gray-900"}`}>
+                                  {opt.label}
+                                </span>
+                                <span className="text-xs text-gray-500 mt-0.5">{opt.desc}</span>
+                              </span>
+                              <span
+                                aria-hidden="true"
+                                className={`relative flex h-5 w-5 items-center justify-center rounded-full shrink-0 transition-all duration-200 ring-1 ${
+                                  selected
+                                    ? "bg-blue-600 ring-blue-600"
+                                    : "bg-white ring-gray-300 group-hover:ring-gray-400"
+                                }`}
+                              >
+                                <span
+                                  className={`h-1.5 w-1.5 rounded-full bg-white transition-all duration-200 ${
+                                    selected ? "opacity-100 scale-100" : "opacity-0 scale-50"
+                                  }`}
+                                />
+                              </span>
+                            </button>
+                          );
+                        })}
                       </div>
                     </CardContent>
                   </Card>
