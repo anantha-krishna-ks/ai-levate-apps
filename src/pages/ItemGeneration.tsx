@@ -157,17 +157,6 @@ const ItemGeneration = () => {
         {/* Page Title */}
         <div className="pt-6 mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <Link to="/dashboard" aria-label="Back to dashboard">
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-9 rounded-full pl-2.5 pr-3.5 gap-1.5 border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span className="text-sm font-medium">Back</span>
-              </Button>
-            </Link>
-            <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
             <h1 className="text-2xl font-medium text-gray-900">Select Knowledge Base</h1>
             <TooltipProvider delayDuration={100}>
               <Tooltip>
