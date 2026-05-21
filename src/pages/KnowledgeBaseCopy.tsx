@@ -22,7 +22,7 @@ const knowledgeBases = [
   { id: 2, name: "imageblank1", bookName: "imageblank", type: "Book Level" },
 ];
 
-const KnowledgeBase = () => {
+const KnowledgeBaseCopy = () => {
   const navigate = useNavigate();
   const sidebarCollapsed = useSidebarCollapsed();
   const [searchQuery, setSearchQuery] = useState("");
@@ -1276,4 +1276,4 @@ const KnowledgeBase = () => {
   );
 };
 
-export default KnowledgeBase;
+export default KnowledgeBaseCopy;
