@@ -5398,7 +5398,9 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={searchType} onValueChange={(v) => setSearchType(v as 'mmr' | 'similarity' | 'hybrid' || 'hybrid')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue placeholder="Select retrieval strategy" />
+                              <SelectValue placeholder="Select retrieval strategy">
+                                {retrievalOptions.find(o => o.value === searchType)?.label ?? (searchType || '')}
+                              </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {retrievalOptions.map(o => (
@@ -5458,7 +5460,9 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={chunkSize} onValueChange={(v) => setChunkSize(v || '1000')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue placeholder="Select chunk size (e.g. 1000)" />
+                              <SelectValue placeholder="Select chunk size (e.g. 1000)">
+                                {chunkSizeOptions.find(o => o.value === chunkSize)?.label ?? (chunkSize || '')}
+                              </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {chunkSizeOptions.map(o => (
@@ -5484,7 +5488,9 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={overlap} onValueChange={v => setOverlap(v || '20')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue placeholder="Select overlap % (e.g. 20%)" />
+                              <SelectValue placeholder="Select overlap % (e.g. 20%)">
+                                {overlapOptions.find(o => o.value === overlap)?.label ?? (overlap || '')}
+                              </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {overlapOptions.map(o => (
@@ -5510,7 +5516,9 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={chunkingStrategy} onValueChange={v => setChunkingStrategy(v || 'recursive')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue placeholder="Select chunking strategy" />
+                              <SelectValue placeholder="Select chunking strategy">
+                                {chunkingOptions.find(o => o.value === chunkingStrategy)?.label ?? (chunkingStrategy || '')}
+                              </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {chunkingOptions.map(o => (
@@ -5536,7 +5544,9 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={vectorDb} onValueChange={v => setVectorDb(v || 'faiss')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue placeholder="Select database type" />
+                              <SelectValue placeholder="Select database type">
+                                {dbTypeOptions.find(o => o.value === vectorDb)?.label ?? (vectorDb || '')}
+                              </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {dbTypeOptions.map(o => (
@@ -5562,7 +5572,9 @@ const KnowledgeBase = () => {
                           </label>
                           <Select value={embeddingModel} onValueChange={v => setEmbeddingModel(v || 'text-embedding-ada-002')}>
                             <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                              <SelectValue placeholder="Select embedding model" />
+                              <SelectValue placeholder="Select embedding model">
+                                {embeddingOptions.find(o => o.value === embeddingModel)?.label ?? (embeddingModel || '')}
+                              </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="bg-white">
                               {getFilteredEmbeddingOptions().map(o => (
