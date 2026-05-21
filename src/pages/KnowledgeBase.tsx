@@ -5798,134 +5798,115 @@ const KnowledgeBase = () => {
                   </div>
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border border-slate-200 bg-white">
-                    <CardContent className="p-5 space-y-5">
+                  <Card className="border border-gray-200/70 bg-white  rounded-2xl">
+                    <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <div className="flex items-center gap-2">
-                          <h3 className="text-base font-medium text-slate-900">Knowledge Bases</h3>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
+                        <h2 className="text-xl font-medium text-gray-900">Knowledge Bases</h2>
+
+                        <div className="flex flex-col sm:flex-row gap-2">
                           <Button
-                            onClick={() => { fetchAppsData(); setIsCreating(true); }}
-                            className="rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs h-8 px-4"
-                            disabled={selectedCustomerCode === '_ALL'}
-                            title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
-                          >
-                            <Plus className="w-3.5 h-3.5 mr-1.5" />
-                            Create New Knowledge Base
-                          </Button>
-                          <Button
-                            onClick={() => setIsCreatingStudyLO(true)}
                             variant="outline"
-                            className="rounded-full border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs h-8 px-4"
+                            onClick={() => setIsCreatingStudyLO(true)}
+                            className="px-5 bg-white border-blue-600 text-blue-600 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-700 "
                             disabled={selectedCustomerCode === '_ALL'}
                             title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
                           >
-                            <Plus className="w-3.5 h-3.5 mr-1.5" />
+                            <Plus className="w-4 h-4 mr-2" />
                             Create Study LO
                           </Button>
                           <Button
+                            variant="outline"
                             onClick={() => {
                               setSelectedKBForGuidelines({ id: 0, name: "General Guideline" });
                               setGuidelineCreationType('new');
                               setIsViewingGuidelines(true);
                               clearGuidelinesState();
                             }}
-                            variant="outline"
-                            className="rounded-full border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs h-8 px-4"
+                            className="px-5 bg-white border-blue-600 text-blue-600 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-700 "
                           >
-                            <Plus className="w-3.5 h-3.5 mr-1.5" />
+                            <Plus className="w-4 h-4 mr-2" />
                             Create New Guideline
+                          </Button>
+                          <Button
+                            onClick={() => { fetchAppsData(); setIsCreating(true); }}
+                            className="px-5 bg-blue-600 hover:bg-blue-700 text-white "
+                            disabled={selectedCustomerCode === '_ALL'}
+                            title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
+                          >
+                            <Plus className="w-4 h-4 mr-2" />
+                            Create New Knowledge Base
                           </Button>
                         </div>
                       </div>
 
-                      {/* Always show search and filter */}
-                      <div className="flex flex-col sm:flex-row gap-2">
+                      {/* Search and Filter */}
+                      <div className="flex flex-col sm:flex-row gap-3">
                         <div className="relative flex-1">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 z-10" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
                           <Input
                             placeholder="Search knowledge bases..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-9 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm"
+                            className="pl-10 bg-white border-gray-200 focus:border-gray-400 focus:ring-gray-400/20"
                           />
                         </div>
                         <Select value={typeFilter} onValueChange={setTypeFilter}>
-                          <SelectTrigger className="w-full sm:w-40 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm">
+                          <SelectTrigger className="w-full sm:w-40 bg-white border-gray-200 focus:border-gray-400 focus:ring-gray-400/20">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
-                            <SelectItem value="All" className="cursor-pointer">All Types</SelectItem>
-                            <SelectItem value="Book Level" className="cursor-pointer">Book Level</SelectItem>
-                            <SelectItem value="Study Level" className="cursor-pointer">Study Level</SelectItem>
+                            <SelectItem value="All">All Types</SelectItem>
+                            <SelectItem value="Book Level">Book Level</SelectItem>
+                            <SelectItem value="Study Level">Study Level</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
 
                       {/* Table */}
-                      <div className="bg-white rounded-lg border border-slate-200 overflow-hidden min-h-[150px]">
+                      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden min-h-[150px]">
                         {kbLoading ? (
-                          <div className="p-6 text-center text-blue-700 text-sm">Loading knowledge bases...</div>
+                          <div className="p-6 text-center text-gray-700 text-sm">Loading knowledge bases...</div>
                         ) : kbError ? (
                           <div className="p-6 text-center text-red-700 text-sm">{kbError}</div>
                         ) : filteredKnowledgeBases.length === 0 ? (
-                          <div className="p-6 text-center">
-                            <div className="flex flex-col items-center justify-center py-4">
-                              <Search className="h-10 w-10 text-gray-400 mb-3" />
-                              <h3 className="text-md font-medium text-gray-900 mb-1">
+                          <div className="text-center py-12 text-gray-500">
+                            <div className="flex flex-col items-center gap-2">
+                              <FileText className="h-12 w-12 text-gray-300" />
+                              <p className="font-medium">
                                 {searchQuery
-                                  ? `No Knowledge Bases match your search.`
+                                  ? "No knowledge bases found"
                                   : "No knowledge bases available for the selected customer."}
-                              </h3>
+                              </p>
                               {searchQuery && (
-                                <p className="text-gray-500 text-sm">
-                                  Try a different search term
-                                </p>
+                                <p className="text-sm">Try adjusting your search or filters</p>
                               )}
                             </div>
                           </div>
                         ) : (
                           <div className="overflow-x-auto">
-                            <Table>
+                            <Table className="w-full table-fixed">
                               <TableHeader>
-                                <TableRow className="bg-slate-50 border-b border-slate-200 hover:bg-slate-50">
-                                  <TableHead className="font-medium text-slate-700 text-xs uppercase tracking-wide py-3 px-4 w-64 min-w-64 max-w-64">
-                                    Knowledge Base Name
-                                  </TableHead>
-                                  <TableHead className="font-medium text-slate-700 text-xs uppercase tracking-wide py-3 px-4 w-48 min-w-48 max-w-48 hidden">
-                                    Book Name
-                                  </TableHead>
-                                  <TableHead className="font-medium text-slate-700 text-xs uppercase tracking-wide py-3 px-4 w-32 min-w-32 max-w-32 hidden">
-                                    Type
-                                  </TableHead>
-                                  <TableHead className="font-medium text-slate-700 text-xs uppercase tracking-wide py-3 px-4 w-40 min-w-40 max-w-40">
-                                    Actions
-                                  </TableHead>
+                                <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                  <TableHead className="w-[60%]">Knowledge Base Name</TableHead>
+                                  <TableHead className="w-[28%] hidden">Book Name</TableHead>
+                                  <TableHead className="w-[18%] hidden">Type</TableHead>
+                                  <TableHead className="w-[40%] text-right pr-4">Actions</TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
                                 {filteredKnowledgeBases.map((kb, idx) => (
-                                  <TableRow key={kb.knowledgebase_id || idx} className="hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0">
-                                    <TableCell className="text-slate-700 py-3 px-4 align-top text-sm">
-                                      <div className="break-words max-w-xs">
-                                        {kb.knowladgebasename || ""}
-                                      </div>
-                                    </TableCell>
-                                    <TableCell className="text-slate-700 py-3 px-4 align-top hidden text-sm">
-                                      <div className="break-words max-w-xs">
-                                        {kb.soursename || ""}
-                                      </div>
-                                    </TableCell>
-                                    <TableCell className="py-3 px-4 hidden">
+                                  <TableRow key={kb.knowledgebase_id || idx} className="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0">
+                                    <TableCell className="font-medium text-gray-900 py-4 truncate">{kb.knowladgebasename || ""}</TableCell>
+                                    <TableCell className="text-gray-700 py-4 truncate hidden">{kb.soursename || ""}</TableCell>
+                                    <TableCell className="py-4 hidden">
                                       {kb.leveltype ? (
-                                        <span className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium">
+                                        <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium whitespace-nowrap">
                                           {kb.leveltype}
                                         </span>
                                       ) : null}
                                     </TableCell>
-                                    <TableCell className="py-4 px-4">
-                                      <div className="flex items-center gap-1">
+                                    <TableCell className="py-4">
+                                      <div className="flex items-center justify-end gap-1">
                                         <Button
                                           variant="ghost"
                                           size="icon"
