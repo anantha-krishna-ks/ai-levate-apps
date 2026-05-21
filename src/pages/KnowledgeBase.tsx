@@ -4362,9 +4362,9 @@ const KnowledgeBase = () => {
                 // ----- CREATE STUDY LO (full ported block from abc.tsx) -----
                 <>
                   {/* Select Book Card - Full Width */}
-                  <Card className="border-2 border-blue-100 bg-blue-50">
-                    <CardContent className="p-6 space-y-3">
-                      <h3 className="text-lg font-semibold text-blue-900">Select Book</h3>
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <CardContent className="p-5 space-y-3">
+                      <h3 className="text-sm font-medium text-gray-900">Select Book</h3>
                       <Popover
                         open={studyLoBookOpen}
                         onOpenChange={(open) => {
@@ -4406,7 +4406,7 @@ const KnowledgeBase = () => {
                                   setStudyLoBookSearch("");
                                 }
                               }}
-                              className="w-full pr-10 bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20"
+                              className="w-full pr-10 h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm text-gray-900"
                             />
                             <button
                               type="button"
@@ -4469,9 +4469,9 @@ const KnowledgeBase = () => {
                   {/* Organization and Apps Details - Same Row */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     {/* Select Organization Card */}
-                    <Card className="border-2 border-purple-100 bg-purple-50 flex-1">
-                      <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-purple-900">Select Organization</h3>
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-gray-900">Select Organization</h3>
                         <Select
                           value={selectedOrganization ?? ''}
                           onValueChange={(value) => {
@@ -4485,7 +4485,7 @@ const KnowledgeBase = () => {
                           }}
                           disabled={organizationLocked || organizationLoading || !selectedCustomerCode || !selectedBook}
                         >
-                          <SelectTrigger className="bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20">
+                          <SelectTrigger className="h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm text-gray-900">
                             <SelectValue placeholder={organizationLoading ? "Loading organizations..." : selectedBook ? "Select an organization" : "Please select a book first"} />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -4495,14 +4495,14 @@ const KnowledgeBase = () => {
                           </SelectContent>
                         </Select>
                         {organizationLoading && (
-                          <p className="text-sm text-purple-600 mt-1">Loading organizations...</p>
+                          <p className="text-xs text-gray-500 mt-1">Loading organizations...</p>
                         )}
                       </CardContent>
                     </Card>
                     {/* Apps Details Card */}
-                    <Card className="border-2 border-indigo-100 bg-indigo-50 flex-1">
-                      <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-indigo-900">Apps Details</h3>
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-gray-900">Apps Details</h3>
                         <Select
                           value={selectedApp ?? ''}
                           onValueChange={setSelectedApp}
@@ -4511,7 +4511,7 @@ const KnowledgeBase = () => {
                           }}
                           disabled={appsLoading || !selectedOrganization}
                         >
-                          <SelectTrigger className="bg-white border-indigo-200 focus:border-indigo-400 focus:ring-indigo-400/20">
+                          <SelectTrigger className="h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm text-gray-900">
                             <SelectValue placeholder={appsLoading ? "Loading apps..." : (!selectedOrganization ? "Select an organization first" : "Select an app")} />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -4521,7 +4521,7 @@ const KnowledgeBase = () => {
                           </SelectContent>
                         </Select>
                         {appsLoading && (
-                          <p className="text-sm text-indigo-600 mt-1">Loading apps...</p>
+                          <p className="text-xs text-gray-500 mt-1">Loading apps...</p>
                         )}
                       </CardContent>
                     </Card>
@@ -4529,21 +4529,19 @@ const KnowledgeBase = () => {
 
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border-2 border-purple-100 bg-purple-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-purple-600 text-white rounded-lg">
-                            <Bot className="h-5 w-5" />
-                          </div>
-                          <h3 className="text-lg font-semibold text-purple-800">Agent Configuration</h3>
+                        <div className="flex items-center gap-2 mb-4">
+                          <Bot className="h-4 w-4 text-gray-500" />
+                          <h3 className="text-base font-medium text-gray-900">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
-                            <svg className="animate-spin h-8 w-8 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg className="animate-spin h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                             </svg>
-                            <span className="ml-2 text-purple-700">Loading agent configuration...</span>
+                            <span className="ml-2 text-sm text-gray-600">Loading agent configuration...</span>
                           </div>
                         )}
                         {agentConfigError && (
@@ -4552,14 +4550,14 @@ const KnowledgeBase = () => {
                           </div>
                         )}
                         {!agentConfigLoading && (
-                          <div className="bg-white rounded-lg border-2 border-purple-200 overflow-hidden">
+                          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                             <div className="overflow-x-auto">
                               <Table>
                                 <TableHeader>
-                                  <TableRow className="bg-purple-50 border-b-2 border-purple-200 hover:bg-purple-50">
-                                    <TableHead className="font-semibold text-purple-900 py-4">Agent Name</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Select</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Priority</TableHead>
+                                  <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Agent Name</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Select</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Priority</TableHead>
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -4585,7 +4583,7 @@ const KnowledgeBase = () => {
                                       const maxMiddle = middleSorted.length + 1; // last middle priority
                                       const canEditPriority = !isFixed && isSelected && currentP !== null;
                                       return (
-                                        <TableRow key={key} className="hover:bg-purple-50/50 transition-colors border-b border-purple-100">
+                                        <TableRow key={key} className="hover:bg-gray-50 transition-colors border-b border-gray-100">
                                           <TableCell className="font-medium text-gray-900 py-4">{key}</TableCell>
                                           <TableCell className="py-4">
                                             <input
@@ -4593,7 +4591,7 @@ const KnowledgeBase = () => {
                                               checked={isSelected}
                                               disabled={isFixed || !editable}
                                               title={isFixed ? "Default agent - always enabled" : editable ? "" : "Always enabled"}
-                                              className="h-4 w-4 text-purple-600 border-gray-300 rounded disabled:opacity-50"
+                                              className="h-4 w-4 text-blue-600 border-gray-300 rounded disabled:opacity-50"
                                               onChange={
                                                 editable && !isFixed
                                                   ? (e) => {
@@ -4638,7 +4636,7 @@ const KnowledgeBase = () => {
                         <div className="flex justify-end mt-4">
                           <Button
                             onClick={handleAddAgents}
-                            className="bg-purple-600 hover:bg-purple-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5"
                             disabled={agentConfigLoading}
                           >
                             Tag Agents
@@ -4648,14 +4646,12 @@ const KnowledgeBase = () => {
                     </Card>
                   )}
                   {/* Chapter & LO Details Card */}
-                  <Card className="border-2 border-green-100 bg-green-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-green-600 text-white rounded-lg">
-                            <BookOpen className="h-5 w-5" />
-                          </div>
-                          <h3 className="text-lg font-semibold text-green-800">Chapter & LO Details</h3>
+                        <div className="flex items-center gap-2">
+                          <BookOpen className="h-4 w-4 text-gray-500" />
+                          <h3 className="text-base font-medium text-gray-900">Chapter & LO Details</h3>
                         </div>
                         {chapterLODetails.length > 0 && (
                           <button
@@ -4673,11 +4669,11 @@ const KnowledgeBase = () => {
                       </div>
                       {chapterLOLoading && (
                         <div className="flex items-center justify-center py-8">
-                          <svg className="animate-spin h-8 w-8 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <svg className="animate-spin h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                           </svg>
-                          <span className="ml-2 text-green-700">Loading chapter details...</span>
+                          <span className="ml-2 text-sm text-gray-600">Loading chapter details...</span>
                         </div>
                       )}
                       {chapterLOError && (
@@ -4686,20 +4682,20 @@ const KnowledgeBase = () => {
                         </div>
                       )}
                       {!chapterLOLoading && !chapterLOError && chapterLODetails.length > 0 && (
-                        <div className="bg-white rounded-lg border-2 border-blue-200 overflow-hidden">
+                        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                           <div className="overflow-x-auto">
                             <Table>
                               <TableHeader>
-                                <TableRow className="bg-blue-50 border-b-2 border-blue-200 hover:bg-blue-50">
-                                  <TableHead className="font-semibold text-blue-900 py-4">Chapter Name</TableHead>
-                                  <TableHead className="font-semibold text-blue-900 py-4">LO Name</TableHead>
-                                  <TableHead className="font-semibold text-blue-900 py-4">Page Number</TableHead>
-                                  <TableHead className="font-semibold text-blue-900 py-4">Actions</TableHead>
+                                <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Chapter Name</TableHead>
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">LO Name</TableHead>
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Page Number</TableHead>
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Actions</TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
                                 {chapterLODetails.map((item, index) => (
-                                  <TableRow key={index} className="hover:bg-blue-50/50 transition-colors border-b border-blue-100 last:border-b-0">
+                                  <TableRow key={index} className="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0">
                                     <TableCell className="font-medium text-gray-900 py-4">
                                       {editingChapterLOIndex === index ? (
                                         <Input
@@ -4852,7 +4848,7 @@ const KnowledgeBase = () => {
                             size="sm"
                             onClick={addNewChapterLO}
                             disabled={isAddingNewChapterLO || chapterLOLoading}
-                            className="flex items-center gap-2 border-green-300 text-green-700 hover:bg-green-50 hover:border-green-400"
+                            className="flex items-center gap-2 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50"
                           >
                             <Plus className="h-4 w-4" />
                             Add New Row
@@ -4874,12 +4870,12 @@ const KnowledgeBase = () => {
                     </CardContent>
                   </Card>
                   {/* Upload Study LO Documents Card */}
-                  <Card className="border-2 border-teal-100 bg-teal-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-3">
-                      <h3 className="text-lg font-semibold text-teal-900">Upload Study LO Documents</h3>
+                      <h3 className="text-base font-medium text-gray-900">Upload Study LO Documents</h3>
                       <div className={`bg-white border-2 border-dashed rounded-lg p-12 text-center space-y-4 transition-colors cursor-pointer ${isDraggingStudyLO
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-teal-200 hover:border-teal-300'
+                          ? 'border-blue-500 bg-blue-50/40'
+                          : 'border-gray-200 hover:border-gray-300'
                         }`}
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
@@ -4914,9 +4910,9 @@ const KnowledgeBase = () => {
                           input.click();
                         }}>
                         <div className="flex justify-center">
-                          <div className={`p-4 rounded-lg transition-colors ${isDraggingStudyLO ? 'bg-blue-200' : 'bg-yellow-100'
+                          <div className={`p-4 rounded-lg transition-colors ${isDraggingStudyLO ? 'bg-blue-100' : 'bg-gray-100'
                             }`}>
-                            <FileText className={`h-10 w-10 transition-colors ${isDraggingStudyLO ? 'text-blue-600' : 'text-yellow-600'
+                            <FileText className={`h-10 w-10 transition-colors ${isDraggingStudyLO ? 'text-blue-600' : 'text-gray-500'
                               }`} />
                           </div>
                         </div>
@@ -4930,10 +4926,10 @@ const KnowledgeBase = () => {
                         </div>
                       </div>
                       {studyLODocuments.length > 0 && (
-                        <div className="bg-white border border-teal-200 rounded-lg p-4">
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                              <FileText className="h-8 w-8 text-teal-600" />
+                              <FileText className="h-8 w-8 text-gray-500" />
                               <div>
                                 <p className="font-medium text-gray-900">{studyLODocuments[0].name}</p>
                                 <p className="text-sm text-gray-500">{formatFileSize(studyLODocuments[0].size)}</p>
@@ -4957,30 +4953,28 @@ const KnowledgeBase = () => {
                   </Card>
                   {/* Preview Section */}
                   {studyLOPreview.length > 0 && (
-                    <Card className="border-2 border-orange-100 bg-orange-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-orange-600 text-white rounded-lg">
-                            <Eye className="h-5 w-5" />
-                          </div>
-                          <h3 className="text-lg font-semibold text-orange-800">Preview</h3>
-                          <span className="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">
+                        <div className="flex items-center gap-2 mb-4">
+                          <Eye className="h-4 w-4 text-gray-500" />
+                          <h3 className="text-base font-medium text-gray-900">Preview</h3>
+                          <span className="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded-full">
                             {studyLOPreview.length} items
                           </span>
                         </div>
-                        <div className="bg-white rounded-lg border border-orange-200 overflow-hidden">
+                        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                           <div className="overflow-x-auto">
                             <Table>
                               <TableHeader>
-                                <TableRow className="bg-orange-50 border-b-2 border-orange-200 hover:bg-orange-50">
-                                  <TableHead className="font-semibold text-orange-900 py-4">Study Name</TableHead>
-                                  <TableHead className="font-semibold text-orange-900 py-4">Learning Outcome Name</TableHead>
-                                  <TableHead className="font-semibold text-orange-900 py-4">Page Number</TableHead>
+                                <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Study Name</TableHead>
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Learning Outcome Name</TableHead>
+                                  <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Page Number</TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
                                 {studyLOPreview.map((item, index) => (
-                                  <TableRow key={index} className="hover:bg-orange-50/50 transition-colors border-b border-orange-100 last:border-b-0">
+                                  <TableRow key={index} className="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0">
                                     <TableCell className="font-medium text-gray-900 py-4">
                                       {item.studyName}
                                     </TableCell>
@@ -5000,11 +4994,11 @@ const KnowledgeBase = () => {
                     </Card>
                   )}
                   {/* Action Buttons Card */}
-                  <Card className="border-2 border-gray-200 bg-white">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6">
                       <div className="flex justify-end">
                         <Button
-                          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
+                          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6"
                           disabled={!selectedBook || studyLODocuments.length === 0}
                           onClick={handleStudyLOSubmit}
                         >
