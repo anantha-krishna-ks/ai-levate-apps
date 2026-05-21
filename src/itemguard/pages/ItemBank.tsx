@@ -6,7 +6,7 @@ import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, ChevronLeft, FolderPlus, Plus, FileDown, FileText, FileArchive, Lock, Sparkles, Info, FolderInput, FlaskConical, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { Search, Download, PlayCircle, Folder, ArrowLeft, ChevronRight, ChevronLeft, FolderPlus, Plus, FileDown, FileText, FileArchive, Lock, Sparkles, Info, FolderInput, FlaskConical, ChevronsLeft, ChevronsRight, Home } from 'lucide-react';
 import { Trash2, Copy } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
