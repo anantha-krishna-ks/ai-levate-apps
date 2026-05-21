@@ -3407,7 +3407,7 @@ const KnowledgeBase = () => {
                   {selectedKBForGuidelines?.id === 0 && (
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-gray-900">Guideline Scope</h3>
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Guideline Scope</h3>
                         <Select
                           value={guidelineScope}
                           onValueChange={(v) => {
@@ -3434,7 +3434,7 @@ const KnowledgeBase = () => {
                        {!isSSO && (
                       <Card className="border border-gray-200/70 bg-white rounded-2xl">
                         <CardContent className="p-5 space-y-3">
-                          <h3 className="text-sm font-medium text-gray-900">Select Customer</h3>
+                          <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Customer</h3>
                           <Input
                             type="text"
                             value={getSelectedCustomerName()}
@@ -3447,7 +3447,7 @@ const KnowledgeBase = () => {
    {!isSSO && (
                       <Card className="border border-gray-200/70 bg-white rounded-2xl">
                         <CardContent className="p-5 space-y-3">
-                          <h3 className="text-sm font-medium text-gray-900">Select Organization</h3>
+                          <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Organization</h3>
                           <Input
                             type="text"
                             value={orgSearchQuery || ""}
@@ -3459,7 +3459,7 @@ const KnowledgeBase = () => {
  )}
                       <Card className="border border-gray-200/70 bg-white rounded-2xl">
                         <CardContent className="p-5 space-y-3">
-                          <h3 className="text-sm font-medium text-gray-900">Apps Details</h3>
+                          <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Apps Details</h3>
                           <Select
                             value={selectedApp ?? ''}
                             onValueChange={(v) => setSelectedApp(v)}
@@ -3489,7 +3489,7 @@ const KnowledgeBase = () => {
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between gap-4">
-                          <h3 className="text-base font-medium text-gray-900">Select General Guideline</h3>
+                          <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Select General Guideline</h3>
                           <Button
                             variant="default"
                             className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5"
@@ -3567,7 +3567,7 @@ const KnowledgeBase = () => {
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between gap-4">
-                          <h3 className="text-base font-medium text-gray-900">Organization specific guidelines</h3>
+                          <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Organization specific guidelines</h3>
                           <Button
                             variant="default"
                             className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5"
@@ -3645,7 +3645,7 @@ const KnowledgeBase = () => {
 
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between">
-                          <h3 className="text-base font-medium text-gray-900">
+                          <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />
                             {isGuidelineEditing ? 'Edit Guideline' : 'Add New Guideline'}
                           </h3>
                           <TooltipProvider>
@@ -4063,7 +4063,7 @@ const KnowledgeBase = () => {
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between">
-                          <h3 className="text-base font-medium text-gray-900">All Guidelines</h3>
+                          <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />All Guidelines</h3>
                           <Button
                             variant="outline"
                             size="sm"
@@ -4176,7 +4176,7 @@ const KnowledgeBase = () => {
                     {/* Select Organization Card */}
                     <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-gray-900">Select Organization</h3>
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Organization</h3>
                         <Select
                           value={selectedOrganization ?? ''}
                           onValueChange={(value) => {
@@ -4206,7 +4206,7 @@ const KnowledgeBase = () => {
                     {/* Apps Details Card */}
                     <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-gray-900">Apps Details</h3>
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Apps Details</h3>
                         <Select
                           value={selectedApp ?? ''}
                           onValueChange={setSelectedApp}
@@ -4234,7 +4234,7 @@ const KnowledgeBase = () => {
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-2 mb-4">
                           <Bot className="h-4 w-4 text-gray-500" />
-                          <h3 className="text-base font-medium text-gray-900">Agent Configuration</h3>
+                          <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
@@ -4347,7 +4347,7 @@ const KnowledgeBase = () => {
                   {/* Select Book Card - Full Width */}
                   <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-5 space-y-3">
-                      <h3 className="text-sm font-medium text-gray-900">Select Book</h3>
+                      <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Book</h3>
                       <Popover
                         open={studyLoBookOpen}
                         onOpenChange={(open) => {
@@ -4454,7 +4454,7 @@ const KnowledgeBase = () => {
                     {/* Select Organization Card */}
                     <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-gray-900">Select Organization</h3>
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Organization</h3>
                         <Select
                           value={selectedOrganization ?? ''}
                           onValueChange={(value) => {
@@ -4485,7 +4485,7 @@ const KnowledgeBase = () => {
                     {/* Apps Details Card */}
                     <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-gray-900">Apps Details</h3>
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Apps Details</h3>
                         <Select
                           value={selectedApp ?? ''}
                           onValueChange={setSelectedApp}
@@ -4516,7 +4516,7 @@ const KnowledgeBase = () => {
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-2 mb-4">
                           <Bot className="h-4 w-4 text-gray-500" />
-                          <h3 className="text-base font-medium text-gray-900">Agent Configuration</h3>
+                          <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
@@ -4634,7 +4634,7 @@ const KnowledgeBase = () => {
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-2">
                           <BookOpen className="h-4 w-4 text-gray-500" />
-                          <h3 className="text-base font-medium text-gray-900">Chapter & LO Details</h3>
+                          <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Chapter & LO Details</h3>
                         </div>
                         {chapterLODetails.length > 0 && (
                           <button
@@ -4855,7 +4855,7 @@ const KnowledgeBase = () => {
                   {/* Upload Study LO Documents Card */}
                   <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-3">
-                      <h3 className="text-base font-medium text-gray-900">Upload Study LO Documents</h3>
+                      <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Upload Study LO Documents</h3>
                       <div className={`bg-white border-2 border-dashed rounded-lg p-12 text-center space-y-4 transition-colors cursor-pointer ${isDraggingStudyLO
                           ? 'border-blue-500 bg-blue-50/40'
                           : 'border-gray-200 hover:border-gray-300'
@@ -4940,7 +4940,7 @@ const KnowledgeBase = () => {
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-2 mb-4">
                           <Eye className="h-4 w-4 text-gray-500" />
-                          <h3 className="text-base font-medium text-gray-900">Preview</h3>
+                          <h3 className="text-base font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-5 bg-blue-600 rounded-full" aria-hidden="true" />Preview</h3>
                           <span className="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded-full">
                             {studyLOPreview.length} items
                           </span>
@@ -5641,7 +5641,7 @@ const KnowledgeBase = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-gray-900">Select Customer</h3>
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Customer</h3>
 
                         <div className="relative customer-dropdown-container">
                           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
@@ -5691,7 +5691,7 @@ const KnowledgeBase = () => {
 
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-gray-900">Select Organization</h3>
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Organization</h3>
 
                         <div className="relative org-dropdown-container">
                           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
@@ -5733,7 +5733,7 @@ const KnowledgeBase = () => {
 
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-5 space-y-3">
-                        <h3 className="text-sm font-medium text-gray-900">Apps Details</h3>
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Apps Details</h3>
 
                         <div className="relative app-dropdown-container">
                           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
@@ -5778,7 +5778,7 @@ const KnowledgeBase = () => {
                   <Card className="border border-gray-200/70 bg-white  rounded-2xl">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <h2 className="text-xl font-medium text-gray-900">Knowledge Bases</h2>
+                        <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />Knowledge Bases</h2>
 
                         <div className="flex flex-col sm:flex-row gap-2">
                           <Button
