@@ -4174,9 +4174,9 @@ const KnowledgeBase = () => {
                   {/* Organization and Apps Details - Same Row (for Tag Agents) */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     {/* Select Organization Card */}
-                    <Card className="border-2 border-purple-100 bg-purple-50 flex-1">
-                      <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-purple-900">Select Organization</h3>
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-gray-900">Select Organization</h3>
                         <Select
                           value={selectedOrganization ?? ''}
                           onValueChange={(value) => {
@@ -4189,7 +4189,7 @@ const KnowledgeBase = () => {
                           }}
                           disabled
                         >
-                          <SelectTrigger className="bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20">
+                          <SelectTrigger className="h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm text-gray-900">
                             <SelectValue placeholder={organizationLoading ? "Loading organizations..." : "Select an organization"} />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -4199,20 +4199,20 @@ const KnowledgeBase = () => {
                           </SelectContent>
                         </Select>
                         {organizationLoading && (
-                          <p className="text-sm text-purple-600 mt-1">Loading organizations...</p>
+                          <p className="text-xs text-gray-500 mt-1">Loading organizations...</p>
                         )}
                       </CardContent>
                     </Card>
                     {/* Apps Details Card */}
-                    <Card className="border-2 border-indigo-100 bg-indigo-50 flex-1">
-                      <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-indigo-900">Apps Details</h3>
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-gray-900">Apps Details</h3>
                         <Select
                           value={selectedApp ?? ''}
                           onValueChange={setSelectedApp}
                           disabled
                         >
-                          <SelectTrigger className="bg-white border-indigo-200 focus:border-indigo-400 focus:ring-indigo-400/20">
+                          <SelectTrigger className="h-10 rounded-lg bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm text-gray-900">
                             <SelectValue placeholder={appsLoading ? "Loading apps..." : (!selectedOrganization ? "Select an organization first" : "Select an app")} />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -4222,7 +4222,7 @@ const KnowledgeBase = () => {
                           </SelectContent>
                         </Select>
                         {appsLoading && (
-                          <p className="text-sm text-indigo-600 mt-1">Loading apps...</p>
+                          <p className="text-xs text-gray-500 mt-1">Loading apps...</p>
                         )}
                       </CardContent>
                     </Card>
@@ -4230,21 +4230,19 @@ const KnowledgeBase = () => {
 
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border-2 border-purple-100 bg-purple-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-purple-600 text-white rounded-lg">
-                            <Bot className="h-5 w-5" />
-                          </div>
-                          <h3 className="text-lg font-semibold text-purple-800">Agent Configuration</h3>
+                        <div className="flex items-center gap-2 mb-4">
+                          <Bot className="h-4 w-4 text-gray-500" />
+                          <h3 className="text-base font-medium text-gray-900">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
-                            <svg className="animate-spin h-8 w-8 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg className="animate-spin h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                             </svg>
-                            <span className="ml-2 text-purple-700">Loading agent configuration...</span>
+                            <span className="ml-2 text-sm text-gray-600">Loading agent configuration...</span>
                           </div>
                         )}
                         {agentConfigError && (
@@ -4253,14 +4251,14 @@ const KnowledgeBase = () => {
                           </div>
                         )}
                         {!agentConfigLoading && (
-                          <div className="bg-white rounded-lg border-2 border-purple-200 overflow-hidden">
+                          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                             <div className="overflow-x-auto">
                               <Table>
                                 <TableHeader>
-                                  <TableRow className="bg-purple-50 border-b-2 border-purple-200 hover:bg-purple-50">
-                                    <TableHead className="font-semibold text-purple-900 py-4">Agent Name</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Select</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Priority</TableHead>
+                                  <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Agent Name</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Select</TableHead>
+                                    <TableHead className="font-medium text-gray-700 py-3 text-xs uppercase tracking-wide">Priority</TableHead>
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -4281,7 +4279,7 @@ const KnowledgeBase = () => {
                                       const isSelected = isFixed ? true : !!selectedAgents[key];
                                       const currentP = displayPriority[key] || null;
                                       return (
-                                        <TableRow key={key} className="hover:bg-purple-50/50 transition-colors border-b border-purple-100">
+                                        <TableRow key={key} className="hover:bg-gray-50 transition-colors border-b border-gray-100">
                                           <TableCell className="font-medium text-gray-900 py-4">{key}</TableCell>
                                           <TableCell className="py-4">
                                             <input
@@ -4289,7 +4287,7 @@ const KnowledgeBase = () => {
                                               checked={isSelected}
                                               disabled={isFixed || !editable}
                                               title={isFixed ? "Default agent - always enabled" : editable ? "" : "Always enabled"}
-                                              className="h-4 w-4 text-purple-600 border-gray-300 rounded disabled:opacity-50"
+                                              className="h-4 w-4 text-blue-600 border-gray-300 rounded disabled:opacity-50"
                                               onChange={
                                                 editable && !isFixed
                                                   ? (e) => {
@@ -4333,7 +4331,7 @@ const KnowledgeBase = () => {
                         <div className="flex justify-end mt-4">
                           <Button
                             onClick={handleAddAgents}
-                            className="bg-purple-600 hover:bg-purple-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5"
                             disabled={!selectedOrganization || !selectedApp || agentConfigLoading}
                           >
                             Tag Agents
