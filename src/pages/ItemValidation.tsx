@@ -51,8 +51,8 @@ const ItemValidation = () => {
                   <img src="/lovable-uploads/b5b0f5a8-9552-4635-8c44-d5e6f994179c.png" alt="AI-Levate" className="h-11 w-auto" />
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="bottom">
-                <p>Back to dashboard</p>
+              <TooltipContent side="bottom" sideOffset={8} className="z-[100]">
+                <p>Back to Tools Dashboard</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
