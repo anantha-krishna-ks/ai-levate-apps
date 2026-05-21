@@ -5662,17 +5662,12 @@ const KnowledgeBase = () => {
                 <>
                   {/* Existing List View */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <Card className="border-2 border-purple-100 bg-purple-50">
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-purple-600 text-white rounded-lg">
-                            <Search className="h-5 w-5" />
-                          </div>
-                          <h2 className="text-xl font-semibold text-purple-800">Select Customer</h2>
-                        </div>
+                    <Card className="border border-slate-200 bg-white">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-slate-900">Select Customer</h3>
 
                         <div className="relative customer-dropdown-container">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400 z-10" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 z-10" />
                           <div className="relative">
                             <Input
                               type="text"
@@ -5680,17 +5675,17 @@ const KnowledgeBase = () => {
                               onChange={(e) => handleCustomerInputChange(e.target.value)}
                               onClick={handleCustomerInputFocus}
                               placeholder={customersLoading ? "Loading..." : getSelectedCustomerName()}
-                              className="w-full pl-10 bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20 cursor-pointer"
+                              className="w-full pl-9 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer text-sm"
                               disabled={customersLoading || customerLocked}
                             />
-                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400" />
+                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                           </div>
 
                           {showCustomerDropdown && !customersLoading && !customerLocked && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md  z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg z-50 max-h-60 overflow-y-auto text-sm">
                               {isSuperAdmin && (
                                 <div
-                                  className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100"
+                                  className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100"
                                   onClick={() => handleCustomerSelect("_ALL", "All")}
                                 >
                                   All
@@ -5700,14 +5695,14 @@ const KnowledgeBase = () => {
                                 filteredCustomers.map((customer: any) => (
                                   <div
                                     key={customer.customercode}
-                                    className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100 last:border-b-0"
+                                    className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100 last:border-b-0"
                                     onClick={() => handleCustomerSelect(customer.customercode, customer.customername)}
                                   >
                                     <div className="cursor-pointer">{customer.customername}</div>
                                   </div>
                                 ))
                               ) : (
-                                <div className="px-3 py-2 text-gray-500 text-center">
+                                <div className="px-3 py-2 text-slate-500 text-center">
                                   No customers found
                                 </div>
                               )}
@@ -5717,17 +5712,12 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border-2 border-purple-100 bg-purple-50">
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-purple-600 text-white rounded-lg">
-                            <Search className="h-5 w-5" />
-                          </div>
-                          <h2 className="text-xl font-semibold text-purple-800">Select Organization</h2>
-                        </div>
+                    <Card className="border border-slate-200 bg-white">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-slate-900">Select Organization</h3>
 
                         <div className="relative org-dropdown-container">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400 z-10" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 z-10" />
                           <div className="relative">
                             <Input
                               type="text"
@@ -5735,16 +5725,16 @@ const KnowledgeBase = () => {
                               onChange={(e) => handleOrgInputChange(e.target.value)}
                               onClick={handleOrgInputFocus}
                               placeholder={organizationLoading ? "Loading..." : (orgSearchQuery || "Select Organization")}
-                              className="w-full pl-10 bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20 cursor-pointer"
+                              className="w-full pl-9 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer text-sm"
                               disabled={organizationLocked || organizationLoading || !selectedCustomerCode || selectedCustomerCode === '_ALL'}
                             />
-                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400" />
+                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                           </div>
 
                           {showOrgDropdown && !organizationLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md  z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg z-50 max-h-60 overflow-y-auto text-sm">
                               <div
-                                className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100"
+                                className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100"
                                 onClick={() => handleOrgSelect('', 'All')}
                               >
                                 All
@@ -5752,7 +5742,7 @@ const KnowledgeBase = () => {
                               {(organizationOptions || []).filter(o => !orgSearchQuery.trim() || o.label.toLowerCase().includes(orgSearchQuery.toLowerCase())).map((org: any) => (
                                 <div
                                   key={org.value}
-                                  className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100 last:border-b-0"
+                                  className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100 last:border-b-0"
                                   onClick={() => handleOrgSelect(org.value, org.label)}
                                 >
                                   <div className="cursor-pointer">{org.label}</div>
@@ -5764,17 +5754,12 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
 
-                    <Card className="border-2 border-purple-100 bg-purple-50">
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-purple-600 text-white rounded-lg">
-                            <Search className="h-5 w-5" />
-                          </div>
-                          <h2 className="text-xl font-semibold text-purple-800">Apps Details</h2>
-                        </div>
+                    <Card className="border border-slate-200 bg-white">
+                      <CardContent className="p-5 space-y-3">
+                        <h3 className="text-sm font-medium text-slate-900">Apps Details</h3>
 
                         <div className="relative app-dropdown-container">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400 z-10" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 z-10" />
                           <div className="relative">
                             <Input
                               type="text"
@@ -5782,18 +5767,18 @@ const KnowledgeBase = () => {
                               onChange={(e) => handleAppInputChange(e.target.value)}
                               onClick={handleAppInputFocus}
                               placeholder={appsLoading ? "Loading..." : (appSearchQuery || "Select App")}
-                              className="w-full pl-10 bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20 cursor-pointer"
+                              className="w-full pl-9 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer text-sm"
                               disabled={appsLoading || !selectedCustomerCode || selectedCustomerCode === '_ALL' || (!selectedOrganization && !organizationLocked && !appSearchQuery)}
                             />
-                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400" />
+                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                           </div>
 
                           {showAppDropdown && !appsLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && ((selectedOrganization || organizationLocked) || !!appSearchQuery) && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md  z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg z-50 max-h-60 overflow-y-auto text-sm">
                               {(appsOptions || []).filter(a => !appSearchQuery.trim() || a.label.toLowerCase().includes(appSearchQuery.toLowerCase())).map((app: any) => (
                                 <div
                                   key={app.value}
-                                  className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100 last:border-b-0"
+                                  className="px-3 py-2 cursor-pointer hover:bg-slate-50 border-b border-slate-100 last:border-b-0"
                                   onClick={() => handleAppSelect(app.value, app.label)}
                                 >
                                   <div className="cursor-pointer">{app.label}</div>
@@ -5813,33 +5798,30 @@ const KnowledgeBase = () => {
                   </div>
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border-2 border-blue-100 bg-blue-600">
-                    <CardContent className="p-6 space-y-6">
+                  <Card className="border border-slate-200 bg-white">
+                    <CardContent className="p-5 space-y-5">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <FileText className="h-5 w-5" />
-                          </div>
-                          <h2 className="text-xl font-semibold text-blue-800">Knowledge Bases</h2>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-base font-medium text-slate-900">Knowledge Bases</h3>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-2">
-                          
+                        <div className="flex flex-wrap gap-2">
                           <Button
                             onClick={() => { fetchAppsData(); setIsCreating(true); }}
-                            className="px-6 bg-blue-600 hover:from-blue-700 hover:to-blue-800 text-white"
+                            className="rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs h-8 px-4"
                             disabled={selectedCustomerCode === '_ALL'}
                             title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
                           >
-                            <Plus className="w-4 h-4 mr-2" />
+                            <Plus className="w-3.5 h-3.5 mr-1.5" />
                             Create New Knowledge Base
                           </Button>
                           <Button
                             onClick={() => setIsCreatingStudyLO(true)}
-                            className="px-6 bg-purple-600 hover:bg-purple-700 text-white"
+                            variant="outline"
+                            className="rounded-full border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs h-8 px-4"
                             disabled={selectedCustomerCode === '_ALL'}
                             title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
                           >
-                            <Plus className="w-4 h-4 mr-2" />
+                            <Plus className="w-3.5 h-3.5 mr-1.5" />
                             Create Study LO
                           </Button>
                           <Button
@@ -5849,27 +5831,28 @@ const KnowledgeBase = () => {
                               setIsViewingGuidelines(true);
                               clearGuidelinesState();
                             }}
-                            className="bg-green-600 text-white hover:bg-green-700 transition-colors duration-300 ease-in-out  dark:bg-green-500 dark:hover:bg-green-600 mr-2"
+                            variant="outline"
+                            className="rounded-full border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs h-8 px-4"
                           >
-                            <Plus className="w-4 h-4 mr-2" />
+                            <Plus className="w-3.5 h-3.5 mr-1.5" />
                             Create New Guideline
                           </Button>
                         </div>
                       </div>
 
                       {/* Always show search and filter */}
-                      <div className="flex flex-col sm:flex-row gap-3">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <div className="relative flex-1">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-blue-400 z-10" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 z-10" />
                           <Input
                             placeholder="Search knowledge bases..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-10 bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20"
+                            className="pl-9 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm"
                           />
                         </div>
                         <Select value={typeFilter} onValueChange={setTypeFilter}>
-                          <SelectTrigger className="w-full sm:w-40 bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20">
+                          <SelectTrigger className="w-full sm:w-40 h-9 rounded-full bg-white border-slate-200 focus:border-blue-400 focus:ring-blue-400/20 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -5881,7 +5864,7 @@ const KnowledgeBase = () => {
                       </div>
 
                       {/* Table */}
-                      <div className="bg-white rounded-lg border-2 border-blue-200 overflow-hidden min-h-[150px]">
+                      <div className="bg-white rounded-lg border border-slate-200 overflow-hidden min-h-[150px]">
                         {kbLoading ? (
                           <div className="p-6 text-center text-blue-700 text-sm">Loading knowledge bases...</div>
                         ) : kbError ? (
@@ -5903,40 +5886,40 @@ const KnowledgeBase = () => {
                             </div>
                           </div>
                         ) : (
-                          <div className="overflow-x-auto border border-gray-200 rounded-lg">
+                          <div className="overflow-x-auto">
                             <Table>
                               <TableHeader>
-                                <TableRow className="bg-blue-50 border-b border-gray-200">
-                                  <TableHead className="font-semibold text-blue-900 py-4 px-4 border-r border-gray-200 w-64 min-w-64 max-w-64">
+                                <TableRow className="bg-slate-50 border-b border-slate-200 hover:bg-slate-50">
+                                  <TableHead className="font-medium text-slate-700 text-xs uppercase tracking-wide py-3 px-4 w-64 min-w-64 max-w-64">
                                     Knowledge Base Name
                                   </TableHead>
-                                  <TableHead className="font-semibold text-blue-900 py-4 px-4 border-r border-gray-200 w-48 min-w-48 max-w-48 hidden">
+                                  <TableHead className="font-medium text-slate-700 text-xs uppercase tracking-wide py-3 px-4 w-48 min-w-48 max-w-48 hidden">
                                     Book Name
                                   </TableHead>
-                                  <TableHead className="font-semibold text-blue-900 py-4 px-4 border-r border-gray-200 w-32 min-w-32 max-w-32 hidden">
+                                  <TableHead className="font-medium text-slate-700 text-xs uppercase tracking-wide py-3 px-4 w-32 min-w-32 max-w-32 hidden">
                                     Type
                                   </TableHead>
-                                  <TableHead className="font-semibold text-blue-900 py-4 px-4 w-40 min-w-40 max-w-40">
+                                  <TableHead className="font-medium text-slate-700 text-xs uppercase tracking-wide py-3 px-4 w-40 min-w-40 max-w-40">
                                     Actions
                                   </TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
                                 {filteredKnowledgeBases.map((kb, idx) => (
-                                  <TableRow key={kb.knowledgebase_id || idx} className="hover:bg-blue-50/50 transition-colors border-b border-gray-200 last:border-b-0">
-                                    <TableCell className="text-gray-700 py-4 px-4 border-r border-gray-200 align-top">
+                                  <TableRow key={kb.knowledgebase_id || idx} className="hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0">
+                                    <TableCell className="text-slate-700 py-3 px-4 align-top text-sm">
                                       <div className="break-words max-w-xs">
                                         {kb.knowladgebasename || ""}
                                       </div>
                                     </TableCell>
-                                    <TableCell className="text-gray-700 py-4 px-4 border-r border-gray-200 align-top hidden">
+                                    <TableCell className="text-slate-700 py-3 px-4 align-top hidden text-sm">
                                       <div className="break-words max-w-xs">
                                         {kb.soursename || ""}
                                       </div>
                                     </TableCell>
-                                    <TableCell className="py-4 px-4 border-r border-gray-200 hidden">
+                                    <TableCell className="py-3 px-4 hidden">
                                       {kb.leveltype ? (
-                                        <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                                        <span className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium">
                                           {kb.leveltype}
                                         </span>
                                       ) : null}
