@@ -4995,11 +4995,11 @@ const KnowledgeBase = () => {
                 /* Create Form */
                 <>
                   {/* Level Type Selection Card */}
-                  <Card className="border-2 border-purple-100 bg-purple-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6">
                       <div className="mb-4">
-                        <h3 className="text-lg font-semibold text-purple-800">Select Knowledge Base Type</h3>
-                        <p className="text-sm text-purple-600 mt-1">Choose how you want to organize your knowledge base</p>
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Select Knowledge Base Type</h3>
+                        <p className="text-xs text-gray-500 mt-1 ml-3">Choose how you want to organize your knowledge base</p>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -5007,26 +5007,26 @@ const KnowledgeBase = () => {
                         <button
                           onClick={() => setLevelType("book")}
                           className={`relative p-3 rounded-lg border-2 text-left transition-all ${levelType === "book"
-                              ? "border-purple-600 bg-white "
-                              : "border-purple-200 bg-white hover:border-purple-300"
+                              ? "border-blue-600 bg-blue-50/30"
+                              : "border-gray-200 bg-white hover:border-gray-300"
                             }`}
                         >
                           <div className="flex items-center gap-3">
                             <div className={`p-2 rounded-lg transition-colors ${levelType === "book"
-                                ? "bg-purple-600 text-white"
-                                : "bg-purple-100 text-purple-600"
+                                ? "bg-blue-600 text-white"
+                                : "bg-gray-100 text-gray-500"
                               }`}>
                               <Library className="h-5 w-5" />
                             </div>
                             <div className="flex-1">
-                              <h4 className={`font-semibold transition-colors ${levelType === "book" ? "text-purple-900" : "text-gray-900"
+                              <h4 className={`font-medium text-sm transition-colors ${levelType === "book" ? "text-gray-900" : "text-gray-700"
                                 }`}>
                                 Book Level
                               </h4>
                             </div>
                             {levelType === "book" && (
                               <div className="absolute top-3 right-3">
-                                <div className="w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center">
+                                <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
                                   <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                   </svg>
@@ -5040,26 +5040,26 @@ const KnowledgeBase = () => {
                         <button
                           onClick={() => setLevelType("study")}
                           className={`relative p-3 rounded-lg border-2 text-left transition-all ${levelType === "study"
-                              ? "border-purple-600 bg-white "
-                              : "border-purple-200 bg-white hover:border-purple-300"
+                              ? "border-blue-600 bg-blue-50/30"
+                              : "border-gray-200 bg-white hover:border-gray-300"
                             }`}
                         >
                           <div className="flex items-center gap-3">
                             <div className={`p-2 rounded-lg transition-colors ${levelType === "study"
-                                ? "bg-purple-600 text-white"
-                                : "bg-purple-100 text-purple-600"
+                                ? "bg-blue-600 text-white"
+                                : "bg-gray-100 text-gray-500"
                               }`}>
                               <GraduationCap className="h-5 w-5" />
                             </div>
                             <div className="flex-1">
-                              <h4 className={`font-semibold transition-colors ${levelType === "study" ? "text-purple-900" : "text-gray-900"
+                              <h4 className={`font-medium text-sm transition-colors ${levelType === "study" ? "text-gray-900" : "text-gray-700"
                                 }`}>
                                 Study Level
                               </h4>
                             </div>
                             {levelType === "study" && (
                               <div className="absolute top-3 right-3">
-                                <div className="w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center">
+                                <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
                                   <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                   </svg>
@@ -5073,21 +5073,18 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Organization and Apps Selection */}
-                  <Card className="border-2 border-blue-100 bg-blue-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-blue-600 text-white rounded-lg">
-                          <Library className="h-5 w-5" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-blue-800">Organization and Apps</h3>
+                      <div className="mb-4">
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Organization and Apps</h3>
                       </div>
 
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         {/* Organization Select */}
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-blue-900">Select Organization <span className="text-red-500">*</span></label>
+                          <label className="text-sm font-medium text-gray-700">Select Organization <span className="text-red-500">*</span></label>
                           <Select value={selectedOrganization ?? ''} onValueChange={(v) => setSelectedOrganization(v)} disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
-                            <SelectTrigger className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
                               <SelectValue placeholder={organizationLoading ? "Loading organizations..." : "Select an organization"} />
                             </SelectTrigger>
                             <SelectContent className="bg-white z-50">
@@ -5100,7 +5097,7 @@ const KnowledgeBase = () => {
 
                         {/* Apps Select */}
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-blue-900">Apps Details <span className="text-red-500">*</span></label>
+                          <label className="text-sm font-medium text-gray-700">Apps Details <span className="text-red-500">*</span></label>
                           <Select
                             value={selectedApp ?? ''}
                             onValueChange={(v) => setSelectedApp(v)}
@@ -5109,7 +5106,7 @@ const KnowledgeBase = () => {
                             }}
                           >
                             <SelectTrigger
-                              className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                              className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed"
                               disabled={appsLoading || !selectedOrganization}
                             >
                               <SelectValue placeholder={appsLoading ? "Loading apps..." : (!selectedOrganization ? "Select an organization first" : "Select an app")} />
@@ -5126,18 +5123,15 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Basic Information Card */}
-                  <Card className="border-2 border-blue-100 bg-blue-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-blue-600 text-white rounded-lg">
-                          <FileText className="h-5 w-5" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-blue-800">Basic Information</h3>
+                      <div className="mb-4">
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Basic Information</h3>
                       </div>
 
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-blue-900">
+                          <label className="text-sm font-medium text-gray-700">
                             {levelType === "book" ? "Book Name" : "Book"} <span className="text-red-500">*</span>
                           </label>
                           {levelType === "book" ? (
@@ -5145,7 +5139,7 @@ const KnowledgeBase = () => {
                               <Input
                                 id="book-name-input"
                                 placeholder="Enter Book name"
-                                className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20"
+                                className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
                                 value={bookName}
                                 onChange={e => {
                                   setBookName(e.target.value);
@@ -5176,7 +5170,7 @@ const KnowledgeBase = () => {
                               setStudyLevel("");
                               if (id) fetchStudyLov(id);
                             }}>
-                              <SelectTrigger className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={bookLovLoading || !selectedOrganization || !selectedApp}>
+                              <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={bookLovLoading || !selectedOrganization || !selectedApp}>
                                 <SelectValue placeholder={bookLovLoading ? "Loading books..." : "Select a book"} />
                               </SelectTrigger>
                               <SelectContent className="bg-white z-30 max-h-60 overflow-y-auto">
@@ -5188,7 +5182,7 @@ const KnowledgeBase = () => {
                           )}
                         </div>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-blue-900">
+                          <label className="text-sm font-medium text-gray-700">
                             {levelType === "book" ? "Knowledge Base Name" : "Study"} <span className="text-red-500">*</span>
                           </label>
                           {levelType === "book" ? (
@@ -5196,7 +5190,7 @@ const KnowledgeBase = () => {
                               <Input
                                 id="kb-name-input"
                                 placeholder="Enter knowledge base name"
-                                className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20"
+                                className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
                                 value={kbNameInput}
                                 onChange={e => {
                                   setKbNameInput(e.target.value);
@@ -5232,7 +5226,7 @@ const KnowledgeBase = () => {
                             </>
                           ) : (
                             <Select disabled={!bookName || studyLovOptions.length === 0} value={studyLevel} onValueChange={setStudyLevel}>
-                              <SelectTrigger className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={!selectedOrganization || !selectedApp || !bookName || studyLovLoading}>
+                              <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={!selectedOrganization || !selectedApp || !bookName || studyLovLoading}>
                                 <SelectValue placeholder={studyLovLoading ? "Loading chapters..." : (studyLovOptions.length === 0 ? "No study to select" : "Select a study")} />
                               </SelectTrigger>
                               <SelectContent className="bg-white z-30 max-h-60 overflow-y-auto">
@@ -5248,24 +5242,21 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Upload Section Card */}
-                  <Card className="border-2 border-teal-100 bg-teal-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-teal-600 text-white rounded-lg">
-                          <FileText className="h-5 w-5" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-teal-800">File Uploads</h3>
+                      <div className="mb-4">
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />File Uploads</h3>
                       </div>
 
                       <div className={`grid ${levelType === "book" ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"} gap-6`}>
                         <div className="space-y-2 flex-1">
-                          <label className="text-sm font-medium text-teal-900">
+                          <label className="text-sm font-medium text-gray-700">
                             Document Upload <span className="text-red-500">*</span>
                           </label>
                           <label
                             className={`block bg-white border-2 border-dashed rounded-lg p-8 text-center space-y-3 transition-colors cursor-pointer h-[200px] flex flex-col items-center justify-center ${isDraggingDocument
-                                ? 'border-blue-500 bg-blue-50'
-                                : 'border-teal-200 hover:border-teal-300'
+                                ? 'border-blue-400 bg-blue-50/40'
+                                : 'border-gray-200 hover:border-gray-300'
                               }`}
                             onDragOver={handleDocumentDragOver}
                             onDragLeave={handleDocumentDragLeave}
@@ -5279,10 +5270,8 @@ const KnowledgeBase = () => {
                               className="hidden"
                             />
                             <div className="flex justify-center">
-                              <div className={`p-3 rounded-lg transition-colors ${isDraggingDocument ? 'bg-blue-200' : 'bg-teal-100'
-                                }`}>
-                                <FileText className={`h-8 w-8 transition-colors ${isDraggingDocument ? 'text-blue-600' : 'text-teal-600'
-                                  }`} />
+                              <div className={`p-3 rounded-lg transition-colors ${isDraggingDocument ? 'bg-blue-100' : 'bg-gray-100'}`}>
+                                <FileText className={`h-8 w-8 transition-colors ${isDraggingDocument ? 'text-blue-600' : 'text-gray-500'}`} />
                               </div>
                             </div>
                             <div>
@@ -5296,12 +5285,12 @@ const KnowledgeBase = () => {
                           </label>
 
                           {documentFiles.length > 0 && (
-                            <div className="bg-white border border-teal-200 rounded-lg p-4 space-y-2">
+                            <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-2">
                               <p className="text-sm font-medium text-gray-900 mb-2">{documentFiles.length} file(s) uploaded:</p>
                               {documentFiles.map((file, index) => (
-                                <div key={index} className="flex items-center justify-between bg-teal-50 px-3 py-2 rounded">
+                                <div key={index} className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-lg">
                                   <div className="flex items-center gap-2 min-w-0 flex-1">
-                                    <FileText className="h-4 w-4 text-teal-600 flex-shrink-0" />
+                                    <FileText className="h-4 w-4 text-gray-500 flex-shrink-0" />
                                     <span className="text-sm text-gray-700 truncate">{file.name}</span>
                                     <span className="text-xs text-gray-500 flex-shrink-0">
                                       ({(file.size / 1024 / 1024).toFixed(2)} MB)
@@ -5323,11 +5312,11 @@ const KnowledgeBase = () => {
                         </div>
                         {levelType === "book" && (
                           <div className="space-y-2 flex-1">
-                            <label className="text-sm font-medium text-teal-900">Cover Image Upload</label>
+                            <label className="text-sm font-medium text-gray-700">Cover Image Upload</label>
                             <label
                               className={`block bg-white border-2 border-dashed rounded-lg p-8 text-center space-y-3 transition-colors cursor-pointer h-[200px] flex flex-col items-center justify-center ${isDraggingImage
-                                  ? 'border-blue-500 bg-blue-50'
-                                  : 'border-teal-200 hover:border-teal-300'
+                                  ? 'border-blue-400 bg-blue-50/40'
+                                  : 'border-gray-200 hover:border-gray-300'
                                 }`}
                               onDragOver={handleImageDragOver}
                               onDragLeave={handleImageDragLeave}
@@ -5342,10 +5331,8 @@ const KnowledgeBase = () => {
                                 className="hidden"
                               />
                               <div className="flex justify-center">
-                                <div className={`p-3 rounded-lg transition-colors ${isDraggingImage ? 'bg-blue-200' : 'bg-teal-100'
-                                  }`}>
-                                  <FileText className={`h-8 w-8 transition-colors ${isDraggingImage ? 'text-blue-600' : 'text-teal-600'
-                                    }`} />
+                                <div className={`p-3 rounded-lg transition-colors ${isDraggingImage ? 'bg-blue-100' : 'bg-gray-100'}`}>
+                                  <FileText className={`h-8 w-8 transition-colors ${isDraggingImage ? 'text-blue-600' : 'text-gray-500'}`} />
                                 </div>
                               </div>
                               <div>
@@ -5359,11 +5346,11 @@ const KnowledgeBase = () => {
                             </label>
 
                             {coverImage && (
-                              <div className="bg-white border border-teal-200 rounded-lg p-4">
+                              <div className="bg-white border border-gray-200 rounded-lg p-4">
                                 <p className="text-sm font-medium text-gray-900 mb-2">Uploaded image:</p>
-                                <div className="flex items-center justify-between bg-teal-50 px-3 py-2 rounded">
+                                <div className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-lg">
                                   <div className="flex items-center gap-2 min-w-0 flex-1">
-                                    <FileText className="h-4 w-4 text-teal-600 flex-shrink-0" />
+                                    <FileText className="h-4 w-4 text-gray-500 flex-shrink-0" />
                                     <span className="text-sm text-gray-700 truncate">{coverImage.name}</span>
                                     <span className="text-xs text-gray-500 flex-shrink-0">
                                       ({(coverImage.size / 1024 / 1024).toFixed(2)} MB)
@@ -5388,23 +5375,20 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Processing Settings Card */}
-                  <Card className="border-2 border-orange-100 bg-orange-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-orange-600 text-white rounded-lg">
-                          <Search className="h-5 w-5" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-orange-800">Processing Settings</h3>
+                      <div className="mb-4">
+                        <h3 className="text-sm font-medium text-gray-900 flex items-center gap-2"><span className="inline-block w-1 h-4 bg-blue-600 rounded-full" aria-hidden="true" />Processing Settings</h3>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Retrieval Strategy
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Retrieval Strategy decides how search results are ranked and selected</p>
@@ -5413,7 +5397,7 @@ const KnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={searchType} onValueChange={(v) => setSearchType(v as 'mmr' | 'similarity' | 'hybrid' || 'hybrid')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -5425,12 +5409,12 @@ const KnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Number of K values
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how many of the initially retrieved results are considered during retrieval (allowed range: 1–8). Smaller values are faster; larger are more thorough but slower.</p>
@@ -5440,7 +5424,7 @@ const KnowledgeBase = () => {
                           </label>
                           <Input
                             type="number"
-                            className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20"
+                            className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
                             value={rerankKInput}
                             onChange={(e) => {
                               const raw = e.target.value;
@@ -5459,12 +5443,12 @@ const KnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Chunk Size
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how large each text segment is when splitting documents for retrieval. Smaller chunks give more precise matches but less context, larger chunks preserve more context but may include irrelevant material.</p>
@@ -5473,7 +5457,7 @@ const KnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={chunkSize} onValueChange={(v) => setChunkSize(v || '1000')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -5485,12 +5469,12 @@ const KnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Overlap Percentage
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how much consecutive text chunks overlap when splitting documents. Higher overlap preserves more context across chunks but increases redundancy and processing cost.</p>
@@ -5499,7 +5483,7 @@ const KnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={overlap} onValueChange={v => setOverlap(v || '20')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -5511,12 +5495,12 @@ const KnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Chunking Strategy
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Controls how documents are split into smaller parts for retrieval. Affects accuracy, context, and speed.</p>
@@ -5525,7 +5509,7 @@ const KnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={chunkingStrategy} onValueChange={v => setChunkingStrategy(v || 'recursive')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -5537,12 +5521,12 @@ const KnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Database Type
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Defines how data is stored for retrieval, impacting speed, scalability, and accuracy.</p>
@@ -5551,7 +5535,7 @@ const KnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={vectorDb} onValueChange={v => setVectorDb(v || 'faiss')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -5563,12 +5547,12 @@ const KnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Embedding Model
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg ">
                                   <p className="text-sm leading-relaxed">Converts text into vectors for similarity search</p>
@@ -5577,7 +5561,7 @@ const KnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={embeddingModel} onValueChange={v => setEmbeddingModel(v || 'text-embedding-ada-002')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -5612,7 +5596,7 @@ const KnowledgeBase = () => {
                         >
                           Cancel
                         </Button>
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full" onClick={handleCreateKnowledgeBase}>
+                        <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6" onClick={handleCreateKnowledgeBase}>
                           Create Knowledge Base
                         </Button>
                       </div>
