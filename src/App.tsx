@@ -28,9 +28,11 @@ import QuestionRepository from "./pages/QuestionRepository";
 import CheckSimilarity from "./pages/CheckSimilarity";
 import Reports from "./pages/Reports";
 import ManageUsers from "./pages/ManageUsers";
-import KnowledgeBase from "./pages/KnowledgeBase";
+import KnowledgeBase from "./pages/ManageKnowledgeBase";
 import KnowledgeBaseCopy from "./pages/KnowledgeBaseCopy";
-import EditKnowledgeBase from "./pages/EditKnowledgeBase";
+import EditKnowledgeBase from "./pages/ManageEditKnowledgeBase";
+import ManageBookDetails from "./pages/ManageBookDetails";
+import ManageGuidelines from "./pages/ManageGuidelines";
 import Collaboration from "./pages/Collaboration";
 import NotFound from "./pages/NotFound";
 import OCREvaluation from "./pages/OCREvaluation";
@@ -70,6 +72,8 @@ const App = () => (
         <Route path="/knowledge-base" element={<KnowledgeBase />} />
         <Route path="/knowledge-base-copy" element={<KnowledgeBaseCopy />} />
         <Route path="/knowledge-base/edit/:id" element={<EditKnowledgeBase />} />
+        <Route path="/manage-book-details" element={<ManageBookDetails />} />
+        <Route path="/manage-guidelines" element={<ManageGuidelines />} />
           <Route path="/collaboration" element={<Collaboration />} />
           <Route path="/doc-chat-ncert" element={<DocChatNCERT />} />
           <Route path="/ocr-evaluation" element={<OCREvaluation />} />
