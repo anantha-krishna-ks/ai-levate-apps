@@ -26,6 +26,7 @@ const items = [
   { title: "Guidelines", url: `${BASE}/guidelines`, icon: BookOpen },
   { title: "Analysis Runs", url: `${BASE}/analysis-runs`, icon: PlayCircle },
   { title: "Item Reports", url: `${BASE}/item-reports`, icon: FileText },
+  { title: "Duplicate Review", url: `${BASE}/duplicates`, icon: GitCompare },
   { title: "Settings", url: `${BASE}/settings`, icon: Settings },
 ];
 
