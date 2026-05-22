@@ -1583,7 +1583,7 @@ const ManageGuidelines = () => {
 
                   {/* Add New Guideline Card */}
                   {!(selectedKBForGuidelines?.id !== 0 && guidelineCreationType === 'existing') && (
-                    <Card id="add-guideline-section" className="border-2 border-teal-100 bg-teal-50">
+                    <Card id="add-guideline-section" className="border-2 border-slate-200 bg-slate-50">
 
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between">
@@ -1742,8 +1742,8 @@ const ManageGuidelines = () => {
                             onClick={() => fileInputRef.current?.click()}
                           >
                             <div className="flex justify-center">
-                              <div className="p-3 bg-yellow-100 rounded-lg">
-                                <FileText className="h-8 w-8 text-yellow-600" />
+                              <div className="p-3 bg-blue-50 rounded-lg">
+                                <FileText className="h-8 w-8 text-blue-700" />
                               </div>
                             </div>
                             <div>
@@ -1797,7 +1797,7 @@ const ManageGuidelines = () => {
                         <div className="flex justify-start gap-3">
                           {(guidelineType === "Content" || guidelineType === "Validation") &&(
                             <Button
-                              className="bg-yellow-600 hover:bg-yellow-700 text-white"
+                              className="bg-blue-600 hover:bg-blue-600 text-white"
                               disabled={guidelinesLoading}
                               onClick={async () => {
                               // Validation
@@ -1979,7 +1979,7 @@ const ManageGuidelines = () => {
                   {/* Customer / Organization pickers removed */}
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border-2 border-blue-100 bg-gradient-to-br from-blue-50 to-blue-100">
+                  <Card className="border-2 border-blue-100 bg-blue-600">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div className="flex items-center gap-3">

@@ -2975,9 +2975,9 @@ const KnowledgeBase = () => {
                   {/* Organization and Apps Details - Same Row (for Tag Agents) */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     {/* Select Organization Card */}
-                    <Card className="border-2 border-purple-100 bg-purple-50 flex-1">
+                    <Card className="border-2 border-blue-100 bg-blue-50 flex-1">
                       <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-purple-900">Select Organization</h3>
+                        <h3 className="text-lg font-semibold text-blue-900">Select Organization</h3>
                         <Select
                           value={selectedOrganization ?? ''}
                           onValueChange={(value) => {
@@ -2990,7 +2990,7 @@ const KnowledgeBase = () => {
                           }}
                           disabled
                         >
-                          <SelectTrigger className="bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20">
+                          <SelectTrigger className="bg-white border-blue-200 focus:border-purple-400 focus:ring-purple-400/20">
                             <SelectValue placeholder={organizationLoading ? "Loading organizations..." : "Select an organization"} />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -3000,7 +3000,7 @@ const KnowledgeBase = () => {
                           </SelectContent>
                         </Select>
                         {organizationLoading && (
-                          <p className="text-sm text-purple-600 mt-1">Loading organizations...</p>
+                          <p className="text-sm text-blue-600 mt-1">Loading organizations...</p>
                         )}
                       </CardContent>
                     </Card>
@@ -3031,21 +3031,21 @@ const KnowledgeBase = () => {
 
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border-2 border-purple-100 bg-purple-50">
+                    <Card className="border-2 border-blue-100 bg-blue-50">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-purple-600 text-white rounded-lg">
+                          <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Bot className="h-5 w-5" />
                           </div>
-                          <h3 className="text-lg font-semibold text-purple-800">Agent Configuration</h3>
+                          <h3 className="text-lg font-semibold text-blue-800">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
-                            <svg className="animate-spin h-8 w-8 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg className="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                             </svg>
-                            <span className="ml-2 text-purple-700">Loading agent configuration...</span>
+                            <span className="ml-2 text-blue-700">Loading agent configuration...</span>
                           </div>
                         )}
                         {agentConfigError && (
@@ -3054,14 +3054,14 @@ const KnowledgeBase = () => {
                           </div>
                         )}
                         {!agentConfigLoading && (
-                          <div className="bg-white rounded-lg border-2 border-purple-200 overflow-hidden">
+                          <div className="bg-white rounded-lg border-2 border-blue-200 overflow-hidden">
                             <div className="overflow-x-auto">
                               <Table>
                                 <TableHeader>
-                                  <TableRow className="bg-purple-50 border-b-2 border-purple-200 hover:bg-purple-50">
-                                    <TableHead className="font-semibold text-purple-900 py-4">Agent Name</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Select</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Priority</TableHead>
+                                  <TableRow className="bg-blue-50 border-b-2 border-blue-200 hover:bg-blue-50">
+                                    <TableHead className="font-semibold text-blue-900 py-4">Agent Name</TableHead>
+                                    <TableHead className="font-semibold text-blue-900 py-4">Select</TableHead>
+                                    <TableHead className="font-semibold text-blue-900 py-4">Priority</TableHead>
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -3082,7 +3082,7 @@ const KnowledgeBase = () => {
                                       const isSelected = isFixed ? true : !!selectedAgents[key];
                                       const currentP = displayPriority[key] || null;
                                       return (
-                                        <TableRow key={key} className="hover:bg-purple-50/50 transition-colors border-b border-purple-100">
+                                        <TableRow key={key} className="hover:bg-blue-50/50 transition-colors border-b border-blue-100">
                                           <TableCell className="font-medium text-gray-900 py-4">{key}</TableCell>
                                           <TableCell className="py-4">
                                             <input
@@ -3090,7 +3090,7 @@ const KnowledgeBase = () => {
                                               checked={isSelected}
                                               disabled={isFixed || !editable}
                                               title={isFixed ? "Default agent - always enabled" : editable ? "" : "Always enabled"}
-                                              className="h-4 w-4 text-purple-600 border-gray-300 rounded disabled:opacity-50"
+                                              className="h-4 w-4 text-blue-600 border-gray-300 rounded disabled:opacity-50"
                                               onChange={
                                                 editable && !isFixed
                                                   ? (e) => {
@@ -3134,7 +3134,7 @@ const KnowledgeBase = () => {
                         <div className="flex justify-end mt-4">
                           <Button
                             onClick={handleAddAgents}
-                            className="bg-purple-600 hover:bg-purple-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white"
                             disabled={!selectedOrganization || !selectedApp || agentConfigLoading}
                           >
                             Tag Agents
@@ -3274,9 +3274,9 @@ const KnowledgeBase = () => {
                   {/* Organization and Apps Details - Same Row */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     {/* Select Organization Card */}
-                    <Card className="border-2 border-purple-100 bg-purple-50 flex-1">
+                    <Card className="border-2 border-blue-100 bg-blue-50 flex-1">
                       <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-purple-900">Selected Organization</h3>
+                        <h3 className="text-lg font-semibold text-blue-900">Selected Organization</h3>
                         <Select
                           value={selectedOrganization ?? ''}
                           onValueChange={(value) => {
@@ -3290,7 +3290,7 @@ const KnowledgeBase = () => {
                           }}
                                                     disabled={organizationLocked || organizationLoading || !selectedCustomerCode || !selectedBook}
                         >
-                          <SelectTrigger className="bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20">
+                          <SelectTrigger className="bg-white border-blue-200 focus:border-purple-400 focus:ring-purple-400/20">
                               <SelectValue placeholder={organizationLoading ? "Loading organizations..." : selectedBook ? "Select an organization" : "Please select a book first"} />
                             </SelectTrigger>
                             <SelectContent className="bg-white z-50">
@@ -3300,7 +3300,7 @@ const KnowledgeBase = () => {
                             </SelectContent>
                           </Select>
                         {organizationLoading && (
-                          <p className="text-sm text-purple-600 mt-1">Loading organizations...</p>
+                          <p className="text-sm text-blue-600 mt-1">Loading organizations...</p>
                         )}
                       </CardContent>
                     </Card>
@@ -3345,22 +3345,22 @@ const KnowledgeBase = () => {
 
                   {/* Upload Section Card (Cover Image Upload like Edit Book Details) - Only show for Edit Study LO */}
                   {editingBookDetails && (
-                  <Card className="border-2 border-teal-100 bg-teal-50">
+                  <Card className="border-2 border-slate-200 bg-slate-50">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-teal-600 text-white rounded-lg">
+                        <div className="p-2 bg-blue-600 text-white rounded-lg">
                           <FileText className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-semibold text-teal-800">File Uploads</h3>
+                        <h3 className="text-lg font-semibold text-slate-700">File Uploads</h3>
                       </div>
 
                       <div className={`grid grid-cols-1 gap-6`}>
                         <div className="space-y-2 flex-1">
-                            <label className="text-sm font-medium text-teal-900">Cover Image Upload</label>
+                            <label className="text-sm font-medium text-slate-700">Cover Image Upload</label>
                             <div
                               className={`block bg-white border-2 border-dashed rounded-lg p-8 text-center space-y-3 transition-colors cursor-pointer h-[200px] flex flex-col items-center justify-center ${isDraggingImage
                                   ? 'border-blue-500 bg-blue-50'
-                                  : 'border-teal-200 hover:border-teal-300'
+                                  : 'border-slate-200 hover:border-slate-200'
                                 }`}
                               onDragOver={handleImageDragOver}
                               onDragLeave={handleImageDragLeave}
@@ -3368,9 +3368,9 @@ const KnowledgeBase = () => {
                               onClick={handleEditCoverImageClick}
                             >
                               <div className="flex justify-center">
-                                <div className={`p-3 rounded-lg transition-colors ${isDraggingImage ? 'bg-blue-200' : 'bg-teal-100'
+                                <div className={`p-3 rounded-lg transition-colors ${isDraggingImage ? 'bg-blue-200' : 'bg-slate-50'
                                   }`}>
-                                  <FileText className={`h-8 w-8 transition-colors ${isDraggingImage ? 'text-blue-600' : 'text-teal-600'
+                                  <FileText className={`h-8 w-8 transition-colors ${isDraggingImage ? 'text-blue-600' : 'text-slate-700'
                                     }`} />
                                 </div>
                               </div>
@@ -3385,11 +3385,11 @@ const KnowledgeBase = () => {
                             </div>
 
                             {editCoverImage && (
-                              <div className="bg-white border border-teal-200 rounded-lg p-4">
+                              <div className="bg-white border border-slate-200 rounded-lg p-4">
                                 <p className="text-sm font-medium text-gray-900 mb-2">New uploaded image:</p>
-                                <div className="flex items-center justify-between bg-teal-50 px-3 py-2 rounded">
+                                <div className="flex items-center justify-between bg-slate-50 px-3 py-2 rounded">
                                   <div className="flex items-center gap-2 min-w-0 flex-1">
-                                    <FileText className="h-4 w-4 text-teal-600 flex-shrink-0" />
+                                    <FileText className="h-4 w-4 text-slate-700 flex-shrink-0" />
                                     <span className="text-sm text-gray-700 truncate">{editCoverImage.name}</span>
                                     <span className="text-xs text-gray-500 flex-shrink-0">
                                       ({(editCoverImage.size / 1024 / 1024).toFixed(2)} MB)
@@ -3456,21 +3456,21 @@ const KnowledgeBase = () => {
                   )}
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border-2 border-purple-100 bg-purple-50">
+                    <Card className="border-2 border-blue-100 bg-blue-50">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-purple-600 text-white rounded-lg">
+                          <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Bot className="h-5 w-5" />
                           </div>
-                          <h3 className="text-lg font-semibold text-purple-800">Agent Configuration</h3>
+                          <h3 className="text-lg font-semibold text-blue-800">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
-                            <svg className="animate-spin h-8 w-8 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg className="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                             </svg>
-                            <span className="ml-2 text-purple-700">Loading agent configuration...</span>
+                            <span className="ml-2 text-blue-700">Loading agent configuration...</span>
                           </div>
                         )}
                         {agentConfigError && (
@@ -3479,14 +3479,14 @@ const KnowledgeBase = () => {
                           </div>
                         )}
                         {!agentConfigLoading && (
-                          <div className="bg-white rounded-lg border-2 border-purple-200 overflow-hidden">
+                          <div className="bg-white rounded-lg border-2 border-blue-200 overflow-hidden">
                             <div className="overflow-x-auto">
                               <Table>
                                 <TableHeader>
-                                  <TableRow className="bg-purple-50 border-b-2 border-purple-200 hover:bg-purple-50">
-                                    <TableHead className="font-semibold text-purple-900 py-4">Agent Name</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Select</TableHead>
-                                    <TableHead className="font-semibold text-purple-900 py-4">Priority</TableHead>
+                                  <TableRow className="bg-blue-50 border-b-2 border-blue-200 hover:bg-blue-50">
+                                    <TableHead className="font-semibold text-blue-900 py-4">Agent Name</TableHead>
+                                    <TableHead className="font-semibold text-blue-900 py-4">Select</TableHead>
+                                    <TableHead className="font-semibold text-blue-900 py-4">Priority</TableHead>
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -3512,7 +3512,7 @@ const KnowledgeBase = () => {
                                       const maxMiddle = middleSorted.length + 1; // last middle priority
                                       const canEditPriority = !isFixed && isSelected && currentP !== null;
                                       return (
-                                        <TableRow key={key} className="hover:bg-purple-50/50 transition-colors border-b border-purple-100">
+                                        <TableRow key={key} className="hover:bg-blue-50/50 transition-colors border-b border-blue-100">
                                           <TableCell className="font-medium text-gray-900 py-4">{key}</TableCell>
                                           <TableCell className="py-4">
                                             <input
@@ -3520,7 +3520,7 @@ const KnowledgeBase = () => {
                                               checked={isSelected}
                                               disabled={isFixed || !editable}
                                               title={isFixed ? "Default agent - always enabled" : editable ? "" : "Always enabled"}
-                                              className="h-4 w-4 text-purple-600 border-gray-300 rounded disabled:opacity-50"
+                                              className="h-4 w-4 text-blue-600 border-gray-300 rounded disabled:opacity-50"
                                               onChange={
                                                 editable && !isFixed
                                                   ? (e) => {
@@ -3565,7 +3565,7 @@ const KnowledgeBase = () => {
                         <div className="flex justify-end mt-4">
                           <Button
                             onClick={handleAddAgents}
-                            className="bg-purple-600 hover:bg-purple-700 text-white"
+                            className="bg-blue-600 hover:bg-blue-700 text-white"
                             disabled={agentConfigLoading}
                           >
                             Tag Agents
@@ -3801,21 +3801,21 @@ const KnowledgeBase = () => {
                     </CardContent>
                   </Card>
                   {/* Upload Study LO Documents Card */}
-                  <Card className="border-2 border-teal-100 bg-teal-50">
+                  <Card className="border-2 border-slate-200 bg-slate-50">
                     <CardContent className="p-6 space-y-3">
-                      <h3 className="text-lg font-semibold text-teal-900">Upload Study LO Documents</h3>
+                      <h3 className="text-lg font-semibold text-slate-700">Upload Study LO Documents</h3>
                       <div className={`bg-white border-2 border-dashed rounded-lg p-12 text-center space-y-4 transition-colors cursor-pointer ${isDraggingStudyLO
                           ? 'border-blue-500 bg-blue-50'
-                          : 'border-teal-200 hover:border-teal-300'
+                          : 'border-slate-200 hover:border-slate-200'
                         }`}
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
                         onDrop={handleDrop}
                         onClick={handleStudyLOFileInput}>
                         <div className="flex justify-center">
-                          <div className={`p-4 rounded-lg transition-colors ${isDraggingStudyLO ? 'bg-blue-200' : 'bg-yellow-100'
+                          <div className={`p-4 rounded-lg transition-colors ${isDraggingStudyLO ? 'bg-blue-200' : 'bg-blue-50'
                             }`}>
-                            <FileText className={`h-10 w-10 transition-colors ${isDraggingStudyLO ? 'text-blue-600' : 'text-yellow-600'
+                            <FileText className={`h-10 w-10 transition-colors ${isDraggingStudyLO ? 'text-blue-600' : 'text-blue-700'
                               }`} />
                           </div>
                         </div>
@@ -3829,10 +3829,10 @@ const KnowledgeBase = () => {
                         </div>
                       </div>
                       {studyLODocuments.length > 0 && (
-                        <div className="bg-white border border-teal-200 rounded-lg p-4">
+                        <div className="bg-white border border-slate-200 rounded-lg p-4">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                              <FileText className="h-8 w-8 text-teal-600" />
+                              <FileText className="h-8 w-8 text-slate-700" />
                               <div>
                                 <p className="font-medium text-gray-900">{studyLODocuments[0].name}</p>
                                 <p className="text-sm text-gray-500">{formatFileSize(studyLODocuments[0].size)}</p>
@@ -4052,22 +4052,22 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Upload Section Card */}
-                  <Card className="border-2 border-teal-100 bg-teal-50">
+                  <Card className="border-2 border-slate-200 bg-slate-50">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-teal-600 text-white rounded-lg">
+                        <div className="p-2 bg-blue-600 text-white rounded-lg">
                           <FileText className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-semibold text-teal-800">File Uploads</h3>
+                        <h3 className="text-lg font-semibold text-slate-700">File Uploads</h3>
                       </div>
 
                       <div className={`grid grid-cols-1 gap-6`}>
                         <div className="space-y-2 flex-1">
-                            <label className="text-sm font-medium text-teal-900">Cover Image Upload</label>
+                            <label className="text-sm font-medium text-slate-700">Cover Image Upload</label>
                             <div
                               className={`block bg-white border-2 border-dashed rounded-lg p-8 text-center space-y-3 transition-colors cursor-pointer h-[200px] flex flex-col items-center justify-center ${isDraggingImage
                                   ? 'border-blue-500 bg-blue-50'
-                                  : 'border-teal-200 hover:border-teal-300'
+                                  : 'border-slate-200 hover:border-slate-200'
                                 }`}
                               onDragOver={handleImageDragOver}
                               onDragLeave={handleImageDragLeave}
@@ -4075,9 +4075,9 @@ const KnowledgeBase = () => {
                               onClick={handleCoverImageClick}
                             >
                               <div className="flex justify-center">
-                                <div className={`p-3 rounded-lg transition-colors ${isDraggingImage ? 'bg-blue-200' : 'bg-teal-100'
+                                <div className={`p-3 rounded-lg transition-colors ${isDraggingImage ? 'bg-blue-200' : 'bg-slate-50'
                                   }`}>
-                                  <FileText className={`h-8 w-8 transition-colors ${isDraggingImage ? 'text-blue-600' : 'text-teal-600'
+                                  <FileText className={`h-8 w-8 transition-colors ${isDraggingImage ? 'text-blue-600' : 'text-slate-700'
                                     }`} />
                                 </div>
                               </div>
@@ -4092,11 +4092,11 @@ const KnowledgeBase = () => {
                             </div>
 
                             {coverImage && (
-                              <div className="bg-white border border-teal-200 rounded-lg p-4">
+                              <div className="bg-white border border-slate-200 rounded-lg p-4">
                                 <p className="text-sm font-medium text-gray-900 mb-2">Uploaded image:</p>
-                                <div className="flex items-center justify-between bg-teal-50 px-3 py-2 rounded">
+                                <div className="flex items-center justify-between bg-slate-50 px-3 py-2 rounded">
                                   <div className="flex items-center gap-2 min-w-0 flex-1">
-                                    <FileText className="h-4 w-4 text-teal-600 flex-shrink-0" />
+                                    <FileText className="h-4 w-4 text-slate-700 flex-shrink-0" />
                                     <span className="text-sm text-gray-700 truncate">{coverImage.name}</span>
                                     <span className="text-xs text-gray-500 flex-shrink-0">
                                       ({(coverImage.size / 1024 / 1024).toFixed(2)} MB)
@@ -4156,13 +4156,13 @@ const KnowledgeBase = () => {
                   {/* Existing List View */}
                   {!isSSO && (
                   <div className="grid grid-cols-1 gap-4">
-                    <Card className="border-2 border-purple-100 bg-gradient-to-br from-purple-50 to-purple-100">
+                    <Card className="border-2 border-blue-100 bg-blue-600">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-purple-600 text-white rounded-lg">
+                          <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Search className="h-5 w-5" />
                           </div>
-                          <h2 className="text-xl font-semibold text-purple-800">Apps Details</h2>
+                          <h2 className="text-xl font-semibold text-blue-800">Apps Details</h2>
                         </div>
 
                         <div className="relative app-dropdown-container">
@@ -4172,7 +4172,7 @@ const KnowledgeBase = () => {
                             value={appSearchQuery}
                             onClick={handleAppInputFocus}
                             placeholder={appsLoading ? "Loading..." : (appSearchQuery || "Select App")}
-                            className="w-full pl-2 bg-white border-purple-200 focus:border-purple-400 focus:ring-purple-400/20 cursor-pointer"
+                            className="w-full pl-2 bg-white border-blue-200 focus:border-purple-400 focus:ring-purple-400/20 cursor-pointer"
                             disabled={appsLoading || !selectedCustomerCode || selectedCustomerCode === '_ALL' || (!selectedOrganization && !organizationLocked && !appSearchQuery)}
                             readOnly
                           />
@@ -4180,11 +4180,11 @@ const KnowledgeBase = () => {
                                                     </div>
 
                                                     {showAppDropdown && !appsLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && selectedOrganization && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-purple-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-blue-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
                               {(appsOptions || []).map((app: any) => (
                                 <div
                                   key={app.value}
-                                  className="px-3 py-2 cursor-pointer hover:bg-purple-50 border-b border-purple-100 last:border-b-0"
+                                  className="px-3 py-2 cursor-pointer hover:bg-blue-50 border-b border-blue-100 last:border-b-0"
                                   onClick={() => handleAppSelect(app.value, app.label)}
                                 >
                                   <div className="cursor-pointer">{app.label}</div>
@@ -4202,7 +4202,7 @@ const KnowledgeBase = () => {
                   {/* Customer / Organization pickers removed */}
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border-2 border-blue-100 bg-gradient-to-br from-blue-50 to-blue-100">
+                  <Card className="border-2 border-blue-100 bg-blue-600">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div className="flex items-center gap-3">
@@ -4215,7 +4215,7 @@ const KnowledgeBase = () => {
                           
                           <Button
                             onClick={() => setIsCreating(true)}
-                            className="px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                            className="px-6 bg-blue-600 hover:from-blue-700 hover:to-blue-800 text-white"
                           >
                             <Plus className="w-4 h-4 mr-2" />
                             Create Book Details

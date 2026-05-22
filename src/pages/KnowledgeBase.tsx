@@ -3189,7 +3189,7 @@ const KnowledgeBase = () => {
                 <div className="flex items-center gap-2 flex-shrink-0">
                   {isCreatingStudyLO ? (
                     <Button
-                      className="bg-yellow-600 hover:bg-yellow-700 text-white rounded-full text-xs h-8"
+                      className="bg-blue-600 hover:bg-blue-600 text-white rounded-full text-xs h-8"
                       onClick={() => window.open(API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE, "_blank")}
                     >
                       Download Template
@@ -5880,7 +5880,7 @@ const KnowledgeBase = () => {
                                           size="icon"
                                           title="Guidelines"
                                           disabled={String(kb.leveltype || '').toLowerCase().includes('study')}
-                                          className={`h-9 w-9 hidden hover:bg-purple-100 transition-colors ${String(kb.leveltype || '').toLowerCase().includes('study') ? 'opacity-40 cursor-not-allowed pointer-events-none' : ''}`}
+                                          className={`h-9 w-9 hidden hover:bg-blue-100 transition-colors ${String(kb.leveltype || '').toLowerCase().includes('study') ? 'opacity-40 cursor-not-allowed pointer-events-none' : ''}`}
                                           onClick={() => {
                                             if (String(kb.leveltype || '').toLowerCase().includes('study')) return;
                                             setSelectedKBForGuidelines({ id: kb.knowledgebase_id || idx, name: kb.knowladgebasename || "" });
@@ -5888,13 +5888,13 @@ const KnowledgeBase = () => {
                                             clearGuidelinesState();
                                           }}
                                         >
-                                          <ScrollText className="h-4 w-4 text-purple-600" />
+                                          <ScrollText className="h-4 w-4 text-blue-600" />
                                         </Button>
                                         <Button
                                           variant="ghost"
                                           size="icon"
                                           title="Chat"
-                                          className="h-9 w-9 hover:bg-teal-100 transition-colors"
+                                          className="h-9 w-9 hover:bg-slate-50 transition-colors"
                                           onClick={async () => {
                                             setChatMessages([]);
                                             setChatDetailsError(null);
@@ -5948,14 +5948,14 @@ const KnowledgeBase = () => {
                                             setChatDetailsLoading(false);
                                           }}
                                         >
-                                          <MessageSquare className="h-4 w-4 text-teal-600" />
+                                          <MessageSquare className="h-4 w-4 text-slate-700" />
                                         </Button>
                                         <Button
                                           variant="ghost"
                                           size="icon"
                                           title="Tag Agents"
                                           disabled={String(kb.leveltype || '').toLowerCase().includes('study')}
-                                          className={`hidden h-9 w-9 hover:bg-purple-100 transition-colors ${String(kb.leveltype || '').toLowerCase().includes('study') ? 'opacity-40 cursor-not-allowed pointer-events-none' : ''}`}
+                                          className={`hidden h-9 w-9 hover:bg-blue-100 transition-colors ${String(kb.leveltype || '').toLowerCase().includes('study') ? 'opacity-40 cursor-not-allowed pointer-events-none' : ''}`}
                                           onClick={() => {
                                             if (String(kb.leveltype || '').toLowerCase().includes('study')) return;
                                             setIsTaggingAgents(true);
@@ -5992,7 +5992,7 @@ const KnowledgeBase = () => {
                                             }
                                           }}
                                         >
-                                          <Bot className="h-4 w-4 text-purple-600" />
+                                          <Bot className="h-4 w-4 text-blue-600" />
                                         </Button>
                                         <Button
                                           variant="ghost"
