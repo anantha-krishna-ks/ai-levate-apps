@@ -4,7 +4,7 @@ import { StatusBadge } from '../components/StatusBadge';
 import { ScoreDisplay } from '../components/ScoreDisplay';
 import { mockItems, mockAnalysisResults, getSimilarItemsFor } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, PlayCircle, Download, GitCompare, CheckSquare, Info, CheckCircle2, BookOpen, ClipboardList, Sparkles, Lightbulb, GraduationCap, Layers, Target, Compass, BarChart3, Brain, FileType2 } from 'lucide-react';
+import { ChevronLeft, PlayCircle, Download, CheckSquare, Info, CheckCircle2, BookOpen, ClipboardList, Sparkles, Lightbulb, GraduationCap, Layers, Target, Compass, BarChart3, Brain, FileType2 } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ItemDetail() {
@@ -47,7 +47,6 @@ export default function ItemDetail() {
           <div className="flex gap-2">
             <Button variant="outline" size="sm"><PlayCircle className="w-3.5 h-3.5 mr-1.5" />Re-run Analysis</Button>
             <Button variant="outline" size="sm"><Download className="w-3.5 h-3.5 mr-1.5" />PDF Report</Button>
-            <Button variant="outline" size="sm"><GitCompare className="w-3.5 h-3.5 mr-1.5" />Compare</Button>
             <Button size="sm"><CheckSquare className="w-3.5 h-3.5 mr-1.5" />Mark Reviewed</Button>
           </div>
         }
