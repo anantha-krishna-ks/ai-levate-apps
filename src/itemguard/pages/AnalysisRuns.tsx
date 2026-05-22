@@ -26,11 +26,13 @@ export default function AnalysisRuns() {
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
   const [selectedGuidelines, setSelectedGuidelines] = useState<string[]>([]);
   const [selectedSpecs, setSelectedSpecs] = useState<string[]>([]);
+  const [localRuns, setLocalRuns] = useState<AnalysisRun[]>([]);
 
   const runs = useMemo<AnalysisRun[]>(() => {
-    if (!folderParam) return mockRuns;
+    const base = [...localRuns, ...mockRuns];
+    if (!folderParam) return [...base].sort((a, b) => (a.run_status === 'running' ? -1 : 0) - (b.run_status === 'running' ? -1 : 0));
     const exists = mockRuns.some(r => r.scope === folderParam);
-    if (exists) return mockRuns;
+    if (exists) return [...base].sort((a, b) => (a.run_status === 'running' ? -1 : 0) - (b.run_status === 'running' ? -1 : 0));
     const now = new Date().toISOString();
     const total = 120 + Math.floor(Math.random() * 80);
     const green = Math.floor(total * 0.62);
@@ -53,8 +55,8 @@ export default function AnalysisRuns() {
       amber_count: amber,
       red_count: red,
     };
-    return [synthetic, ...mockRuns];
-  }, [folderParam]);
+    return [...localRuns, synthetic, ...mockRuns].sort((a, b) => (a.run_status === 'running' ? -1 : 0) - (b.run_status === 'running' ? -1 : 0));
+  }, [folderParam, localRuns]);
 
   const highlightId = useMemo(() => {
     if (!folderParam) return null;
@@ -83,6 +85,26 @@ export default function AnalysisRuns() {
   const canRun = !!selectedFolder && (selectedGuidelines.length + selectedSpecs.length > 0);
 
   const startAnalysis = () => {
+    const now = new Date().toISOString();
+    const total = mockItems.filter(i => i.qualification === selectedFolder).length || 100;
+    const newRun: AnalysisRun = {
+      run_id: `RUN-${String(Date.now()).slice(-4)}`,
+      run_name: `${selectedFolder} — Analysis`,
+      scope: selectedFolder!,
+      ruleset_used: 'Standard v2.1',
+      knowledge_base_used: 'QS 2025-26',
+      initiated_by: 'You',
+      run_status: 'running',
+      created_at: now,
+      completed_at: now,
+      items_processed: 0,
+      total_items: total,
+      average_score: 0,
+      green_count: 0,
+      amber_count: 0,
+      red_count: 0,
+    };
+    setLocalRuns(prev => [newRun, ...prev]);
     toast({ title: 'Analysis started', description: `Running analysis on "${selectedFolder}".` });
     setMode('list');
     setSelectedFolder(null);
