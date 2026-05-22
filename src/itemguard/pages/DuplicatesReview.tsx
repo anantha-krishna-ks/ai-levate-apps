@@ -9,7 +9,6 @@ import { SlidersHorizontal } from 'lucide-react';
 const decisionLabels: Record<ReviewDecision, { label: string; cls: string }> = {
   pending: { label: 'Pending', cls: 'ig-status-amber' },
   keep_both: { label: 'Keep Both', cls: 'ig-status-green' },
-  merge: { label: 'Merge', cls: 'bg-primary text-primary-foreground' },
   retire_a: { label: 'Retire A', cls: 'ig-status-red' },
   retire_b: { label: 'Retire B', cls: 'ig-status-red' },
   manual_review: { label: 'Manual Review', cls: 'ig-status-amber' },
@@ -125,7 +124,6 @@ export default function DuplicatesReview() {
               <p className="text-xs text-muted-foreground mb-3"><span className="font-medium">Reason:</span> {pair.rationale} · Shared LO: {pair.shared_lo}</p>
               <div className="flex flex-wrap gap-2">
                 <Button variant="outline" size="sm">Keep Both</Button>
-                <Button variant="outline" size="sm">Merge</Button>
                 <Button variant="outline" size="sm">Retire A</Button>
                 <Button variant="outline" size="sm">Retire B</Button>
                 <Button variant="outline" size="sm">Needs Manual Review</Button>
