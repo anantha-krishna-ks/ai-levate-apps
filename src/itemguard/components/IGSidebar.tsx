@@ -5,7 +5,6 @@ import {
   FileText,
   BookOpen,
   GraduationCap,
-  Copy,
   Settings,
   ChevronLeft,
   ChevronRight,
