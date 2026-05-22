@@ -164,8 +164,10 @@ export default function ItemBank() {
       toast({ title: 'Folder already exists', description: `"${folder}" is already a folder.`, variant: 'destructive' });
       return;
     }
+    const dummyIds = mockItems.slice(0, 12).map(i => i.item_id);
     setCustomFolders(prev => [...prev, folder]);
-    toast({ title: 'Folder imported', description: `${importFile.name} imported into "${folder}".` });
+    setCustomFolderItems(prev => ({ ...prev, [folder]: dummyIds }));
+    toast({ title: 'Folder imported', description: `${importFile.name} imported into "${folder}" with ${dummyIds.length} items.` });
     setImportFile(null);
     setImportFileName('');
     setImportFolderName('');
