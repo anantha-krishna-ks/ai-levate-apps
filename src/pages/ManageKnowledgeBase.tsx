@@ -1684,7 +1684,7 @@ const ManageKnowledgeBase = () => {
           {!isSSO && <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />}
           {!isSSO && (
             <div className="relative bg-white border-b border-slate-200">
-              <div className="relative px-4 sm:px-6 py-3">
+              <div className={`relative py-3 ${sidebarCollapsed ? "px-3 sm:px-4" : "px-4 sm:px-6"}`}>
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3 min-w-0">
                     {(isCreating || isViewingGuidelines || isChatMode) && (
@@ -1733,7 +1733,7 @@ const ManageKnowledgeBase = () => {
           )}
 
           {/* Main Content */}
-          <main className="p-6">
+          <main className={sidebarCollapsed ? "p-3 lg:p-4" : "p-6"}>
             <BackToTop loading={kbLoading || isCreating} />
             {/* Full Page Loader Overlay for Chat */}
             {chatLoading && (
