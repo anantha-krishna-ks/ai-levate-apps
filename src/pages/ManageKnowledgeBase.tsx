@@ -1651,9 +1651,9 @@ const ManageKnowledgeBase = ({ embedded = false }: { embedded?: boolean } = {}) 
         </div>
       )}
 
-      <div className="min-h-screen bg-[#F4F8FC]">
+      <div className={embedded ? "" : "min-h-screen bg-[#F4F8FC]"}>
         {/* Desktop Sidebar */}
-        {!isSSO && (
+        {!isSSO && !embedded && (
           <div
             className={`fixed left-0 top-16 bottom-0 z-50 hidden lg:block transition-all duration-300 ${
               sidebarCollapsed ? "w-16" : "w-52"
@@ -1664,7 +1664,7 @@ const ManageKnowledgeBase = ({ embedded = false }: { embedded?: boolean } = {}) 
         )}
 
         {/* Mobile Menu Sheet */}
-        {!isSSO && (
+        {!isSSO && !embedded && (
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetContent side="left" className="w-64 p-0">
               {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
@@ -1674,15 +1674,15 @@ const ManageKnowledgeBase = ({ embedded = false }: { embedded?: boolean } = {}) 
 
         <div
           className={
-            isSSO
+            isSSO || embedded
               ? "min-h-screen flex flex-col"
               : `ml-0 pt-16 flex flex-col transition-all duration-300 ${
                   sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
                 }`
           }
         >
-          {!isSSO && <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />}
-          {!isSSO && (
+          {!isSSO && !embedded && <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />}
+          {!isSSO && !embedded && (
             <div className="relative bg-white border-b border-slate-200">
               <div className={`relative py-3 ${sidebarCollapsed ? "px-3 sm:px-4" : "px-4 sm:px-6"}`}>
                 <div className="flex items-center justify-between gap-4">
