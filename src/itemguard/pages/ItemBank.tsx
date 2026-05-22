@@ -333,7 +333,7 @@ export default function ItemBank() {
           </div>
         </div>
         <DialogFooter className="px-6 py-4 border-t border-slate-200 bg-slate-50/60">
-          <Button variant="outline" size="sm" onClick={() => setImportOpen(false)}>Cancel</Button>
+          <Button variant="outline" size="sm" onClick={() => { setImportOpen(false); setImportFolderName(''); setImportFile(null); }}>Cancel</Button>
           <Button size="sm" onClick={handleImport}>
             <FileDown className="w-3.5 h-3.5 mr-1.5" />Import
           </Button>
