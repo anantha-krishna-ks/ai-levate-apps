@@ -19,6 +19,7 @@ import { SuperAdminSidebar } from "@/components/SuperAdminSidebar";
 import { ProfileDropdown } from "@/components/ProfileDropdown";
 import { AppHeader } from "@/components/AppHeader";
 import BackToTop from "@/components/BackToTop";
+import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
 import { API_ENDPOINTS } from "../config";
 import config from "../config";
 import { getKbAuthToken } from "../lib/kb-auth";
@@ -28,6 +29,7 @@ import { jwtVerify } from "jose";
 
 const ManageKnowledgeBase = () => {
   const navigate = useNavigate();
+  const sidebarCollapsed = useSidebarCollapsed();
   
   // Ref to prevent duplicate API calls in React Strict Mode
   const customersFetchedRef = useRef(false);
@@ -1652,7 +1654,11 @@ const ManageKnowledgeBase = () => {
       <div className="min-h-screen bg-gray-50">
         {/* Desktop Sidebar */}
         {!isSSO && (
-          <div className="fixed left-0 top-16 bottom-0 w-52 z-50 hidden lg:block">
+          <div
+            className={`fixed left-0 top-16 bottom-0 z-50 hidden lg:block transition-all duration-300 ${
+              sidebarCollapsed ? "w-16" : "w-52"
+            }`}
+          >
             {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
           </div>
         )}
@@ -1666,7 +1672,15 @@ const ManageKnowledgeBase = () => {
           </Sheet>
         )}
 
-        <div className={isSSO ? "min-h-screen flex flex-col" : "ml-0 lg:ml-52 pt-16 flex flex-col"}>
+        <div
+          className={
+            isSSO
+              ? "min-h-screen flex flex-col"
+              : `ml-0 pt-16 flex flex-col transition-all duration-300 ${
+                  sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
+                }`
+          }
+        >
           {!isSSO && <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />}
           {!isSSO && (
             <div className="relative bg-white border-b border-slate-200">
