@@ -69,8 +69,8 @@ export default function ItemDetail() {
       </div>
 
       {/* Row 1: Question Stem + Qualification Metadata */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+        <div className="lg:col-span-3 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-center gap-2 mb-4">
             <div className="h-8 w-8 rounded-lg bg-blue-50 flex items-center justify-center">
               <BookOpen className="h-4 w-4 text-blue-600" />
@@ -110,7 +110,7 @@ export default function ItemDetail() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-center gap-2.5 px-4 sm:px-5 py-4 border-b border-slate-100">
             <div className="h-9 w-9 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
               <ClipboardList className="h-4 w-4 text-blue-600" />
