@@ -23,6 +23,7 @@ import { getKbAuthToken } from "@/lib/kb-auth";
 
 const KnowledgeBase = () => {
   const navigate = useNavigate();
+  const sidebarCollapsed = useSidebarCollapsed();
   
   // Ref to prevent duplicate API calls in React Strict Mode
   const customersFetchedRef = useRef(false);
