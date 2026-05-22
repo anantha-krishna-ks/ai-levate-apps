@@ -299,6 +299,18 @@ export default function ItemBank() {
               />
             </label>
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="import-folder-name" className="text-xs font-semibold text-slate-700 uppercase tracking-wide">
+              Folder Name <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id="import-folder-name"
+              placeholder="Enter a name for this import folder"
+              value={importFolderName}
+              onChange={e => setImportFolderName(e.target.value)}
+              className="bg-white border-slate-300 focus-visible:ring-blue-500"
+            />
+          </div>
           <div className="rounded-lg bg-blue-50/60 border border-blue-100 p-4">
             <div className="mb-3">
               <p className="text-sm font-semibold text-slate-900">Need a starting point?</p>
