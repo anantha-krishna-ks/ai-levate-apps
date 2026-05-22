@@ -143,7 +143,7 @@ export default function AnalysisRuns() {
           <SetupSection
             step={2}
             title="Select References"
-            description="Pick the Guidelines, Rules and Qualification Specs to run the analysis against. Select at least one."
+            description="Pick the Guidelines, Rules and Knowledge base to run the analysis against. Select at least one."
           >
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <RefColumn
@@ -180,7 +180,7 @@ export default function AnalysisRuns() {
 
               <RefColumn
                 icon={<ScrollText className="w-4 h-4" />}
-                title="Qualification Specs"
+                title="Knowledge base"
                 count={selectedSpecs.length}
               >
                 {specs.map(d => (
