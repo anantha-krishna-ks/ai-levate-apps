@@ -2,9 +2,9 @@ import type { ReactNode } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
-import { mockRuns, mockItems, mockRules, mockDocuments } from '../lib/mockData';
+import { mockRuns, mockItems, mockDocuments } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
-import { PlayCircle, RotateCcw, Eye, Download, User, Calendar, Layers, FileText, Folder, BookOpen, ScrollText, ShieldCheck, ArrowLeft, Check } from 'lucide-react';
+import { PlayCircle, RotateCcw, Eye, Download, User, Calendar, Layers, FileText, Folder, BookOpen, ScrollText, ArrowLeft, Check } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import type { AnalysisRun } from '../lib/types';
 import { toast } from '@/hooks/use-toast';
@@ -25,7 +25,6 @@ export default function AnalysisRuns() {
   const [mode, setMode] = useState<'list' | 'setup'>('list');
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
   const [selectedGuidelines, setSelectedGuidelines] = useState<string[]>([]);
-  const [selectedRules, setSelectedRules] = useState<string[]>([]);
   const [selectedSpecs, setSelectedSpecs] = useState<string[]>([]);
 
   const runs = useMemo<AnalysisRun[]>(() => {
@@ -81,14 +80,13 @@ export default function AnalysisRuns() {
     setter(list.includes(id) ? list.filter(x => x !== id) : [...list, id]);
   };
 
-  const canRun = !!selectedFolder && (selectedGuidelines.length + selectedRules.length + selectedSpecs.length > 0);
+  const canRun = !!selectedFolder && (selectedGuidelines.length + selectedSpecs.length > 0);
 
   const startAnalysis = () => {
     toast({ title: 'Analysis started', description: `Running analysis on "${selectedFolder}".` });
     setMode('list');
     setSelectedFolder(null);
     setSelectedGuidelines([]);
-    setSelectedRules([]);
     setSelectedSpecs([]);
   };
 
@@ -143,9 +141,9 @@ export default function AnalysisRuns() {
           <SetupSection
             step={2}
             title="Select References"
-            description="Pick the Guidelines, Rules and Knowledge base to run the analysis against. Select at least one."
+            description="Pick the Guidelines and Knowledge base to run the analysis against. Select at least one."
           >
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <RefColumn
                 icon={<BookOpen className="w-4 h-4" />}
                 title="Guidelines"
@@ -158,22 +156,6 @@ export default function AnalysisRuns() {
                     onChange={() => toggle(d.document_id, selectedGuidelines, setSelectedGuidelines)}
                     title={d.title}
                     meta={`v${d.version}`}
-                  />
-                ))}
-              </RefColumn>
-
-              <RefColumn
-                icon={<ShieldCheck className="w-4 h-4" />}
-                title="Rules"
-                count={selectedRules.length}
-              >
-                {mockRules.map(r => (
-                  <CheckRow
-                    key={r.rule_id}
-                    checked={selectedRules.includes(r.rule_id)}
-                    onChange={() => toggle(r.rule_id, selectedRules, setSelectedRules)}
-                    title={r.rule_name}
-                    meta={r.category}
                   />
                 ))}
               </RefColumn>
