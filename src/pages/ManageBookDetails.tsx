@@ -4156,13 +4156,16 @@ const KnowledgeBase = () => {
                   {/* Existing List View */}
                   {!isSSO && (
                   <div className="grid grid-cols-1 gap-4">
-                    <Card className="border-2 border-blue-100 bg-blue-600">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Search className="h-5 w-5" />
                           </div>
-                          <h2 className="text-xl font-semibold text-blue-800">Apps Details</h2>
+                          <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
+                            <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                            Apps Details
+                          </h2>
                         </div>
 
                         <div className="relative app-dropdown-container">
@@ -4172,19 +4175,19 @@ const KnowledgeBase = () => {
                             value={appSearchQuery}
                             onClick={handleAppInputFocus}
                             placeholder={appsLoading ? "Loading..." : (appSearchQuery || "Select App")}
-                            className="w-full pl-2 bg-white border-blue-200 focus:border-purple-400 focus:ring-purple-400/20 cursor-pointer"
+                            className="w-full pl-2 bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer"
                             disabled={appsLoading || !selectedCustomerCode || selectedCustomerCode === '_ALL' || (!selectedOrganization && !organizationLocked && !appSearchQuery)}
                             readOnly
                           />
-                                                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400" />
+                                                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                                                     </div>
 
                                                     {showAppDropdown && !appsLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && selectedOrganization && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-blue-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
                               {(appsOptions || []).map((app: any) => (
                                 <div
                                   key={app.value}
-                                  className="px-3 py-2 cursor-pointer hover:bg-blue-50 border-b border-blue-100 last:border-b-0"
+                                  className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
                                   onClick={() => handleAppSelect(app.value, app.label)}
                                 >
                                   <div className="cursor-pointer">{app.label}</div>
