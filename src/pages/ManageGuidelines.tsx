@@ -1474,9 +1474,9 @@ const ManageGuidelines = () => {
 
                   {/* Creation of Guideline dropdown (only when opened via Guidelines icon, not from Create New Guideline) */}
                   {selectedKBForGuidelines?.id !== 0 && (
-                    <Card className="border-2 border-indigo-100 bg-indigo-50">
+                    <Card className="border-2 border-blue-100 bg-blue-50">
                       <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-indigo-900">Creation of Guideline</h3>
+                        <h3 className="text-lg font-semibold text-blue-700">Creation of Guideline</h3>
                         <Select
                           value={guidelineCreationType}
                           onValueChange={(value) => {
@@ -1489,7 +1489,7 @@ const ManageGuidelines = () => {
                             }
                           }}
                         >
-                          <SelectTrigger className="bg-white border-indigo-200 focus:border-indigo-400 focus:ring-indigo-400/20">
+                          <SelectTrigger className="bg-white border-blue-100 focus:border-indigo-400 focus:ring-indigo-400/20">
                             <SelectValue placeholder="Select creation type" />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">

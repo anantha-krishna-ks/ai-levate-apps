@@ -3005,15 +3005,15 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
                     {/* Apps Details Card */}
-                    <Card className="border-2 border-indigo-100 bg-indigo-50 flex-1">
+                    <Card className="border-2 border-blue-100 bg-blue-50 flex-1">
                       <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-indigo-900">Apps Details</h3>
+                        <h3 className="text-lg font-semibold text-blue-700">Apps Details</h3>
                         <Select
                           value={selectedApp ?? ''}
                           onValueChange={setSelectedApp}
                           disabled
                         >
-                          <SelectTrigger className="bg-white border-indigo-200 focus:border-indigo-400 focus:ring-indigo-400/20">
+                          <SelectTrigger className="bg-white border-blue-100 focus:border-indigo-400 focus:ring-indigo-400/20">
                             <SelectValue placeholder={appsLoading ? "Loading apps..." : (!selectedOrganization ? "Select an organization first" : "Select an app")} />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -3023,7 +3023,7 @@ const KnowledgeBase = () => {
                           </SelectContent>
                         </Select>
                         {appsLoading && (
-                          <p className="text-sm text-indigo-600 mt-1">Loading apps...</p>
+                          <p className="text-sm text-blue-700 mt-1">Loading apps...</p>
                         )}
                       </CardContent>
                     </Card>
@@ -3305,14 +3305,14 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
                     {/* Apps Details Card */}
-                    <Card className="border-2 border-indigo-100 bg-indigo-50 flex-1">
+                    <Card className="border-2 border-blue-100 bg-blue-50 flex-1">
                       <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-indigo-900">Selected App </h3>
+                        <h3 className="text-lg font-semibold text-blue-700">Selected App </h3>
                           {isSSO ? (
                             <Input
                               value="Advanced Item Generator"
                               disabled
-                              className="bg-white border-indigo-200 focus:border-indigo-400 focus:ring-indigo-400/20"
+                              className="bg-white border-blue-100 focus:border-indigo-400 focus:ring-indigo-400/20"
                             />
                           ) : (
                             <Select
@@ -3321,7 +3321,7 @@ const KnowledgeBase = () => {
                               onOpenChange={() => {}}
                               disabled
                             >
-                              <SelectTrigger className="bg-white border-indigo-200 focus:border-indigo-400 focus:ring-indigo-400/20">
+                              <SelectTrigger className="bg-white border-blue-100 focus:border-indigo-400 focus:ring-indigo-400/20">
                                 <SelectValue placeholder={appsLoading ? "Loading apps..." : (!selectedOrganization ? "Select an organization first" : "Select an app")}>
                                   {selectedApp && appsOptions.find(app => app.value === selectedApp)?.label}
                                 </SelectValue>
@@ -3334,7 +3334,7 @@ const KnowledgeBase = () => {
                             </Select>
                           )}
                         {appsLoading && (
-                          <p className="text-sm text-indigo-600 mt-1">Loading apps...</p>
+                          <p className="text-sm text-blue-700 mt-1">Loading apps...</p>
                         )}
                     </CardContent>
                   </Card>
