@@ -2060,25 +2060,19 @@ const ManageGuidelines = () => {
                               </TableHeader>
                               <TableBody>
                                 {filteredGuidelines.map((guideline, idx) => (
-                                  <TableRow key={guideline.guidelineid || idx} className="hover:bg-blue-50/50 transition-colors border-b border-gray-200 last:border-b-0">
-                                    <TableCell className="text-gray-700 py-4 px-4 border-r border-gray-200 align-top">
-                                      <div className="break-words max-w-xs">
-                                        {guideline.guidelinename || ""}
-                                      </div>
+                                  <TableRow key={guideline.guidelineid || idx} className="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0">
+                                    <TableCell className="font-medium text-gray-900 py-4 truncate">{guideline.guidelinename || ""}</TableCell>
+                                    <TableCell className="text-gray-700 py-4 truncate">
+                                      {guideline.guidelinetype ? (
+                                        <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium whitespace-nowrap">
+                                          {guideline.guidelinetype}
+                                        </span>
+                                      ) : (
+                                        <span className="text-gray-500">—</span>
+                                      )}
                                     </TableCell>
-                                    <TableCell className="text-gray-700 py-4 px-4 border-r border-gray-200 align-top">
-                                      <div className="break-words max-w-xs">
-                                        {guideline.guidelinetype ? (
-                                          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                                            {guideline.guidelinetype}
-                                          </span>
-                                        ) : (
-                                          <span className="text-gray-500">—</span>
-                                        )}
-                                      </div>
-                                    </TableCell>
-                                    <TableCell className="py-4 px-4">
-                                      <div className="flex items-center gap-1">
+                                    <TableCell className="py-4">
+                                      <div className="flex items-center justify-end gap-1">
                                         <Button
                                           variant="ghost"
                                           size="icon"
