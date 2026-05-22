@@ -368,15 +368,9 @@ export default function ItemBank() {
           subtitle={!itemsLoaded ? undefined : (view === 'folders' ? `${folders.length} folders · ${mockItems.length} items total` : `${mockItems.length} items across ${folders.length} folders`)}
           actions={
             <div className="flex gap-2">
-              {view === 'folders' ? (
-                <Button size="sm" onClick={() => setNewFolderOpen(true)}>
-                  <FolderPlus className="w-3.5 h-3.5 mr-1.5" />New Folder
-                </Button>
-              ) : (
-                <Button size="sm" onClick={() => setImportOpen(true)}>
-                  <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
-                </Button>
-              )}
+              <Button size="sm" onClick={() => setImportOpen(true)}>
+                <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
+              </Button>
             </div>
           }
         />
