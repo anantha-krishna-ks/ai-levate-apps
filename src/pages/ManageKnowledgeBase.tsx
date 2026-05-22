@@ -1652,7 +1652,7 @@ const ManageKnowledgeBase = () => {
       <div className="min-h-screen bg-gray-50">
         {/* Desktop Sidebar */}
         {!isSSO && (
-          <div className="fixed left-0 top-16 bottom-0 w-52 z-40 hidden lg:block border-r border-border bg-card overflow-y-auto">
+          <div className="fixed left-0 top-16 bottom-0 w-52 z-50 hidden lg:block">
             {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
           </div>
         )}
