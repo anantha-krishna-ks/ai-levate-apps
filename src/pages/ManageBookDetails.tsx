@@ -3031,7 +3031,7 @@ const KnowledgeBase = () => {
 
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
@@ -3051,7 +3051,7 @@ const KnowledgeBase = () => {
                           </div>
                         )}
                         {!agentConfigLoading && (
-                          <div className="bg-white rounded-lg border-2 border-blue-200 overflow-hidden">
+                          <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                             <div className="overflow-x-auto">
                               <Table>
                                 <TableHeader>
@@ -3152,7 +3152,7 @@ const KnowledgeBase = () => {
                       return (
                         <>
                           {/* Select Book Card - Full Width */}
-                          <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                          <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                             <CardContent className="p-6 space-y-3">
                               <h3 className="text-lg font-semibold text-blue-900">Selected Book</h3>
                               <Input value={ssoBookName} readOnly disabled={true} />
@@ -3164,7 +3164,7 @@ const KnowledgeBase = () => {
                     return (
                       <>
                   {/* Select Book Card - Full Width */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-3">
                       <h3 className="text-lg font-semibold text-blue-900">Selected Book</h3>
                       <Popover
@@ -3342,7 +3342,7 @@ const KnowledgeBase = () => {
 
                   {/* Upload Section Card (Cover Image Upload like Edit Book Details) - Only show for Edit Study LO */}
                   {editingBookDetails && (
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
@@ -3379,7 +3379,7 @@ const KnowledgeBase = () => {
                             </div>
 
                             {editCoverImage && (
-                              <div className="bg-white border border-slate-200 rounded-lg p-4">
+                              <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
                                 <p className="text-sm font-medium text-gray-900 mb-2">New uploaded image:</p>
                                 <div className="flex items-center justify-between bg-slate-50 px-3 py-2 rounded">
                                   <div className="flex items-center gap-2 min-w-0 flex-1">
@@ -3408,7 +3408,7 @@ const KnowledgeBase = () => {
                   )}
                   {/* Existing Cover Image Card - Only show for Edit Study LO */}
                   {editingBookDetails && existingBookImage && !existingImageDeleted && (
-                    <Card className="border-2 border-gray-100 bg-white">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                       <CardContent className="p-6">
                         <div className="mb-2 font-semibold text-gray-800">Existing Cover Image (stored)</div>
                         <div className="flex flex-col items-start gap-2">
@@ -3450,7 +3450,7 @@ const KnowledgeBase = () => {
                   )}
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
@@ -3470,7 +3470,7 @@ const KnowledgeBase = () => {
                           </div>
                         )}
                         {!agentConfigLoading && (
-                          <div className="bg-white rounded-lg border-2 border-blue-200 overflow-hidden">
+                          <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                             <div className="overflow-x-auto">
                               <Table>
                                 <TableHeader>
@@ -3566,7 +3566,7 @@ const KnowledgeBase = () => {
                     </Card>
                   )}
                   {/* Chapter & LO Details Card */}
-                  <Card className="border-2 border-green-100 bg-green-50">
+                  <Card className="border-2 border-green-100 bg-green-50 rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-3">
@@ -3604,7 +3604,7 @@ const KnowledgeBase = () => {
                         </div>
                       )}
                       {!chapterLOLoading && !chapterLOError && chapterLODetails.length > 0 && (
-                        <div className="bg-white rounded-lg border-2 border-blue-200 overflow-hidden">
+                        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                           <div className="overflow-x-auto">
                             <Table>
                               <TableHeader>
@@ -3792,7 +3792,7 @@ const KnowledgeBase = () => {
                     </CardContent>
                   </Card>
                   {/* Upload Study LO Documents Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-3">
                       <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Upload Study LO Documents</h3>
                       <div className={`bg-white border-2 border-dashed rounded-lg p-12 text-center space-y-4 transition-colors cursor-pointer ${isDraggingStudyLO
@@ -3820,7 +3820,7 @@ const KnowledgeBase = () => {
                         </div>
                       </div>
                       {studyLODocuments.length > 0 && (
-                        <div className="bg-white border border-slate-200 rounded-lg p-4">
+                        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <FileText className="h-8 w-8 text-slate-700" />
@@ -3847,7 +3847,7 @@ const KnowledgeBase = () => {
                   </Card>
                   {/* Preview Section */}
                   {studyLOPreview.length > 0 && (
-                    <Card className="border-2 border-orange-100 bg-orange-50">
+                    <Card className="border-2 border-orange-100 bg-orange-50 rounded-2xl shadow-sm">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-orange-600 text-white rounded-lg">
@@ -3890,7 +3890,7 @@ const KnowledgeBase = () => {
                     </Card>
                   )}
                   {/* Action Buttons Card */}
-                  <Card className="border-2 border-gray-200 bg-white">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6">
                       <div className="flex justify-end gap-2">
                         {!(isSSO && sessionStorage.getItem('loginType') === '4') && (
@@ -3939,7 +3939,7 @@ const KnowledgeBase = () => {
                  
                   {/* Organization and Apps Selection - Hidden for SSO */}
                   {!isSSO && (
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-2">
                           <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Organization and Apps</h3>
@@ -3988,7 +3988,7 @@ const KnowledgeBase = () => {
                   )}
 
                   {/* Basic Information Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
@@ -4037,7 +4037,7 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Upload Section Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
@@ -4074,7 +4074,7 @@ const KnowledgeBase = () => {
                             </div>
 
                             {coverImage && (
-                              <div className="bg-white border border-slate-200 rounded-lg p-4">
+                              <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
                                 <p className="text-sm font-medium text-gray-900 mb-2">Uploaded image:</p>
                                 <div className="flex items-center justify-between bg-slate-50 px-3 py-2 rounded">
                                   <div className="flex items-center gap-2 min-w-0 flex-1">
@@ -4103,7 +4103,7 @@ const KnowledgeBase = () => {
 
 
                   {/* Action Buttons Card */}
-                  <Card className="border-2 border-gray-200 bg-white">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6">
                       <div className="flex justify-end gap-3">
                         {!(isSSO && sessionStorage.getItem('loginType') === '4') && (
@@ -4138,7 +4138,7 @@ const KnowledgeBase = () => {
                   {/* Existing List View */}
                   {!isSSO && (
                   <div className="grid grid-cols-1 gap-4">
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
@@ -4184,7 +4184,7 @@ const KnowledgeBase = () => {
                   {/* Customer / Organization pickers removed */}
 
                   {/* Books Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
@@ -4216,7 +4216,7 @@ const KnowledgeBase = () => {
                       </div>
 
                       {/* Table */}
-                      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden min-h-[150px]">
+                      <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden min-h-[150px]">
                         {booksLoading ? (
                           <div className="p-6 text-center text-blue-700 text-sm">Loading books...</div>
                         ) : booksError ? (

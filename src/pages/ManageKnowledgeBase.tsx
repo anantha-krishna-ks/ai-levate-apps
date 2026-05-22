@@ -1855,7 +1855,7 @@ const ManageKnowledgeBase = () => {
                   <div className="grid grid-cols-2 gap-4">
                     {/* Organization and Apps Selection */}
                     {!isSSO && (
-                      <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                      <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                         <CardContent className="p-6 space-y-4">
                           <div className="flex items-center gap-3 mb-2">
                             <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
@@ -1886,7 +1886,7 @@ const ManageKnowledgeBase = () => {
                       </Card>
                     )}
                     {/* Basic Information Card */}
-                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
                           <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
@@ -1958,7 +1958,7 @@ const ManageKnowledgeBase = () => {
                   </div>
 
                   {/* Upload Section Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
                         <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
@@ -2037,7 +2037,7 @@ const ManageKnowledgeBase = () => {
 
 
                   {/* Action Buttons Card */}
-                  <Card className="border-2 border-gray-200 bg-white">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6">
                       <div className="flex justify-end gap-3">
                         <Button
@@ -2071,7 +2071,7 @@ const ManageKnowledgeBase = () => {
                   {/* Customer / Organization pickers removed */}
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
