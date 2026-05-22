@@ -165,12 +165,15 @@ export default function ItemBank() {
       return;
     }
     setCustomFolders(prev => [...prev, folder]);
-    toast({ title: 'Items imported', description: `${importFile.name} imported into "${folder}".` });
+    toast({ title: 'Folder imported', description: `${importFile.name} imported into "${folder}".` });
     setImportFile(null);
     setImportFileName('');
     setImportFolderName('');
     setImportOpen(false);
     setItemsLoaded(true);
+    setView('folders');
+    setHighlightFolder(folder);
+    setTimeout(() => setHighlightFolder(null), 3200);
   };
 
   const toggleSelectItem = (id: string) => {
@@ -264,9 +267,9 @@ export default function ItemBank() {
               </div>
             </div>
             <div className="text-left">
-              <DialogTitle className="text-base font-semibold text-slate-900">Import Items</DialogTitle>
+              <DialogTitle className="text-base font-semibold text-slate-900">Import Folder</DialogTitle>
               <DialogDescription className="text-xs text-slate-500 mt-0.5">
-                Upload a QTI package or Word template to bring items into the Item Bank.
+                Upload a file and name the folder to add it to your Item Bank.
               </DialogDescription>
             </div>
           </div>
