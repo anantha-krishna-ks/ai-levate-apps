@@ -20,10 +20,75 @@ export default function DuplicatesReview() {
   return (
     <div className="animate-fade-in">
       <PageHeader title="Duplicates Review" subtitle={`${filtered.length} duplicate pairs above ${threshold}% threshold`} />
-      <div className="flex items-center gap-4 mb-6">
-        <label className="text-sm text-muted-foreground">Similarity Threshold:</label>
-        <input type="range" min={50} max={100} value={threshold} onChange={e => setThreshold(Number(e.target.value))} className="w-48 accent-primary" />
-        <span className="text-sm font-semibold">{threshold}%</span>
+      <div className="mb-6 rounded-2xl border border-border bg-card p-5">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <div className="text-sm font-semibold text-foreground">Similarity Threshold</div>
+            <div className="text-xs text-muted-foreground mt-0.5">Show pairs at or above this match score</div>
+          </div>
+          <div className="flex items-baseline gap-1 rounded-full bg-primary/10 px-3 py-1.5">
+            <span className="text-2xl font-bold text-primary tabular-nums leading-none">{threshold}</span>
+            <span className="text-xs font-medium text-primary">%</span>
+          </div>
+        </div>
+        <div className="relative pt-2 pb-1">
+          {/* Track */}
+          <div className="relative h-2 rounded-full bg-muted overflow-hidden">
+            <div
+              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-primary/70 to-primary transition-all"
+              style={{ width: `${((threshold - 50) / 50) * 100}%` }}
+            />
+          </div>
+          {/* Native range overlay */}
+          <input
+            type="range"
+            min={50}
+            max={100}
+            value={threshold}
+            onChange={e => setThreshold(Number(e.target.value))}
+            className="absolute inset-x-0 top-1 w-full h-4 appearance-none bg-transparent cursor-pointer
+              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5
+              [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-background
+              [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-primary
+              [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:transition-transform
+              [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:active:scale-95
+              [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:rounded-full
+              [&::-moz-range-thumb]:bg-background [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-primary
+              [&::-moz-range-thumb]:shadow-md"
+          />
+          {/* Ticks */}
+          <div className="flex justify-between mt-3 px-0.5 text-[10px] font-medium text-muted-foreground tabular-nums">
+            {[50, 60, 70, 80, 90, 100].map(t => (
+              <button
+                key={t}
+                onClick={() => setThreshold(t)}
+                className={`transition-colors hover:text-primary ${threshold === t ? 'text-primary font-semibold' : ''}`}
+              >
+                {t}%
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="flex items-center gap-2 mt-4 pt-3 border-t border-border">
+          <span className="text-xs text-muted-foreground mr-1">Quick presets:</span>
+          {[
+            { label: 'Loose', value: 60 },
+            { label: 'Balanced', value: 75 },
+            { label: 'Strict', value: 90 },
+          ].map(p => (
+            <button
+              key={p.value}
+              onClick={() => setThreshold(p.value)}
+              className={`text-xs px-3 py-1 rounded-full border transition-all ${
+                threshold === p.value
+                  ? 'bg-primary text-primary-foreground border-primary'
+                  : 'border-border text-foreground hover:border-primary hover:text-primary'
+              }`}
+            >
+              {p.label} · {p.value}%
+            </button>
+          ))}
+        </div>
       </div>
       <div className="space-y-4">
         {filtered.map(pair => {
