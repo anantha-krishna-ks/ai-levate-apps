@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { mockRuns, mockItems, mockRules, mockDocuments } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
-import { PlayCircle, RotateCcw, Eye, Download, GitCompare, User, Calendar, Layers, FileText, Folder, BookOpen, ScrollText, ShieldCheck, ArrowLeft, Check } from 'lucide-react';
+import { PlayCircle, RotateCcw, Eye, Download, User, Calendar, Layers, FileText, Folder, BookOpen, ScrollText, ShieldCheck, ArrowLeft, Check } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import type { AnalysisRun } from '../lib/types';
 import { toast } from '@/hooks/use-toast';
@@ -261,9 +261,6 @@ export default function AnalysisRuns() {
                       </Button>
                       <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-500 hover:text-blue-600 hover:bg-blue-50" title="Download">
                         <Download className="w-3.5 h-3.5" />
-                      </Button>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-500 hover:text-blue-600 hover:bg-blue-50" title="Compare">
-                        <GitCompare className="w-3.5 h-3.5" />
                       </Button>
                     </>
                   )}
