@@ -27,7 +27,7 @@ import { PageLoader } from "@/components/ui/loader";
 import axios from "axios";
 import { jwtVerify } from "jose";
 
-const ManageKnowledgeBase = () => {
+const ManageKnowledgeBase = ({ embedded = false }: { embedded?: boolean } = {}) => {
   const navigate = useNavigate();
   const sidebarCollapsed = useSidebarCollapsed();
   
