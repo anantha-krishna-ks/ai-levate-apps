@@ -3037,7 +3037,7 @@ const KnowledgeBase = () => {
                           <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Bot className="h-5 w-5" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
+                          <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
@@ -3351,7 +3351,7 @@ const KnowledgeBase = () => {
                         <div className="p-2 bg-blue-600 text-white rounded-lg">
                           <FileText className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
+                        <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
                       </div>
 
                       <div className={`grid grid-cols-1 gap-6`}>
@@ -3462,7 +3462,7 @@ const KnowledgeBase = () => {
                           <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Bot className="h-5 w-5" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
+                          <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
@@ -3803,7 +3803,7 @@ const KnowledgeBase = () => {
                   {/* Upload Study LO Documents Card */}
                   <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-3">
-                      <h3 className="text-lg font-semibold text-gray-900">Upload Study LO Documents</h3>
+                      <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Upload Study LO Documents</h3>
                       <div className={`bg-white border-2 border-dashed rounded-lg p-12 text-center space-y-4 transition-colors cursor-pointer ${isDraggingStudyLO
                           ? 'border-blue-500 bg-blue-50'
                           : 'border-slate-200 hover:border-slate-200'
@@ -3954,7 +3954,7 @@ const KnowledgeBase = () => {
                           <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Library className="h-5 w-5" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-900">Organization and Apps</h3>
+                          <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Organization and Apps</h3>
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -4006,7 +4006,7 @@ const KnowledgeBase = () => {
                         <div className="p-2 bg-blue-600 text-white rounded-lg">
                           <FileText className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
+                        <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
                       </div>
 
                       <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
@@ -4058,7 +4058,7 @@ const KnowledgeBase = () => {
                         <div className="p-2 bg-blue-600 text-white rounded-lg">
                           <FileText className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
+                        <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
                       </div>
 
                       <div className={`grid grid-cols-1 gap-6`}>
@@ -4505,7 +4505,7 @@ const KnowledgeBase = () => {
                 <div className="p-2 bg-green-600 text-white rounded-lg">
                   <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">Success</h3>
+                <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Success</h3>
               </div>
               <p className="text-gray-700 mb-5">{successDialogMessage}</p>
               <div className="flex justify-end gap-3">
