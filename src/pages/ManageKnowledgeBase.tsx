@@ -17,6 +17,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { AppSidebar } from "@/components/AppSidebar";
 import { SuperAdminSidebar } from "@/components/SuperAdminSidebar";
 import { ProfileDropdown } from "@/components/ProfileDropdown";
+import { AppHeader } from "@/components/AppHeader";
 import BackToTop from "@/components/BackToTop";
 import { API_ENDPOINTS } from "../config";
 import config from "../config";
@@ -1665,71 +1666,30 @@ const ManageKnowledgeBase = () => {
           </Sheet>
         )}
 
-        <div className={isSSO ? "min-h-screen flex flex-col" : "ml-0 lg:ml-52 flex flex-col"}>
-          {/* Page Title Section */}
-          {!isSSO && (
-            <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
-              <div className="flex items-center justify-between gap-3 flex-wrap">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  {(isCreating || isViewingGuidelines || isChatMode) && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      title="back to page"
-                      onClick={handleBackNavigation}
-                      className="flex-shrink-0">
-                      <ArrowLeft className="w-5 h-5" />
-                    </Button>
-                  )}
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                  </div>
-                  <div className="flex flex-col">
-                    <h2 className="text-base sm:text-lg font-semibold text-gray-900">
-                      {isCreating
-                        ? "Create New Knowledge Base"
-                        : isViewingGuidelines
-                          ? "Guideline Data"
-                          : isChatMode && chatKbDetails?.knowladgebasename
-                            ? `Chat With Knowledge Base`
-                            : isChatMode && selectedKBForChat?.bookName
-                              ? `Knowledge Base: ${selectedKBForChat.bookName}`
-                              : "Manage Knowledge Base"}
-                    </h2>
-                    {isChatMode && selectedKBForChat && ( 
-                      <p className="text-sm text-gray-600">
-                        Knowledge Base: {chatKbDetails.knowladgebasename}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div className="flex h-16 items-center justify-between px-3 sm:px-6 gap-2 sm:gap-4">
-                <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
-                  {/* Mobile Menu Button - Hide if isSSO */}
-                  {!isSSO && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="lg:hidden flex-shrink-0"
-                      onClick={() => setMobileMenuOpen(true)}
-                    >
-                      <Menu className="h-5 w-5" />
-                    </Button>
-                  )}
-                </div>
-
-                <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 ">
-                  <div className="hidden sm:flex items-center gap-2">
-                    <div className="w-4 h-4 bg-blue-600 rounded flex items-center justify-center">
-                      <span className="text-white text-xs">✦</span>
-                    </div>
-                    <span className="text-xs sm:text-sm text-blue-600 font-medium whitespace-nowrap">4,651</span>
-                  </div>
-
-                  <ProfileDropdown />
-                </div>
-              </div>
-              </div>
+        <div className={isSSO ? "min-h-screen flex flex-col" : "ml-0 lg:ml-52 pt-16 flex flex-col"}>
+          {!isSSO && <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />}
+          {!isSSO && (isCreating || isViewingGuidelines || isChatMode) && (
+            <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-2 flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                title="back to page"
+                onClick={handleBackNavigation}
+                className="flex-shrink-0"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+              <span className="text-sm font-medium text-gray-700">
+                {isCreating
+                  ? "Create New Knowledge Base"
+                  : isViewingGuidelines
+                    ? "Guideline Data"
+                    : isChatMode && chatKbDetails?.knowladgebasename
+                      ? `Chat With Knowledge Base`
+                      : isChatMode && selectedKBForChat?.bookName
+                        ? `Knowledge Base: ${selectedKBForChat.bookName}`
+                        : ""}
+              </span>
             </div>
           )}
 
