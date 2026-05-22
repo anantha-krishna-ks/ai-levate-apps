@@ -467,6 +467,10 @@ export default function ItemBank() {
               <p className="text-sm text-slate-500 mt-1 max-w-sm">
                 Your Item Bank is empty. Import a folder set to start curating, analyzing, and grouping items.
               </p>
+              <Button size="sm" onClick={() => setImportOpen(true)} className="rounded-full mt-5">
+                <FolderInput className="w-4 h-4 mr-1.5" />
+                Import Item Set Folder
+              </Button>
             </div>
           ) : (
           <div className="animate-fade-in">
