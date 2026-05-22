@@ -2975,7 +2975,7 @@ const KnowledgeBase = () => {
                   {/* Organization and Apps Details - Same Row (for Tag Agents) */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     {/* Select Organization Card */}
-                    <Card className="border-2 border-blue-100 bg-blue-50 flex-1">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
                       <CardContent className="p-6 space-y-3">
                         <h3 className="text-lg font-semibold text-blue-900">Select Organization</h3>
                         <Select
@@ -3005,7 +3005,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
                     {/* Apps Details Card */}
-                    <Card className="border-2 border-blue-100 bg-blue-50 flex-1">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
                       <CardContent className="p-6 space-y-3">
                         <h3 className="text-lg font-semibold text-blue-700">Apps Details</h3>
                         <Select
@@ -3031,13 +3031,13 @@ const KnowledgeBase = () => {
 
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border-2 border-blue-100 bg-blue-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Bot className="h-5 w-5" />
                           </div>
-                          <h3 className="text-lg font-semibold text-blue-800">Agent Configuration</h3>
+                          <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
@@ -3155,7 +3155,7 @@ const KnowledgeBase = () => {
                       return (
                         <>
                           {/* Select Book Card - Full Width */}
-                          <Card className="border-2 border-blue-100 bg-blue-50">
+                          <Card className="border border-gray-200/70 bg-white rounded-2xl">
                             <CardContent className="p-6 space-y-3">
                               <h3 className="text-lg font-semibold text-blue-900">Selected Book</h3>
                               <Input value={ssoBookName} readOnly disabled={true} />
@@ -3167,7 +3167,7 @@ const KnowledgeBase = () => {
                     return (
                       <>
                   {/* Select Book Card - Full Width */}
-                  <Card className="border-2 border-blue-100 bg-blue-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-3">
                       <h3 className="text-lg font-semibold text-blue-900">Selected Book</h3>
                       <Popover
@@ -3211,7 +3211,7 @@ const KnowledgeBase = () => {
                                   setStudyLoBookSearch("");
                           }
                               }}
-                              className="w-full pr-10 bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20"
+                              className="w-full pr-10 bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
                             />
                             <button
                               type="button"
@@ -3274,7 +3274,7 @@ const KnowledgeBase = () => {
                   {/* Organization and Apps Details - Same Row */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     {/* Select Organization Card */}
-                    <Card className="border-2 border-blue-100 bg-blue-50 flex-1">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
                       <CardContent className="p-6 space-y-3">
                         <h3 className="text-lg font-semibold text-blue-900">Selected Organization</h3>
                         <Select
@@ -3305,7 +3305,7 @@ const KnowledgeBase = () => {
                       </CardContent>
                     </Card>
                     {/* Apps Details Card */}
-                    <Card className="border-2 border-blue-100 bg-blue-50 flex-1">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl flex-1">
                       <CardContent className="p-6 space-y-3">
                         <h3 className="text-lg font-semibold text-blue-700">Selected App </h3>
                           {isSSO ? (
@@ -3345,13 +3345,13 @@ const KnowledgeBase = () => {
 
                   {/* Upload Section Card (Cover Image Upload like Edit Book Details) - Only show for Edit Study LO */}
                   {editingBookDetails && (
-                  <Card className="border-2 border-slate-200 bg-slate-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="p-2 bg-blue-600 text-white rounded-lg">
                           <FileText className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-700">File Uploads</h3>
+                        <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
                       </div>
 
                       <div className={`grid grid-cols-1 gap-6`}>
@@ -3456,13 +3456,13 @@ const KnowledgeBase = () => {
                   )}
                   {/* Agent Configuration Card */}
                   {selectedOrganization && selectedApp && (
-                    <Card className="border-2 border-blue-100 bg-blue-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Bot className="h-5 w-5" />
                           </div>
-                          <h3 className="text-lg font-semibold text-blue-800">Agent Configuration</h3>
+                          <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
                           <div className="flex items-center justify-center py-8">
@@ -3801,9 +3801,9 @@ const KnowledgeBase = () => {
                     </CardContent>
                   </Card>
                   {/* Upload Study LO Documents Card */}
-                  <Card className="border-2 border-slate-200 bg-slate-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-3">
-                      <h3 className="text-lg font-semibold text-slate-700">Upload Study LO Documents</h3>
+                      <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Upload Study LO Documents</h3>
                       <div className={`bg-white border-2 border-dashed rounded-lg p-12 text-center space-y-4 transition-colors cursor-pointer ${isDraggingStudyLO
                           ? 'border-blue-500 bg-blue-50'
                           : 'border-slate-200 hover:border-slate-200'
@@ -3948,21 +3948,21 @@ const KnowledgeBase = () => {
                  
                   {/* Organization and Apps Selection - Hidden for SSO */}
                   {!isSSO && (
-                    <Card className="border-2 border-blue-100 bg-blue-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-2">
                           <div className="p-2 bg-blue-600 text-white rounded-lg">
                             <Library className="h-5 w-5" />
                           </div>
-                          <h3 className="text-lg font-semibold text-blue-800">Organization and Apps</h3>
+                          <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Organization and Apps</h3>
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                           {/* Organization Select */}
                           <div className="space-y-2">
-                            <label className="text-sm font-medium text-blue-900">Select Organization <span className="text-red-500">*</span></label>
+                            <label className="text-sm font-medium text-gray-700">Select Organization <span className="text-red-500">*</span></label>
                             <Select value={selectedOrganization ?? ''} onValueChange={(v) => setSelectedOrganization(v)} disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
-                              <SelectTrigger className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
+                              <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
                                 <SelectValue placeholder={organizationLoading ? "Loading organizations..." : "Select an organization"} />
                               </SelectTrigger>
                               <SelectContent className="bg-white z-50">
@@ -3975,14 +3975,14 @@ const KnowledgeBase = () => {
 
                           {/* Apps Select */}
                           <div className="space-y-2">
-                            <label className="text-sm font-medium text-blue-900">Apps Details <span className="text-red-500">*</span></label>
+                            <label className="text-sm font-medium text-gray-700">Apps Details <span className="text-red-500">*</span></label>
                             <Select
                               value={selectedApp ?? ''}
                               onValueChange={(v) => setSelectedApp(v)}
                               onOpenChange={() => {}}
                             >
                               <SelectTrigger
-                                className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed"
                                 disabled={appsLoading || !selectedOrganization}
                               >
                                 <SelectValue placeholder={appsLoading ? "Loading apps..." : (!selectedOrganization ? "Select an organization first" : "Select an app")} />
@@ -4000,24 +4000,24 @@ const KnowledgeBase = () => {
                   )}
 
                   {/* Basic Information Card */}
-                  <Card className="border-2 border-blue-100 bg-blue-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="p-2 bg-blue-600 text-white rounded-lg">
                           <FileText className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-semibold text-blue-800">Basic Information</h3>
+                        <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
                       </div>
 
                       <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-blue-900">
+                          <label className="text-sm font-medium text-gray-700">
                             Book Name <span className="text-red-500">*</span>
                           </label>
                               <Input
                                 id="book-name-input"
                                 placeholder="Enter Book name"
-                                className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed"
                                 value={bookName}
                                 disabled={!isSSO && !selectedApp}
                                 onChange={e => {
@@ -4052,13 +4052,13 @@ const KnowledgeBase = () => {
                   </Card>
 
                   {/* Upload Section Card */}
-                  <Card className="border-2 border-slate-200 bg-slate-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="p-2 bg-blue-600 text-white rounded-lg">
                           <FileText className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-700">File Uploads</h3>
+                        <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
                       </div>
 
                       <div className={`grid grid-cols-1 gap-6`}>
