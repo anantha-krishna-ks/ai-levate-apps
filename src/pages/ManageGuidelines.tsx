@@ -1439,7 +1439,7 @@ const ManageGuidelines = () => {
                 /* Guidelines View */
                 <>
                   {/* Knowledge Base Info */}
-                  {/* <Card className="border-2 border-blue-100 bg-blue-50">
+                  {/* <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                   <CardContent className="p-4">
                     <p className="text-sm text-gray-700">
                       <span className="font-semibold">Knowledgebase Name:</span> {selectedKBForGuidelines?.name}
@@ -1474,7 +1474,7 @@ const ManageGuidelines = () => {
 
                   {/* Creation of Guideline dropdown (only when opened via Guidelines icon, not from Create New Guideline) */}
                   {selectedKBForGuidelines?.id !== 0 && (
-                    <Card className="border-2 border-blue-100 bg-blue-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                       <CardContent className="p-6 space-y-3">
                         <h3 className="text-lg font-semibold text-blue-700">Creation of Guideline</h3>
                         <Select
@@ -1503,7 +1503,7 @@ const ManageGuidelines = () => {
 
                   {/* Existing Guidelines Selection Table */}
                   {selectedKBForGuidelines?.id !== 0 && guidelineCreationType === 'existing' && (
-                    <Card className="border-2 border-amber-100 bg-amber-50">
+                    <Card className="border-2 border-amber-100 bg-amber-50 rounded-2xl shadow-sm">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between gap-4">
                           <h3 className="text-lg font-semibold text-gray-900">Select General Guideline</h3>
@@ -1979,7 +1979,7 @@ const ManageGuidelines = () => {
                   {/* Customer / Organization pickers removed */}
 
                   {/* Guidelines Card */}
-                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
@@ -2027,7 +2027,7 @@ const ManageGuidelines = () => {
                       </div>
 
                       {/* Table */}
-                      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden min-h-[150px]">
+                      <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden min-h-[150px]">
                         {existingGuidelinesLoading ? (
                           <div className="p-6 text-center text-blue-700 text-sm">Loading guidelines...</div>
                         ) : guidelinesError ? (
