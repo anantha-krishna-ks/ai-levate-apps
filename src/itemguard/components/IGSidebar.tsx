@@ -22,7 +22,7 @@ const items = [
   { title: "Dashboard", url: BASE, icon: LayoutDashboard, end: true },
   { title: "Item Bank", url: `${BASE}/item-bank`, icon: Database },
   { title: "Knowledge base", url: `${BASE}/qualifications`, icon: GraduationCap },
-  { title: "Guidelines & Rules", url: `${BASE}/guidelines`, icon: BookOpen },
+  { title: "Guidelines", url: `${BASE}/guidelines`, icon: BookOpen },
   { title: "Analysis Runs", url: `${BASE}/analysis-runs`, icon: PlayCircle },
   { title: "Item Reports", url: `${BASE}/item-reports`, icon: FileText },
   { title: "Settings", url: `${BASE}/settings`, icon: Settings },
