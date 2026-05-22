@@ -254,7 +254,7 @@ export default function ItemBank() {
   };
 
   const importDialog = (
-    <Dialog open={importOpen} onOpenChange={setImportOpen}>
+    <Dialog open={importOpen} onOpenChange={(open) => { if (!open) { setImportFolderName(''); setImportFile(null); } setImportOpen(open); }}>
       <DialogContent className="sm:rounded-2xl sm:max-w-2xl p-0 overflow-hidden">
         <DialogHeader className="px-6 pt-6 pb-5 border-b border-slate-200 bg-slate-50/60">
           <div className="flex items-start gap-3">
