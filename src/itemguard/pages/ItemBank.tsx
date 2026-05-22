@@ -374,7 +374,7 @@ export default function ItemBank() {
           actions={
             <div className="flex gap-2">
               <Button size="sm" onClick={() => setImportOpen(true)}>
-                <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
+                <Plus className="w-3.5 h-3.5 mr-1.5" />Import Folder Set
               </Button>
             </div>
           }
