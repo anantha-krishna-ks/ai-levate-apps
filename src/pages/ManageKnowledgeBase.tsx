@@ -1816,22 +1816,22 @@ const ManageKnowledgeBase = () => {
                   <div className="grid grid-cols-2 gap-4">
                     {/* Organization and Apps Selection */}
                     {!isSSO && (
-                      <Card className="border-2 grid-cols-2 border-blue-100 bg-blue-50">
+                      <Card className="border border-gray-200/70 bg-white rounded-2xl">
                         <CardContent className="p-6 space-y-4">
                           <div className="flex items-center gap-3 mb-2">
-                            <div className="p-2 bg-blue-600 text-white rounded-lg">
-                              <Library className="h-5 w-5" />
-                            </div>
-                            <h3 className="text-lg font-semibold text-blue-800">Organization</h3>
+                            <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                              <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                              Organization
+                            </h3>
                           </div>
 
                           <div className="grid grid-cols-1 gap-4">
                             {/* Organization Select */}
                            
                             <div className="space-y-2">
-                              <label className="text-sm font-medium text-blue-900">Select Organization <span className="text-red-500">*</span></label>
+                              <label className="text-sm font-medium text-gray-700">Select Organization <span className="text-red-500">*</span></label>
                               <Select value={selectedOrganization ?? ''} onValueChange={(v) => setSelectedOrganization(v)} disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
-                                <SelectTrigger className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
+                                <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
                                   <SelectValue placeholder={organizationLoading ? "Loading organizations..." : "Select an organization"} />
                                 </SelectTrigger>
                                 <SelectContent className="bg-white z-50">
@@ -1847,18 +1847,18 @@ const ManageKnowledgeBase = () => {
                       </Card>
                     )}
                     {/* Basic Information Card */}
-                    <Card className="border-2 border-blue-100 bg-blue-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <FileText className="h-5 w-5" />
-                          </div>
-                          <h3 className="text-lg font-semibold text-blue-800">Basic Information</h3>
+                          <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                            <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                            Basic Information
+                          </h3>
                         </div>
 
                         <div className="grid grid-cols-1 gap-4">
                           <div className="space-y-2">
-                            <label className="text-sm font-medium text-blue-900">
+                            <label className="text-sm font-medium text-gray-700">
                               {levelType === "book" ? "Knowledge Base Name" : "Study"} <span className="text-red-500">*</span>
                             </label>
                             {levelType === "book" ? (
@@ -1866,7 +1866,7 @@ const ManageKnowledgeBase = () => {
                                 <Input
                                   id="kb-name-input"
                                   placeholder="Enter knowledge base name"
-                                  className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20"
+                                  className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
                                   value={kbNameInput}
                                   onChange={e => {
                                     setKbNameInput(e.target.value);
@@ -1896,13 +1896,13 @@ const ManageKnowledgeBase = () => {
                                   ) : kbNameCheckStatus === "not_exists" ? (
                                     <span className="text-xs text-green-700">{kbNameCheckMsg}</span>
                                   ) : kbNameCheckStatus === "error" ? (
-                                    <span className="text-xs text-orange-600">{kbNameCheckMsg}</span>
+                                    <span className="text-xs text-gray-400">{kbNameCheckMsg}</span>
                                   ) : null}
                                 </div>
                               </>
                             ) : (
                               <Select disabled={!bookName || studyLovOptions.length === 0} value={studyLevel} onValueChange={setStudyLevel}>
-                                <SelectTrigger className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={!selectedOrganization || !bookName || studyLovLoading}>
+                                <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={!selectedOrganization || !bookName || studyLovLoading}>
                                   <SelectValue placeholder={studyLovLoading ? "Loading chapters..." : (studyLovOptions.length === 0 ? "No study to select" : "Select a study")} />
                                 </SelectTrigger>
                                 <SelectContent className="bg-white z-30 max-h-60 overflow-y-auto">
@@ -1919,24 +1919,24 @@ const ManageKnowledgeBase = () => {
                   </div>
 
                   {/* Upload Section Card */}
-                  <Card className="border-2 border-teal-100 bg-teal-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-teal-600 text-white rounded-lg">
-                          <FileText className="h-5 w-5" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-teal-800">File Uploads</h3>
+                        <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                          <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                          File Uploads
+                        </h3>
                       </div>
 
                       <div className="grid grid-cols-1 gap-6">
                         <div className="space-y-2 flex-1">
-                          <label className="text-sm font-medium text-teal-900">
+                          <label className="text-sm font-medium text-gray-700">
                             Document Upload <span className="text-red-500">*</span>
                           </label>
                           <label
                             className={`block bg-white border-2 border-dashed rounded-lg p-8 text-center space-y-3 transition-colors cursor-pointer h-[200px] flex flex-col items-center justify-center ${isDraggingDocument
                               ? 'border-blue-500 bg-blue-50'
-                              : 'border-teal-200 hover:border-teal-300'
+                              : 'border-gray-200 hover:border-gray-300'
                               }`}
                             onDragOver={handleDocumentDragOver}
                             onDragLeave={handleDocumentDragLeave}
@@ -1950,9 +1950,9 @@ const ManageKnowledgeBase = () => {
                               className="hidden"
                             />
                             <div className="flex justify-center">
-                              <div className={`p-3 rounded-lg transition-colors ${isDraggingDocument ? 'bg-blue-200' : 'bg-teal-100'
+                              <div className={`p-3 rounded-lg transition-colors ${isDraggingDocument ? 'bg-blue-200' : 'bg-blue-50'
                                 }`}>
-                                <FileText className={`h-8 w-8 transition-colors ${isDraggingDocument ? 'text-blue-600' : 'text-teal-600'
+                                <FileText className={`h-8 w-8 transition-colors ${isDraggingDocument ? 'text-blue-600' : 'text-blue-600'
                                   }`} />
                               </div>
                             </div>
@@ -1967,12 +1967,12 @@ const ManageKnowledgeBase = () => {
                           </label>
 
                           {documentFiles.length > 0 && (
-                            <div className="bg-white border border-teal-200 rounded-lg p-4 space-y-2">
+                            <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-2">
                               <p className="text-sm font-medium text-gray-900 mb-2">{documentFiles.length} file(s) uploaded:</p>
                               {documentFiles.map((file, index) => (
-                                <div key={index} className="flex items-center justify-between bg-teal-50 px-3 py-2 rounded">
+                                <div key={index} className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded">
                                   <div className="flex items-center gap-2 min-w-0 flex-1">
-                                    <FileText className="h-4 w-4 text-teal-600 flex-shrink-0" />
+                                    <FileText className="h-4 w-4 text-blue-600 flex-shrink-0" />
                                     <span className="text-sm text-gray-700 truncate">{file.name}</span>
                                     <span className="text-xs text-gray-500 flex-shrink-0">
                                       ({formatFileSize(file.size)})
@@ -1997,23 +1997,23 @@ const ManageKnowledgeBase = () => {
                   </Card>
 
                   {/* Processing Settings Card */}
-                  <Card className="border-2 border-orange-100 bg-orange-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-orange-600 text-white rounded-lg">
-                          <Search className="h-5 w-5" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-orange-800">Processing Settings</h3>
+                        <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                          <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                          Processing Settings
+                        </h3>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Retrieval Strategy
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Retrieval Strategy decides how search results are ranked and selected</p>
@@ -2022,7 +2022,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={searchType} onValueChange={(v) => setSearchType(v as 'mmr' | 'similarity')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2034,12 +2034,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Number of K values
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Defines how many of the initially retrieved results are considered during retrieval (allowed range: 1–8). Smaller values are faster; larger are more thorough but slower.</p>
@@ -2049,7 +2049,7 @@ const ManageKnowledgeBase = () => {
                           </label>
                           <Input
                             type="number"
-                            className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20"
+                            className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
                             value={rerankKInput}
                             placeholder="Enter value between 1-8"
                             onChange={(e) => {
@@ -2069,12 +2069,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Chunk Size
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Defines how large each text segment is when splitting documents for retrieval. Smaller chunks give more precise matches but less context, larger chunks preserve more context but may include irrelevant material.</p>
@@ -2083,7 +2083,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={chunkSize} onValueChange={(v) => setChunkSize(v || '1000')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2095,12 +2095,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Overlap Percentage
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Defines how much consecutive text chunks overlap when splitting documents. Higher overlap preserves more context across chunks but increases redundancy and processing cost.</p>
@@ -2109,7 +2109,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={overlap} onValueChange={v => setOverlap(v || '20')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2121,12 +2121,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Chunking Strategy
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Controls how documents are split into smaller parts for retrieval. Affects accuracy, context, and speed.</p>
@@ -2135,7 +2135,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={chunkingStrategy} onValueChange={v => setChunkingStrategy(v || 'recursive')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2147,12 +2147,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Database Type
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Defines how data is stored for retrieval, impacting speed, scalability, and accuracy.</p>
@@ -2161,7 +2161,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={vectorDb} onValueChange={v => setVectorDb(v || 'faiss')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2173,12 +2173,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Embedding Model
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Converts text into vectors for similarity search</p>
@@ -2187,7 +2187,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={embeddingModel} onValueChange={v => setEmbeddingModel(v || 'text-embedding-ada-002')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2243,19 +2243,17 @@ const ManageKnowledgeBase = () => {
                   {/* Customer / Organization pickers removed */}
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border-2 border-blue-100 bg-gradient-to-br from-blue-50 to-blue-100">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <FileText className="h-5 w-5" />
-                          </div>
-                          <h2 className="text-xl font-semibold text-blue-800">Knowledge Bases</h2>
-                        </div>
+                        <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
+                          <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                          Knowledge Bases
+                        </h2>
                         <div className="flex flex-col sm:flex-row gap-2">
 
                           <Button
-                            className="px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                            className="px-5 bg-blue-600 hover:bg-blue-700 text-white"
                             disabled={selectedCustomerCode === '_ALL'}
                             title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
                             onClick={() => setIsCreating(true)}
