@@ -1816,22 +1816,22 @@ const ManageKnowledgeBase = () => {
                   <div className="grid grid-cols-2 gap-4">
                     {/* Organization and Apps Selection */}
                     {!isSSO && (
-                      <Card className="border-2 grid-cols-2 border-blue-100 bg-blue-50">
+                      <Card className="border border-gray-200/70 bg-white rounded-2xl">
                         <CardContent className="p-6 space-y-4">
                           <div className="flex items-center gap-3 mb-2">
-                            <div className="p-2 bg-blue-600 text-white rounded-lg">
-                              <Library className="h-5 w-5" />
-                            </div>
-                            <h3 className="text-lg font-semibold text-blue-800">Organization</h3>
+                            <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                              <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                              Organization
+                            </h3>
                           </div>
 
                           <div className="grid grid-cols-1 gap-4">
                             {/* Organization Select */}
                            
                             <div className="space-y-2">
-                              <label className="text-sm font-medium text-blue-900">Select Organization <span className="text-red-500">*</span></label>
+                              <label className="text-sm font-medium text-gray-700">Select Organization <span className="text-red-500">*</span></label>
                               <Select value={selectedOrganization ?? ''} onValueChange={(v) => setSelectedOrganization(v)} disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
-                                <SelectTrigger className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
+                                <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={organizationLocked || organizationLoading || !selectedCustomerCode}>
                                   <SelectValue placeholder={organizationLoading ? "Loading organizations..." : "Select an organization"} />
                                 </SelectTrigger>
                                 <SelectContent className="bg-white z-50">
@@ -1847,18 +1847,18 @@ const ManageKnowledgeBase = () => {
                       </Card>
                     )}
                     {/* Basic Information Card */}
-                    <Card className="border-2 border-blue-100 bg-blue-50">
+                    <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <FileText className="h-5 w-5" />
-                          </div>
-                          <h3 className="text-lg font-semibold text-blue-800">Basic Information</h3>
+                          <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                            <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                            Basic Information
+                          </h3>
                         </div>
 
                         <div className="grid grid-cols-1 gap-4">
                           <div className="space-y-2">
-                            <label className="text-sm font-medium text-blue-900">
+                            <label className="text-sm font-medium text-gray-700">
                               {levelType === "book" ? "Knowledge Base Name" : "Study"} <span className="text-red-500">*</span>
                             </label>
                             {levelType === "book" ? (
@@ -1866,7 +1866,7 @@ const ManageKnowledgeBase = () => {
                                 <Input
                                   id="kb-name-input"
                                   placeholder="Enter knowledge base name"
-                                  className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20"
+                                  className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
                                   value={kbNameInput}
                                   onChange={e => {
                                     setKbNameInput(e.target.value);
@@ -1902,7 +1902,7 @@ const ManageKnowledgeBase = () => {
                               </>
                             ) : (
                               <Select disabled={!bookName || studyLovOptions.length === 0} value={studyLevel} onValueChange={setStudyLevel}>
-                                <SelectTrigger className="bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={!selectedOrganization || !bookName || studyLovLoading}>
+                                <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled={!selectedOrganization || !bookName || studyLovLoading}>
                                   <SelectValue placeholder={studyLovLoading ? "Loading chapters..." : (studyLovOptions.length === 0 ? "No study to select" : "Select a study")} />
                                 </SelectTrigger>
                                 <SelectContent className="bg-white z-30 max-h-60 overflow-y-auto">
