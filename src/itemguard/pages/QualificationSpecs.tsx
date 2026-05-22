@@ -19,7 +19,7 @@ export default function QualificationSpecs() {
 
   return (
     <div className="animate-fade-in">
-      <PageHeader title="Qualification Specs" subtitle="Knowledge base for AI-grounded validation"
+      <PageHeader title="Knowledge base" subtitle="Knowledge base for AI-grounded validation"
         actions={<Button size="sm"><Upload className="w-3.5 h-3.5 mr-1.5" />Upload Document</Button>} />
       <div className="relative mb-5 max-w-md">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
