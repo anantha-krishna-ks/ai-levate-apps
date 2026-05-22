@@ -4505,7 +4505,7 @@ const KnowledgeBase = () => {
                 <div className="p-2 bg-green-600 text-white rounded-lg">
                   <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                 </div>
-                <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Success</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Success</h3>
               </div>
               <p className="text-gray-700 mb-5">{successDialogMessage}</p>
               <div className="flex justify-end gap-3">
