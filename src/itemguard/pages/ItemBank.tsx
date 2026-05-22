@@ -42,6 +42,7 @@ export default function ItemBank() {
   const [importMode, setImportMode] = useState<'upload' | 'name'>('upload');
   const [importFile, setImportFile] = useState<File | null>(null);
   const [importFileName, setImportFileName] = useState('');
+  const [importFolderName, setImportFolderName] = useState('');
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [folderActionTarget, setFolderActionTarget] = useState<string | null>(null);
