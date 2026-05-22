@@ -1732,6 +1732,21 @@ const ManageKnowledgeBase = ({ embedded = false }: { embedded?: boolean } = {}) 
             </div>
           )}
 
+          {embedded && (isCreating || isViewingGuidelines || isChatMode) && (
+            <div className="mb-3">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleBackNavigation}
+                className="h-8 -ml-2 text-slate-600 hover:text-slate-900"
+                aria-label="Back"
+              >
+                <ArrowLeft className="w-4 h-4 mr-1.5" />
+                Back
+              </Button>
+            </div>
+          )}
+
           {/* Main Content */}
           <main className={sidebarCollapsed ? "p-3 lg:p-4" : "p-6"}>
             <BackToTop loading={kbLoading || isCreating} />
