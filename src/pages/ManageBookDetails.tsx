@@ -15,6 +15,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { SuperAdminSidebar } from "@/components/SuperAdminSidebar";
 import { ProfileDropdown } from "@/components/ProfileDropdown";
 import { AppHeader } from "@/components/AppHeader";
+import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
 import BackToTop from "@/components/BackToTop";
 import { API_ENDPOINTS } from "../config";
 import { PageLoader } from "@/components/ui/loader";
