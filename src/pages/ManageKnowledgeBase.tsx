@@ -2108,12 +2108,83 @@ const ManageKnowledgeBase = () => {
                         {kbError ? (
                           <div className="p-6 text-center text-red-700 text-sm">{kbError}</div>
                         ) : filteredKnowledgeBases.length === 0 ? (
-                          <div className="p-6 text-center">
-                            <div className="flex flex-col items-center justify-center py-4">
-                              <Search className="h-10 w-10 text-gray-400 mb-3" />
-                              <h3 className="text-md font-medium text-gray-900 mb-1">
+                          <div className="p-8 text-center">
+                            <div className="flex flex-col items-center justify-center py-8">
+                              {/* Animated Empty State SVG */}
+                              <div className="relative w-40 h-40 mb-5">
+                                <svg viewBox="0 0 160 160" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                                  {/* Background circle */}
+                                  <circle cx="80" cy="80" r="70" fill="#EFF6FF" className="animate-[scale-in_0.6s_ease-out]" />
+                                  
+                                  {/* Shelf */}
+                                  <rect x="30" y="110" width="100" height="6" rx="3" fill="#BFDBFE" className="animate-[fade-in_0.5s_ease-out_0.2s_both]" />
+                                  
+                                  {/* Book 1 - left */}
+                                  <g className="animate-[fade-in_0.5s_ease-out_0.3s_both] origin-bottom">
+                                    <rect x="38" y="72" width="14" height="38" rx="2" fill="#3B82F6" opacity="0.9">
+                                      <animateTransform attributeName="transform" type="translate" values="0,2;0,-2;0,2" dur="3s" repeatCount="indefinite" />
+                                    </rect>
+                                    <rect x="41" y="76" width="8" height="4" rx="1" fill="#FFFFFF" opacity="0.5">
+                                      <animateTransform attributeName="transform" type="translate" values="0,2;0,-2;0,2" dur="3s" repeatCount="indefinite" />
+                                    </rect>
+                                  </g>
+                                  
+                                  {/* Book 2 - middle, taller */}
+                                  <g className="animate-[fade-in_0.5s_ease-out_0.4s_both] origin-bottom">
+                                    <rect x="56" y="62" width="16" height="48" rx="2" fill="#60A5FA" opacity="0.9">
+                                      <animateTransform attributeName="transform" type="translate" values="0,-2;0,2;0,-2" dur="2.5s" repeatCount="indefinite" />
+                                    </rect>
+                                    <rect x="60" y="68" width="8" height="4" rx="1" fill="#FFFFFF" opacity="0.5">
+                                      <animateTransform attributeName="transform" type="translate" values="0,-2;0,2;0,-2" dur="2.5s" repeatCount="indefinite" />
+                                    </rect>
+                                  </g>
+                                  
+                                  {/* Book 3 - right, angled */}
+                                  <g className="animate-[fade-in_0.5s_ease-out_0.5s_both] origin-bottom">
+                                    <rect x="76" y="68" width="14" height="42" rx="2" fill="#93C5FD" opacity="0.9" transform="rotate(5 83 89)">
+                                      <animateTransform attributeName="transform" type="translate" values="0,1;0,-1;0,1" dur="3.5s" repeatCount="indefinite" additive="sum" />
+                                    </rect>
+                                  </g>
+                                  
+                                  {/* Small floating document */}
+                                  <g className="animate-[fade-in_0.5s_ease-out_0.6s_both]">
+                                    <rect x="98" y="55" width="22" height="28" rx="3" fill="#FFFFFF" stroke="#3B82F6" strokeWidth="1.5">
+                                      <animateTransform attributeName="transform" type="translate" values="0,0;0,-4;0,0" dur="4s" repeatCount="indefinite" />
+                                    </rect>
+                                    <line x1="104" y1="64" x2="114" y2="64" stroke="#93C5FD" strokeWidth="1.5" strokeLinecap="round">
+                                      <animateTransform attributeName="transform" type="translate" values="0,0;0,-4;0,0" dur="4s" repeatCount="indefinite" />
+                                    </line>
+                                    <line x1="104" y1="70" x2="110" y2="70" stroke="#93C5FD" strokeWidth="1.5" strokeLinecap="round">
+                                      <animateTransform attributeName="transform" type="translate" values="0,0;0,-4;0,0" dur="4s" repeatCount="indefinite" />
+                                    </line>
+                                  </g>
+                                  
+                                  {/* Search magnifying glass */}
+                                  <g className="animate-[fade-in_0.5s_ease-out_0.7s_both]">
+                                    <circle cx="52" cy="48" r="14" fill="none" stroke="#3B82F6" strokeWidth="2.5">
+                                      <animateTransform attributeName="transform" type="translate" values="0,0;2,2;0,0" dur="2s" repeatCount="indefinite" />
+                                    </circle>
+                                    <line x1="62" y1="58" x2="70" y2="66" stroke="#3B82F6" strokeWidth="2.5" strokeLinecap="round">
+                                      <animateTransform attributeName="transform" type="translate" values="0,0;2,2;0,0" dur="2s" repeatCount="indefinite" />
+                                    </line>
+                                  </g>
+                                  
+                                  {/* Sparkle dots */}
+                                  <circle cx="115" cy="42" r="2" fill="#BFDBFE">
+                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
+                                  </circle>
+                                  <circle cx="35" cy="55" r="1.5" fill="#93C5FD">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite" />
+                                  </circle>
+                                  <circle cx="125" cy="92" r="2" fill="#BFDBFE">
+                                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite" />
+                                  </circle>
+                                </svg>
+                              </div>
+                              
+                              <h3 className="text-base font-medium text-gray-900 mb-1">
                                 {searchQuery
-                                  ? `No Knowledge Bases match your search.`
+                                  ? "No Knowledge Bases match your search."
                                   : "No knowledge bases available for the selected customer."}
                               </h3>
                               {searchQuery && (
