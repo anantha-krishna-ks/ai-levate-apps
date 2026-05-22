@@ -371,6 +371,12 @@ export default function ItemBank() {
         <PageHeader
           title="Item Bank"
           subtitle={!itemsLoaded ? undefined : (view === 'folders' ? `${folders.length} folders · ${mockItems.length} items total` : `${mockItems.length} items across ${folders.length} folders`)}
+          actions={
+            <Button size="sm" onClick={() => setImportOpen(true)} className="rounded-full">
+              <FolderInput className="w-4 h-4 mr-1.5" />
+              Import Item Set Folder
+            </Button>
+          }
         />
 
 
