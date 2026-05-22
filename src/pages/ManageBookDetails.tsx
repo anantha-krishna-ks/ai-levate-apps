@@ -2856,10 +2856,16 @@ const KnowledgeBase = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#F4F8FC]">
+        {!isSSO && <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />}
+
         {/* Desktop Sidebar */}
         {!isSSO && (
-          <div className="fixed left-0 top-16 bottom-0 w-52 z-50 hidden lg:block">
+          <div
+            className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-[60] hidden lg:block transition-all duration-300 ${
+              sidebarCollapsed ? "w-16" : "w-52"
+            }`}
+          >
             {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
           </div>
         )}
@@ -2868,54 +2874,95 @@ const KnowledgeBase = () => {
         {!isSSO && (
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetContent side="left" className="w-64 p-0">
-              {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
+              {isSuperAdmin ? (
+                <SuperAdminSidebar />
+              ) : (
+                <AppSidebar forceExpanded hideToggle onNavigate={() => setMobileMenuOpen(false)} />
+              )}
             </SheetContent>
           </Sheet>
         )}
 
-        <div className={isSSO ? "min-h-screen flex flex-col" : "ml-0 lg:ml-52 pt-16 flex flex-col"}>
-          {!isSSO && <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />}
-          {!isSSO && (isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode || isTaggingAgents || isEditingBook) && (
-            <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-2 flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  title="back to page"
-                  onClick={handleBackNavigation}
-                  className="flex-shrink-0"
-                >
-                  <ArrowLeft className="w-5 h-5" />
-                </Button>
-                <span className="text-sm font-medium text-gray-700">
-                  {isCreating
-                    ? "Create Book Details"
-                    : isCreatingStudyLO
-                      ? editingBookDetails ? "Edit Study LO" : "Create Study LO"
-                      : isTaggingAgents
-                        ? "Tag Agents"
-                        : isChatMode && selectedKBForChat?.bookName
-                          ? `Knowledge Base: ${selectedKBForChat.bookName}`
-                          : isEditingBook
-                            ? "Edit Book"
-                            : ""}
-                </span>
+        <div
+          className={
+            isSSO
+              ? "min-h-screen flex flex-col"
+              : `ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
+                  sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
+                }`
+          }
+        >
+          {!isSSO && (
+            <div className="relative bg-white border-b border-slate-200">
+              <div className="relative px-4 sm:px-6 py-3">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3 min-w-0">
+                    {(isCreating || isCreatingStudyLO || isViewingGuidelines || isChatMode || isTaggingAgents || isEditingBook) && (
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        title="back to page"
+                        onClick={handleBackNavigation}
+                        className="h-8 w-8 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900"
+                        aria-label="Back"
+                      >
+                        <ArrowLeft className="w-4 h-4" />
+                      </Button>
+                    )}
+                    <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
+                      <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                        <BookOpen className="h-4 w-4 text-white" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                      <h1 className="text-base sm:text-lg font-medium text-slate-900 leading-tight tracking-tight truncate">
+                        {isCreating
+                          ? "Create Book Details"
+                          : isCreatingStudyLO
+                            ? editingBookDetails ? "Edit Study LO" : "Create Study LO"
+                            : isTaggingAgents
+                              ? "Tag Agents"
+                              : isChatMode && selectedKBForChat?.bookName
+                                ? `Knowledge Base: ${selectedKBForChat.bookName}`
+                                : isEditingBook
+                                  ? "Edit Book"
+                                  : "Manage Book Details"}
+                      </h1>
+                      <p className="text-xs text-slate-500 truncate">
+                        {isCreating
+                          ? "Configure a new book entry"
+                          : isCreatingStudyLO
+                            ? "Upload a CSV to create study learning outcomes"
+                            : isTaggingAgents
+                              ? "Assign and configure agents for this book"
+                              : isChatMode
+                                ? "Chat with your knowledge base"
+                                : isEditingBook
+                                  ? "Update existing book details"
+                                  : "Manage and organize your book catalog"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    {isCreatingStudyLO && (
+                      <Button
+                        size="sm"
+                        className="bg-blue-600 hover:bg-blue-700 text-white rounded-full text-xs h-8"
+                        onClick={() => {
+                          const link = document.createElement('a');
+                          link.href = API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE;
+                          link.download = '';
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                        }}
+                      >
+                        Download Template
+                      </Button>
+                    )}
+                  </div>
+                </div>
               </div>
-              {isCreatingStudyLO && (
-                <Button
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white flex-shrink-0"
-                  onClick={() => {
-                    const link = document.createElement('a');
-                    link.href = API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE;
-                    link.download = '';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                  }}
-                >
-                  Download Template
-                </Button>
-              )}
             </div>
           )}
 
