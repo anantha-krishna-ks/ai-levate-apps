@@ -54,17 +54,19 @@ export default function DuplicatesReview() {
           </div>
         </div>
 
-        <div className="relative px-2 pt-7 pb-2">
-          {/* Floating value bubble */}
-          <div
-            className="absolute -translate-x-1/2 top-0 pointer-events-none transition-all duration-150"
-            style={{ left: `calc(${((threshold - 50) / 50) * 100}% * (100% - 24px) / 100% + 12px)` }}
-          >
-            <div className="relative flex flex-col items-center">
-              <div className="px-2.5 py-1 rounded-md bg-slate-900 text-white text-xs font-semibold tabular-nums shadow-sm">
-                {threshold}%
+        <div className="relative pt-10 pb-2">
+          {/* Floating value bubble — positioned along an inset track that matches the thumb center */}
+          <div className="pointer-events-none absolute left-3 right-3 top-0 h-7">
+            <div
+              className="absolute top-0 -translate-x-1/2 transition-[left] duration-150 ease-out"
+              style={{ left: `${((threshold - 50) / 50) * 100}%` }}
+            >
+              <div className="flex flex-col items-center">
+                <div className="px-2.5 py-1 rounded-md bg-slate-900 text-white text-xs font-semibold tabular-nums">
+                  {threshold}%
+                </div>
+                <div className="h-1.5 w-1.5 bg-slate-900 rotate-45 -mt-[3px]" />
               </div>
-              <div className="h-1.5 w-1.5 bg-slate-900 rotate-45 -mt-1" />
             </div>
           </div>
 
