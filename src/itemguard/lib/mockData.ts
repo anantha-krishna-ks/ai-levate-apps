@@ -115,6 +115,8 @@ function generateValidationParams(overallScore: number): ValidationParameter[] {
     { name: 'Technical Accuracy', key: 'technical_accuracy' },
     { name: 'Item Difficulty Estimate', key: 'difficulty' },
     { name: 'House Style Compliance', key: 'house_style' },
+    { name: 'Knowledge base', key: 'knowledge_base' },
+    { name: 'Guidelines', key: 'guidelines' },
   ];
 
   const observations: Record<string, string[]> = {
@@ -128,6 +130,8 @@ function generateValidationParams(overallScore: number): ValidationParameter[] {
     technical_accuracy: ['Factually correct per current industry standards', 'References outdated regulation version', 'Accurate within the qualification context'],
     difficulty: ['Moderate difficulty appropriate for target level', 'May be too easy for the intended cohort', 'Challenging but within the expected range'],
     house_style: ['Fully compliant with house style rules', 'Stem exceeds maximum recommended length', 'Minor punctuation inconsistency in option D'],
+    knowledge_base: ['Aligned with the selected knowledge base sources', 'Partially covered by the linked specification', 'Strong match with referenced knowledge base content'],
+    guidelines: ['Adheres to the configured item-writing guidelines', 'Minor deviation from style guideline 3.2', 'Fully compliant with the selected guidelines'],
   };
 
   const recommendations: Record<string, string[]> = {
