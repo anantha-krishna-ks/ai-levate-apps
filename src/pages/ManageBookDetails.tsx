@@ -4201,21 +4201,18 @@ const KnowledgeBase = () => {
 
                   {/* Customer / Organization pickers removed */}
 
-                  {/* Knowledge Bases Card */}
-                  <Card className="border-2 border-blue-100 bg-blue-600">
+                  {/* Books Card */}
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <FileText className="h-5 w-5" />
-                          </div>
-                          <h2 className="text-xl font-semibold text-blue-800">Book Details</h2>
-                        </div>
+                        <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
+                          <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                          Book Details
+                        </h2>
                         <div className="flex flex-col sm:flex-row gap-2">
-                          
                           <Button
                             onClick={() => setIsCreating(true)}
-                            className="px-6 bg-blue-600 hover:from-blue-700 hover:to-blue-800 text-white"
+                            className="px-5 bg-blue-600 hover:bg-blue-700 text-white"
                           >
                             <Plus className="w-4 h-4 mr-2" />
                             Create Book Details
@@ -4223,21 +4220,21 @@ const KnowledgeBase = () => {
                         </div>
                       </div>
 
-                      {/* Always show search and filter */}
+                      {/* Search */}
                       <div className="flex flex-col sm:flex-row gap-3">
                         <div className="relative flex-1">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-blue-400 z-10" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
                           <Input
                             placeholder="Search books..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-10 bg-white border-blue-200 focus:border-blue-400 focus:ring-blue-400/20"
+                            className="pl-10 bg-white border-gray-200 focus:border-gray-400 focus:ring-gray-400/20"
                           />
                         </div>
                       </div>
 
                       {/* Table */}
-                      <div className="bg-white rounded-lg border-2 border-blue-200 overflow-hidden min-h-[150px]">
+                      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden min-h-[150px]">
                         {booksLoading ? (
                           <div className="p-6 text-center text-blue-700 text-sm">Loading books...</div>
                         ) : booksError ? (
@@ -4259,28 +4256,20 @@ const KnowledgeBase = () => {
                             </div>
                           </div>
                         ) : (
-                          <div className="overflow-x-auto border border-gray-200 rounded-lg">
-                            <Table>
+                          <div className="overflow-x-auto">
+                            <Table className="w-full table-fixed">
                               <TableHeader>
-                                <TableRow className="bg-blue-50 border-b border-gray-200">
-                                  <TableHead className="font-semibold text-blue-900 py-4 px-4 border-r border-gray-200 w-64 min-w-64 max-w-64">
-                                    Book Name
-                                  </TableHead>
-                                  <TableHead className="font-semibold text-blue-900 py-4 px-4 w-40 min-w-40 max-w-40">
-                                    Actions
-                                  </TableHead>
+                                <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
+                                  <TableHead className="w-[70%]">Book Name</TableHead>
+                                  <TableHead className="w-[30%] text-right pr-4">Actions</TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
                                 {filteredBooks.map((book, idx) => (
-                                  <TableRow key={book.bookId || idx} className="hover:bg-blue-50/50 transition-colors border-b border-gray-200 last:border-b-0">
-                                    <TableCell className="text-gray-700 py-4 px-4 border-r border-gray-200 align-top">
-                                      <div className="break-words max-w-xs">
-                                        {book.label || ""}
-                                      </div>
-                                    </TableCell>
-                                    <TableCell className="py-4 px-4">
-                                      <div className="flex items-center gap-1">
+                                  <TableRow key={book.bookId || idx} className="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0">
+                                    <TableCell className="font-medium text-gray-900 py-4 truncate">{book.label || ""}</TableCell>
+                                    <TableCell className="py-4">
+                                      <div className="flex items-center justify-end gap-1">
                                         <Button
                                           variant="ghost"
                                           size="icon"
