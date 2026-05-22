@@ -12,7 +12,7 @@ const AnalysisRunLoading = () => {
 
   const steps = [
     { title: 'Loading Item Bank', subtitle: `Indexing items in "${folder}"` },
-    { title: 'Applying Guidelines & Ruleset', subtitle: 'Loading active ruleset and qualification specs' },
+    { title: 'Applying Guidelines & Ruleset', subtitle: 'Loading active ruleset and knowledge base' },
     { title: 'Analysing Items with AI Agents', subtitle: 'Running validation across content, fairness, and key accuracy' },
     { title: 'Scoring & Aggregation', subtitle: 'Computing per-item and folder-level scores' },
     { title: 'Finalising Analysis Run', subtitle: 'Preparing your analysis report' },
