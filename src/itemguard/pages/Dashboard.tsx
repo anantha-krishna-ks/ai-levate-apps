@@ -54,7 +54,6 @@ const volumeStats: {
 }[] = [
   { tone: 'lavender', icon: Hash,       label: 'Total Items',    value: kpi.total_items,    total: kpi.total_items, caption: 'In bank' },
   { tone: 'sky',      icon: BarChart3,  label: 'Items Analysed', value: kpi.items_analysed, total: kpi.total_items, caption: 'Processed' },
-  { tone: 'mint',     icon: ShieldCheck,label: 'Coverage',       value: kpi.items_analysed, total: kpi.total_items, caption: `${pendingItems.toLocaleString()} pending` },
 ];
 
 const qualityTotal = kpi.green_count + kpi.amber_count + kpi.red_count;
