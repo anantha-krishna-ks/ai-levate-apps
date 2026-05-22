@@ -312,7 +312,7 @@ const KnowledgeBase = () => {
   // --- Book Name Availability state ---
   const [bookNameCheckStatus, setBookNameCheckStatus] = useState("unknown"); // "unknown", "checking", "exists", "not_exists", "error"
   const [bookNameCheckMsg, setBookNameCheckMsg] = useState("");
-  const [bookNameCheckTimer, setBookNameCheckTimer] = useState<NodeJS.Timeout | null>(null);
+  const [bookNameCheckTimer, setBookNameCheckTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
   const [organizationOptions, setOrganizationOptions] = useState<{ value: string; label: string }[]>([]);
   const [organizationLoading, setOrganizationLoading] = useState(false);
   const [appsOptions, setAppsOptions] = useState<{ value: string; label: string }[]>([]);

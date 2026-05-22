@@ -98,7 +98,7 @@ const ManageKnowledgeBase = () => {
   const [kbNameInput, setKbNameInput] = useState("");
   const [kbNameCheckStatus, setKbNameCheckStatus] = useState("unknown"); // "unknown", "checking", "exists", "not_exists", "error"
   const [kbNameCheckMsg, setKbNameCheckMsg] = useState("");
-  const [kbNameCheckTimer, setKbNameCheckTimer] = useState<NodeJS.Timeout | null>(null);
+  const [kbNameCheckTimer, setKbNameCheckTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   const handleBackNavigation = async () => {
     let customerCode = selectedCustomerCode;
