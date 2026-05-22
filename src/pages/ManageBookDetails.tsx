@@ -3034,9 +3034,6 @@ const KnowledgeBase = () => {
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <Bot className="h-5 w-5" />
-                          </div>
                           <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
@@ -3348,9 +3345,6 @@ const KnowledgeBase = () => {
                   <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-blue-600 text-white rounded-lg">
-                          <FileText className="h-5 w-5" />
-                        </div>
                         <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
                       </div>
 
@@ -3459,9 +3453,6 @@ const KnowledgeBase = () => {
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <Bot className="h-5 w-5" />
-                          </div>
                           <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Agent Configuration</h3>
                         </div>
                         {agentConfigLoading && (
@@ -3951,9 +3942,6 @@ const KnowledgeBase = () => {
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3 mb-2">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <Library className="h-5 w-5" />
-                          </div>
                           <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Organization and Apps</h3>
                         </div>
 
@@ -4003,9 +3991,6 @@ const KnowledgeBase = () => {
                   <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-blue-600 text-white rounded-lg">
-                          <FileText className="h-5 w-5" />
-                        </div>
                         <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
                       </div>
 
@@ -4055,9 +4040,6 @@ const KnowledgeBase = () => {
                   <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-blue-600 text-white rounded-lg">
-                          <FileText className="h-5 w-5" />
-                        </div>
                         <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">File Uploads</h3>
                       </div>
 
@@ -4159,9 +4141,6 @@ const KnowledgeBase = () => {
                     <Card className="border border-gray-200/70 bg-white rounded-2xl">
                       <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <Search className="h-5 w-5" />
-                          </div>
                           <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
                             <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
                             Apps Details
