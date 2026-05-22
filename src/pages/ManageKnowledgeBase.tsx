@@ -1896,7 +1896,7 @@ const ManageKnowledgeBase = () => {
                                   ) : kbNameCheckStatus === "not_exists" ? (
                                     <span className="text-xs text-green-700">{kbNameCheckMsg}</span>
                                   ) : kbNameCheckStatus === "error" ? (
-                                    <span className="text-xs text-orange-600">{kbNameCheckMsg}</span>
+                                    <span className="text-xs text-gray-400">{kbNameCheckMsg}</span>
                                   ) : null}
                                 </div>
                               </>
@@ -2008,12 +2008,12 @@ const ManageKnowledgeBase = () => {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Retrieval Strategy
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Retrieval Strategy decides how search results are ranked and selected</p>
@@ -2022,7 +2022,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={searchType} onValueChange={(v) => setSearchType(v as 'mmr' | 'similarity')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2034,12 +2034,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Number of K values
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Defines how many of the initially retrieved results are considered during retrieval (allowed range: 1–8). Smaller values are faster; larger are more thorough but slower.</p>
@@ -2049,7 +2049,7 @@ const ManageKnowledgeBase = () => {
                           </label>
                           <Input
                             type="number"
-                            className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20"
+                            className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
                             value={rerankKInput}
                             placeholder="Enter value between 1-8"
                             onChange={(e) => {
@@ -2069,12 +2069,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Chunk Size
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Defines how large each text segment is when splitting documents for retrieval. Smaller chunks give more precise matches but less context, larger chunks preserve more context but may include irrelevant material.</p>
@@ -2083,7 +2083,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={chunkSize} onValueChange={(v) => setChunkSize(v || '1000')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2095,12 +2095,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Overlap Percentage
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Defines how much consecutive text chunks overlap when splitting documents. Higher overlap preserves more context across chunks but increases redundancy and processing cost.</p>
@@ -2109,7 +2109,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={overlap} onValueChange={v => setOverlap(v || '20')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2121,12 +2121,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Chunking Strategy
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Controls how documents are split into smaller parts for retrieval. Affects accuracy, context, and speed.</p>
@@ -2135,7 +2135,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={chunkingStrategy} onValueChange={v => setChunkingStrategy(v || 'recursive')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2147,12 +2147,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Database Type
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Defines how data is stored for retrieval, impacting speed, scalability, and accuracy.</p>
@@ -2161,7 +2161,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={vectorDb} onValueChange={v => setVectorDb(v || 'faiss')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
@@ -2173,12 +2173,12 @@ const ManageKnowledgeBase = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                          <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                             Embedding Model
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                  <HelpCircle className="h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
                                 </TooltipTrigger>
                                 <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
                                   <p className="text-sm leading-relaxed">Converts text into vectors for similarity search</p>
@@ -2187,7 +2187,7 @@ const ManageKnowledgeBase = () => {
                             </TooltipProvider>
                           </label>
                           <Select value={embeddingModel} onValueChange={v => setEmbeddingModel(v || 'text-embedding-ada-002')}>
-                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                            <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
