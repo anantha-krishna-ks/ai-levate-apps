@@ -436,45 +436,38 @@ export default function ItemBank() {
               <div className="relative w-48 h-48 mb-5">
                 <svg viewBox="0 0 200 200" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <defs>
-                    <linearGradient id="emptyBg" x1="0" y1="0" x2="1" y2="1">
+                    <linearGradient id="folderBg" x1="0" y1="0" x2="1" y2="1">
                       <stop offset="0%" stopColor="#eff6ff" />
                       <stop offset="100%" stopColor="#dbeafe" />
                     </linearGradient>
                   </defs>
-                  <circle cx="100" cy="100" r="78" fill="url(#emptyBg)" />
-                  {/* floating shapes */}
-                  <g style={{ transformOrigin: '60px 60px', animation: 'float-a 4s ease-in-out infinite' }}>
-                    <rect x="42" y="44" width="34" height="34" rx="8" fill="#bfdbfe" opacity="0.85" />
+                  <circle cx="100" cy="100" r="78" fill="url(#folderBg)" />
+                  {/* back folder */}
+                  <g style={{ transformOrigin: '100px 95px', animation: 'float-main 5s ease-in-out infinite' }}>
+                    <path d="M65 88 L65 120 Q65 126 71 126 L135 126 Q141 126 141 120 L141 94 Q141 88 135 88 L103 88 Q100 88 98 86 L92 80 L71 80 Q65 80 65 86 Z" fill="#93c5fd" />
                   </g>
-                  <g style={{ transformOrigin: '150px 70px', animation: 'float-b 5s ease-in-out infinite' }}>
-                    <circle cx="150" cy="70" r="14" fill="#93c5fd" opacity="0.9" />
+                  {/* middle folder */}
+                  <g style={{ transformOrigin: '100px 100px', animation: 'float-a 4.5s ease-in-out infinite' }}>
+                    <path d="M58 98 L58 130 Q58 136 64 136 L128 136 Q134 136 134 130 L134 104 Q134 98 128 98 L96 98 Q93 98 91 96 L85 90 L64 90 Q58 90 58 96 Z" fill="#60a5fa" />
                   </g>
-                  <g style={{ transformOrigin: '150px 145px', animation: 'float-a 6s ease-in-out infinite reverse' }}>
-                    <rect x="138" y="132" width="26" height="26" rx="6" fill="#bfdbfe" opacity="0.7" />
-                  </g>
-                  {/* main folder/document card */}
-                  <g style={{ transformOrigin: '100px 110px', animation: 'float-main 5s ease-in-out infinite' }}>
-                    <rect x="60" y="78" width="80" height="64" rx="10" fill="#ffffff" stroke="#3b82f6" strokeWidth="2.5" />
-                    <rect x="70" y="92" width="44" height="5" rx="2.5" fill="#bfdbfe" />
-                    <rect x="70" y="104" width="60" height="5" rx="2.5" fill="#dbeafe" />
-                    <rect x="70" y="116" width="36" height="5" rx="2.5" fill="#dbeafe" />
-                    <circle cx="128" cy="84" r="10" fill="#3b82f6" />
-                    <path d="M124 84 L127 87 L132 81" stroke="#ffffff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  {/* front folder */}
+                  <g style={{ transformOrigin: '100px 105px', animation: 'float-b 4s ease-in-out infinite' }}>
+                    <path d="M51 108 L51 140 Q51 146 57 146 L121 146 Q127 146 127 140 L127 114 Q127 108 121 108 L89 108 Q86 108 84 106 L78 100 L57 100 Q51 100 51 106 Z" fill="#3b82f6" />
+                    {/* folder tab detail */}
+                    <rect x="62" y="116" width="54" height="4" rx="2" fill="#bfdbfe" opacity="0.7" />
+                    <rect x="62" y="126" width="40" height="4" rx="2" fill="#bfdbfe" opacity="0.5" />
                   </g>
                 </svg>
                 <style>{`
                   @keyframes float-main { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-                  @keyframes float-a { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-4px) rotate(2deg)} }
+                  @keyframes float-a { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-4px) rotate(1deg)} }
                   @keyframes float-b { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
                 `}</style>
               </div>
-              <h3 className="text-base font-semibold text-slate-900">No items yet</h3>
+              <h3 className="text-base font-semibold text-slate-900">No folders yet</h3>
               <p className="text-sm text-slate-500 mt-1 max-w-sm">
-                Your Item Bank is empty. Import a QTI package or Word template to start curating, analyzing, and grouping items.
+                Your Item Bank is empty. Import a folder set to start curating, analyzing, and grouping items.
               </p>
-              <Button size="sm" onClick={() => setImportOpen(true)} className="mt-5 h-9 rounded-full px-5 gap-1.5">
-                <Plus className="w-3.5 h-3.5" />Add Items
-              </Button>
             </div>
           ) : (
           <div className="animate-fade-in">
