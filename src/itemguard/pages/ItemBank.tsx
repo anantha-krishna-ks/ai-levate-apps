@@ -368,60 +368,13 @@ export default function ItemBank() {
           subtitle={!itemsLoaded ? undefined : (view === 'folders' ? `${folders.length} folders · ${mockItems.length} items total` : `${mockItems.length} items across ${folders.length} folders`)}
           actions={
             <div className="flex gap-2">
-              {view === 'folders' ? (
-                <Button size="sm" onClick={() => setNewFolderOpen(true)}>
-                  <FolderPlus className="w-3.5 h-3.5 mr-1.5" />New Folder
-                </Button>
-              ) : (
-                <Button size="sm" onClick={() => setImportOpen(true)}>
-                  <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
-                </Button>
-              )}
+              <Button size="sm" onClick={() => setImportOpen(true)}>
+                <Plus className="w-3.5 h-3.5 mr-1.5" />Add Items
+              </Button>
             </div>
           }
         />
 
-        {/* iOS-style segmented tabs */}
-        <div className="mb-6 flex justify-center">
-          <div
-            role="tablist"
-            aria-label="Item Bank view"
-            className="relative inline-flex items-center p-1.5 rounded-full bg-slate-100/80 border border-slate-200/80 backdrop-blur-sm"
-          >
-            <span
-              aria-hidden="true"
-              className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] rounded-full bg-white shadow-[0_1px_3px_rgba(15,23,42,0.1),0_1px_2px_rgba(15,23,42,0.06)] ring-1 ring-slate-200/70 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-                view === 'items' ? 'translate-x-0' : 'translate-x-full'
-              }`}
-              style={{ left: 6 }}
-            />
-            {([
-              { key: 'items', label: 'Items', icon: FileText },
-              { key: 'folders', label: 'Folders', icon: Folder },
-            ] as const).map(t => {
-              const Icon = t.icon;
-              const active = view === t.key;
-              return (
-                <button
-                  key={t.key}
-                  role="tab"
-                  aria-selected={active}
-                  type="button"
-                  onClick={() => setView(t.key)}
-                  className={`relative z-10 inline-flex items-center gap-2 px-7 sm:px-10 h-11 rounded-full text-sm font-semibold tracking-tight transition-colors duration-200 ${
-                    active ? 'text-slate-900' : 'text-slate-500 hover:text-slate-700'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {t.label}
-                  <span className={`ml-1 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[11px] font-semibold ${active ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-600'}`}>
-                    {t.key === 'items' ? (itemsLoaded ? mockItems.length : 0) : (itemsLoaded ? folders.length : 0)}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
 
         {view === 'folders' ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 animate-fade-in">
