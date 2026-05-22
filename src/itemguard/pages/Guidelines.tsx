@@ -14,7 +14,7 @@ export default function Guidelines() {
 
   return (
     <div className="animate-fade-in">
-      <PageHeader title="Guidelines & Rules" subtitle="Define and manage the validation framework"
+      <PageHeader title="Guidelines" subtitle="Define and manage the validation framework"
         actions={<Button size="sm"><Plus className="w-3.5 h-3.5 mr-1.5" />Add Rule</Button>} />
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="mb-6">
