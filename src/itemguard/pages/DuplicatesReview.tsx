@@ -3,6 +3,8 @@ import { PageHeader } from '../components/PageHeader';
 import { mockSimilarItems, mockItems } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { ReviewDecision } from '../lib/types';
+import { Slider } from '@/components/ui/slider';
+import { SlidersHorizontal } from 'lucide-react';
 
 const decisionLabels: Record<ReviewDecision, { label: string; cls: string }> = {
   pending: { label: 'Pending', cls: 'ig-status-amber' },
@@ -20,75 +22,76 @@ export default function DuplicatesReview() {
   return (
     <div className="animate-fade-in">
       <PageHeader title="Duplicates Review" subtitle={`${filtered.length} duplicate pairs above ${threshold}% threshold`} />
-      <div className="mb-6 rounded-2xl border border-border bg-card p-5">
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <div className="text-sm font-semibold text-foreground">Similarity Threshold</div>
-            <div className="text-xs text-muted-foreground mt-0.5">Show pairs at or above this match score</div>
+      <div className="mb-6 rounded-2xl border border-slate-200 bg-white p-6">
+        <div className="flex items-center justify-between gap-4 mb-5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+              <SlidersHorizontal className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="text-sm font-semibold text-slate-900">Similarity Threshold</div>
+              <div className="text-xs text-slate-500 mt-0.5">Show pairs at or above this match score</div>
+            </div>
           </div>
-          <div className="flex items-baseline gap-1 rounded-full bg-primary/10 px-3 py-1.5">
-            <span className="text-2xl font-bold text-primary tabular-nums leading-none">{threshold}</span>
-            <span className="text-xs font-medium text-primary">%</span>
-          </div>
-        </div>
-        <div className="relative pt-2 pb-1">
-          {/* Track */}
-          <div className="relative h-2 rounded-full bg-muted overflow-hidden">
-            <div
-              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-primary/70 to-primary transition-all"
-              style={{ width: `${((threshold - 50) / 50) * 100}%` }}
-            />
-          </div>
-          {/* Native range overlay */}
-          <input
-            type="range"
-            min={50}
-            max={100}
-            value={threshold}
-            onChange={e => setThreshold(Number(e.target.value))}
-            className="absolute inset-x-0 -top-1 w-full h-6 appearance-none bg-transparent cursor-pointer
-              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6
-              [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary
-              [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-white
-              [&::-webkit-slider-thumb]:ring-2 [&::-webkit-slider-thumb]:ring-primary
-              [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:transition-transform
-              [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:active:scale-95
-              [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full
-              [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-[3px] [&::-moz-range-thumb]:border-white
-              [&::-moz-range-thumb]:shadow-lg"
-          />
-          {/* Ticks */}
-          <div className="flex justify-between mt-3 px-0.5 text-[10px] font-medium text-muted-foreground tabular-nums">
-            {[50, 60, 70, 80, 90, 100].map(t => (
+          <div className="flex items-center gap-2">
+            {[
+              { label: 'Loose', value: 60 },
+              { label: 'Balanced', value: 75 },
+              { label: 'Strict', value: 90 },
+            ].map(p => (
               <button
-                key={t}
-                onClick={() => setThreshold(t)}
-                className={`transition-colors hover:text-primary ${threshold === t ? 'text-primary font-semibold' : ''}`}
+                key={p.value}
+                onClick={() => setThreshold(p.value)}
+                className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
+                  threshold === p.value
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'border-slate-200 text-slate-600 hover:border-blue-600 hover:text-blue-600'
+                }`}
               >
-                {t}%
+                {p.label}
               </button>
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-2 mt-4 pt-3 border-t border-border">
-          <span className="text-xs text-muted-foreground mr-1">Quick presets:</span>
-          {[
-            { label: 'Loose', value: 60 },
-            { label: 'Balanced', value: 75 },
-            { label: 'Strict', value: 90 },
-          ].map(p => (
-            <button
-              key={p.value}
-              onClick={() => setThreshold(p.value)}
-              className={`text-xs px-3 py-1 rounded-full border transition-all ${
-                threshold === p.value
-                  ? 'bg-primary text-primary-foreground border-primary'
-                  : 'border-border text-foreground hover:border-primary hover:text-primary'
-              }`}
-            >
-              {p.label} · {p.value}%
-            </button>
-          ))}
+
+        <div className="relative px-2 pt-7 pb-2">
+          {/* Floating value bubble */}
+          <div
+            className="absolute -translate-x-1/2 top-0 pointer-events-none transition-all duration-150"
+            style={{ left: `calc(${((threshold - 50) / 50) * 100}% * (100% - 24px) / 100% + 12px)` }}
+          >
+            <div className="relative flex flex-col items-center">
+              <div className="px-2.5 py-1 rounded-md bg-slate-900 text-white text-xs font-semibold tabular-nums shadow-sm">
+                {threshold}%
+              </div>
+              <div className="h-1.5 w-1.5 bg-slate-900 rotate-45 -mt-1" />
+            </div>
+          </div>
+
+          <Slider
+            value={[threshold]}
+            onValueChange={v => setThreshold(v[0])}
+            min={50}
+            max={100}
+            step={1}
+            className="[&_[role=slider]]:h-6 [&_[role=slider]]:w-6 [&_[role=slider]]:border-[3px] [&_[role=slider]]:border-white [&_[role=slider]]:bg-blue-600 [&_[role=slider]]:shadow-[0_2px_8px_rgba(37,99,235,0.4)] [&_[role=slider]]:ring-1 [&_[role=slider]]:ring-blue-600/30 [&_[role=slider]]:transition-transform hover:[&_[role=slider]]:scale-110 [&_[role=slider]:focus-visible]:ring-4 [&_[role=slider]:focus-visible]:ring-blue-600/30 [&>span:first-child]:h-2.5 [&>span:first-child]:bg-slate-100 [&_.bg-primary]:bg-blue-600"
+          />
+
+          {/* Ticks */}
+          <div className="flex justify-between mt-4 text-[11px] font-medium text-slate-400 tabular-nums">
+            {[50, 60, 70, 80, 90, 100].map(t => (
+              <button
+                key={t}
+                onClick={() => setThreshold(t)}
+                className={`relative flex flex-col items-center gap-1 transition-colors hover:text-blue-600 ${
+                  threshold >= t ? 'text-blue-600' : ''
+                }`}
+              >
+                <span className={`h-1 w-px ${threshold >= t ? 'bg-blue-600' : 'bg-slate-300'}`} />
+                {t}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
       <div className="space-y-4">
