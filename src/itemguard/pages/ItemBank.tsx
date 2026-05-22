@@ -42,6 +42,7 @@ export default function ItemBank() {
   const [importMode, setImportMode] = useState<'upload' | 'name'>('upload');
   const [importFile, setImportFile] = useState<File | null>(null);
   const [importFileName, setImportFileName] = useState('');
+  const [importFolderName, setImportFolderName] = useState('');
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [folderActionTarget, setFolderActionTarget] = useState<string | null>(null);
@@ -154,9 +155,20 @@ export default function ItemBank() {
       toast({ title: 'File required', description: 'Please choose a file to import.', variant: 'destructive' });
       return;
     }
-    toast({ title: 'Items imported', description: importFile.name });
+    const folder = importFolderName.trim();
+    if (!folder) {
+      toast({ title: 'Folder name required', description: 'Please enter a folder name for the imported items.', variant: 'destructive' });
+      return;
+    }
+    if (folders.some(f => f.name.toLowerCase() === folder.toLowerCase())) {
+      toast({ title: 'Folder already exists', description: `"${folder}" is already a folder.`, variant: 'destructive' });
+      return;
+    }
+    setCustomFolders(prev => [...prev, folder]);
+    toast({ title: 'Items imported', description: `${importFile.name} imported into "${folder}".` });
     setImportFile(null);
     setImportFileName('');
+    setImportFolderName('');
     setImportOpen(false);
     setItemsLoaded(true);
   };
@@ -242,7 +254,7 @@ export default function ItemBank() {
   };
 
   const importDialog = (
-    <Dialog open={importOpen} onOpenChange={setImportOpen}>
+    <Dialog open={importOpen} onOpenChange={(open) => { if (!open) { setImportFolderName(''); setImportFile(null); } setImportOpen(open); }}>
       <DialogContent className="sm:rounded-2xl sm:max-w-2xl p-0 overflow-hidden">
         <DialogHeader className="px-6 pt-6 pb-5 border-b border-slate-200 bg-slate-50/60">
           <div className="flex items-start gap-3">
@@ -287,6 +299,18 @@ export default function ItemBank() {
               />
             </label>
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="import-folder-name" className="text-xs font-semibold text-slate-700 uppercase tracking-wide">
+              Folder Name <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id="import-folder-name"
+              placeholder="Enter a name for this import folder"
+              value={importFolderName}
+              onChange={e => setImportFolderName(e.target.value)}
+              className="bg-white border-slate-300 focus-visible:ring-blue-500"
+            />
+          </div>
           <div className="rounded-lg bg-blue-50/60 border border-blue-100 p-4">
             <div className="mb-3">
               <p className="text-sm font-semibold text-slate-900">Need a starting point?</p>
@@ -309,7 +333,7 @@ export default function ItemBank() {
           </div>
         </div>
         <DialogFooter className="px-6 py-4 border-t border-slate-200 bg-slate-50/60">
-          <Button variant="outline" size="sm" onClick={() => setImportOpen(false)}>Cancel</Button>
+          <Button variant="outline" size="sm" onClick={() => { setImportOpen(false); setImportFolderName(''); setImportFile(null); }}>Cancel</Button>
           <Button size="sm" onClick={handleImport}>
             <FileDown className="w-3.5 h-3.5 mr-1.5" />Import
           </Button>
