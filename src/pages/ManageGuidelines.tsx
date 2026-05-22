@@ -18,6 +18,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { SuperAdminSidebar } from "@/components/SuperAdminSidebar";
 import { ProfileDropdown } from "@/components/ProfileDropdown";
 import { AppHeader } from "@/components/AppHeader";
+import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
 import BackToTop from "@/components/BackToTop";
 import { API_ENDPOINTS } from "../config";
 import { getKbAuthToken } from "../lib/kb-auth";
@@ -27,6 +28,7 @@ import { PageLoader } from "@/components/ui/loader";
 
 const ManageGuidelines = () => {
   const navigate = useNavigate();
+  const sidebarCollapsed = useSidebarCollapsed();
   
   // Ref to prevent duplicate API calls in React Strict Mode
   const customersFetchedRef = useRef(false);
@@ -1348,10 +1350,16 @@ const ManageGuidelines = () => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#F4F8FC]">
+        {!isSSO && <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />}
+
         {/* Desktop Sidebar */}
         {!isSSO && (
-          <div className="fixed left-0 top-16 bottom-0 w-52 z-50 hidden lg:block">
+          <div
+            className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-[60] hidden lg:block transition-all duration-300 ${
+              sidebarCollapsed ? "w-16" : "w-52"
+            }`}
+          >
             {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
           </div>
         )}
@@ -1360,31 +1368,65 @@ const ManageGuidelines = () => {
         {!isSSO && (
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetContent side="left" className="w-64 p-0">
-              {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
+              {isSuperAdmin ? (
+                <SuperAdminSidebar />
+              ) : (
+                <AppSidebar forceExpanded hideToggle onNavigate={() => setMobileMenuOpen(false)} />
+              )}
             </SheetContent>
           </Sheet>
         )}
 
-        <div className={isSSO ? "min-h-screen flex flex-col" : "ml-0 lg:ml-52 pt-16 flex flex-col"}>
-          {!isSSO && <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />}
-          {!isSSO && (isViewingGuidelines || isChatMode) && (
-            <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-2 flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                title="back to page"
-                onClick={handleBackNavigation}
-                className="flex-shrink-0"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </Button>
-              <span className="text-sm font-medium text-gray-700">
-                {isViewingGuidelines
-                  ? "Guideline Data"
-                  : isChatMode && selectedKBForChat?.bookName
-                    ? `Knowledge Base: ${selectedKBForChat.bookName}`
-                    : ""}
-              </span>
+        <div
+          className={
+            isSSO
+              ? "min-h-screen flex flex-col"
+              : `ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
+                  sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
+                }`
+          }
+        >
+          {!isSSO && (
+            <div className="relative bg-white border-b border-slate-200">
+              <div className="relative px-4 sm:px-6 py-3">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3 min-w-0">
+                    {(isViewingGuidelines || isChatMode) && (
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        title="back to page"
+                        onClick={handleBackNavigation}
+                        className="h-8 w-8 flex-shrink-0 -ml-2 text-slate-600 hover:text-slate-900"
+                        aria-label="Back"
+                      >
+                        <ArrowLeft className="w-4 h-4" />
+                      </Button>
+                    )}
+                    <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
+                      <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                        <ScrollText className="h-4 w-4 text-white" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                      <h1 className="text-base sm:text-lg font-medium text-slate-900 leading-tight tracking-tight truncate">
+                        {isViewingGuidelines
+                          ? "Guideline Data"
+                          : isChatMode && selectedKBForChat?.bookName
+                            ? `Knowledge Base: ${selectedKBForChat.bookName}`
+                            : "Manage Guidelines"}
+                      </h1>
+                      <p className="text-xs text-slate-500 truncate">
+                        {isViewingGuidelines
+                          ? "Manage guideline documents for this knowledge base"
+                          : isChatMode
+                            ? "Chat with your knowledge base"
+                            : "Add, edit, and organize your guideline library"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 
@@ -1432,9 +1474,9 @@ const ManageGuidelines = () => {
 
                   {/* Creation of Guideline dropdown (only when opened via Guidelines icon, not from Create New Guideline) */}
                   {selectedKBForGuidelines?.id !== 0 && (
-                    <Card className="border-2 border-indigo-100 bg-indigo-50">
+                    <Card className="border-2 border-blue-100 bg-blue-50">
                       <CardContent className="p-6 space-y-3">
-                        <h3 className="text-lg font-semibold text-indigo-900">Creation of Guideline</h3>
+                        <h3 className="text-lg font-semibold text-blue-700">Creation of Guideline</h3>
                         <Select
                           value={guidelineCreationType}
                           onValueChange={(value) => {
@@ -1447,7 +1489,7 @@ const ManageGuidelines = () => {
                             }
                           }}
                         >
-                          <SelectTrigger className="bg-white border-indigo-200 focus:border-indigo-400 focus:ring-indigo-400/20">
+                          <SelectTrigger className="bg-white border-blue-100 focus:border-indigo-400 focus:ring-indigo-400/20">
                             <SelectValue placeholder="Select creation type" />
                           </SelectTrigger>
                           <SelectContent className="bg-white z-50">
@@ -1541,7 +1583,7 @@ const ManageGuidelines = () => {
 
                   {/* Add New Guideline Card */}
                   {!(selectedKBForGuidelines?.id !== 0 && guidelineCreationType === 'existing') && (
-                    <Card id="add-guideline-section" className="border-2 border-teal-100 bg-teal-50">
+                    <Card id="add-guideline-section" className="border-2 border-slate-200 bg-slate-50">
 
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center justify-between">
@@ -1700,8 +1742,8 @@ const ManageGuidelines = () => {
                             onClick={() => fileInputRef.current?.click()}
                           >
                             <div className="flex justify-center">
-                              <div className="p-3 bg-yellow-100 rounded-lg">
-                                <FileText className="h-8 w-8 text-yellow-600" />
+                              <div className="p-3 bg-blue-50 rounded-lg">
+                                <FileText className="h-8 w-8 text-blue-700" />
                               </div>
                             </div>
                             <div>
@@ -1755,7 +1797,7 @@ const ManageGuidelines = () => {
                         <div className="flex justify-start gap-3">
                           {(guidelineType === "Content" || guidelineType === "Validation") &&(
                             <Button
-                              className="bg-yellow-600 hover:bg-yellow-700 text-white"
+                              className="bg-blue-600 hover:bg-blue-600 text-white"
                               disabled={guidelinesLoading}
                               onClick={async () => {
                               // Validation
@@ -1937,7 +1979,7 @@ const ManageGuidelines = () => {
                   {/* Customer / Organization pickers removed */}
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border-2 border-blue-100 bg-gradient-to-br from-blue-50 to-blue-100">
+                  <Card className="border-2 border-blue-100 bg-blue-600">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div className="flex items-center gap-3">
