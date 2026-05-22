@@ -1651,7 +1651,7 @@ const ManageKnowledgeBase = () => {
         </div>
       )}
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#F4F8FC]">
         {/* Desktop Sidebar */}
         {!isSSO && (
           <div
