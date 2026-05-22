@@ -125,7 +125,7 @@ export default function Dashboard() {
           <BarChart3 className="w-4 h-4 text-blue-600" />
           <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Volume & Coverage</h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {volumeStats.map((s) => {
             const styles = VOLUME_TONES[s.tone];
             const pct = Math.max(0, Math.min(100, Math.round((s.value / s.total) * 100)));
