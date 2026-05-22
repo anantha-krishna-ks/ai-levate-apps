@@ -2243,19 +2243,17 @@ const ManageKnowledgeBase = () => {
                   {/* Customer / Organization pickers removed */}
 
                   {/* Knowledge Bases Card */}
-                  <Card className="border-2 border-blue-100 bg-gradient-to-br from-blue-50 to-blue-100">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-6">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-blue-600 text-white rounded-lg">
-                            <FileText className="h-5 w-5" />
-                          </div>
-                          <h2 className="text-xl font-semibold text-blue-800">Knowledge Bases</h2>
-                        </div>
+                        <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
+                          <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                          Knowledge Bases
+                        </h2>
                         <div className="flex flex-col sm:flex-row gap-2">
 
                           <Button
-                            className="px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                            className="px-5 bg-blue-600 hover:bg-blue-700 text-white"
                             disabled={selectedCustomerCode === '_ALL'}
                             title={selectedCustomerCode === '_ALL' ? 'Disabled when All customers is selected' : ''}
                             onClick={() => setIsCreating(true)}
