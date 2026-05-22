@@ -46,15 +46,16 @@ export default function DuplicatesReview() {
             max={100}
             value={threshold}
             onChange={e => setThreshold(Number(e.target.value))}
-            className="absolute inset-x-0 top-1 w-full h-4 appearance-none bg-transparent cursor-pointer
-              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5
-              [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-background
-              [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-primary
-              [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:transition-transform
+            className="absolute inset-x-0 -top-1 w-full h-6 appearance-none bg-transparent cursor-pointer
+              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6
+              [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary
+              [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-white
+              [&::-webkit-slider-thumb]:ring-2 [&::-webkit-slider-thumb]:ring-primary
+              [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:transition-transform
               [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:active:scale-95
-              [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:rounded-full
-              [&::-moz-range-thumb]:bg-background [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-primary
-              [&::-moz-range-thumb]:shadow-md"
+              [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full
+              [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-[3px] [&::-moz-range-thumb]:border-white
+              [&::-moz-range-thumb]:shadow-lg"
           />
           {/* Ticks */}
           <div className="flex justify-between mt-3 px-0.5 text-[10px] font-medium text-muted-foreground tabular-nums">
