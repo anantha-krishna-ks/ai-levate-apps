@@ -1,6 +1,6 @@
 export type Status = 'green' | 'amber' | 'red';
 export type RunStatus = 'draft' | 'running' | 'completed' | 'failed';
-export type ReviewDecision = 'keep_both' | 'merge' | 'retire_a' | 'retire_b' | 'manual_review' | 'pending';
+export type ReviewDecision = 'keep_both' | 'retire_a' | 'retire_b' | 'manual_review' | 'pending';
 
 export interface Item {
   item_id: string;
