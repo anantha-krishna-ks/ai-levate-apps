@@ -96,6 +96,7 @@ export default function AnalysisRuns() {
       initiated_by: 'You',
       run_status: 'running',
       created_at: now,
+      completed_at: now,
       items_processed: 0,
       total_items: total,
       average_score: 0,
