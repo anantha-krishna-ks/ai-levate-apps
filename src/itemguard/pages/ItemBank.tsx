@@ -155,9 +155,20 @@ export default function ItemBank() {
       toast({ title: 'File required', description: 'Please choose a file to import.', variant: 'destructive' });
       return;
     }
-    toast({ title: 'Items imported', description: importFile.name });
+    const folder = importFolderName.trim();
+    if (!folder) {
+      toast({ title: 'Folder name required', description: 'Please enter a folder name for the imported items.', variant: 'destructive' });
+      return;
+    }
+    if (folders.some(f => f.name.toLowerCase() === folder.toLowerCase())) {
+      toast({ title: 'Folder already exists', description: `"${folder}" is already a folder.`, variant: 'destructive' });
+      return;
+    }
+    setCustomFolders(prev => [...prev, folder]);
+    toast({ title: 'Items imported', description: `${importFile.name} imported into "${folder}".` });
     setImportFile(null);
     setImportFileName('');
+    setImportFolderName('');
     setImportOpen(false);
     setItemsLoaded(true);
   };
