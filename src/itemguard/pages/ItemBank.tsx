@@ -371,13 +371,6 @@ export default function ItemBank() {
         <PageHeader
           title="Item Bank"
           subtitle={!itemsLoaded ? undefined : (view === 'folders' ? `${folders.length} folders · ${mockItems.length} items total` : `${mockItems.length} items across ${folders.length} folders`)}
-          actions={
-            <div className="flex gap-2">
-              <Button size="sm" onClick={() => setImportOpen(true)}>
-                <Plus className="w-3.5 h-3.5 mr-1.5" />Import Folder Set
-              </Button>
-            </div>
-          }
         />
 
 
