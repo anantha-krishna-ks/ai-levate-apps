@@ -5,7 +5,6 @@ import {
   FileText,
   BookOpen,
   GraduationCap,
-  Copy,
   Settings,
   ChevronLeft,
   ChevronRight,
@@ -22,11 +21,10 @@ const BASE = "/item-validation";
 const items = [
   { title: "Dashboard", url: BASE, icon: LayoutDashboard, end: true },
   { title: "Item Bank", url: `${BASE}/item-bank`, icon: Database },
+  { title: "Knowledge base", url: `${BASE}/qualifications`, icon: GraduationCap },
+  { title: "Guidelines & Rules", url: `${BASE}/guidelines`, icon: BookOpen },
   { title: "Analysis Runs", url: `${BASE}/analysis-runs`, icon: PlayCircle },
   { title: "Item Reports", url: `${BASE}/item-reports`, icon: FileText },
-  { title: "Guidelines & Rules", url: `${BASE}/guidelines`, icon: BookOpen },
-  { title: "Qualification Specs", url: `${BASE}/qualifications`, icon: GraduationCap },
-  { title: "Duplicates Review", url: `${BASE}/duplicates`, icon: Copy },
   { title: "Settings", url: `${BASE}/settings`, icon: Settings },
 ];
 
