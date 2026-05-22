@@ -1919,24 +1919,24 @@ const ManageKnowledgeBase = () => {
                   </div>
 
                   {/* Upload Section Card */}
-                  <Card className="border-2 border-teal-100 bg-teal-50">
+                  <Card className="border border-gray-200/70 bg-white rounded-2xl">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-teal-600 text-white rounded-lg">
-                          <FileText className="h-5 w-5" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-teal-800">File Uploads</h3>
+                        <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                          <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                          File Uploads
+                        </h3>
                       </div>
 
                       <div className="grid grid-cols-1 gap-6">
                         <div className="space-y-2 flex-1">
-                          <label className="text-sm font-medium text-teal-900">
+                          <label className="text-sm font-medium text-gray-700">
                             Document Upload <span className="text-red-500">*</span>
                           </label>
                           <label
                             className={`block bg-white border-2 border-dashed rounded-lg p-8 text-center space-y-3 transition-colors cursor-pointer h-[200px] flex flex-col items-center justify-center ${isDraggingDocument
                               ? 'border-blue-500 bg-blue-50'
-                              : 'border-teal-200 hover:border-teal-300'
+                              : 'border-gray-200 hover:border-gray-300'
                               }`}
                             onDragOver={handleDocumentDragOver}
                             onDragLeave={handleDocumentDragLeave}
@@ -1950,9 +1950,9 @@ const ManageKnowledgeBase = () => {
                               className="hidden"
                             />
                             <div className="flex justify-center">
-                              <div className={`p-3 rounded-lg transition-colors ${isDraggingDocument ? 'bg-blue-200' : 'bg-teal-100'
+                              <div className={`p-3 rounded-lg transition-colors ${isDraggingDocument ? 'bg-blue-200' : 'bg-blue-50'
                                 }`}>
-                                <FileText className={`h-8 w-8 transition-colors ${isDraggingDocument ? 'text-blue-600' : 'text-teal-600'
+                                <FileText className={`h-8 w-8 transition-colors ${isDraggingDocument ? 'text-blue-600' : 'text-blue-600'
                                   }`} />
                               </div>
                             </div>
@@ -1967,12 +1967,12 @@ const ManageKnowledgeBase = () => {
                           </label>
 
                           {documentFiles.length > 0 && (
-                            <div className="bg-white border border-teal-200 rounded-lg p-4 space-y-2">
+                            <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-2">
                               <p className="text-sm font-medium text-gray-900 mb-2">{documentFiles.length} file(s) uploaded:</p>
                               {documentFiles.map((file, index) => (
-                                <div key={index} className="flex items-center justify-between bg-teal-50 px-3 py-2 rounded">
+                                <div key={index} className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded">
                                   <div className="flex items-center gap-2 min-w-0 flex-1">
-                                    <FileText className="h-4 w-4 text-teal-600 flex-shrink-0" />
+                                    <FileText className="h-4 w-4 text-blue-600 flex-shrink-0" />
                                     <span className="text-sm text-gray-700 truncate">{file.name}</span>
                                     <span className="text-xs text-gray-500 flex-shrink-0">
                                       ({formatFileSize(file.size)})
