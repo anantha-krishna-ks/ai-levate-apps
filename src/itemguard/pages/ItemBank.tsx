@@ -371,6 +371,12 @@ export default function ItemBank() {
         <PageHeader
           title="Item Bank"
           subtitle={!itemsLoaded ? undefined : (view === 'folders' ? `${folders.length} folders · ${mockItems.length} items total` : `${mockItems.length} items across ${folders.length} folders`)}
+          actions={
+            <Button size="sm" onClick={() => setImportOpen(true)} className="rounded-full">
+              <FolderInput className="w-4 h-4 mr-1.5" />
+              Import Item Set Folder
+            </Button>
+          }
         />
 
 
@@ -461,6 +467,10 @@ export default function ItemBank() {
               <p className="text-sm text-slate-500 mt-1 max-w-sm">
                 Your Item Bank is empty. Import a folder set to start curating, analyzing, and grouping items.
               </p>
+              <Button size="sm" onClick={() => setImportOpen(true)} className="rounded-full mt-5">
+                <FolderInput className="w-4 h-4 mr-1.5" />
+                Import Item Set Folder
+              </Button>
             </div>
           ) : (
           <div className="animate-fade-in">
