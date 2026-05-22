@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const BackToTop = () => {
+interface BackToTopProps {
+  /** Optional loading flag (accepted for API parity with legacy pages). */
+  loading?: boolean;
+}
+
+const BackToTop = (_props: BackToTopProps = {}) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

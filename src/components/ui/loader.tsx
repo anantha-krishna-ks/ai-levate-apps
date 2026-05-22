@@ -3,15 +3,19 @@ import { cn } from "@/lib/utils";
 
 interface PageLoaderProps {
   message?: string;
+  /** Alias for `message` (legacy prop). */
+  text?: string;
   className?: string;
   fullScreen?: boolean;
 }
 
 export function PageLoader({
-  message = "Loading…",
+  message,
+  text,
   className,
   fullScreen = false,
 }: PageLoaderProps) {
+  const label = message ?? text ?? "Loading…";
   return (
     <div
       className={cn(
@@ -21,7 +25,7 @@ export function PageLoader({
       )}
     >
       <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-      {message ? <p className="text-sm font-medium">{message}</p> : null}
+      {label ? <p className="text-sm font-medium">{label}</p> : null}
     </div>
   );
 }
