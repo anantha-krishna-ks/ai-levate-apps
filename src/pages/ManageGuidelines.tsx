@@ -1349,9 +1349,9 @@ const ManageGuidelines = () => {
         </AlertDialogContent>
       </AlertDialog>
       <div className="min-h-screen bg-gray-50">
-        {/* Sidebar */}
+        {/* Desktop Sidebar */}
         {!isSSO && (
-          <div className="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 border-r border-gray-800 transition-transform duration-300 transform lg:transform-none lg:static">
+          <div className="fixed left-0 top-16 bottom-0 w-52 z-40 hidden lg:block border-r border-border bg-card overflow-y-auto">
             {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
           </div>
         )}

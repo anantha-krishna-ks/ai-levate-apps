@@ -2857,7 +2857,7 @@ const KnowledgeBase = () => {
       <div className="min-h-screen bg-gray-50">
         {/* Desktop Sidebar */}
         {!isSSO && (
-          <div className="fixed left-0 top-0 h-full w-52 z-40 hidden lg:block">
+          <div className="fixed left-0 top-16 bottom-0 w-52 z-40 hidden lg:block border-r border-border bg-card overflow-y-auto">
             {isSuperAdmin ? <SuperAdminSidebar /> : <AppSidebar />}
           </div>
         )}
