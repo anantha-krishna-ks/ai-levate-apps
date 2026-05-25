@@ -1794,11 +1794,13 @@ const ManageGuidelines = () => {
                           )}
                         </div>
 
-                        <div className="flex justify-start gap-3">
-                          {(guidelineType === "Content" || guidelineType === "Validation") &&(
+                        <div className="flex justify-end gap-3">
+                          {(() => {
+                            const isTypeSelected = guidelineType === "Content" || guidelineType === "Validation";
+                            return (
                             <Button
                               className="bg-blue-600 hover:bg-blue-600 text-white"
-                              disabled={guidelinesLoading}
+                              disabled={guidelinesLoading || !isTypeSelected}
                               onClick={async () => {
                               // Validation
                               const missing = [];
@@ -1949,7 +1951,8 @@ const ManageGuidelines = () => {
                           >
                             {isGuidelineEditing ? 'Update Guideline' : 'Upload Guideline'}
                           </Button>
-                          )}
+                            );
+                          })()}
                           <Button
                             variant="outline"
                             onClick={() => {
