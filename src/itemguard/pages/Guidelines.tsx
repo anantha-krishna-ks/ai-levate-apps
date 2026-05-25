@@ -1,21 +1,43 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { mockRules } from '../lib/mockData';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, ArrowLeft, FileText, HelpCircle } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+import { Card, CardContent } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { toast } from '@/components/ui/use-toast';
+
+const GUIDELINE_TYPE_OPTIONS = [
+  { value: 'Content', label: 'Content' },
+  { value: 'Validation', label: 'Validation' },
+];
+
+const GUIDELINE_SUBTYPE_MAP: Record<string, string[]> = {
+  Content: ['GENERAL_RULES', 'STEM_GUIDELINES', 'OPTION_GUIDELINES'],
+  Validation: ['BIAS_CHECK', 'READABILITY_CHECK', 'DUPLICATE_CHECK'],
+};
 
 export default function Guidelines() {
   const [activeTab, setActiveTab] = useState('house-style');
+  const [view, setView] = useState<'list' | 'add'>('list');
   const houseStyleRules = mockRules.filter(r => r.category === 'House Style');
   const qualRules = mockRules.filter(r => r.category === 'Qualification Rules');
   const rubricRules = mockRules.filter(r => r.category === 'Validation Rubric');
 
+  if (view === 'add') {
+    return <AddGuidelineView onBack={() => setView('list')} />;
+  }
+
   return (
     <div className="animate-fade-in">
       <PageHeader title="Guidelines" subtitle="Define and manage the validation framework"
-        actions={<Button size="sm"><Plus className="w-3.5 h-3.5 mr-1.5" />Add Rule</Button>} />
+        actions={<Button size="sm" onClick={() => setView('add')}><Plus className="w-3.5 h-3.5 mr-1.5" />Add Rule</Button>} />
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="mb-6">
           <TabsTrigger value="house-style">House Style Rules</TabsTrigger>
@@ -49,6 +71,214 @@ export default function Guidelines() {
           </div>
         </TabsContent>
       </Tabs>
+    </div>
+  );
+}
+
+function AddGuidelineView({ onBack }: { onBack: () => void }) {
+  const [guidelineType, setGuidelineType] = useState<string>('');
+  const [guidelineSubType, setGuidelineSubType] = useState<string>('');
+  const [guidelineName, setGuidelineName] = useState('');
+  const [guidelinesText, setGuidelinesText] = useState('');
+  const [guidelineFile, setGuidelineFile] = useState<File | null>(null);
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const isTypeSelected = guidelineType === 'Content' || guidelineType === 'Validation';
+  const subtypeOptions = guidelineType ? (GUIDELINE_SUBTYPE_MAP[guidelineType] || []) : [];
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const isValid = /\.(txt|pdf)$/i.test(file.name);
+    if (!isValid) {
+      toast({ title: 'Invalid file', description: 'Only .txt or .pdf files are allowed.', variant: 'destructive' });
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: 'File too large', description: 'Max file size is 5MB.', variant: 'destructive' });
+      return;
+    }
+    setGuidelineFile(file);
+  };
+
+  const handleUpload = () => {
+    const missing: string[] = [];
+    if (!guidelineType) missing.push('Guideline Type');
+    const isContentGeneralRules = guidelineType === 'Content' && guidelineSubType === 'GENERAL_RULES';
+    if (isContentGeneralRules) {
+      if (!guidelineName.trim()) missing.push('Guideline Name');
+    } else if (!guidelineSubType && !guidelineName.trim()) {
+      missing.push('Guideline Name or Subtype');
+    }
+    if (!guidelinesText.trim() && !guidelineFile) {
+      missing.push('Guideline to follow or Guideline Document');
+    }
+    if (missing.length) {
+      toast({ title: 'Validation Error', description: 'Missing: ' + missing.join(', '), variant: 'destructive' });
+      return;
+    }
+    toast({ title: 'Guideline Uploaded', description: 'Your guideline has been added successfully.' });
+    onBack();
+  };
+
+  return (
+    <div className="animate-fade-in">
+      <div className="mb-2">
+        <Button variant="ghost" size="sm" className="h-8 -ml-2 text-slate-600" onClick={onBack}>
+          <ArrowLeft className="w-4 h-4 mr-1.5" />Back
+        </Button>
+      </div>
+      <PageHeader title="Add New Guideline" subtitle="Define a new validation or content guideline" />
+      <Card className="border-2 border-slate-200 bg-slate-50 mt-4">
+        <CardContent className="p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold text-gray-900">Add New Guideline</h3>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="h-5 w-5 text-gray-500 cursor-pointer hover:text-gray-700 transition-colors" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-md bg-white text-black border-gray-200 px-4 py-3 rounded-lg shadow-lg">
+                  <div className="space-y-2 text-sm leading-relaxed">
+                    <p>Guideline Type can be selected from the Guideline Type dropdown.</p>
+                    <p>Guideline Subtype is optional. If unused, enter any custom name in Guideline Name.</p>
+                    <p>In <span className="font-semibold">Guideline to follow</span> you can type text or upload a TXT/PDF file (max 5MB).</p>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-gray-900">
+                Guideline Type <span className="text-red-500">*</span>
+              </Label>
+              <Select
+                value={guidelineType}
+                onValueChange={(value) => {
+                  setGuidelineType(value);
+                  setGuidelineSubType('');
+                  setGuidelineName('');
+                }}
+              >
+                <SelectTrigger className="bg-white border-gray-300">
+                  <SelectValue placeholder="Select guideline type" />
+                </SelectTrigger>
+                <SelectContent className="bg-white">
+                  {GUIDELINE_TYPE_OPTIONS.map((opt) => (
+                    <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-gray-900">Guideline Subtype</Label>
+              <Select
+                value={guidelineSubType}
+                onValueChange={(val) => {
+                  setGuidelineSubType(val);
+                  const isContentGeneralRules = guidelineType === 'Content' && val === 'GENERAL_RULES';
+                  if (val && !isContentGeneralRules) setGuidelineName(val);
+                }}
+                disabled={!isTypeSelected}
+              >
+                <SelectTrigger className="bg-white border-gray-300">
+                  <SelectValue placeholder="Select subtype" />
+                </SelectTrigger>
+                <SelectContent className="bg-white max-h-60 overflow-y-auto">
+                  {subtypeOptions.map((opt) => (
+                    <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-gray-900">
+                Guideline Name <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                placeholder="Enter guideline name"
+                className="bg-white border-gray-300"
+                value={guidelineName}
+                onChange={(e) => setGuidelineName(e.target.value)}
+                disabled={Boolean(guidelineSubType) && !(guidelineType === 'Content' && guidelineSubType === 'GENERAL_RULES')}
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-gray-900">Guideline to follow</Label>
+            <Textarea
+              placeholder="Enter guidelines here..."
+              value={guidelinesText}
+              onChange={(e) => setGuidelinesText(e.target.value)}
+              className="bg-white border-gray-300 min-h-[120px]"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-gray-900">Guideline Document (TXT / PDF)</Label>
+            <input
+              type="file"
+              accept=".txt,.pdf"
+              style={{ display: 'none' }}
+              ref={fileInputRef}
+              onChange={handleFileChange}
+            />
+            <div
+              className={`bg-white border-2 border-dashed ${isDraggingOver ? 'border-blue-500' : 'border-gray-300'} rounded-lg p-8 text-center space-y-3 hover:border-gray-400 transition-colors cursor-pointer`}
+              onDragOver={(e) => { e.preventDefault(); setIsDraggingOver(true); }}
+              onDragLeave={(e) => { e.preventDefault(); setIsDraggingOver(false); }}
+              onDrop={(e) => {
+                e.preventDefault();
+                setIsDraggingOver(false);
+                if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                  handleFileChange({ target: { files: e.dataTransfer.files } } as any);
+                  e.dataTransfer.clearData();
+                }
+              }}
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <div className="flex justify-center">
+                <div className="p-3 bg-blue-50 rounded-lg">
+                  <FileText className="h-8 w-8 text-blue-700" />
+                </div>
+              </div>
+              <div>
+                <p className="font-medium text-gray-900">
+                  {guidelineFile ? guidelineFile.name : 'Drag guideline file here or click to select'}
+                </p>
+                <p className="text-sm text-gray-600 mt-1">.txt or .pdf, max 5MB</p>
+              </div>
+              {guidelineFile && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => { e.stopPropagation(); setGuidelineFile(null); }}
+                >
+                  Remove
+                </Button>
+              )}
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-3">
+            <Button variant="outline" onClick={onBack}>Cancel</Button>
+            <Button
+              className="bg-blue-600 hover:bg-blue-600 text-white"
+              disabled={!isTypeSelected}
+              onClick={handleUpload}
+            >
+              Upload Guideline
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
