@@ -2055,10 +2055,10 @@ const ManageKnowledgeBase = ({ embedded = false }: { embedded?: boolean } = {}) 
                   <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-orange-600 text-white rounded-lg">
-                          <Search className="h-5 w-5" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-orange-800">Processing Settings</h3>
+                        <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                          <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
+                          Processing Settings
+                        </h3>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
