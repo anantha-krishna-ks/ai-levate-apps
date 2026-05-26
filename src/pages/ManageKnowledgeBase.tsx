@@ -2051,6 +2051,224 @@ const ManageKnowledgeBase = ({ embedded = false }: { embedded?: boolean } = {}) 
                   </Card>
 
 
+                  {/* Processing Settings Card */}
+                  <Card className="border-2 border-orange-100 bg-orange-50">
+                    <CardContent className="p-6 space-y-4">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="p-2 bg-orange-600 text-white rounded-lg">
+                          <Search className="h-5 w-5" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-orange-800">Processing Settings</h3>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                            Retrieval Strategy
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                  <p className="text-sm leading-relaxed">Retrieval Strategy decides how search results are ranked and selected</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </Label>
+                          <Select value={searchType} onValueChange={(v) => setSearchType(v as 'mmr' | 'similarity')}>
+                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                              {retrievalOptions.map(option => (
+                                <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                            Number Of K values
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                  <p className="text-sm leading-relaxed">Defines how many of the initially retrieved results are considered during retrieval (allowed range: 1–8). Smaller values are faster; larger are more thorough but slower.</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </Label>
+                          <Input
+                            type="number"
+                            min={1}
+                            max={8}
+                            step={1}
+                            placeholder="Enter value between 1-8"
+                            value={rerankKInput}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              setRerankKInput(value);
+                              if (value === '') return;
+                              const num = Number(value);
+                              if (!isNaN(num) && num >= 1 && num <= 8) {
+                                setRerankK(num);
+                              }
+                            }}
+                            onBlur={() => {
+                              const num = Number(rerankKInput);
+                              if (rerankKInput === '' || isNaN(num) || num < 1 || num > 8) {
+                                setRerankK(3);
+                                setRerankKInput('3');
+                              }
+                            }}
+                            className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20"
+                          />
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                            Chunk Size
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                  <p className="text-sm leading-relaxed">Defines how large each text segment is when splitting documents for retrieval. Smaller chunks give more precise matches but less context, larger chunks preserve more context but may include irrelevant material.</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </Label>
+                          <Select value={chunkSize} onValueChange={setChunkSize}>
+                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                              {chunkSizeOptions.map(option => (
+                                <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                            Overlap Percentage
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                  <p className="text-sm leading-relaxed">Defines how much consecutive text chunks overlap when splitting documents. Higher overlap preserves more context across chunks but increases redundancy and processing cost.</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </Label>
+                          <Select value={overlap} onValueChange={setOverlap}>
+                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                              {overlapOptions.map(option => (
+                                <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                            Chunking Strategy
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                  <p className="text-sm leading-relaxed">Controls how documents are split into smaller parts for retrieval. Affects accuracy, context, and speed.</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </Label>
+                          <Select value={chunkingStrategy} onValueChange={setChunkingStrategy}>
+                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                              {chunkingOptions.map(option => (
+                                <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                            Database Type
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                  <p className="text-sm leading-relaxed">The vector database used to store and search document embeddings. Faiss is faster for pure vector search, Chroma offers more features.</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </Label>
+                          <Select value={vectorDb} onValueChange={setVectorDb} disabled>
+                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                              {dbTypeOptions.map(option => (
+                                <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium text-orange-900 flex items-center gap-1">
+                            Embedding Model
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <HelpCircle className="h-4 w-4 text-orange-600 cursor-pointer hover:text-orange-700 transition-colors" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-w-xs bg-gray-800 text-white border-gray-700 px-4 py-3 rounded-lg shadow-lg">
+                                  <p className="text-sm leading-relaxed">Converts text into vectors for similarity search</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </Label>
+                          <Select value={embeddingModel} onValueChange={setEmbeddingModel}>
+                            <SelectTrigger className="bg-white border-orange-200 focus:border-orange-400 focus:ring-orange-400/20">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                              {getFilteredEmbeddingOptions().map(option => (
+                                <SelectItem
+                                  key={option.value}
+                                  value={option.value}
+                                  disabled={option.disabled}
+                                  className={option.disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+                                >
+                                  {option.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
                   {/* Action Buttons Card */}
                   <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
                     <CardContent className="p-6">
