@@ -16,8 +16,12 @@ Source: `FRD_Item_Generator_Workflow.docx`. Modules are implemented only when as
 - [ ] Entry cards aligned with the new Manage Content grouping
 
 ## 3. KB Selection & Item Generator Entry
-- [ ] No Study/LO validation at KB selection
-- [ ] Two visible paths after KB selection: General Generation (KB only) vs Curriculum-Aligned
+- [x] `/item-generator` rebuilt as KB-centric selection page (shell matches Manage Content pages)
+- [x] No Study/LO validation at KB selection — every KB is selectable
+- [x] Readiness chips per KB (KB / Book / Study / LO)
+- [x] Two visible paths after KB selection: General Generation (KB only) vs Curriculum-Aligned
+- [x] Path choice passes `?mode=kb|curriculum` to the question generator
+- [x] Inline non-blocking "Curriculum data not available" note with KB-only + Add Study/LO CTAs (full Module 4 pending)
 
 ## 4. Missing Study / LO Behaviour
 - [ ] Replace blocking popup with non-blocking "Curriculum Data Not Available" message
