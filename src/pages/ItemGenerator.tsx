@@ -159,7 +159,7 @@ const ItemGenerator = () => {
   }, [search]);
 
   const selected = knowledgeBases.find((kb) => kb.id === selectedId) ?? null;
-  const curriculumReady = !!selected?.studyCreated && !!selected?.loAvailable;
+  const curriculumReady = !!selected?.bookLinked && !!selected?.studyCreated && !!selected?.loAvailable;
 
   const startGeneration = (mode: "kb" | "curriculum") => {
     if (!selected) return;
