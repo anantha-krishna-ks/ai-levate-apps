@@ -223,64 +223,83 @@ const ItemGenerator = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                   {filtered.map((kb) => {
                     const isSelected = kb.id === selectedId;
+                    const layers = [
+                      true,
+                      kb.bookLinked,
+                      kb.studyCreated,
+                      kb.loAvailable,
+                    ].filter(Boolean).length;
                     return (
                       <button
                         key={kb.id}
                         type="button"
                         onClick={() => setSelectedId(kb.id)}
-                        className={`text-left rounded-2xl border bg-white p-4 transition-all ${
+                        className={`group relative text-left rounded-2xl bg-white p-4 pt-[18px] overflow-hidden transition-all duration-200 ring-1 ring-inset ${
                           isSelected
-                            ? "border-blue-500 ring-1 ring-blue-500/30 shadow-sm"
-                            : "border-gray-200/70 hover:border-blue-300 hover:shadow-sm"
+                            ? "ring-blue-500 shadow-[0_6px_20px_-10px_rgba(37,99,235,0.45)]"
+                            : "ring-gray-200/80 hover:ring-slate-300 hover:shadow-[0_8px_24px_-16px_rgba(15,23,42,0.35)] hover:-translate-y-0.5"
                         }`}
                       >
+                        {/* top accent rail */}
+                        <span
+                          className={`absolute inset-x-0 top-0 h-[3px] transition-opacity duration-200 ${
+                            isSelected
+                              ? "bg-blue-600 opacity-100"
+                              : "bg-slate-300 opacity-0 group-hover:opacity-100"
+                          }`}
+                        />
+
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex items-start gap-3 min-w-0">
-                            <div className="h-10 w-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
-                              <Database className="h-4.5 w-4.5 text-blue-600" />
+                            <div
+                              className={`h-10 w-10 rounded-xl flex items-center justify-center flex-shrink-0 text-[12px] font-semibold tracking-tight transition-colors ${
+                                isSelected
+                                  ? "bg-blue-600 text-white"
+                                  : "bg-slate-50 text-slate-600 ring-1 ring-inset ring-slate-200/80 group-hover:bg-blue-50 group-hover:text-blue-700 group-hover:ring-blue-100"
+                              }`}
+                            >
+                              {kb.code.slice(0, 3).toUpperCase()}
                             </div>
                             <div className="min-w-0">
-                              <h3 className="text-sm font-semibold text-slate-900 truncate">
+                              <h3 className="text-sm font-semibold text-slate-900 truncate leading-5">
                                 {kb.name}
                               </h3>
-                              <p className="text-xs text-slate-500 truncate">
+                              <p className="text-xs text-slate-500 truncate mt-0.5">
                                 {kb.code} · {kb.subject}
                               </p>
                             </div>
                           </div>
-                          {isSelected && (
-                            <span className="h-5 w-5 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                              <Check className="h-3 w-3 text-white" />
-                            </span>
-                          )}
+                          <span
+                            className={`h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+                              isSelected
+                                ? "bg-blue-600 scale-100 opacity-100"
+                                : "bg-slate-200 scale-75 opacity-0"
+                            }`}
+                          >
+                            <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                          </span>
                         </div>
 
-                        <div className="mt-3 flex flex-wrap gap-1.5">
-                          <ReadinessChip label="KB" ready icon={Database} />
-                          <ReadinessChip
-                            label="Book"
-                            ready={kb.bookLinked}
-                            icon={BookOpen}
-                          />
-                          <ReadinessChip
-                            label="Study"
-                            ready={kb.studyCreated}
-                            icon={GraduationCap}
-                          />
-                          <ReadinessChip
-                            label="LO"
-                            ready={kb.loAvailable}
-                            icon={Target}
-                          />
+                        <div className="mt-3.5 flex flex-wrap gap-1.5">
+                          <ReadinessChip label="KB" ready />
+                          <ReadinessChip label="Book" ready={kb.bookLinked} />
+                          <ReadinessChip label="Study" ready={kb.studyCreated} />
+                          <ReadinessChip label="LO" ready={kb.loAvailable} />
                         </div>
 
-                        <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500">
-                          <span>{kb.documents} documents</span>
-                          <span>Updated {kb.updated}</span>
+                        <div className="mt-3.5 pt-3 border-t border-dashed border-slate-200/90 flex items-center justify-between text-[11px] text-slate-500">
+                          <span className="inline-flex items-center gap-1.5">
+                            <Database className="h-3 w-3 text-slate-400" />
+                            {kb.documents} documents
+                          </span>
+                          <span className="tabular-nums">
+                            {layers}/4 layers · {kb.updated}
+                          </span>
                         </div>
                       </button>
                     );
                   })}
+
                 </div>
               )}
             </div>
