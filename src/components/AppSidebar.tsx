@@ -176,7 +176,7 @@ export function AppSidebar({
     <aside
       className={cn(
         "relative h-full bg-white border-r border-[#D5DBE4] flex flex-col transition-[width] duration-300 ease-in-out",
-        collapsed ? "w-[72px]" : "w-64",
+        collapsed ? "w-16" : "w-52",
       )}
     >
       {!hideToggle && (
