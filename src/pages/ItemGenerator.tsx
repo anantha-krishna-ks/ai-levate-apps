@@ -195,7 +195,7 @@ const ItemGenerator = () => {
       >
         {/* Page header */}
         <div className="relative bg-white border-b border-slate-200">
-          <div className="relative px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+          <div className="relative px-4 sm:px-6 py-3 flex items-center gap-3">
             <div className="flex items-center gap-3 min-w-0">
               <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
                 <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
@@ -211,16 +211,6 @@ const ItemGenerator = () => {
                 </p>
               </div>
             </div>
-            {selected && (
-              <Button
-                variant="outline"
-                className="rounded-full border-gray-200 text-slate-700 hover:bg-slate-50"
-                onClick={() => setSelectedId(null)}
-              >
-                <ArrowLeft className="h-4 w-4 mr-1.5" />
-                Change knowledge base
-              </Button>
-            )}
           </div>
         </div>
 
