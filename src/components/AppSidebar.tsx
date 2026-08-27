@@ -4,7 +4,7 @@ import {
   Library,
   BarChart3,
   Users,
-  MessageSquare,
+  Inbox,
   BookOpen,
   FileText,
   Images,
