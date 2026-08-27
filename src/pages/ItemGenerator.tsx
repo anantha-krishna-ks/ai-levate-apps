@@ -299,18 +299,17 @@ const ItemGenerator = () => {
                             </div>
                           </div>
                           <span
-                            className={`h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+                            className={`relative h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${
                               isSelected
-                                ? "bg-blue-600 scale-100"
-                                : "bg-slate-100 border border-slate-200 scale-100 group-hover:bg-slate-200"
+                                ? "border-2 border-blue-600"
+                                : "border-2 border-slate-300 group-hover:border-slate-400"
                             }`}
                             aria-hidden="true"
                           >
-                            <Check
-                              className={`h-3 w-3 transition-colors duration-200 ${
-                                isSelected ? "text-white" : "text-slate-400 group-hover:text-slate-500"
+                            <span
+                              className={`rounded-full bg-blue-600 transition-all duration-200 ${
+                                isSelected ? "h-2.5 w-2.5 scale-100 opacity-100" : "h-2.5 w-2.5 scale-50 opacity-0"
                               }`}
-                              strokeWidth={3}
                             />
                           </span>
                         </div>
