@@ -4357,7 +4357,7 @@ const KnowledgeBase = () => {
                                           <Button
                                             variant="outline"
                                             size="sm"
-                                            className="h-8 shrink-0 rounded-full px-4 text-xs font-semibold border-slate-200 text-slate-600 bg-white hover:bg-white hover:border-blue-600 hover:text-blue-600 transition-all"
+                                            className="h-8 shrink-0 rounded-full px-4 text-xs font-semibold border-blue-600 text-blue-600 bg-white hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all"
                                             onClick={() => {
                                               setEditingBookDetails(book);
                                               setIsCreatingStudyLO(true);
