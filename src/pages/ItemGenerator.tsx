@@ -425,9 +425,11 @@ const ItemGenerator = () => {
                         Curriculum data not available
                       </p>
                       <p className="mt-0.5 text-xs text-slate-600">
-                        {!selected.studyCreated
-                          ? "No Study has been created for this knowledge base."
-                          : "No Learning Objectives are available for this Study."}{" "}
+                        {!selected.bookLinked
+                          ? "No Book has been linked to this knowledge base yet."
+                          : !selected.studyCreated
+                            ? "No Study has been created for this book."
+                            : "No Learning Objectives are available for this Study."}{" "}
                         You can still continue with KB only.
                       </p>
                       <div className="mt-2.5 flex flex-wrap gap-2">
@@ -444,7 +446,9 @@ const ItemGenerator = () => {
                           asChild
                           className="rounded-full border-gray-200 text-slate-700 hover:bg-white"
                         >
-                          <Link to="/manage-book-details">Add Study / LO</Link>
+                          <Link to={`/manage-book-details?kb=${encodeURIComponent(selected.code)}`}>
+                            Add Study / LO
+                          </Link>
                         </Button>
                       </div>
                     </div>
