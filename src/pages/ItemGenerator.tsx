@@ -195,7 +195,7 @@ const ItemGenerator = () => {
       >
         {/* Page header */}
         <div className="relative bg-white border-b border-slate-200">
-          <div className="relative px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+          <div className="relative px-4 sm:px-6 py-3 flex items-center gap-3">
             <div className="flex items-center gap-3 min-w-0">
               <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
                 <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
@@ -211,16 +211,6 @@ const ItemGenerator = () => {
                 </p>
               </div>
             </div>
-            {selected && (
-              <Button
-                variant="outline"
-                className="rounded-full border-gray-200 text-slate-700 hover:bg-slate-50"
-                onClick={() => setSelectedId(null)}
-              >
-                <ArrowLeft className="h-4 w-4 mr-1.5" />
-                Change knowledge base
-              </Button>
-            )}
           </div>
         </div>
 
@@ -344,18 +334,31 @@ const ItemGenerator = () => {
 
           {/* Step 2 — generation path */}
           <div className="rounded-2xl border border-gray-200/70 bg-white shadow-sm">
-            <div className="px-5 py-4 border-b border-gray-200/70 flex items-center gap-2.5">
-              <span className="w-1 h-6 rounded-full bg-blue-600" />
-              <div>
-                <h2 className="text-sm font-semibold text-slate-900">
-                  Step 2 · Choose Generation Path
-                </h2>
-                <p className="text-xs text-slate-600">
-                  {selected
-                    ? `Generating from “${selected.name}”`
-                    : "Select a knowledge base above to see the available paths."}
-                </p>
+            <div className="px-5 py-4 border-b border-gray-200/70 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span className="w-1 h-6 rounded-full bg-blue-600" />
+                <div className="min-w-0">
+                  <h2 className="text-sm font-semibold text-slate-900">
+                    Step 2 · Choose Generation Path
+                  </h2>
+                  <p className="text-xs text-slate-600 truncate">
+                    {selected
+                      ? `Generating from “${selected.name}”`
+                      : "Select a knowledge base above to see the available paths."}
+                  </p>
+                </div>
               </div>
+              {selected && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="rounded-full text-slate-600 hover:bg-slate-100 hover:text-slate-900 flex-shrink-0"
+                  onClick={() => setSelectedId(null)}
+                >
+                  <ArrowLeft className="h-4 w-4 mr-1.5" />
+                  Change knowledge base
+                </Button>
+              )}
             </div>
 
             <div className="p-5">
@@ -444,7 +447,7 @@ const ItemGenerator = () => {
                           size="sm"
                           variant="outline"
                           asChild
-                          className="rounded-full border-gray-200 text-slate-700 hover:bg-white"
+                          className="rounded-full border-gray-200 text-slate-700 hover:bg-slate-50 hover:text-slate-700"
                         >
                           <Link to={`/manage-book-details?kb=${encodeURIComponent(selected.code)}`}>
                             Add Study / LO
