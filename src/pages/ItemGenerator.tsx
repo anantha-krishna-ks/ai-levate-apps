@@ -11,6 +11,7 @@ import {
   ChevronRight,
   Layers,
   ArrowLeft,
+  Minus,
 } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
