@@ -447,7 +447,7 @@ const ItemGenerator = () => {
                           size="sm"
                           variant="outline"
                           asChild
-                          className="rounded-full border-gray-200 text-slate-700 hover:bg-white"
+                          className="rounded-full border-gray-200 text-slate-700 hover:bg-slate-50 hover:text-slate-700"
                         >
                           <Link to={`/manage-book-details?kb=${encodeURIComponent(selected.code)}`}>
                             Add Study / LO
