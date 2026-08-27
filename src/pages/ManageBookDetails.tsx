@@ -981,6 +981,7 @@ const KnowledgeBase = () => {
     } catch { }
     
     //if (!orgCode) return;
+    const reqId = ++booksReqIdRef.current;
     setBooksLoading(true);
     setBooksError(null);
     try {
@@ -1014,14 +1015,18 @@ const KnowledgeBase = () => {
         appcode: book.appcode,
         isstudylocreated: book.isstudylocreated,
       })).filter((option: any) => option.value);
+      if (reqId !== booksReqIdRef.current) return;
+      console.log('[ManageBookDetails] books fetched:', options.length);
       setBooksOptions(options);
     } catch (error) {
+      if (reqId !== booksReqIdRef.current) return;
       setBooksError(error?.message || 'Failed to fetch books');
       setBooksOptions([]);
     } finally {
-      setBooksLoading(false);
+      if (reqId === booksReqIdRef.current) setBooksLoading(false);
     }
-    }, [booksLoading, selectedCustomerCode, selectedOrganization, selectedApp]);
+    }, [selectedCustomerCode, selectedOrganization, selectedApp]);
+
 
   // Fetch chapter LO details when book is selected
   const fetchChapterLODetails = useCallback(async (bookId: number) => {
