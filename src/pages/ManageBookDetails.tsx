@@ -4364,7 +4364,7 @@ const KnowledgeBase = () => {
                                           <Button
                                             variant="outline"
                                             size="sm"
-                                            className="h-8 shrink-0 rounded-full px-4 text-xs font-semibold border-blue-600 text-blue-600 bg-white hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all"
+                                            className="h-8 shrink-0 rounded-lg px-3 text-xs font-medium border-slate-300 text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-400 transition-all gap-1.5"
                                             onClick={() => {
                                               setEditingBookDetails(book);
                                               setIsCreatingStudyLO(true);
@@ -4375,12 +4375,14 @@ const KnowledgeBase = () => {
                                               fetchAppsData();
                                             }}
                                           >
+                                            <Pencil className="h-3.5 w-3.5 text-blue-600" />
                                             Edit LO
                                           </Button>
                                         ) : (
                                           <Button
+                                            variant="outline"
                                             size="sm"
-                                            className="h-8 shrink-0 rounded-full px-4 text-xs font-semibold bg-blue-600 text-white hover:bg-blue-700 whitespace-nowrap transition-all"
+                                            className="h-8 shrink-0 rounded-lg px-3 text-xs font-medium border-slate-300 text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-400 transition-all gap-1.5"
                                             onClick={() => {
                                               setIsCreatingStudyLO(true);
                                               setSelectedBook(book.label);
@@ -4390,6 +4392,7 @@ const KnowledgeBase = () => {
                                               fetchAppsData();
                                             }}
                                           >
+                                            <Plus className="h-3.5 w-3.5 text-blue-600" />
                                             Create LO
                                           </Button>
                                         )}
