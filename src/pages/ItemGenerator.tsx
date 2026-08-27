@@ -97,7 +97,7 @@ const ReadinessChip = ({
     {ready ? (
       <Check className="h-3 w-3 text-blue-700" strokeWidth={3} aria-hidden="true" />
     ) : (
-      <Minus className="h-3 w-3 text-slate-500" strokeWidth={3} aria-hidden="true" />
+      <Minus className="h-3 w-3 text-slate-600" strokeWidth={3} aria-hidden="true" />
     )}
     {label}
   </span>
@@ -131,7 +131,7 @@ const LayerRing = ({
         />
       </svg>
       <BookOpen
-        className={`absolute h-4 w-4 ${selected ? "text-blue-700" : "text-slate-500 group-hover:text-blue-700"}`}
+        className={`absolute h-4 w-4 ${selected ? "text-blue-700" : "text-slate-600 group-hover:text-blue-700"}`}
         aria-hidden="true"
       />
     </span>
@@ -206,7 +206,7 @@ const ItemGenerator = () => {
                 <h1 className="text-lg font-semibold text-slate-900 truncate">
                   Item Generator
                 </h1>
-                <p className="text-xs text-slate-500 truncate">
+                <p className="text-xs text-slate-600 truncate">
                   Select a knowledge base, then choose how you want to generate items
                 </p>
               </div>
@@ -234,7 +234,7 @@ const ItemGenerator = () => {
                   <h2 className="text-sm font-semibold text-slate-900">
                     Step 1 · Select Knowledge Base
                   </h2>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-600">
                     A knowledge base is all you need to start. Book, Study and Learning
                     Objectives are optional layers.
                   </p>
@@ -253,7 +253,7 @@ const ItemGenerator = () => {
 
             <div className="p-5">
               {filtered.length === 0 ? (
-                <div className="py-10 text-center text-sm text-slate-500">
+                <div className="py-10 text-center text-sm text-slate-600">
                   No knowledge bases match your search.
                 </div>
               ) : (
@@ -318,7 +318,7 @@ const ItemGenerator = () => {
 
                         <div className="mt-3.5 pt-3 border-t border-dashed border-slate-200 flex items-center justify-between text-xs text-slate-600">
                           <span className="inline-flex items-center gap-1.5">
-                            <Database className="h-3.5 w-3.5 text-slate-500" aria-hidden="true" />
+                            <Database className="h-3.5 w-3.5 text-slate-600" aria-hidden="true" />
                             {kb.documents} documents
                           </span>
                           <span className="tabular-nums">
@@ -343,7 +343,7 @@ const ItemGenerator = () => {
                 <h2 className="text-sm font-semibold text-slate-900">
                   Step 2 · Choose Generation Path
                 </h2>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-600">
                   {selected
                     ? `Generating from “${selected.name}”`
                     : "Select a knowledge base above to see the available paths."}
@@ -367,7 +367,7 @@ const ItemGenerator = () => {
                       <h3 className="text-sm font-semibold text-slate-900">
                         General Generation
                       </h3>
-                      <p className="text-xs text-slate-500">Knowledge base only</p>
+                      <p className="text-xs text-slate-600">Knowledge base only</p>
                     </div>
                   </div>
                   <p className="mt-3 text-sm text-slate-600">
@@ -401,7 +401,7 @@ const ItemGenerator = () => {
                       <h3 className="text-sm font-semibold text-slate-900">
                         Curriculum-Aligned Generation
                       </h3>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-slate-600">
                         Knowledge base + Study / Learning Objectives
                       </p>
                     </div>
