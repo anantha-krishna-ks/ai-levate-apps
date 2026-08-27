@@ -4,7 +4,7 @@ import {
   Library,
   BarChart3,
   Users,
-  MessageSquare,
+  Inbox,
   BookOpen,
   FileText,
   Images,
@@ -77,10 +77,15 @@ const sections: NavSection[] = [
     ],
   },
   {
+    label: "Insights",
+    items: [
+      { title: "Analytics", url: "/analytics", icon: BarChart3 },
+      { title: "Feedback queue", url: "/feedback-approval", icon: Inbox, badge: 7 },
+    ],
+  },
+  {
     label: "Workspace",
     items: [
-      { title: "Feedback Approval", url: "/feedback-approval", icon: MessageSquare },
-      { title: "Analytics", url: "/analytics", icon: BarChart3 },
       { title: "Collaboration", url: "/collaboration", icon: Users },
     ],
   },
