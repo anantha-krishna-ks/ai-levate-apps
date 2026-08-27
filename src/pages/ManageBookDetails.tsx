@@ -1641,16 +1641,13 @@ const KnowledgeBase = () => {
   }, [isCreatingStudyLO]);
 
   useEffect(() => {
-    if (selectedCustomerCode && selectedOrganization) {
+    if (selectedCustomerCode) {
       fetchBooksDetails();
+    } else {
+      setBooksOptions([]);
     }
-  }, [selectedCustomerCode, selectedOrganization, selectedApp]);
+  }, [fetchBooksDetails, selectedCustomerCode]);
 
-  useEffect(() => {
-    if (selectedCustomerCode && selectedCustomerCode !== '_ALL') {
-      fetchBooksDetails();
-    }
-  }, [selectedCustomerCode]);
 
   useEffect(() => {
     if (isCreatingStudyLO && selectedCustomerCode) {
