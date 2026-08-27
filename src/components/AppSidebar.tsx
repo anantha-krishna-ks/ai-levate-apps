@@ -14,6 +14,7 @@ import {
   FolderOpen,
   ChevronDown,
   ChevronLeft,
+  ChevronRight,
   type LucideIcon,
 } from "lucide-react"
 import { NavLink, useLocation } from "react-router-dom"
@@ -156,74 +157,69 @@ export function AppSidebar({
     </span>
   )
 
-  // Active indicator — 3px accent bar pinned to the left edge, vertically centered.
+  // Active indicator — slim blue bar on the left edge of the active item.
   const ActiveBar = () => (
     <span
       aria-hidden="true"
-      className="absolute left-0 top-1/2 -translate-y-1/2 h-[22px] w-[3px] rounded-r-[3px] bg-blue-600"
+      className="absolute left-1 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-full bg-blue-600"
     />
   )
 
-  // Shared item styles per sidebar.md spec:
-  // rounded-[10px], gap-3, 13.8px, weight 500 idle / 600 active, quiet transitions.
   const itemBase =
-    "relative group w-full flex items-center gap-3 rounded-[10px] text-[13.8px] font-medium transition-[background-color,color,padding] duration-150 ease-out"
-  const itemPadding = collapsed ? "justify-center px-0 py-[11px]" : "px-3 py-2.5"
+    "relative group w-full flex items-center gap-3 rounded-xl text-[13px] font-medium transition-all duration-200"
+  const itemPadding = collapsed ? "justify-center px-0 py-2" : "px-3.5 py-2"
   const itemIdle =
-    "text-slate-800 hover:bg-slate-100/70 hover:text-slate-900"
-  const itemActive = "bg-blue-600 text-white"
+    "text-slate-700 hover:bg-slate-100/80 hover:text-slate-900"
+  const itemActive = "bg-blue-50 text-blue-700"
 
   return (
     <aside
-      aria-label="Main navigation"
       className={cn(
-        "relative h-full bg-white border-r border-slate-200 flex flex-col transition-[width] duration-[280ms] ease-in-out",
-        collapsed ? "w-[72px]" : "w-64",
+        "relative h-full bg-white border-r border-slate-200/80 flex flex-col transition-all duration-300 ease-in-out",
+        collapsed ? "w-16" : "w-60",
       )}
     >
-      {/* Collapse control — small circular toggle floating on the right edge. */}
       {!hideToggle && (
         <button
           type="button"
           onClick={toggleSidebarCollapsed}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           className={cn(
-            "absolute -right-3 top-7 z-20 h-[30px] w-[30px] rounded-full border border-slate-200",
-            "bg-white text-slate-500 flex items-center justify-center",
-            "transition-all duration-150 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110",
+            "absolute -right-3 top-7 z-20 h-6 w-6 rounded-full border border-slate-200",
+            "bg-white text-slate-500 shadow-sm flex items-center justify-center",
+            "transition-all duration-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110",
           )}
         >
-          <ChevronLeft
-            className={cn(
-              "h-3.5 w-3.5 transition-transform duration-200",
-              collapsed && "rotate-180",
-            )}
-          />
+          {collapsed ? (
+            <ChevronRight className="h-3 w-3" />
+          ) : (
+            <ChevronLeft className="h-3 w-3" />
+          )}
         </button>
       )}
 
-      <nav
+      <div
         className={cn(
           "flex-1 overflow-y-auto overflow-x-hidden py-4",
-          collapsed ? "px-3 space-y-3" : "px-3 space-y-4",
+          collapsed ? "px-2 space-y-3" : "px-3 space-y-3.5",
         )}
-        aria-label="Main navigation"
       >
         {sections.map((section, sectionIdx) => (
           <div key={section.label}>
             {collapsed ? (
               sectionIdx > 0 && (
-                <div className="mx-1 mb-3 h-px bg-slate-200/80" aria-hidden="true" />
+                <div className="mx-2 mb-3 h-px bg-slate-200/80" aria-hidden="true" />
               )
             ) : (
-              <p
-                className="px-3 pt-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500"
-              >
-                {section.label}
-              </p>
+              <div className="flex items-center gap-2 px-3 pb-1">
+                <span className="h-1 w-1 rounded-full bg-slate-400" aria-hidden="true" />
+                <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                  {section.label}
+                </p>
+              </div>
             )}
 
-            <div className="space-y-1">
+            <nav className="space-y-0.5">
               {section.items.map((item) => {
                 const Icon = item.icon
 
@@ -251,25 +247,25 @@ export function AppSidebar({
                             : itemIdle,
                         )}
                         title={collapsed ? item.title : undefined}
-                        aria-expanded={open}
                       >
                         {groupActive && <ActiveBar />}
                         <span
                           className={cn(
-                            "flex h-[19px] w-[19px] flex-shrink-0 items-center justify-center transition-colors duration-150",
+                            "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-colors duration-200",
+                            collapsed && "h-9 w-9",
                             groupActive
-                              ? "text-blue-600"
-                              : "text-slate-500 group-hover:text-slate-700",
+                              ? "bg-blue-100 text-blue-600"
+                              : "bg-transparent text-slate-600 group-hover:bg-slate-100 group-hover:text-slate-800",
                           )}
                         >
-                          <Icon className="h-[19px] w-[19px]" strokeWidth={1.75} />
+                          <Icon className="h-[17px] w-[17px]" />
                         </span>
                         {!collapsed && (
                           <>
                             <span className="flex-1 text-left">{item.title}</span>
                             <ChevronDown
                               className={cn(
-                                "h-3.5 w-3.5 text-slate-400 transition-transform duration-200",
+                                "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
                                 open && "rotate-180",
                               )}
                             />
@@ -286,7 +282,7 @@ export function AppSidebar({
                         )}
                       >
                         <div className="overflow-hidden">
-                          <div className="ml-[27px] mt-1 space-y-1 border-l border-slate-200/80 pl-3">
+                          <div className="ml-[27px] mt-1 space-y-0.5 border-l border-slate-200/80 pl-3">
                             {item.children.map((child) => {
                               const active = isActivePath(child.url)
                               return (
@@ -294,12 +290,11 @@ export function AppSidebar({
                                   key={child.title}
                                   to={child.url}
                                   onClick={onNavigate}
-                                  aria-current={active ? "page" : undefined}
                                   className={cn(
-                                    "relative flex items-center gap-2 rounded-[10px] px-3 py-2 text-[13.8px] transition-[background-color,color] duration-150",
+                                    "relative flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] transition-all duration-150",
                                     active
                                       ? "bg-blue-50 font-semibold text-blue-700"
-                                      : "text-slate-600 hover:bg-slate-100/70 hover:text-slate-900",
+                                      : "text-slate-600 hover:bg-slate-100/80 hover:text-slate-900",
                                   )}
                                 >
                                   <span
@@ -331,7 +326,6 @@ export function AppSidebar({
                     to={item.url!}
                     onClick={onNavigate}
                     title={collapsed ? item.title : undefined}
-                    aria-current={active ? "page" : undefined}
                     className={cn(
                       itemBase,
                       itemPadding,
@@ -341,21 +335,18 @@ export function AppSidebar({
                     {active && <ActiveBar />}
                     <span
                       className={cn(
-                        "flex h-[19px] w-[19px] flex-shrink-0 items-center justify-center transition-colors duration-150",
+                        "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-colors duration-200",
+                        collapsed && "h-9 w-9",
                         active
-                          ? "text-white"
-                          : "text-slate-500 group-hover:text-slate-700",
+                          ? "bg-blue-600 text-white"
+                          : "bg-transparent text-slate-600 group-hover:bg-slate-100 group-hover:text-slate-800",
                       )}
                     >
-                      <Icon className="h-[19px] w-[19px]" strokeWidth={1.75} />
+                      <Icon className="h-[17px] w-[17px]" />
                     </span>
                     {!collapsed && (
                       <>
-                        <span
-                          className={cn("flex-1", active && "font-semibold")}
-                        >
-                          {item.title}
-                        </span>
+                        <span className="flex-1">{item.title}</span>
                         {typeof item.badge === "number" && (
                           <Badge value={item.badge} />
                         )}
@@ -364,10 +355,10 @@ export function AppSidebar({
                   </NavLink>
                 )
               })}
-            </div>
+            </nav>
           </div>
         ))}
-      </nav>
+      </div>
     </aside>
   )
 }
