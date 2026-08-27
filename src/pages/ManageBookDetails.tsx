@@ -4242,56 +4242,68 @@ const KnowledgeBase = () => {
                             <Table className="w-full table-fixed">
                               <TableHeader>
                                 <TableRow className="bg-muted border-b border-gray-300 hover:bg-muted">
-                                  <TableHead className="w-[70%]">Book Name</TableHead>
-                                  <TableHead className="w-[30%] text-right pr-4">Actions</TableHead>
+                                  <TableHead className="w-[45%]">Book Name</TableHead>
+                                  <TableHead className="w-[40%]">Learning Objectives</TableHead>
+                                  <TableHead className="w-[15%] text-right pr-4">Actions</TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
-                                {filteredBooks.map((book, idx) => (
+                                {filteredBooks.map((book, idx) => {
+                                  const hasLO = book.isstudylocreated == 1;
+                                  return (
                                   <TableRow key={book.bookId || idx} className="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0">
                                     <TableCell className="font-medium text-gray-900 py-4 truncate">{book.label || ""}</TableCell>
+                                    <TableCell className="py-4">
+                                      <div className="flex items-center gap-3">
+                                        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${hasLO
+                                          ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                          : 'bg-slate-50 text-slate-600 border-slate-200'}`}>
+                                          {hasLO ? 'LO available' : 'No LO'}
+                                        </span>
+                                        {hasLO ? (
+                                          <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            className="h-8 rounded-full text-xs text-blue-700 hover:bg-blue-50 hover:text-blue-800"
+                                            onClick={() => {
+                                              setEditingBookDetails(book);
+                                              setIsCreatingStudyLO(true);
+                                              setSelectedBook(book.label);
+                                              setSelectedBookId(book.bookId);
+                                              setSelectedOrganization(book.organizationcode);
+                                              setSelectedApp(book.appcode);
+                                              fetchAppsData();
+                                            }}
+                                          >
+                                            <Edit className="h-3.5 w-3.5 mr-1.5" />
+                                            Edit LO
+                                          </Button>
+                                        ) : (
+                                          <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            className="h-8 rounded-full text-xs text-blue-700 hover:bg-blue-50 hover:text-blue-800"
+                                            onClick={() => {
+                                              setIsCreatingStudyLO(true);
+                                              setSelectedBook(book.label);
+                                              setSelectedBookId(book.bookId);
+                                              setSelectedOrganization(book.organizationcode);
+                                              setSelectedApp(book.appcode);
+                                              fetchAppsData();
+                                            }}
+                                          >
+                                            <Plus className="h-3.5 w-3.5 mr-1.5" />
+                                            Create LO
+                                          </Button>
+                                        )}
+                                      </div>
+                                    </TableCell>
                                     <TableCell className="py-4">
                                       <div className="flex items-center justify-end gap-1">
                                         <Button
                                           variant="ghost"
                                           size="icon"
-                                          title="Create Study LO"
-                                          className="h-9 w-9 hover:bg-green-100 transition-colors"
-                                          disabled={book.isstudylocreated == 1}
-                                          onClick={() => {
-                                            setIsCreatingStudyLO(true);
-                                            setSelectedBook(book.label);
-                                            setSelectedBookId(book.bookId);
-                                            setSelectedOrganization(book.organizationcode);
-                                            setSelectedApp(book.appcode);
-                                            fetchAppsData();
-                                          }}
-                                        >
-                                          <File className="h-4 w-4 text-green-600" />
-                                        </Button>
-                                        <Button
-                                          variant="ghost"
-                                          size="icon"
-                                          title="Edit Study LO"
-                                          className="h-9 w-9 hover:bg-blue-100 transition-colors"
-                                          disabled={book.isstudylocreated == 0}
-                                          onClick={() => {
-                                            setEditingBookDetails(book);
-                                            setIsCreatingStudyLO(true);
-                                            setSelectedBook(book.label);
-                                            setSelectedBookId(book.bookId);
-                                            setSelectedOrganization(book.organizationcode);
-                                            setSelectedApp(book.appcode);
-                                            fetchAppsData();
-                                          }}
-                                        >
-                                          <Edit className="h-4 w-4 text-blue-600" />
-                                        </Button>
-                                        
-                                        <Button
-                                          variant="ghost"
-                                          size="icon"
-                                          title="Delete"
+                                          title="Delete book"
                                           className="h-9 w-9 hover:bg-red-100 transition-colors"
                                           onClick={() => {
                                             setBookToDelete(book);
@@ -4303,7 +4315,8 @@ const KnowledgeBase = () => {
                                       </div>
                                     </TableCell>
                                   </TableRow>
-                                ))}
+                                  );
+                                })}
                               </TableBody>
                             </Table>
                           </div>
