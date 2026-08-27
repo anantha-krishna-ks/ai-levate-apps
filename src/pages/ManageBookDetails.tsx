@@ -4143,42 +4143,104 @@ const KnowledgeBase = () => {
                         <div className="flex items-center gap-3 mb-4">
                           <h2 className="text-xl font-medium text-gray-900 flex items-center gap-2">
                             <span className="inline-block w-1 h-6 bg-blue-600 rounded-full" aria-hidden="true" />
-                            Apps Details
+                            Customer, Organization &amp; App
                           </h2>
                         </div>
 
-                        <div className="relative app-dropdown-container">
-                          <div className="relative">
-                          <Input
-                            type="text"
-                            value={appSearchQuery}
-                            onClick={handleAppInputFocus}
-                            placeholder={appsLoading ? "Loading..." : (appSearchQuery || "Select App")}
-                            className="w-full pl-2 bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer"
-                            disabled={appsLoading || !selectedCustomerCode || selectedCustomerCode === '_ALL' || (!selectedOrganization && !organizationLocked && !appSearchQuery)}
-                            readOnly
-                          />
-                                                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                                                    </div>
-
-                                                    {showAppDropdown && !appsLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && selectedOrganization && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
-                              {(appsOptions || []).map((app: any) => (
-                                <div
-                                  key={app.value}
-                                  className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
-                                  onClick={() => handleAppSelect(app.value, app.label)}
-                                >
-                                  <div className="cursor-pointer">{app.label}</div>
-                                </div>
-                              ))}
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                          {/* Customer */}
+                          <div className="space-y-2 relative customer-dropdown-container">
+                            <label className="text-sm font-medium text-gray-700">Customer</label>
+                            <div className="relative">
+                              <Input
+                                type="text"
+                                value={customerSearchQuery}
+                                onChange={(e) => handleCustomerInputChange(e.target.value)}
+                                onClick={handleCustomerInputFocus}
+                                placeholder={customersLoading ? "Loading..." : getSelectedCustomerName()}
+                                className="w-full pl-2 pr-9 bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer"
+                                disabled={customersLoading || customerLocked}
+                              />
+                              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
                             </div>
-                          )}
+                            {showCustomerDropdown && !customersLoading && !customerLocked && (
+                              <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                                <div
+                                  className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100"
+                                  onClick={() => handleCustomerSelect("_ALL", "All")}
+                                >
+                                  All
+                                </div>
+                                {filteredCustomers.map((customer: any) => (
+                                  <div
+                                    key={customer.customercode}
+                                    className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                                    onClick={() => handleCustomerSelect(customer.customercode, customer.customername)}
+                                  >
+                                    {customer.customername}
+                                  </div>
+                                ))}
+                                {filteredCustomers.length === 0 && (
+                                  <div className="px-3 py-2 text-sm text-gray-500">No customers found</div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Organization */}
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-700">Organization</label>
+                            <Select
+                              value={selectedOrganization ?? ''}
+                              onValueChange={(v) => setSelectedOrganization(v)}
+                              disabled={organizationLocked || organizationLoading || !selectedCustomerCode || selectedCustomerCode === '_ALL'}
+                            >
+                              <SelectTrigger className="bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 disabled:opacity-50 disabled:cursor-not-allowed">
+                                <SelectValue placeholder={organizationLoading ? "Loading organizations..." : "Select an organization"} />
+                              </SelectTrigger>
+                              <SelectContent className="bg-white z-50">
+                                {organizationOptions.map((o: any) => (
+                                  <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          {/* App */}
+                          <div className="space-y-2 relative app-dropdown-container">
+                            <label className="text-sm font-medium text-gray-700">App</label>
+                            <div className="relative">
+                              <Input
+                                type="text"
+                                value={appSearchQuery}
+                                onClick={handleAppInputFocus}
+                                placeholder={appsLoading ? "Loading..." : (appSearchQuery || "Select App")}
+                                className="w-full pl-2 pr-9 bg-white border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 cursor-pointer"
+                                disabled={appsLoading || !selectedCustomerCode || selectedCustomerCode === '_ALL' || (!selectedOrganization && !organizationLocked && !appSearchQuery)}
+                                readOnly
+                              />
+                              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+                            </div>
+                            {showAppDropdown && !appsLoading && selectedCustomerCode && selectedCustomerCode !== '_ALL' && selectedOrganization && (
+                              <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                                {(appsOptions || []).map((app: any) => (
+                                  <div
+                                    key={app.value}
+                                    className="px-3 py-2 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                                    onClick={() => handleAppSelect(app.value, app.label)}
+                                  >
+                                    <div className="cursor-pointer">{app.label}</div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </CardContent>
                     </Card>
                   </div>
                   )}
+
 
 
                   {/* Customer / Organization pickers removed */}
