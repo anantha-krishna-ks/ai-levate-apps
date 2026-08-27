@@ -299,16 +299,18 @@ const ItemGenerator = () => {
                             </div>
                           </div>
                           <span
-                            className={`relative h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${
+                            className={`relative h-[22px] w-[22px] rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                               isSelected
-                                ? "border-2 border-blue-600"
-                                : "border-2 border-slate-300 group-hover:border-slate-400"
+                                ? "border-[5px] border-blue-600 shadow-[0_0_0_3px_rgba(37,99,235,0.12)]"
+                                : "border-2 border-slate-300 group-hover:border-slate-400 group-hover:shadow-[0_0_0_3px_rgba(15,23,42,0.05)]"
                             }`}
                             aria-hidden="true"
                           >
                             <span
-                              className={`rounded-full bg-blue-600 transition-all duration-200 ${
-                                isSelected ? "h-2.5 w-2.5 scale-100 opacity-100" : "h-2.5 w-2.5 scale-50 opacity-0"
+                              className={`rounded-full transition-all duration-300 ${
+                                isSelected
+                                  ? "h-2 w-2 bg-white scale-100 opacity-100"
+                                  : "h-0 w-0 bg-transparent scale-50 opacity-0"
                               }`}
                             />
                           </span>
