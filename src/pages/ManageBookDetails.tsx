@@ -3834,9 +3834,8 @@ const KnowledgeBase = () => {
                         <div>
                           <Button
                             type="button"
-                            variant="outline"
                             size="sm"
-                            className="rounded-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-xs h-8"
+                            className="rounded-full bg-blue-600 text-white hover:bg-blue-700 text-xs h-8 font-semibold shadow-sm"
                             onClick={(e) => {
                               e.stopPropagation();
                               const link = document.createElement('a');
