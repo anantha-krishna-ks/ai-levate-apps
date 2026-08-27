@@ -211,7 +211,7 @@ export function AppSidebar({
                 <div className="mx-2 my-2 h-px bg-[#D5DBE4]" aria-hidden="true" />
               )
             ) : (
-              <div className={cn("px-3 pb-0.5", sectionIdx > 0 ? "pt-1.5" : "pt-0")}>
+              <div className={cn("px-3 pb-0.5", sectionIdx > 0 ? "pt-2" : "pt-0")}>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8A93A2]">
                   {section.label}
                 </p>
