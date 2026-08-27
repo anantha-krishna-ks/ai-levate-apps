@@ -157,10 +157,25 @@ export function AppSidebar({
     </span>
   )
 
+  // Active indicator — slim blue bar on the left edge of the active item.
+  const ActiveBar = () => (
+    <span
+      aria-hidden="true"
+      className="absolute left-1 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-full bg-blue-600"
+    />
+  )
+
+  const itemBase =
+    "relative group w-full flex items-center gap-3 rounded-xl text-[13px] font-medium transition-all duration-200"
+  const itemPadding = collapsed ? "justify-center px-0 py-2.5" : "px-3.5 py-2.5"
+  const itemIdle =
+    "text-slate-600 hover:bg-slate-100/80 hover:text-slate-900"
+  const itemActive = "bg-blue-50 text-blue-700"
+
   return (
     <aside
       className={cn(
-        "relative h-full bg-white border-r border-sidebar-border flex flex-col transition-all duration-300",
+        "relative h-full bg-white border-r border-slate-200/80 flex flex-col transition-all duration-300 ease-in-out",
         collapsed ? "w-16" : "w-52",
       )}
     >
@@ -170,38 +185,41 @@ export function AppSidebar({
           onClick={toggleSidebarCollapsed}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           className={cn(
-            "absolute -right-3.5 top-6 z-20 h-7 w-7 rounded-full border border-sidebar-border",
-            "bg-card text-muted-foreground shadow-md flex items-center justify-center",
-            "transition-all duration-150 hover:bg-primary hover:text-primary-foreground hover:border-primary",
+            "absolute -right-3 top-7 z-20 h-6 w-6 rounded-full border border-slate-200",
+            "bg-white text-slate-400 shadow-sm flex items-center justify-center",
+            "transition-all duration-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110",
           )}
         >
           {collapsed ? (
-            <ChevronRight className="h-3.5 w-3.5" />
+            <ChevronRight className="h-3 w-3" />
           ) : (
-            <ChevronLeft className="h-3.5 w-3.5" />
+            <ChevronLeft className="h-3 w-3" />
           )}
         </button>
       )}
 
       <div
         className={cn(
-          "py-4 flex-1 overflow-y-auto",
-          collapsed ? "px-2 space-y-2" : "px-3 space-y-4",
+          "flex-1 overflow-y-auto overflow-x-hidden py-5",
+          collapsed ? "px-2 space-y-3" : "px-3 space-y-6",
         )}
       >
         {sections.map((section, sectionIdx) => (
           <div key={section.label}>
             {collapsed ? (
               sectionIdx > 0 && (
-                <div className="mx-2 mb-2 h-px bg-slate-200" aria-hidden="true" />
+                <div className="mx-2 mb-3 h-px bg-slate-200/80" aria-hidden="true" />
               )
             ) : (
-              <p className="px-3 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                {section.label}
-              </p>
+              <div className="flex items-center gap-2 px-3 pb-2">
+                <span className="h-1 w-1 rounded-full bg-slate-300" aria-hidden="true" />
+                <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                  {section.label}
+                </p>
+              </div>
             )}
 
-            <nav className="space-y-1">
+            <nav className="space-y-0.5">
               {section.items.map((item) => {
                 const Icon = item.icon
 
@@ -222,54 +240,80 @@ export function AppSidebar({
                           toggleGroup(item.title)
                         }}
                         className={cn(
-                          "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150",
-                          collapsed && "justify-center px-0",
+                          itemBase,
+                          itemPadding,
                           groupActive
-                            ? open
-                              ? "bg-primary/10 text-primary font-medium"
-                              : "text-primary"
-                            : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                            ? "text-blue-700"
+                            : itemIdle,
                         )}
                         title={collapsed ? item.title : undefined}
                       >
-                        <Icon className="h-[18px] w-[18px] flex-shrink-0" />
+                        {groupActive && <ActiveBar />}
+                        <span
+                          className={cn(
+                            "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-colors duration-200",
+                            collapsed && "h-9 w-9",
+                            groupActive
+                              ? "bg-blue-100 text-blue-600"
+                              : "bg-transparent text-slate-500 group-hover:bg-slate-100 group-hover:text-slate-700",
+                          )}
+                        >
+                          <Icon className="h-[17px] w-[17px]" />
+                        </span>
                         {!collapsed && (
                           <>
                             <span className="flex-1 text-left">{item.title}</span>
                             <ChevronDown
                               className={cn(
-                                "h-4 w-4 transition-transform duration-200",
+                                "h-3.5 w-3.5 text-slate-400 transition-transform duration-200",
                                 open && "rotate-180",
                               )}
                             />
                           </>
                         )}
                       </button>
-                      {open && !collapsed && (
-                        <div className="mt-1 ml-5 pl-3 border-l border-sidebar-border space-y-0.5">
-                          {item.children.map((child) => {
-                            const active = isActivePath(child.url)
-                            return (
-                              <NavLink
-                                key={child.title}
-                                to={child.url}
-                                onClick={onNavigate}
-                                className={cn(
-                                  "flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] transition-all duration-150",
-                                  active
-                                    ? "bg-primary/10 text-primary font-medium"
-                                    : "text-muted-foreground hover:bg-sidebar-accent",
-                                )}
-                              >
-                                <span className="flex-1">{child.title}</span>
-                                {typeof child.badge === "number" && (
-                                  <Badge value={child.badge} />
-                                )}
-                              </NavLink>
-                            )
-                          })}
+
+                      <div
+                        className={cn(
+                          "grid transition-all duration-200 ease-in-out",
+                          open && !collapsed
+                            ? "grid-rows-[1fr] opacity-100"
+                            : "grid-rows-[0fr] opacity-0",
+                        )}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="ml-[27px] mt-1 space-y-0.5 border-l border-slate-200/80 pl-3">
+                            {item.children.map((child) => {
+                              const active = isActivePath(child.url)
+                              return (
+                                <NavLink
+                                  key={child.title}
+                                  to={child.url}
+                                  onClick={onNavigate}
+                                  className={cn(
+                                    "relative flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] transition-all duration-150",
+                                    active
+                                      ? "bg-blue-50 font-semibold text-blue-700"
+                                      : "text-slate-500 hover:bg-slate-100/80 hover:text-slate-900",
+                                  )}
+                                >
+                                  <span
+                                    className={cn(
+                                      "h-1.5 w-1.5 rounded-full transition-colors duration-150",
+                                      active ? "bg-blue-600" : "bg-slate-300",
+                                    )}
+                                    aria-hidden="true"
+                                  />
+                                  <span className="flex-1">{child.title}</span>
+                                  {typeof child.badge === "number" && (
+                                    <Badge value={child.badge} />
+                                  )}
+                                </NavLink>
+                              )
+                            })}
+                          </div>
                         </div>
-                      )}
+                      </div>
                     </div>
                   )
                 }
@@ -283,14 +327,23 @@ export function AppSidebar({
                     onClick={onNavigate}
                     title={collapsed ? item.title : undefined}
                     className={cn(
-                      "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150",
-                      collapsed && "justify-center px-0",
-                      active
-                        ? "bg-primary/10 text-primary font-medium"
-                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                      itemBase,
+                      itemPadding,
+                      active ? itemActive : itemIdle,
                     )}
                   >
-                    <Icon className="h-[18px] w-[18px] flex-shrink-0" />
+                    {active && <ActiveBar />}
+                    <span
+                      className={cn(
+                        "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-colors duration-200",
+                        collapsed && "h-9 w-9",
+                        active
+                          ? "bg-blue-600 text-white"
+                          : "bg-transparent text-slate-500 group-hover:bg-slate-100 group-hover:text-slate-700",
+                      )}
+                    >
+                      <Icon className="h-[17px] w-[17px]" />
+                    </span>
                     {!collapsed && (
                       <>
                         <span className="flex-1">{item.title}</span>
