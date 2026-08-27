@@ -307,7 +307,7 @@ const ItemGenerator = () => {
                             aria-hidden="true"
                           >
                             <Check
-                              className={`h-3 w-3 strokeWidth={3} transition-colors duration-200 ${
+                              className={`h-3 w-3 transition-colors duration-200 ${
                                 isSelected ? "text-white" : "text-slate-400 group-hover:text-slate-500"
                               }`}
                               strokeWidth={3}
