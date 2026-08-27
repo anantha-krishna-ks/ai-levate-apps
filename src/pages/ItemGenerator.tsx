@@ -382,9 +382,10 @@ const ItemGenerator = () => {
                       <Check className="h-3.5 w-3.5 text-blue-600" /> Fastest way to start
                     </li>
                   </ul>
+                  <div className="mt-auto" />
                   <Button
                     onClick={() => startGeneration("kb")}
-                    className="mt-auto pt-6 rounded-full bg-blue-600 hover:bg-blue-700 text-white self-start"
+                    className="mt-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white self-start"
                   >
                     Continue with KB only
                     <ChevronRight className="h-4 w-4 ml-1.5" />
@@ -452,9 +453,10 @@ const ItemGenerator = () => {
                           Objectives available
                         </li>
                       </ul>
+                      <div className="mt-auto" />
                       <Button
                         onClick={() => startGeneration("curriculum")}
-                        className="mt-auto pt-6 rounded-full bg-blue-600 hover:bg-blue-700 text-white self-start"
+                        className="mt-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white self-start"
                       >
                         Continue curriculum-aligned
                         <ChevronRight className="h-4 w-4 ml-1.5" />
