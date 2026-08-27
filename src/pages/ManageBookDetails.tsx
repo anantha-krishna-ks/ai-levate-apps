@@ -4394,13 +4394,13 @@ const KnowledgeBase = () => {
                                           variant="ghost"
                                           size="icon"
                                           title="Delete book"
-                                          className="h-9 w-9 hover:bg-red-100 transition-colors"
+                                          className="h-9 w-9 rounded-full text-slate-400 hover:text-red-500 hover:bg-red-50 transition-all"
                                           onClick={() => {
                                             setBookToDelete(book);
                                             setShowBookDeleteDialog(true);
                                           }}
                                         >
-                                          <Trash2 className="h-4 w-4 text-red-600" />
+                                          <Trash2 className="h-4 w-4" />
                                         </Button>
                                       </div>
                                     </TableCell>
