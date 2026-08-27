@@ -12,6 +12,7 @@ import {
   Layers,
   ArrowLeft,
   Minus,
+  Info,
 } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
@@ -424,17 +425,22 @@ const ItemGenerator = () => {
 
                   {selected && !curriculumReady ? (
                     <div className="mt-3 rounded-xl border border-gray-200 bg-slate-50 p-3">
-                      <p className="text-xs font-semibold text-slate-800">
-                        Curriculum data not available
-                      </p>
-                      <p className="mt-0.5 text-xs text-slate-600">
-                        {!selected.bookLinked
-                          ? "No Book has been linked to this knowledge base yet."
-                          : !selected.studyCreated
-                            ? "No Study has been created for this book."
-                            : "No Learning Objectives are available for this Study."}{" "}
-                        You can still continue with KB only.
-                      </p>
+                      <div className="flex items-start gap-2">
+                        <Info className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-xs font-semibold text-slate-800">
+                            Curriculum data not available
+                          </p>
+                          <p className="mt-0.5 text-xs text-slate-600">
+                            {!selected.bookLinked
+                              ? "No Book has been linked to this knowledge base yet."
+                              : !selected.studyCreated
+                                ? "No Study has been created for this book."
+                                : "No Learning Objectives are available for this Study."}{" "}
+                            You can still continue with KB only.
+                          </p>
+                        </div>
+                      </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
                         <Button
                           size="sm"
