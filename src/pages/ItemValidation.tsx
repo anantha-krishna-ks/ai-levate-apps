@@ -88,7 +88,7 @@ const ItemValidation = () => {
       {/* Page title row */}
       <div
         className={`pt-16 transition-all duration-300 ${
-          sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
+          sidebarCollapsed ? "lg:ml-16" : "lg:ml-60"
         }`}
       >
         <div className="px-6 pt-6 pb-3 max-w-[1600px] mx-auto">

@@ -167,7 +167,7 @@ export function AppSidebar({
 
   const itemBase =
     "relative group w-full flex items-center gap-3 rounded-[10px] text-[13.8px] font-medium transition-[background-color,color,padding] duration-150"
-  const itemPadding = collapsed ? "justify-center px-0 py-[11px]" : "px-3 py-2.5"
+  const itemPadding = collapsed ? "justify-center px-0 py-[11px]" : "px-3 py-2"
   const itemIdle =
     "text-[#1A1E26] hover:bg-[#F5F7FA] hover:text-slate-900"
   const itemActive = "bg-blue-50 text-blue-700"
@@ -176,7 +176,7 @@ export function AppSidebar({
     <aside
       className={cn(
         "relative h-full bg-white border-r border-[#D5DBE4] flex flex-col transition-[width] duration-300 ease-in-out",
-        collapsed ? "w-16" : "w-52",
+        collapsed ? "w-16" : "w-60",
       )}
     >
       {!hideToggle && (
@@ -200,7 +200,7 @@ export function AppSidebar({
 
       <div
         className={cn(
-          "flex-1 overflow-y-auto overflow-x-hidden py-4",
+          "flex-1 overflow-y-auto overflow-x-hidden py-3.5",
           collapsed ? "px-3" : "px-3",
         )}
       >
@@ -208,10 +208,10 @@ export function AppSidebar({
           <div key={section.label}>
             {collapsed ? (
               sectionIdx > 0 && (
-                <div className="mx-2 my-3 h-px bg-[#D5DBE4]" aria-hidden="true" />
+                <div className="mx-2 my-2.5 h-px bg-[#D5DBE4]" aria-hidden="true" />
               )
             ) : (
-              <div className={cn("px-3 pb-1", sectionIdx > 0 ? "pt-3" : "pt-0")}>
+              <div className={cn("px-3 pb-0.5", sectionIdx > 0 ? "pt-2" : "pt-0")}>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8A93A2]">
                   {section.label}
                 </p>
@@ -219,7 +219,7 @@ export function AppSidebar({
             )}
 
 
-            <nav aria-label={section.label} className="space-y-1">
+            <nav aria-label={section.label} className="space-y-0.5">
               {section.items.map((item) => {
                 const Icon = item.icon
 
