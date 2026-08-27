@@ -84,23 +84,59 @@ const ReadinessChip = ({
 }: {
   label: string;
   ready: boolean;
-  icon?: typeof BookOpen;
 }) => (
   <span
-    className={`inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] text-[11px] font-medium tracking-tight transition-colors ${
+    aria-label={`${label}: ${ready ? "available" : "not available"}`}
+    className={`inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] text-xs font-medium tracking-tight transition-colors ${
       ready
-        ? "bg-blue-50/80 text-blue-700 ring-1 ring-inset ring-blue-100"
-        : "bg-slate-50 text-slate-400 ring-1 ring-inset ring-slate-100"
+        ? "bg-blue-50 text-blue-800 ring-1 ring-inset ring-blue-200"
+        : "bg-slate-50 text-slate-600 ring-1 ring-inset ring-slate-200"
     }`}
   >
-    <span
-      className={`h-1.5 w-1.5 rounded-full ${
-        ready ? "bg-blue-500" : "bg-slate-300"
-      }`}
-    />
+    {ready ? (
+      <Check className="h-3 w-3 text-blue-700" strokeWidth={3} aria-hidden="true" />
+    ) : (
+      <Minus className="h-3 w-3 text-slate-500" strokeWidth={3} aria-hidden="true" />
+    )}
     {label}
   </span>
 );
+
+const LayerRing = ({
+  layers,
+  selected,
+}: {
+  layers: number;
+  selected: boolean;
+}) => {
+  const pct = layers / 4;
+  const r = 17;
+  const c = 2 * Math.PI * r;
+  return (
+    <span className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center">
+      <svg viewBox="0 0 40 40" className="h-10 w-10 -rotate-90" aria-hidden="true">
+        <circle cx="20" cy="20" r={r} fill="none" strokeWidth="3" className="stroke-slate-200" />
+        <circle
+          cx="20"
+          cy="20"
+          r={r}
+          fill="none"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeDasharray={c}
+          strokeDashoffset={c * (1 - pct)}
+          className={selected ? "stroke-blue-600" : "stroke-slate-400 group-hover:stroke-blue-600"}
+          style={{ transition: "stroke-dashoffset 400ms ease" }}
+        />
+      </svg>
+      <BookOpen
+        className={`absolute h-4 w-4 ${selected ? "text-blue-700" : "text-slate-500 group-hover:text-blue-700"}`}
+        aria-hidden="true"
+      />
+    </span>
+  );
+};
+
 
 
 const ItemGenerator = () => {
