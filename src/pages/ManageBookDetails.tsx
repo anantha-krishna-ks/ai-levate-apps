@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
-import { Search, FileText, Edit, Eye, Trash2, ArrowLeft, BookOpen, Plus, Menu, Library, Bot, X, Save, ChevronDown, Pencil, File } from "lucide-react";
+import { Search, FileText, Edit, Eye, Trash2, ArrowLeft, BookOpen, Plus, Menu, Library, Bot, X, Save, ChevronDown, Pencil, File, Download } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from "@/components/ui/command";
 import { useNavigate } from "react-router-dom";
