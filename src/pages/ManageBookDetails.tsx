@@ -4348,7 +4348,7 @@ const KnowledgeBase = () => {
                                     <TableCell className="font-medium text-gray-900 py-4 truncate">{book.label || ""}</TableCell>
                                     <TableCell className="py-4">
                                       <div className="flex items-center gap-3">
-                                        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${hasLO
+                                        <span className={`inline-flex items-center justify-center w-[78px] shrink-0 rounded-full px-2.5 py-1 text-xs font-medium border ${hasLO
                                           ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                                           : 'bg-slate-50 text-slate-600 border-slate-200'}`}>
                                           {hasLO ? 'LO available' : 'No LO'}
@@ -4357,7 +4357,7 @@ const KnowledgeBase = () => {
                                           <Button
                                             variant="ghost"
                                             size="sm"
-                                            className="h-8 rounded-full text-xs text-blue-700 hover:bg-blue-50 hover:text-blue-800"
+                                            className="h-8 shrink-0 rounded-full text-xs text-blue-700 hover:bg-blue-50 hover:text-blue-800"
                                             onClick={() => {
                                               setEditingBookDetails(book);
                                               setIsCreatingStudyLO(true);
@@ -4375,7 +4375,7 @@ const KnowledgeBase = () => {
                                           <Button
                                             variant="ghost"
                                             size="sm"
-                                            className="h-8 rounded-full text-xs text-blue-700 hover:bg-blue-50 hover:text-blue-800"
+                                            className="h-8 shrink-0 rounded-full text-xs text-blue-700 hover:bg-blue-50 hover:text-blue-800"
                                             onClick={() => {
                                               setIsCreatingStudyLO(true);
                                               setSelectedBook(book.label);
