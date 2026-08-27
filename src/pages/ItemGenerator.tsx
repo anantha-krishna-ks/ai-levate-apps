@@ -288,21 +288,13 @@ const ItemGenerator = () => {
 
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex items-start gap-3 min-w-0">
-                            <div
-                              className={`h-10 w-10 rounded-xl flex items-center justify-center flex-shrink-0 text-[12px] font-semibold tracking-tight transition-colors ${
-                                isSelected
-                                  ? "bg-blue-600 text-white"
-                                  : "bg-slate-50 text-slate-600 ring-1 ring-inset ring-slate-200/80 group-hover:bg-blue-50 group-hover:text-blue-700 group-hover:ring-blue-100"
-                              }`}
-                            >
-                              {kb.code.slice(0, 3).toUpperCase()}
-                            </div>
+                            <LayerRing layers={layers} selected={isSelected} />
                             <div className="min-w-0">
                               <h3 className="text-sm font-semibold text-slate-900 truncate leading-5">
                                 {kb.name}
                               </h3>
-                              <p className="text-xs text-slate-500 truncate mt-0.5">
-                                {kb.code} · {kb.subject}
+                              <p className="text-xs text-slate-600 truncate mt-0.5">
+                                {kb.subject}
                               </p>
                             </div>
                           </div>
@@ -313,26 +305,27 @@ const ItemGenerator = () => {
                                 : "bg-slate-200 scale-75 opacity-0"
                             }`}
                           >
-                            <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                            <Check className="h-3 w-3 text-white" strokeWidth={3} aria-hidden="true" />
                           </span>
                         </div>
 
                         <div className="mt-3.5 flex flex-wrap gap-1.5">
-                          <ReadinessChip label="KB" ready />
+                          <ReadinessChip label="Knowledge base" ready />
                           <ReadinessChip label="Book" ready={kb.bookLinked} />
                           <ReadinessChip label="Study" ready={kb.studyCreated} />
-                          <ReadinessChip label="LO" ready={kb.loAvailable} />
+                          <ReadinessChip label="Learning objectives" ready={kb.loAvailable} />
                         </div>
 
-                        <div className="mt-3.5 pt-3 border-t border-dashed border-slate-200/90 flex items-center justify-between text-[11px] text-slate-500">
+                        <div className="mt-3.5 pt-3 border-t border-dashed border-slate-200 flex items-center justify-between text-xs text-slate-600">
                           <span className="inline-flex items-center gap-1.5">
-                            <Database className="h-3 w-3 text-slate-400" />
+                            <Database className="h-3.5 w-3.5 text-slate-500" aria-hidden="true" />
                             {kb.documents} documents
                           </span>
                           <span className="tabular-nums">
                             {layers}/4 layers · {kb.updated}
                           </span>
                         </div>
+
                       </button>
                     );
                   })}
