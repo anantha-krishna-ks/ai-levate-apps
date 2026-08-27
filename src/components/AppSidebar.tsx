@@ -8,10 +8,7 @@ import {
   BookOpen,
   FileText,
   Images,
-  Sparkles,
-  ShieldCheck,
   PenLine,
-  FolderOpen,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -63,14 +60,6 @@ const sections: NavSection[] = [
         url: "/manage-guidelines",
         icon: FileText,
       },
-    ],
-  },
-  {
-    label: "Generate",
-    items: [
-      { title: "Item Generator", url: "/item-generator", icon: Sparkles },
-      { title: "Item Validation", url: "/item-validation", icon: ShieldCheck },
-      { title: "Question Repository", url: "/question-repository", icon: FolderOpen },
     ],
   },
   {
