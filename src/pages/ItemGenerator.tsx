@@ -301,11 +301,17 @@ const ItemGenerator = () => {
                           <span
                             className={`h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
                               isSelected
-                                ? "bg-blue-600 scale-100 opacity-100"
-                                : "bg-slate-200 scale-75 opacity-0"
+                                ? "bg-blue-600 scale-100"
+                                : "bg-slate-100 border border-slate-200 scale-100 group-hover:bg-slate-200"
                             }`}
+                            aria-hidden="true"
                           >
-                            <Check className="h-3 w-3 text-white" strokeWidth={3} aria-hidden="true" />
+                            <Check
+                              className={`h-3 w-3 strokeWidth={3} transition-colors duration-200 ${
+                                isSelected ? "text-white" : "text-slate-400 group-hover:text-slate-500"
+                              }`}
+                              strokeWidth={3}
+                            />
                           </span>
                         </div>
 
