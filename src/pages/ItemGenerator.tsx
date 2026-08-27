@@ -81,23 +81,27 @@ const knowledgeBases: KnowledgeBaseItem[] = [
 const ReadinessChip = ({
   label,
   ready,
-  icon: Icon,
 }: {
   label: string;
   ready: boolean;
-  icon: typeof BookOpen;
+  icon?: typeof BookOpen;
 }) => (
   <span
-    className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[11px] font-medium ${
+    className={`inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] text-[11px] font-medium tracking-tight transition-colors ${
       ready
-        ? "border-blue-200 bg-blue-50 text-blue-700"
-        : "border-slate-200 bg-slate-50 text-slate-500"
+        ? "bg-blue-50/80 text-blue-700 ring-1 ring-inset ring-blue-100"
+        : "bg-slate-50 text-slate-400 ring-1 ring-inset ring-slate-100"
     }`}
   >
-    <Icon className="h-3 w-3" />
+    <span
+      className={`h-1.5 w-1.5 rounded-full ${
+        ready ? "bg-blue-500" : "bg-slate-300"
+      }`}
+    />
     {label}
   </span>
 );
+
 
 const ItemGenerator = () => {
   const sidebarCollapsed = useSidebarCollapsed();
