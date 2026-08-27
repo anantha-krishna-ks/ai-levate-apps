@@ -166,7 +166,7 @@ export function AppSidebar({
   )
 
   const itemBase =
-    "relative group w-full flex items-center gap-3 rounded-[10px] text-[13.8px] font-medium transition-[background-color,color,padding] duration-150"
+    "relative group w-full flex items-center gap-3 rounded-[10px] text-[13.8px] font-semibold transition-[background-color,color,padding] duration-150"
   const itemPadding = collapsed ? "justify-center px-0 py-[11px]" : "px-3 py-2"
   const itemIdle =
     "text-[#1A1E26] hover:bg-[#F5F7FA] hover:text-slate-900"
@@ -211,7 +211,7 @@ export function AppSidebar({
                 <div className="mx-2 my-2 h-px bg-[#D5DBE4]" aria-hidden="true" />
               )
             ) : (
-              <div className={cn("px-3 pb-0.5", sectionIdx > 0 ? "pt-2" : "pt-0")}>
+              <div className={cn("px-3 pb-0.5", sectionIdx > 0 ? "pt-2.5" : "pt-0")}>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8A93A2]">
                   {section.label}
                 </p>
