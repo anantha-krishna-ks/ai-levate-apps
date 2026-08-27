@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   LayoutDashboard,
   Library,
@@ -7,6 +7,11 @@ import {
   MessageSquare,
   BookOpen,
   FileText,
+  Images,
+  Sparkles,
+  ShieldCheck,
+  PenLine,
+  FolderOpen,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -19,22 +24,77 @@ import {
   toggleSidebarCollapsed,
 } from "@/hooks/use-sidebar-collapsed"
 
-type NavChild = { title: string; url: string }
+type NavChild = { title: string; url: string; badge?: number }
 type NavItem = {
   title: string
   icon: LucideIcon
   url?: string
+  badge?: number
   children?: NavChild[]
 }
 
-const items: NavItem[] = [
-  { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Manage Knowledge Base", url: "/knowledge-base", icon: Library },
-  { title: "Manage Book Details", url: "/manage-book-details", icon: BookOpen },
-  { title: "Manage Guidelines", url: "/manage-guidelines", icon: FileText },
-  { title: "Feedback Approval", url: "/feedback-approval", icon: MessageSquare },
-  { title: "Analytics", url: "/analytics", icon: BarChart3 },
-  { title: "Collaboration", url: "/collaboration", icon: Users },
+type NavSection = { label: string; items: NavItem[] }
+
+const sections: NavSection[] = [
+  {
+    label: "Overview",
+    items: [{ title: "Dashboard", url: "/dashboard", icon: LayoutDashboard }],
+  },
+  {
+    label: "Manage Content",
+    items: [
+      {
+        title: "Knowledge Base",
+        url: "/knowledge-base",
+        icon: Library,
+      },
+      {
+        title: "Book Details",
+        url: "/manage-book-details",
+        icon: BookOpen,
+      },
+      {
+        title: "Image Repository",
+        url: "/image-repository",
+        icon: Images,
+      },
+      {
+        title: "Guidelines",
+        url: "/manage-guidelines",
+        icon: FileText,
+      },
+    ],
+  },
+  {
+    label: "Generate",
+    items: [
+      { title: "Item Generator", url: "/item-generator", icon: Sparkles },
+      { title: "Item Validation", url: "/item-validation", icon: ShieldCheck },
+      { title: "Question Repository", url: "/question-repository", icon: FolderOpen },
+    ],
+  },
+  {
+    label: "Evaluate",
+    items: [
+      {
+        title: "Evaluations",
+        icon: PenLine,
+        children: [
+          { title: "Essay Evaluation", url: "/essay-evaluation" },
+          { title: "Speech Evaluation", url: "/speech-evaluation" },
+          { title: "OCR Evaluation", url: "/ocr-evaluation" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Workspace",
+    items: [
+      { title: "Feedback Approval", url: "/feedback-approval", icon: MessageSquare },
+      { title: "Analytics", url: "/analytics", icon: BarChart3 },
+      { title: "Collaboration", url: "/collaboration", icon: Users },
+    ],
+  },
 ]
 
 interface AppSidebarProps {
@@ -63,22 +123,39 @@ export function AppSidebar({
     return currentPath === path || currentPath.startsWith(path + "/")
   }
 
+  const allItems = sections.flatMap((s) => s.items)
+
   const isGroupActive = (item: NavItem) =>
     !!item.children?.some((c) => isActivePath(c.url))
 
-  // Open groups whose child route is active by default; expanded toggling.
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
     const init: Record<string, boolean> = {}
-    items.forEach((i) => {
-      if (i.children && i.children.some((c) => isActivePath(c.url))) {
-        init[i.title] = true
-      }
+    allItems.forEach((i) => {
+      if (i.children?.some((c) => isActivePath(c.url))) init[i.title] = true
     })
     return init
   })
 
+  // Keep the group holding the active route open on route change.
+  useEffect(() => {
+    setOpenGroups((s) => {
+      const next = { ...s }
+      allItems.forEach((i) => {
+        if (i.children?.some((c) => isActivePath(c.url))) next[i.title] = true
+      })
+      return next
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPath])
+
   const toggleGroup = (title: string) =>
     setOpenGroups((s) => ({ ...s, [title]: !s[title] }))
+
+  const Badge = ({ value }: { value: number }) => (
+    <span className="ml-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-50 px-1.5 text-[11px] font-semibold text-blue-600">
+      {value}
+    </span>
+  )
 
   return (
     <aside
@@ -106,113 +183,132 @@ export function AppSidebar({
         </button>
       )}
 
-      <div className={cn("py-4 flex-1 overflow-y-auto", collapsed ? "px-2" : "px-3")}>
-        {!collapsed && (
-          <p className="px-3 pb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-            Menu
-          </p>
+      <div
+        className={cn(
+          "py-4 flex-1 overflow-y-auto",
+          collapsed ? "px-2 space-y-2" : "px-3 space-y-4",
         )}
-        <nav className="space-y-1">
-          {items.map((item) => {
-            const Icon = item.icon
+      >
+        {sections.map((section, sectionIdx) => (
+          <div key={section.label}>
+            {collapsed ? (
+              sectionIdx > 0 && (
+                <div className="mx-2 mb-2 h-px bg-slate-200" aria-hidden="true" />
+              )
+            ) : (
+              <p className="px-3 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                {section.label}
+              </p>
+            )}
 
-            // Group with children
-            if (item.children && item.children.length > 0) {
-              const groupActive = isGroupActive(item)
-              const open = !collapsed && (openGroups[item.title] ?? false)
-              return (
-                <div key={item.title}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (collapsed) return
-                      toggleGroup(item.title)
-                    }}
+            <nav className="space-y-1">
+              {section.items.map((item) => {
+                const Icon = item.icon
+
+                // Group with children
+                if (item.children && item.children.length > 0) {
+                  const groupActive = isGroupActive(item)
+                  const open = !collapsed && (openGroups[item.title] ?? false)
+                  return (
+                    <div key={item.title}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (collapsed) {
+                            toggleSidebarCollapsed()
+                            setOpenGroups((s) => ({ ...s, [item.title]: true }))
+                            return
+                          }
+                          toggleGroup(item.title)
+                        }}
+                        className={cn(
+                          "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150",
+                          collapsed && "justify-center px-0",
+                          groupActive
+                            ? open
+                              ? "bg-primary/10 text-primary font-medium"
+                              : "text-primary"
+                            : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                        )}
+                        title={collapsed ? item.title : undefined}
+                      >
+                        <Icon className="h-[18px] w-[18px] flex-shrink-0" />
+                        {!collapsed && (
+                          <>
+                            <span className="flex-1 text-left">{item.title}</span>
+                            <ChevronDown
+                              className={cn(
+                                "h-4 w-4 transition-transform duration-200",
+                                open && "rotate-180",
+                              )}
+                            />
+                          </>
+                        )}
+                      </button>
+                      {open && !collapsed && (
+                        <div className="mt-1 ml-5 pl-3 border-l border-sidebar-border space-y-0.5">
+                          {item.children.map((child) => {
+                            const active = isActivePath(child.url)
+                            return (
+                              <NavLink
+                                key={child.title}
+                                to={child.url}
+                                onClick={onNavigate}
+                                className={cn(
+                                  "flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] transition-all duration-150",
+                                  active
+                                    ? "bg-primary/10 text-primary font-medium"
+                                    : "text-muted-foreground hover:bg-sidebar-accent",
+                                )}
+                              >
+                                <span className="flex-1">{child.title}</span>
+                                {typeof child.badge === "number" && (
+                                  <Badge value={child.badge} />
+                                )}
+                              </NavLink>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )
+                }
+
+                // Top-level link
+                const active = isActivePath(item.url)
+                return (
+                  <NavLink
+                    key={item.title}
+                    to={item.url!}
+                    onClick={onNavigate}
+                    title={collapsed ? item.title : undefined}
                     className={cn(
-                      "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150",
+                      "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150",
                       collapsed && "justify-center px-0",
-                      groupActive
-                        ? open
-                          ? "bg-primary/10 text-primary font-medium"
-                          : "text-primary"
+                      active
+                        ? "bg-primary/10 text-primary font-medium"
                         : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                     )}
-                    title={collapsed ? item.title : undefined}
                   >
-                    <Icon
-                      className={cn(
-                        "h-[18px] w-[18px] flex-shrink-0",
-                        groupActive && "fill-current",
-                      )}
-                    />
+                    <Icon className="h-[18px] w-[18px] flex-shrink-0" />
                     {!collapsed && (
                       <>
-                        <span className="flex-1 text-left">{item.title}</span>
-                        <ChevronDown
-                          className={cn(
-                            "h-4 w-4 transition-transform duration-200",
-                            open && "rotate-180",
-                          )}
-                        />
+                        <span className="flex-1">{item.title}</span>
+                        {typeof item.badge === "number" && (
+                          <Badge value={item.badge} />
+                        )}
                       </>
                     )}
-                  </button>
-                  {open && !collapsed && (
-                    <div className="mt-1 ml-5 pl-3 border-l border-sidebar-border space-y-0.5">
-                      {item.children.map((child) => {
-                        const active = isActivePath(child.url)
-                        return (
-                          <NavLink
-                            key={child.title}
-                            to={child.url}
-                            onClick={onNavigate}
-                            className={cn(
-                              "block rounded-lg px-3 py-2 text-[13px] transition-all duration-150",
-                              active
-                                ? "bg-primary/10 text-primary font-medium"
-                                : "text-muted-foreground hover:bg-sidebar-accent",
-                            )}
-                          >
-                            {child.title}
-                          </NavLink>
-                        )
-                      })}
-                    </div>
-                  )}
-                </div>
-              )
-            }
-
-            // Top-level link
-            const active = isActivePath(item.url)
-            return (
-              <NavLink
-                key={item.title}
-                to={item.url!}
-                onClick={onNavigate}
-                title={collapsed ? item.title : undefined}
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150",
-                  collapsed && "justify-center px-0",
-                  active
-                    ? "bg-primary/10 text-primary font-medium"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                )}
-              >
-                <Icon
-                  className={cn(
-                    "h-[18px] w-[18px] flex-shrink-0",
-                    active && "fill-current",
-                  )}
-                />
-                {!collapsed && <span>{item.title}</span>}
-              </NavLink>
-            )
-          })}
-        </nav>
+                  </NavLink>
+                )
+              })}
+            </nav>
+          </div>
+        ))}
       </div>
     </aside>
   )
 }
 
-export { items }
+export { sections }
+export const items = sections.flatMap((s) => s.items)

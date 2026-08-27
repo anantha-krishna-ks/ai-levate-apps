@@ -32,6 +32,7 @@ import KnowledgeBase from "./pages/ManageKnowledgeBase";
 import KnowledgeBaseCopy from "./pages/KnowledgeBaseCopy";
 import EditKnowledgeBase from "./pages/ManageEditKnowledgeBase";
 import ManageBookDetails from "./pages/ManageBookDetails";
+import ImageRepository from "./pages/ImageRepository";
 import ManageGuidelines from "./pages/ManageGuidelines";
 import Collaboration from "./pages/Collaboration";
 import NotFound from "./pages/NotFound";
@@ -74,6 +75,7 @@ const App = () => (
         <Route path="/knowledge-base/edit/:id" element={<EditKnowledgeBase />} />
         <Route path="/manage-book-details" element={<ManageBookDetails />} />
         <Route path="/manage-guidelines" element={<ManageGuidelines />} />
+       <Route path="/image-repository" element={<ImageRepository />} />
           <Route path="/collaboration" element={<Collaboration />} />
           <Route path="/doc-chat-ncert" element={<DocChatNCERT />} />
           <Route path="/ocr-evaluation" element={<OCREvaluation />} />
