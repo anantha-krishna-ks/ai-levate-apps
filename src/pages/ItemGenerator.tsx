@@ -1,365 +1,422 @@
-
-import { AppHeader } from "@/components/AppHeader";
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import { 
-  ArrowLeft, 
-  BarChart3, 
-  BookOpen, 
-  TrendingUp,
-  Users,
-  Zap,
-  Calendar,
+import { useMemo, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Sparkles,
+  Search,
+  BookOpen,
+  Database,
+  GraduationCap,
   Target,
-  Award,
-  Bell,
-  Settings,
-  Clock,
-  Activity,
-  BookMarked
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { ProfileDropdown } from "@/components/ProfileDropdown"
-import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar } from 'recharts'
+  Check,
+  ChevronRight,
+  Layers,
+  ArrowLeft,
+} from "lucide-react";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { AppSidebar } from "@/components/AppSidebar";
+import { AppHeader } from "@/components/AppHeader";
+import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
+
+type KnowledgeBaseItem = {
+  id: number;
+  name: string;
+  code: string;
+  subject: string;
+  documents: number;
+  updated: string;
+  bookLinked: boolean;
+  studyCreated: boolean;
+  loAvailable: boolean;
+};
+
+const knowledgeBases: KnowledgeBaseItem[] = [
+  {
+    id: 1,
+    name: "Cyber Risk",
+    code: "C20",
+    subject: "Risk Management",
+    documents: 12,
+    updated: "2 days ago",
+    bookLinked: true,
+    studyCreated: true,
+    loAvailable: true,
+  },
+  {
+    id: 2,
+    name: "Principles and Practice of Insurance",
+    code: "C11",
+    subject: "Insurance",
+    documents: 24,
+    updated: "1 week ago",
+    bookLinked: true,
+    studyCreated: true,
+    loAvailable: false,
+  },
+  {
+    id: 3,
+    name: "Financial Risk Assessment",
+    code: "C31",
+    subject: "Finance",
+    documents: 9,
+    updated: "3 days ago",
+    bookLinked: true,
+    studyCreated: false,
+    loAvailable: false,
+  },
+  {
+    id: 4,
+    name: "Broadcast Journalism Fundamentals",
+    code: "BJ01",
+    subject: "Journalism",
+    documents: 6,
+    updated: "5 days ago",
+    bookLinked: false,
+    studyCreated: false,
+    loAvailable: false,
+  },
+];
+
+const ReadinessChip = ({
+  label,
+  ready,
+  icon: Icon,
+}: {
+  label: string;
+  ready: boolean;
+  icon: typeof BookOpen;
+}) => (
+  <span
+    className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[11px] font-medium ${
+      ready
+        ? "border-blue-200 bg-blue-50 text-blue-700"
+        : "border-slate-200 bg-slate-50 text-slate-500"
+    }`}
+  >
+    <Icon className="h-3 w-3" />
+    {label}
+  </span>
+);
 
 const ItemGenerator = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState("2024")
+  const sidebarCollapsed = useSidebarCollapsed();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const navigate = useNavigate();
 
-  const stats = [
-    {
-      label: "Total Tokens Used",
-      value: "46,100",
-      change: "+12%",
-      icon: Zap,
-      gradient: "from-blue-500 to-purple-600",
-      bgColor: "bg-blue-50",
-      textColor: "text-blue-700"
-    },
-    {
-      label: "Today's Usage", 
-      value: "2,238",
-      subLabel: "Balance: 7,762 remaining",
-      change: "+5%",
-      icon: Activity,
-      gradient: "from-green-500 to-teal-600",
-      bgColor: "bg-green-50",
-      textColor: "text-green-700"
-    },
-    {
-      label: "Questions Generated",
-      value: "65",
-      change: "+23%",
-      subStats: [
-        { label: "Multiple Choice", value: "64", color: "text-orange-600" },
-        { label: "Written Response", value: "1", color: "text-blue-600" }
-      ],
-      icon: Target,
-      gradient: "from-orange-500 to-red-600",
-      bgColor: "bg-orange-50",
-      textColor: "text-orange-700"
-    },
-    {
-      label: "Questions Saved",
-      value: "28",
-      change: "+8%",
-      subStats: [
-        { label: "Multiple Choice", value: "27", color: "text-purple-600" },
-        { label: "Written Response", value: "1", color: "text-pink-600" }
-      ],
-      icon: BookMarked,
-      gradient: "from-purple-500 to-pink-600",
-      bgColor: "bg-purple-50",
-      textColor: "text-purple-700"
-    }
-  ]
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return knowledgeBases;
+    return knowledgeBases.filter(
+      (kb) =>
+        kb.name.toLowerCase().includes(q) ||
+        kb.code.toLowerCase().includes(q) ||
+        kb.subject.toLowerCase().includes(q)
+    );
+  }, [search]);
 
-  const chartData = [
-    { name: 'Mon', usage: 1200, questions: 8 },
-    { name: 'Tue', usage: 1900, questions: 12 },
-    { name: 'Wed', usage: 1500, questions: 10 },
-    { name: 'Thu', usage: 2800, questions: 18 },
-    { name: 'Fri', usage: 2238, questions: 15 },
-    { name: 'Sat', usage: 1800, questions: 11 },
-    { name: 'Sun', usage: 2100, questions: 14 },
-  ]
+  const selected = knowledgeBases.find((kb) => kb.id === selectedId) ?? null;
+  const curriculumReady = !!selected?.studyCreated && !!selected?.loAvailable;
 
-  const weeklyData = [
-    { day: 'Week 1', generated: 42, saved: 18 },
-    { day: 'Week 2', generated: 38, saved: 22 },
-    { day: 'Week 3', generated: 45, saved: 28 },
-    { day: 'Week 4', generated: 52, saved: 31 },
-  ]
-
-  const books = [
-    {
-      year: "2024",
-      title: "Cyber Risk",
-      subtitle: "Chartered Insurance Professional",
-      code: "C20",
-      questions: 11,
-      cover: "/lovable-uploads/a13547e7-af5f-49b0-bb15-9b344d6cd72e.png"
-    },
-    {
-      year: "2023", 
-      title: "Principles and Practice of Insurance",
-      subtitle: "Chartered Insurance Professional",
-      code: "C11",
-      questions: 17,
-      cover: "/lovable-uploads/a13547e7-af5f-49b0-bb15-9b344d6cd72e.png"
-    }
-  ]
+  const startGeneration = (mode: "kb" | "curriculum") => {
+    if (!selected) return;
+    navigate(`/question-generator/${selected.code.toLowerCase()}?mode=${mode}`);
+  };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-background via-muted/10 to-background">
-      <AppHeader />
-      <div className="border-b border-border/30 mt-16">
-        <div className="flex h-16 items-center gap-4 px-6">
-          <div className="flex-1 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Link to="/">
-                <Button variant="ghost" size="icon" aria-label="Back to home" className="hover:scale-110 transition-transform duration-200">
-                  <ArrowLeft className="h-5 w-5" />
-                </Button>
-              </Link>
-              <div className="h-6 w-px bg-border/40" />
-              <h1 className="text-xl font-medium text-foreground">Item Generator</h1>
+    <div className="min-h-screen bg-[#F4F8FC]">
+      <AppHeader onMenuClick={() => setMobileMenuOpen(true)} />
+
+      <div
+        className={`fixed left-0 top-16 h-[calc(100%-4rem)] z-[60] hidden lg:block transition-all duration-300 ${
+          sidebarCollapsed ? "w-16" : "w-52"
+        }`}
+      >
+        <AppSidebar />
+      </div>
+
+      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+        <SheetContent side="left" className="w-64 p-0">
+          <AppSidebar
+            forceExpanded
+            hideToggle
+            onNavigate={() => setMobileMenuOpen(false)}
+          />
+        </SheetContent>
+      </Sheet>
+
+      <div
+        className={`ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
+          sidebarCollapsed ? "lg:ml-16" : "lg:ml-60"
+        }`}
+      >
+        {/* Page header */}
+        <div className="relative bg-white border-b border-slate-200">
+          <div className="relative px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="h-10 w-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 p-1">
+                <div className="h-full w-full rounded-sm bg-blue-600 flex items-center justify-center">
+                  <Sparkles className="h-4 w-4 text-white" />
+                </div>
+              </div>
+              <div className="min-w-0">
+                <h1 className="text-lg font-semibold text-slate-900 truncate">
+                  Item Generator
+                </h1>
+                <p className="text-xs text-slate-500 truncate">
+                  Select a knowledge base, then choose how you want to generate items
+                </p>
+              </div>
+            </div>
+            {selected && (
+              <Button
+                variant="outline"
+                className="rounded-full border-gray-200 text-slate-700 hover:bg-slate-50"
+                onClick={() => setSelectedId(null)}
+              >
+                <ArrowLeft className="h-4 w-4 mr-1.5" />
+                Change knowledge base
+              </Button>
+            )}
+          </div>
+        </div>
+
+        <div className="flex-1 p-4 lg:p-6 space-y-5">
+          {/* Step 1 — KB selection */}
+          <div className="rounded-2xl border border-gray-200/70 bg-white shadow-sm">
+            <div className="px-5 py-4 border-b border-gray-200/70 flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-between">
+              <div className="flex items-center gap-2.5">
+                <span className="w-1 h-6 rounded-full bg-blue-600" />
+                <div>
+                  <h2 className="text-sm font-semibold text-slate-900">
+                    Step 1 · Select Knowledge Base
+                  </h2>
+                  <p className="text-xs text-slate-500">
+                    A knowledge base is all you need to start. Book, Study and Learning
+                    Objectives are optional layers.
+                  </p>
+                </div>
+              </div>
+              <div className="relative w-full sm:w-72">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search knowledge bases"
+                  className="pl-9 h-9 rounded-full border-gray-200 focus-visible:ring-blue-500"
+                />
+              </div>
+            </div>
+
+            <div className="p-5">
+              {filtered.length === 0 ? (
+                <div className="py-10 text-center text-sm text-slate-500">
+                  No knowledge bases match your search.
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                  {filtered.map((kb) => {
+                    const isSelected = kb.id === selectedId;
+                    return (
+                      <button
+                        key={kb.id}
+                        type="button"
+                        onClick={() => setSelectedId(kb.id)}
+                        className={`text-left rounded-2xl border bg-white p-4 transition-all ${
+                          isSelected
+                            ? "border-blue-500 ring-1 ring-blue-500/30 shadow-sm"
+                            : "border-gray-200/70 hover:border-blue-300 hover:shadow-sm"
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex items-start gap-3 min-w-0">
+                            <div className="h-10 w-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+                              <Database className="h-4.5 w-4.5 text-blue-600" />
+                            </div>
+                            <div className="min-w-0">
+                              <h3 className="text-sm font-semibold text-slate-900 truncate">
+                                {kb.name}
+                              </h3>
+                              <p className="text-xs text-slate-500 truncate">
+                                {kb.code} · {kb.subject}
+                              </p>
+                            </div>
+                          </div>
+                          {isSelected && (
+                            <span className="h-5 w-5 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+                              <Check className="h-3 w-3 text-white" />
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          <ReadinessChip label="KB" ready icon={Database} />
+                          <ReadinessChip
+                            label="Book"
+                            ready={kb.bookLinked}
+                            icon={BookOpen}
+                          />
+                          <ReadinessChip
+                            label="Study"
+                            ready={kb.studyCreated}
+                            icon={GraduationCap}
+                          />
+                          <ReadinessChip
+                            label="LO"
+                            ready={kb.loAvailable}
+                            icon={Target}
+                          />
+                        </div>
+
+                        <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500">
+                          <span>{kb.documents} documents</span>
+                          <span>Updated {kb.updated}</span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Step 2 — generation path */}
+          <div className="rounded-2xl border border-gray-200/70 bg-white shadow-sm">
+            <div className="px-5 py-4 border-b border-gray-200/70 flex items-center gap-2.5">
+              <span className="w-1 h-6 rounded-full bg-blue-600" />
+              <div>
+                <h2 className="text-sm font-semibold text-slate-900">
+                  Step 2 · Choose Generation Path
+                </h2>
+                <p className="text-xs text-slate-500">
+                  {selected
+                    ? `Generating from “${selected.name}”`
+                    : "Select a knowledge base above to see the available paths."}
+                </p>
+              </div>
+            </div>
+
+            <div className="p-5">
+              <div
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-4 ${
+                  selected ? "" : "opacity-60 pointer-events-none"
+                }`}
+              >
+                {/* General generation */}
+                <div className="rounded-2xl border border-gray-200/70 bg-white p-5 shadow-sm flex flex-col">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-xl bg-blue-50 flex items-center justify-center">
+                      <Layers className="h-4.5 w-4.5 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-slate-900">
+                        General Generation
+                      </h3>
+                      <p className="text-xs text-slate-500">Knowledge base only</p>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm text-slate-600">
+                    Generate items directly from the knowledge base content. No Book,
+                    Study or Learning Objective mapping required.
+                  </p>
+                  <ul className="mt-3 space-y-1.5 text-xs text-slate-600">
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-blue-600" /> Always available
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-blue-600" /> Fastest way to start
+                    </li>
+                  </ul>
+                  <Button
+                    onClick={() => startGeneration("kb")}
+                    className="mt-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white self-start"
+                  >
+                    Continue with KB only
+                    <ChevronRight className="h-4 w-4 ml-1.5" />
+                  </Button>
+                </div>
+
+                {/* Curriculum aligned */}
+                <div className="rounded-2xl border border-gray-200/70 bg-white p-5 shadow-sm flex flex-col">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-xl bg-blue-50 flex items-center justify-center">
+                      <GraduationCap className="h-4.5 w-4.5 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-slate-900">
+                        Curriculum-Aligned Generation
+                      </h3>
+                      <p className="text-xs text-slate-500">
+                        Knowledge base + Study / Learning Objectives
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm text-slate-600">
+                    Map generated items to Study units and Learning Objectives for
+                    curriculum coverage and reporting.
+                  </p>
+
+                  {selected && !curriculumReady ? (
+                    <div className="mt-3 rounded-xl border border-gray-200 bg-slate-50 p-3">
+                      <p className="text-xs font-semibold text-slate-800">
+                        Curriculum data not available
+                      </p>
+                      <p className="mt-0.5 text-xs text-slate-600">
+                        {!selected.studyCreated
+                          ? "No Study has been created for this knowledge base."
+                          : "No Learning Objectives are available for this Study."}{" "}
+                        You can still continue with KB only.
+                      </p>
+                      <div className="mt-2.5 flex flex-wrap gap-2">
+                        <Button
+                          size="sm"
+                          onClick={() => startGeneration("kb")}
+                          className="rounded-full bg-blue-600 hover:bg-blue-700 text-white"
+                        >
+                          Continue with KB Only
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          asChild
+                          className="rounded-full border-gray-200 text-slate-700 hover:bg-white"
+                        >
+                          <Link to="/manage-book-details">Add Study / LO</Link>
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <ul className="mt-3 space-y-1.5 text-xs text-slate-600">
+                        <li className="flex items-center gap-2">
+                          <Check className="h-3.5 w-3.5 text-blue-600" /> Study units
+                          detected
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <Check className="h-3.5 w-3.5 text-blue-600" /> Learning
+                          Objectives available
+                        </li>
+                      </ul>
+                      <Button
+                        onClick={() => startGeneration("curriculum")}
+                        variant="outline"
+                        className="mt-4 rounded-full border-blue-200 text-blue-700 hover:bg-blue-50 self-start"
+                      >
+                        Continue curriculum-aligned
+                        <ChevronRight className="h-4 w-4 ml-1.5" />
+                      </Button>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Main Content - Bento Grid Layout */}
-      <main className="flex-1 p-6">
-        <div className="grid grid-cols-12 gap-6 h-full">
-          
-          {/* Generated Books Section */}
-          <div className="col-span-12 lg:col-span-4">
-            <Card className="h-full bg-white/90 backdrop-blur-sm border border-border/30 shadow-xl">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center gap-2 text-xl font-medium">
-                  <BookOpen className="h-6 w-6 text-primary" />
-                  Generated Books
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {books.map((book, index) => (
-                  <Link key={index} to={`/question-generator/${book.code.toLowerCase()}`}>
-                    <Card className="group p-4 bg-white/95 backdrop-blur-sm border border-border/30 hover:shadow-lg hover-glow transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-16 bg-gradient-to-br from-primary/30 to-primary/10 rounded-lg flex items-center justify-center text-xs font-medium text-primary border border-primary/30">
-                          {book.code}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <Badge variant="secondary" className="mb-2 text-xs">
-                            {book.year}
-                          </Badge>
-                          <h3 className="font-medium text-sm mb-1 group-hover:text-primary transition-colors leading-tight">
-                            {book.title}
-                          </h3>
-                          <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
-                            {book.subtitle}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-primary">
-                              {book.questions} Questions
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </Card>
-                  </Link>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Statistics Grid */}
-          <div className="col-span-12 lg:col-span-8 space-y-6">
-            
-            {/* Key Metrics - Bento Style */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {stats.map((stat, index) => (
-                <Card 
-                  key={index}
-                  className={`group bg-white/90 backdrop-blur-sm border border-border/30 shadow-xl hover:shadow-2xl hover-glow transition-all duration-500 hover:-translate-y-1 relative overflow-hidden`}
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  {/* Background Pattern */}
-                  <div className="absolute inset-0 opacity-5">
-                    <div className={`w-full h-full bg-gradient-to-br ${stat.gradient}`} />
-                  </div>
-                  
-                  <CardContent className="p-4 relative z-10">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-r ${stat.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                        <stat.icon className="h-5 w-5 text-white" />
-                      </div>
-                      {stat.change && (
-                        <Badge variant="secondary" className="text-xs text-green-600 bg-green-50">
-                          {stat.change}
-                        </Badge>
-                      )}
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <div className={`text-2xl font-medium ${stat.textColor} group-hover:scale-105 transition-transform duration-300`}>
-                        {stat.value}
-                      </div>
-                      <p className="text-xs font-medium text-muted-foreground">
-                        {stat.label}
-                      </p>
-                      
-                      {stat.subLabel && (
-                        <p className="text-xs text-muted-foreground">
-                          {stat.subLabel}
-                        </p>
-                      )}
-                      
-                      {stat.subStats && (
-                        <div className="space-y-1 mt-3">
-                          {stat.subStats.map((subStat, subIndex) => (
-                            <div key={subIndex} className="flex items-center justify-between text-xs">
-                              <span className="text-muted-foreground">{subStat.label}</span>
-                              <span className={`font-medium ${subStat.color}`}>{subStat.value}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Charts Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              
-              {/* Daily Usage Trend */}
-              <Card className="bg-white/90 backdrop-blur-sm border border-border/30 shadow-xl">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <TrendingUp className="h-5 w-5 text-primary" />
-                    Daily Usage Trend
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-64">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <AreaChart data={chartData}>
-                        <defs>
-                          <linearGradient id="usageGradient" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="hsl(215 55% 40%)" stopOpacity={0.3}/>
-                            <stop offset="95%" stopColor="hsl(215 55% 40%)" stopOpacity={0.05}/>
-                          </linearGradient>
-                        </defs>
-                        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                        <XAxis 
-                          dataKey="name" 
-                          stroke="hsl(var(--muted-foreground))"
-                          fontSize={12}
-                        />
-                        <YAxis 
-                          stroke="hsl(var(--muted-foreground))"
-                          fontSize={12}
-                        />
-                        <Area
-                          type="monotone"
-                          dataKey="usage"
-                          stroke="hsl(215 55% 40%)"
-                          strokeWidth={3}
-                          fill="url(#usageGradient)"
-                        />
-                      </AreaChart>
-                    </ResponsiveContainer>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Weekly Progress */}
-              <Card className="bg-white/90 backdrop-blur-sm border border-border/30 shadow-xl">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <BarChart3 className="h-5 w-5 text-primary" />
-                    Weekly Progress
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-64">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={weeklyData} barGap={8}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                        <XAxis 
-                          dataKey="day" 
-                          stroke="hsl(var(--muted-foreground))"
-                          fontSize={12}
-                        />
-                        <YAxis 
-                          stroke="hsl(var(--muted-foreground))"
-                          fontSize={12}
-                        />
-                        <Bar
-                          dataKey="generated"
-                          fill="hsl(215 55% 40%)"
-                          radius={[4, 4, 0, 0]}
-                          name="Generated"
-                        />
-                        <Bar
-                          dataKey="saved"
-                          fill="hsl(142 76% 36%)"
-                          radius={[4, 4, 0, 0]}
-                          name="Saved"
-                        />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Quick Actions */}
-            <Card className="bg-white/90 backdrop-blur-sm border border-border/30 shadow-xl">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
-                  Recent Activity
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">Generated 5 new questions for Cyber Risk</p>
-                      <p className="text-xs text-muted-foreground">2 minutes ago</p>
-                    </div>
-                    <Badge variant="secondary" className="text-xs">New</Badge>
-                  </div>
-                  <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/30">
-                    <div className="w-2 h-2 rounded-full bg-blue-500" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">Exported question set C20</p>
-                      <p className="text-xs text-muted-foreground">15 minutes ago</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/30">
-                    <div className="w-2 h-2 rounded-full bg-orange-500" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">Saved 3 questions to collection</p>
-                      <p className="text-xs text-muted-foreground">1 hour ago</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </main>
     </div>
-  )
-}
+  );
+};
 
-export default ItemGenerator
+export default ItemGenerator;
