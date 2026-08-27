@@ -133,6 +133,11 @@ const KnowledgeBase = () => {
   const handleCustomerSelect = (customerCode: string, customerName: string) => {
     if (customerLocked) return;
     setSelectedCustomerCode(customerCode);
+    if (customerCode === "_ALL") {
+      setBooksError(null);
+      setBooksLoading(false);
+      setBooksOptions(STATIC_BOOKS);
+    }
     setCustomerSearchQuery(customerName);
     try {
       sessionStorage.setItem('selectedCustomerCode', customerCode );
@@ -973,6 +978,16 @@ const KnowledgeBase = () => {
   const fetchBooksDetails = useCallback(async () => {
     if (!selectedCustomerCode) return;
 
+    // "All" is a UI-wide selection rather than a valid API customer code.
+    // Keep the sample catalogue visible instead of sending _ALL to the API.
+    if (selectedCustomerCode === '_ALL') {
+      booksReqIdRef.current += 1;
+      setBooksError(null);
+      setBooksLoading(false);
+      setBooksOptions(STATIC_BOOKS);
+      return;
+    }
+
     
     // Get customerCode and orgCode from userInfo for SSO
     let custCode = selectedCustomerCode;
@@ -1657,7 +1672,7 @@ const KnowledgeBase = () => {
     if (selectedCustomerCode) {
       fetchBooksDetails();
     } else {
-      setBooksOptions([]);
+      setBooksOptions(STATIC_BOOKS);
     }
   }, [fetchBooksDetails, selectedCustomerCode]);
 
@@ -4306,7 +4321,7 @@ const KnowledgeBase = () => {
                               <h3 className="text-md font-medium text-gray-900 mb-1">
                                 {searchQuery
                                   ? `No Books match your search.`
-                                  : (selectedCustomerCode && selectedCustomerCode !== '_ALL' ? "No books available for the selected customer and filters." : "Please select a customer to view books.")}
+                                  : "No books available for the selected customer and filters."}
                               </h3>
                               {searchQuery && (
                                 <p className="text-gray-500 text-sm">
