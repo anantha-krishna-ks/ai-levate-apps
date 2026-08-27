@@ -4348,16 +4348,16 @@ const KnowledgeBase = () => {
                                     <TableCell className="font-medium text-gray-900 py-4 truncate">{book.label || ""}</TableCell>
                                     <TableCell className="py-4">
                                       <div className="flex items-center gap-3">
-                                        <span className={`inline-flex items-center justify-center w-[78px] shrink-0 rounded-full px-2.5 py-1 text-xs font-medium border ${hasLO
+                                        <span className={`inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider border ${hasLO
                                           ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                                          : 'bg-slate-50 text-slate-600 border-slate-200'}`}>
-                                          {hasLO ? 'LO available' : 'No LO'}
+                                          : 'bg-slate-100 text-slate-500 border-slate-200'}`}>
+                                          {hasLO ? 'Available' : 'Missing'}
                                         </span>
                                         {hasLO ? (
                                           <Button
-                                            variant="ghost"
+                                            variant="outline"
                                             size="sm"
-                                            className="h-8 shrink-0 rounded-full text-xs text-blue-700 hover:bg-blue-50 hover:text-blue-800"
+                                            className="h-8 shrink-0 rounded-full px-4 text-xs font-semibold border-slate-200 text-slate-600 bg-white hover:bg-white hover:border-blue-600 hover:text-blue-600 transition-all"
                                             onClick={() => {
                                               setEditingBookDetails(book);
                                               setIsCreatingStudyLO(true);
@@ -4368,14 +4368,12 @@ const KnowledgeBase = () => {
                                               fetchAppsData();
                                             }}
                                           >
-                                            <Edit className="h-3.5 w-3.5 mr-1.5" />
                                             Edit LO
                                           </Button>
                                         ) : (
                                           <Button
-                                            variant="ghost"
                                             size="sm"
-                                            className="h-8 shrink-0 rounded-full text-xs text-blue-700 hover:bg-blue-50 hover:text-blue-800"
+                                            className="h-8 shrink-0 rounded-full px-4 text-xs font-semibold bg-blue-600 text-white hover:bg-blue-700 whitespace-nowrap transition-all"
                                             onClick={() => {
                                               setIsCreatingStudyLO(true);
                                               setSelectedBook(book.label);
@@ -4385,7 +4383,6 @@ const KnowledgeBase = () => {
                                               fetchAppsData();
                                             }}
                                           >
-                                            <Plus className="h-3.5 w-3.5 mr-1.5" />
                                             Create LO
                                           </Button>
                                         )}
@@ -4397,13 +4394,13 @@ const KnowledgeBase = () => {
                                           variant="ghost"
                                           size="icon"
                                           title="Delete book"
-                                          className="h-9 w-9 hover:bg-red-100 transition-colors"
+                                          className="h-9 w-9 rounded-full text-slate-400 hover:text-red-500 hover:bg-red-50 transition-all"
                                           onClick={() => {
                                             setBookToDelete(book);
                                             setShowBookDeleteDialog(true);
                                           }}
                                         >
-                                          <Trash2 className="h-4 w-4 text-red-600" />
+                                          <Trash2 className="h-4 w-4" />
                                         </Button>
                                       </div>
                                     </TableCell>
