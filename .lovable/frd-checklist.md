@@ -24,10 +24,11 @@ Source: `FRD_Item_Generator_Workflow.docx`. Modules are implemented only when as
 - [x] Inline non-blocking "Curriculum data not available" note with KB-only + Add Study/LO CTAs (full Module 4 pending)
 
 ## 4. Missing Study / LO Behaviour
-- [ ] Replace blocking popup with non-blocking "Curriculum Data Not Available" message
-- [ ] Primary CTA: Continue with KB Only
-- [ ] Secondary CTA: Add Study / LO (deep-link to Book Details)
-- [ ] Remove "Go To Dashboard" CTA
+- [x] Replace blocking popup with non-blocking "Curriculum Data Not Available" message
+- [x] Primary CTA: Continue with KB Only
+- [x] Secondary CTA: Add Study / LO (deep-link to Book Details with `?kb=` context)
+- [x] Remove "Go To Dashboard" CTA
+- [x] Message reports the first missing layer in the Book → Study → LO chain
 
 ## 5. Book Details Enhancements
 - [ ] Separate Learning Objectives column
