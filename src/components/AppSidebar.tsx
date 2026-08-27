@@ -219,7 +219,7 @@ export function AppSidebar({
             )}
 
 
-            <nav aria-label={section.label} className="space-y-1">
+            <nav aria-label={section.label} className="space-y-0.5">
               {section.items.map((item) => {
                 const Icon = item.icon
 
