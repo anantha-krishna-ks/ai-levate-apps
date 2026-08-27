@@ -3806,49 +3806,55 @@ const KnowledgeBase = () => {
                   </Card>
                   {/* Upload Study LO Documents Card */}
                   <Card className="border border-gray-200/70 bg-white rounded-2xl shadow-sm">
-                    <CardContent className="p-6 space-y-3">
-                      <div className="w-1 h-5 bg-blue-600 rounded-full" /><h3 className="text-lg font-semibold text-gray-900">Upload Study LO Documents</h3>
-                      <div className={`bg-white border-2 border-dashed rounded-lg p-12 text-center space-y-4 transition-colors cursor-pointer ${isDraggingStudyLO
+                    <CardContent className="p-6 space-y-4">
+                      <div className="flex items-center justify-between gap-4 flex-wrap">
+                        <div className="flex items-center gap-2">
+                          <div className="w-1 h-5 bg-blue-600 rounded-full" />
+                          <h3 className="text-lg font-semibold text-gray-900">Upload Study LO Documents</h3>
+                        </div>
+                        <Button
+                          type="button"
+                          size="sm"
+                          className="rounded-full bg-blue-600 text-white hover:bg-blue-700 text-xs h-8 font-semibold shadow-sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const link = document.createElement('a');
+                            link.href = API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE;
+                            link.download = '';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                          }}
+                        >
+                          <Download className="h-3.5 w-3.5 mr-1.5" />
+                          Download Template
+                        </Button>
+                      </div>
+                      <div className={`bg-white border-2 border-dashed rounded-xl p-10 text-center space-y-4 transition-colors cursor-pointer ${isDraggingStudyLO
                           ? 'border-blue-500 bg-blue-50'
-                          : 'border-slate-200 hover:border-slate-200'
+                          : 'border-slate-300 hover:border-blue-400 hover:bg-slate-50/50'
                         }`}
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
                         onDrop={handleDrop}
                         onClick={handleStudyLOFileInput}>
                         <div className="flex justify-center">
-                          <div className={`p-4 rounded-lg transition-colors ${isDraggingStudyLO ? 'bg-blue-200' : 'bg-blue-50'
+                          <div className={`p-4 rounded-full transition-colors ${isDraggingStudyLO ? 'bg-blue-200' : 'bg-blue-50'
                             }`}>
-                            <FileText className={`h-10 w-10 transition-colors ${isDraggingStudyLO ? 'text-blue-600' : 'text-blue-700'
+                            <FileText className={`h-9 w-9 transition-colors ${isDraggingStudyLO ? 'text-blue-600' : 'text-blue-700'
                               }`} />
                           </div>
                         </div>
                         <div>
-                          <p className="font-medium text-gray-900 text-lg">
-                            {isDraggingStudyLO ? 'Drop file here' : 'Drag file here or click to select file'}
+                          <p className="font-medium text-gray-900 text-base">
+                            {isDraggingStudyLO ? 'Drop file here' : 'Drag & drop your CSV file here'}
                           </p>
-                          <p className="text-sm text-gray-600 mt-2">
-                            Attach study LO document (CSV), file should not exceed 30mb
+                          <p className="text-sm text-gray-500 mt-1">
+                            or <span className="text-blue-600 font-medium underline-offset-2 hover:underline">browse files</span> from your computer
                           </p>
-                        </div>
-                        <div>
-                          <Button
-                            type="button"
-                            size="sm"
-                            className="rounded-full bg-blue-600 text-white hover:bg-blue-700 text-xs h-8 font-semibold shadow-sm"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              const link = document.createElement('a');
-                              link.href = API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE;
-                              link.download = '';
-                              document.body.appendChild(link);
-                              link.click();
-                              document.body.removeChild(link);
-                            }}
-                          >
-                            <Download className="h-3.5 w-3.5 mr-1.5" />
-                            Download Template
-                          </Button>
+                          <p className="text-xs text-gray-400 mt-3">
+                            CSV format only · Max file size 30 MB
+                          </p>
                         </div>
                       </div>
                       {studyLODocuments.length > 0 && (
