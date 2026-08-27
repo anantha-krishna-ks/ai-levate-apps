@@ -271,10 +271,10 @@ const ItemGenerator = () => {
                         key={kb.id}
                         type="button"
                         onClick={() => setSelectedId(kb.id)}
-                        className={`group relative text-left rounded-2xl bg-white p-4 pt-[18px] overflow-hidden transition-all duration-200 border ${
+                        className={`group relative text-left rounded-2xl bg-white p-4 pt-[18px] overflow-hidden transition-all duration-200 border-2 ${
                           isSelected
                             ? "border-blue-500 shadow-[0_6px_20px_-10px_rgba(37,99,235,0.45)]"
-                            : "border-slate-200/90 shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:border-slate-300 hover:shadow-[0_8px_24px_-16px_rgba(15,23,42,0.35)] hover:-translate-y-0.5"
+                            : "border-slate-300 shadow-[0_1px_3px_rgba(15,23,42,0.07)] hover:border-slate-400 hover:shadow-[0_8px_24px_-16px_rgba(15,23,42,0.35)] hover:-translate-y-0.5"
                         }`}
                       >
                         {/* top accent rail */}
