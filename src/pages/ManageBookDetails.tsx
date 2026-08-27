@@ -959,9 +959,10 @@ const KnowledgeBase = () => {
     }, [organizationOptions, selectedCustomerCode, selectedOrganization]);
 
   // ----------- STUDY LO: Books details & LO details helpers FROM abc.tsx ----------
+  const booksReqIdRef = useRef(0);
   const fetchBooksDetails = useCallback(async () => {
-    if (booksLoading) return;
     if (!selectedCustomerCode) return;
+
     
     // Get customerCode and orgCode from userInfo for SSO
     let custCode = selectedCustomerCode;
