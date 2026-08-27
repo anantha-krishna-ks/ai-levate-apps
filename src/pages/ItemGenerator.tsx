@@ -11,6 +11,7 @@ import {
   ChevronRight,
   Layers,
   ArrowLeft,
+  Minus,
 } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
@@ -84,23 +85,59 @@ const ReadinessChip = ({
 }: {
   label: string;
   ready: boolean;
-  icon?: typeof BookOpen;
 }) => (
   <span
-    className={`inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] text-[11px] font-medium tracking-tight transition-colors ${
+    aria-label={`${label}: ${ready ? "available" : "not available"}`}
+    className={`inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] text-xs font-medium tracking-tight transition-colors ${
       ready
-        ? "bg-blue-50/80 text-blue-700 ring-1 ring-inset ring-blue-100"
-        : "bg-slate-50 text-slate-400 ring-1 ring-inset ring-slate-100"
+        ? "bg-blue-50 text-blue-800 ring-1 ring-inset ring-blue-200"
+        : "bg-slate-50 text-slate-600 ring-1 ring-inset ring-slate-200"
     }`}
   >
-    <span
-      className={`h-1.5 w-1.5 rounded-full ${
-        ready ? "bg-blue-500" : "bg-slate-300"
-      }`}
-    />
+    {ready ? (
+      <Check className="h-3 w-3 text-blue-700" strokeWidth={3} aria-hidden="true" />
+    ) : (
+      <Minus className="h-3 w-3 text-slate-600" strokeWidth={3} aria-hidden="true" />
+    )}
     {label}
   </span>
 );
+
+const LayerRing = ({
+  layers,
+  selected,
+}: {
+  layers: number;
+  selected: boolean;
+}) => {
+  const pct = layers / 4;
+  const r = 17;
+  const c = 2 * Math.PI * r;
+  return (
+    <span className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center">
+      <svg viewBox="0 0 40 40" className="h-10 w-10 -rotate-90" aria-hidden="true">
+        <circle cx="20" cy="20" r={r} fill="none" strokeWidth="3" className="stroke-slate-200" />
+        <circle
+          cx="20"
+          cy="20"
+          r={r}
+          fill="none"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeDasharray={c}
+          strokeDashoffset={c * (1 - pct)}
+          className={selected ? "stroke-blue-600" : "stroke-slate-400 group-hover:stroke-blue-600"}
+          style={{ transition: "stroke-dashoffset 400ms ease" }}
+        />
+      </svg>
+      <BookOpen
+        className={`absolute h-4 w-4 ${selected ? "text-blue-700" : "text-slate-600 group-hover:text-blue-700"}`}
+        aria-hidden="true"
+      />
+    </span>
+  );
+};
+
 
 
 const ItemGenerator = () => {
@@ -169,7 +206,7 @@ const ItemGenerator = () => {
                 <h1 className="text-lg font-semibold text-slate-900 truncate">
                   Item Generator
                 </h1>
-                <p className="text-xs text-slate-500 truncate">
+                <p className="text-xs text-slate-600 truncate">
                   Select a knowledge base, then choose how you want to generate items
                 </p>
               </div>
@@ -197,7 +234,7 @@ const ItemGenerator = () => {
                   <h2 className="text-sm font-semibold text-slate-900">
                     Step 1 · Select Knowledge Base
                   </h2>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-600">
                     A knowledge base is all you need to start. Book, Study and Learning
                     Objectives are optional layers.
                   </p>
@@ -216,7 +253,7 @@ const ItemGenerator = () => {
 
             <div className="p-5">
               {filtered.length === 0 ? (
-                <div className="py-10 text-center text-sm text-slate-500">
+                <div className="py-10 text-center text-sm text-slate-600">
                   No knowledge bases match your search.
                 </div>
               ) : (
@@ -251,21 +288,13 @@ const ItemGenerator = () => {
 
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex items-start gap-3 min-w-0">
-                            <div
-                              className={`h-10 w-10 rounded-xl flex items-center justify-center flex-shrink-0 text-[12px] font-semibold tracking-tight transition-colors ${
-                                isSelected
-                                  ? "bg-blue-600 text-white"
-                                  : "bg-slate-50 text-slate-600 ring-1 ring-inset ring-slate-200/80 group-hover:bg-blue-50 group-hover:text-blue-700 group-hover:ring-blue-100"
-                              }`}
-                            >
-                              {kb.code.slice(0, 3).toUpperCase()}
-                            </div>
+                            <LayerRing layers={layers} selected={isSelected} />
                             <div className="min-w-0">
                               <h3 className="text-sm font-semibold text-slate-900 truncate leading-5">
                                 {kb.name}
                               </h3>
-                              <p className="text-xs text-slate-500 truncate mt-0.5">
-                                {kb.code} · {kb.subject}
+                              <p className="text-xs text-slate-600 truncate mt-0.5">
+                                {kb.subject}
                               </p>
                             </div>
                           </div>
@@ -276,26 +305,27 @@ const ItemGenerator = () => {
                                 : "bg-slate-200 scale-75 opacity-0"
                             }`}
                           >
-                            <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                            <Check className="h-3 w-3 text-white" strokeWidth={3} aria-hidden="true" />
                           </span>
                         </div>
 
                         <div className="mt-3.5 flex flex-wrap gap-1.5">
-                          <ReadinessChip label="KB" ready />
+                          <ReadinessChip label="Knowledge base" ready />
                           <ReadinessChip label="Book" ready={kb.bookLinked} />
                           <ReadinessChip label="Study" ready={kb.studyCreated} />
-                          <ReadinessChip label="LO" ready={kb.loAvailable} />
+                          <ReadinessChip label="Learning objectives" ready={kb.loAvailable} />
                         </div>
 
-                        <div className="mt-3.5 pt-3 border-t border-dashed border-slate-200/90 flex items-center justify-between text-[11px] text-slate-500">
+                        <div className="mt-3.5 pt-3 border-t border-dashed border-slate-200 flex items-center justify-between text-xs text-slate-600">
                           <span className="inline-flex items-center gap-1.5">
-                            <Database className="h-3 w-3 text-slate-400" />
+                            <Database className="h-3.5 w-3.5 text-slate-600" aria-hidden="true" />
                             {kb.documents} documents
                           </span>
                           <span className="tabular-nums">
                             {layers}/4 layers · {kb.updated}
                           </span>
                         </div>
+
                       </button>
                     );
                   })}
@@ -313,7 +343,7 @@ const ItemGenerator = () => {
                 <h2 className="text-sm font-semibold text-slate-900">
                   Step 2 · Choose Generation Path
                 </h2>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-600">
                   {selected
                     ? `Generating from “${selected.name}”`
                     : "Select a knowledge base above to see the available paths."}
@@ -337,7 +367,7 @@ const ItemGenerator = () => {
                       <h3 className="text-sm font-semibold text-slate-900">
                         General Generation
                       </h3>
-                      <p className="text-xs text-slate-500">Knowledge base only</p>
+                      <p className="text-xs text-slate-600">Knowledge base only</p>
                     </div>
                   </div>
                   <p className="mt-3 text-sm text-slate-600">
@@ -371,7 +401,7 @@ const ItemGenerator = () => {
                       <h3 className="text-sm font-semibold text-slate-900">
                         Curriculum-Aligned Generation
                       </h3>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-slate-600">
                         Knowledge base + Study / Learning Objectives
                       </p>
                     </div>
