@@ -2974,24 +2974,6 @@ const KnowledgeBase = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    {isCreatingStudyLO && (
-                      <Button
-                        size="sm"
-                        className="bg-blue-600 hover:bg-blue-700 text-white rounded-full text-xs h-8"
-                        onClick={() => {
-                          const link = document.createElement('a');
-                          link.href = API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE;
-                          link.download = '';
-                          document.body.appendChild(link);
-                          link.click();
-                          document.body.removeChild(link);
-                        }}
-                      >
-                        Download Template
-                      </Button>
-                    )}
-                  </div>
                 </div>
               </div>
             </div>
@@ -3848,6 +3830,26 @@ const KnowledgeBase = () => {
                           <p className="text-sm text-gray-600 mt-2">
                             Attach study LO document (CSV), file should not exceed 30mb
                           </p>
+                        </div>
+                        <div>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            className="rounded-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-xs h-8"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              const link = document.createElement('a');
+                              link.href = API_ENDPOINTS.DOWNLOAD_STUDY_LO_TEMPLATE;
+                              link.download = '';
+                              document.body.appendChild(link);
+                              link.click();
+                              document.body.removeChild(link);
+                            }}
+                          >
+                            <Download className="h-3.5 w-3.5 mr-1.5" />
+                            Download Template
+                          </Button>
                         </div>
                       </div>
                       {studyLODocuments.length > 0 && (
