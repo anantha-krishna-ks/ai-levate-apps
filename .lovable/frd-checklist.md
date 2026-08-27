@@ -31,10 +31,10 @@ Source: `FRD_Item_Generator_Workflow.docx`. Modules are implemented only when as
 - [x] Message reports the first missing layer in the Book → Study → LO chain
 
 ## 5. Book Details Enhancements
-- [ ] Separate Learning Objectives column
-- [ ] Create / Edit LO actions; retain Delete for Book
-- [ ] Download template option inside Create LO
-- [ ] Drag-and-drop upload for Study LO documents (CSV, max 30MB)
+- [x] Separate Learning Objectives column (LO availability chip)
+- [x] Create / Edit LO actions in the LO column; Actions column keeps Delete for Book
+- [x] Download template option inside Create LO
+- [x] Drag-and-drop upload for Study LO documents (CSV, max 30MB)
 
 ## 6. Image Repository Module
 - [ ] Upload, listing, tagging, reuse across books and generated items
