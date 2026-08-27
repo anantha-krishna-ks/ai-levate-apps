@@ -166,16 +166,16 @@ export function AppSidebar({
   )
 
   const itemBase =
-    "relative group w-full flex items-center gap-3 rounded-xl text-[13px] font-medium transition-all duration-200"
-  const itemPadding = collapsed ? "justify-center px-0 py-2" : "px-3.5 py-2"
+    "relative group w-full flex items-center gap-3 rounded-[10px] text-[13.8px] font-medium transition-[background-color,color,padding] duration-150"
+  const itemPadding = collapsed ? "justify-center px-0 py-[11px]" : "px-3 py-2.5"
   const itemIdle =
-    "text-slate-700 hover:bg-slate-100/80 hover:text-slate-900"
+    "text-[#1A1E26] hover:bg-[#F5F7FA] hover:text-slate-900"
   const itemActive = "bg-blue-50 text-blue-700"
 
   return (
     <aside
       className={cn(
-        "relative h-full bg-white border-r border-slate-200/80 flex flex-col transition-all duration-300 ease-in-out",
+        "relative h-full bg-white border-r border-[#D5DBE4] flex flex-col transition-[width] duration-300 ease-in-out",
         collapsed ? "w-16" : "w-52",
       )}
     >
@@ -185,15 +185,15 @@ export function AppSidebar({
           onClick={toggleSidebarCollapsed}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           className={cn(
-            "absolute -right-3 top-7 z-20 h-6 w-6 rounded-full border border-slate-200",
-            "bg-white text-slate-500 shadow-sm flex items-center justify-center",
-            "transition-all duration-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110",
+            "absolute -right-[15px] top-6 z-20 h-[30px] w-[30px] rounded-full border border-[#D5DBE4]",
+            "bg-white text-blue-600 flex items-center justify-center",
+            "transition-colors duration-200 hover:bg-blue-50",
           )}
         >
           {collapsed ? (
-            <ChevronRight className="h-3 w-3" />
+            <ChevronRight className="h-3.5 w-3.5" />
           ) : (
-            <ChevronLeft className="h-3 w-3" />
+            <ChevronLeft className="h-3.5 w-3.5" />
           )}
         </button>
       )}
@@ -201,25 +201,25 @@ export function AppSidebar({
       <div
         className={cn(
           "flex-1 overflow-y-auto overflow-x-hidden py-4",
-          collapsed ? "px-2 space-y-3" : "px-3 space-y-3.5",
+          collapsed ? "px-3" : "px-3",
         )}
       >
         {sections.map((section, sectionIdx) => (
           <div key={section.label}>
             {collapsed ? (
               sectionIdx > 0 && (
-                <div className="mx-2 mb-3 h-px bg-slate-200/80" aria-hidden="true" />
+                <div className="mx-2 my-3 h-px bg-[#D5DBE4]" aria-hidden="true" />
               )
             ) : (
-              <div className="flex items-center gap-2 px-3 pb-1">
-                <span className="h-1 w-1 rounded-full bg-slate-400" aria-hidden="true" />
-                <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+              <div className={cn("px-3 pb-1", sectionIdx > 0 ? "pt-3" : "pt-0")}>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8A93A2]">
                   {section.label}
                 </p>
               </div>
             )}
 
-            <nav className="space-y-0.5">
+
+            <nav aria-label={section.label} className="space-y-1">
               {section.items.map((item) => {
                 const Icon = item.icon
 
@@ -255,10 +255,10 @@ export function AppSidebar({
                             collapsed && "h-9 w-9",
                             groupActive
                               ? "bg-blue-100 text-blue-600"
-                              : "bg-transparent text-slate-600 group-hover:bg-slate-100 group-hover:text-slate-800",
+                              : "bg-transparent text-[#5A6675] group-hover:text-slate-800",
                           )}
                         >
-                          <Icon className="h-[17px] w-[17px]" />
+                          <Icon className="h-[19px] w-[19px]" strokeWidth={1.75} />
                         </span>
                         {!collapsed && (
                           <>
@@ -339,10 +339,10 @@ export function AppSidebar({
                         collapsed && "h-9 w-9",
                         active
                           ? "bg-blue-600 text-white"
-                          : "bg-transparent text-slate-600 group-hover:bg-slate-100 group-hover:text-slate-800",
+                          : "bg-transparent text-[#5A6675] group-hover:text-slate-800",
                       )}
                     >
-                      <Icon className="h-[17px] w-[17px]" />
+                      <Icon className="h-[19px] w-[19px]" strokeWidth={1.75} />
                     </span>
                     {!collapsed && (
                       <>
