@@ -242,7 +242,7 @@ const KnowledgeBase = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuState = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   // ---- Create Study LO State additions from abc.tsx ----
   const [isCreatingStudyLO, setIsCreatingStudyLO] = useState(false);
