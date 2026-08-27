@@ -219,7 +219,7 @@ export function AppSidebar({
             )}
 
 
-            <nav className="space-y-0.5">
+            <nav aria-label={section.label} className="space-y-1">
               {section.items.map((item) => {
                 const Icon = item.icon
 
@@ -255,10 +255,10 @@ export function AppSidebar({
                             collapsed && "h-9 w-9",
                             groupActive
                               ? "bg-blue-100 text-blue-600"
-                              : "bg-transparent text-slate-600 group-hover:bg-slate-100 group-hover:text-slate-800",
+                              : "bg-transparent text-[#5A6675] group-hover:text-slate-800",
                           )}
                         >
-                          <Icon className="h-[17px] w-[17px]" />
+                          <Icon className="h-[19px] w-[19px]" strokeWidth={1.75} />
                         </span>
                         {!collapsed && (
                           <>
@@ -339,10 +339,10 @@ export function AppSidebar({
                         collapsed && "h-9 w-9",
                         active
                           ? "bg-blue-600 text-white"
-                          : "bg-transparent text-slate-600 group-hover:bg-slate-100 group-hover:text-slate-800",
+                          : "bg-transparent text-[#5A6675] group-hover:text-slate-800",
                       )}
                     >
-                      <Icon className="h-[17px] w-[17px]" />
+                      <Icon className="h-[19px] w-[19px]" strokeWidth={1.75} />
                     </span>
                     {!collapsed && (
                       <>
