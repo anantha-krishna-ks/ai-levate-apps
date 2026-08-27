@@ -22,7 +22,7 @@ const SuperAdminReports = () => {
         </SheetContent>
       </Sheet>
 
-      <div className="ml-0 pt-16 lg:ml-52 min-h-screen flex flex-col">
+      <div className="ml-0 pt-16 lg:ml-60 min-h-screen flex flex-col">
         <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
           <h1 className="text-base sm:text-xl font-medium text-gray-900">Reports</h1>
         </div>

@@ -1382,7 +1382,7 @@ const ManageGuidelines = () => {
             isSSO
               ? "min-h-screen flex flex-col"
               : `ml-0 pt-16 min-h-screen flex flex-col transition-all duration-300 ${
-                  sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
+                  sidebarCollapsed ? "lg:ml-16" : "lg:ml-60"
                 }`
           }
         >

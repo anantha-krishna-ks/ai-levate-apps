@@ -841,7 +841,7 @@ const [imagePreviewOpen, setImagePreviewOpen] = useState(false);
         </Sheet>
       )}
 
-      <div className={isSSO ? "min-h-screen flex flex-col" : "ml-0 lg:ml-52 min-h-screen flex flex-col"}>
+      <div className={isSSO ? "min-h-screen flex flex-col" : "ml-0 lg:ml-60 min-h-screen flex flex-col"}>
         {/* Page Title Section */}
         {!isSSO && (
           <div className="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">

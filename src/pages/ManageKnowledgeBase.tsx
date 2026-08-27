@@ -1677,7 +1677,7 @@ const ManageKnowledgeBase = ({ embedded = false }: { embedded?: boolean } = {}) 
             isSSO || embedded
               ? "min-h-screen flex flex-col"
               : `ml-0 pt-16 flex flex-col transition-all duration-300 ${
-                  sidebarCollapsed ? "lg:ml-16" : "lg:ml-52"
+                  sidebarCollapsed ? "lg:ml-16" : "lg:ml-60"
                 }`
           }
         >
