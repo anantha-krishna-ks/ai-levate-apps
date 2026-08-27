@@ -169,7 +169,7 @@ export function AppSidebar({
     "relative group w-full flex items-center gap-3 rounded-xl text-[13px] font-medium transition-all duration-200"
   const itemPadding = collapsed ? "justify-center px-0 py-2.5" : "px-3.5 py-2.5"
   const itemIdle =
-    "text-slate-600 hover:bg-slate-100/80 hover:text-slate-900"
+    "text-slate-700 hover:bg-slate-100/80 hover:text-slate-900"
   const itemActive = "bg-blue-50 text-blue-700"
 
   return (
@@ -186,7 +186,7 @@ export function AppSidebar({
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           className={cn(
             "absolute -right-3 top-7 z-20 h-6 w-6 rounded-full border border-slate-200",
-            "bg-white text-slate-400 shadow-sm flex items-center justify-center",
+            "bg-white text-slate-500 shadow-sm flex items-center justify-center",
             "transition-all duration-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110",
           )}
         >
@@ -212,8 +212,8 @@ export function AppSidebar({
               )
             ) : (
               <div className="flex items-center gap-2 px-3 pb-2">
-                <span className="h-1 w-1 rounded-full bg-slate-300" aria-hidden="true" />
-                <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                <span className="h-1 w-1 rounded-full bg-slate-400" aria-hidden="true" />
+                <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-slate-500">
                   {section.label}
                 </p>
               </div>
@@ -255,7 +255,7 @@ export function AppSidebar({
                             collapsed && "h-9 w-9",
                             groupActive
                               ? "bg-blue-100 text-blue-600"
-                              : "bg-transparent text-slate-500 group-hover:bg-slate-100 group-hover:text-slate-700",
+                              : "bg-transparent text-slate-600 group-hover:bg-slate-100 group-hover:text-slate-800",
                           )}
                         >
                           <Icon className="h-[17px] w-[17px]" />
@@ -265,7 +265,7 @@ export function AppSidebar({
                             <span className="flex-1 text-left">{item.title}</span>
                             <ChevronDown
                               className={cn(
-                                "h-3.5 w-3.5 text-slate-400 transition-transform duration-200",
+                                "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
                                 open && "rotate-180",
                               )}
                             />
@@ -294,7 +294,7 @@ export function AppSidebar({
                                     "relative flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] transition-all duration-150",
                                     active
                                       ? "bg-blue-50 font-semibold text-blue-700"
-                                      : "text-slate-500 hover:bg-slate-100/80 hover:text-slate-900",
+                                      : "text-slate-600 hover:bg-slate-100/80 hover:text-slate-900",
                                   )}
                                 >
                                   <span
@@ -339,7 +339,7 @@ export function AppSidebar({
                         collapsed && "h-9 w-9",
                         active
                           ? "bg-blue-600 text-white"
-                          : "bg-transparent text-slate-500 group-hover:bg-slate-100 group-hover:text-slate-700",
+                          : "bg-transparent text-slate-600 group-hover:bg-slate-100 group-hover:text-slate-800",
                       )}
                     >
                       <Icon className="h-[17px] w-[17px]" />
