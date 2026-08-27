@@ -167,7 +167,7 @@ export function AppSidebar({
 
   const itemBase =
     "relative group w-full flex items-center gap-3 rounded-xl text-[13px] font-medium transition-all duration-200"
-  const itemPadding = collapsed ? "justify-center px-0 py-2.5" : "px-3.5 py-2.5"
+  const itemPadding = collapsed ? "justify-center px-0 py-2" : "px-3.5 py-2"
   const itemIdle =
     "text-slate-700 hover:bg-slate-100/80 hover:text-slate-900"
   const itemActive = "bg-blue-50 text-blue-700"
@@ -200,8 +200,8 @@ export function AppSidebar({
 
       <div
         className={cn(
-          "flex-1 overflow-y-auto overflow-x-hidden py-5",
-          collapsed ? "px-2 space-y-3" : "px-3 space-y-6",
+          "flex-1 overflow-y-auto overflow-x-hidden py-4",
+          collapsed ? "px-2 space-y-3" : "px-3 space-y-3.5",
         )}
       >
         {sections.map((section, sectionIdx) => (
@@ -211,7 +211,7 @@ export function AppSidebar({
                 <div className="mx-2 mb-3 h-px bg-slate-200/80" aria-hidden="true" />
               )
             ) : (
-              <div className="flex items-center gap-2 px-3 pb-2">
+              <div className="flex items-center gap-2 px-3 pb-1">
                 <span className="h-1 w-1 rounded-full bg-slate-400" aria-hidden="true" />
                 <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-slate-500">
                   {section.label}
