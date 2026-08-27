@@ -1017,11 +1017,14 @@ const KnowledgeBase = () => {
       })).filter((option: any) => option.value);
       if (reqId !== booksReqIdRef.current) return;
       console.log('[ManageBookDetails] books fetched:', options.length);
-      setBooksOptions(options);
+      setBooksOptions(options.length ? options : STATIC_BOOKS);
     } catch (error) {
       if (reqId !== booksReqIdRef.current) return;
-      setBooksError(error?.message || 'Failed to fetch books');
-      setBooksOptions([]);
+      // API unavailable (e.g. 404) — fall back to static sample data so the UI is usable
+      console.warn('[ManageBookDetails] books fetch failed, using static data:', error?.message);
+      setBooksError(null);
+      setBooksOptions(STATIC_BOOKS);
+
     } finally {
       if (reqId === booksReqIdRef.current) setBooksLoading(false);
     }
