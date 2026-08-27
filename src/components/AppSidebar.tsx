@@ -167,7 +167,7 @@ export function AppSidebar({
 
   const itemBase =
     "relative group w-full flex items-center gap-3 rounded-[10px] text-[13.8px] font-medium transition-[background-color,color,padding] duration-150"
-  const itemPadding = collapsed ? "justify-center px-0 py-[11px]" : "px-3 py-2.5"
+  const itemPadding = collapsed ? "justify-center px-0 py-[11px]" : "px-3 py-2"
   const itemIdle =
     "text-[#1A1E26] hover:bg-[#F5F7FA] hover:text-slate-900"
   const itemActive = "bg-blue-50 text-blue-700"
