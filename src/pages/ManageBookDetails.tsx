@@ -21,7 +21,17 @@ import { API_ENDPOINTS } from "../config";
 import { PageLoader } from "@/components/ui/loader";
 import { getKbAuthToken } from "@/lib/kb-auth";
 
+// Static sample books used when the books API is unavailable (e.g. 404)
+const STATIC_BOOKS: { value: string; label: string; bookId?: number; organizationcode?: string; appcode?: string; isstudylocreated?: number }[] = [
+  { value: 'NCERT Biology Class 12', label: 'NCERT Biology Class 12', bookId: 9001, organizationcode: 'ORG001', appcode: 'AIG', isstudylocreated: 1 },
+  { value: 'NCERT Physics Class 11', label: 'NCERT Physics Class 11', bookId: 9002, organizationcode: 'ORG001', appcode: 'AIG', isstudylocreated: 1 },
+  { value: 'NCERT Chemistry Class 10', label: 'NCERT Chemistry Class 10', bookId: 9003, organizationcode: 'ORG001', appcode: 'AIG', isstudylocreated: 0 },
+  { value: 'Mathematics Foundation Grade 9', label: 'Mathematics Foundation Grade 9', bookId: 9004, organizationcode: 'ORG002', appcode: 'AIG', isstudylocreated: 0 },
+  { value: 'Broadcast Journalism Essentials', label: 'Broadcast Journalism Essentials', bookId: 9005, organizationcode: 'ORG002', appcode: 'AIG', isstudylocreated: 1 },
+];
+
 const KnowledgeBase = () => {
+
   const navigate = useNavigate();
   const sidebarCollapsed = useSidebarCollapsed();
   
