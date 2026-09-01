@@ -63,20 +63,6 @@ const sections: NavSection[] = [
     ],
   },
   {
-    label: "Evaluate",
-    items: [
-      {
-        title: "Evaluations",
-        icon: PenLine,
-        children: [
-          { title: "Essay Evaluation", url: "/essay-evaluation" },
-          { title: "Speech Evaluation", url: "/speech-evaluation" },
-          { title: "OCR Evaluation", url: "/ocr-evaluation" },
-        ],
-      },
-    ],
-  },
-  {
     label: "Insights",
     items: [
       { title: "Analytics", url: "/analytics", icon: BarChart3 },
