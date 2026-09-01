@@ -364,7 +364,7 @@ const ItemGenerator = () => {
 
             <div className="p-5">
               <div
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-4 ${
+                className={`relative grid grid-cols-1 lg:grid-cols-2 gap-4 ${
                   selected ? "" : "opacity-60 pointer-events-none"
                 }`}
               >
@@ -401,6 +401,15 @@ const ItemGenerator = () => {
                     Continue with KB only
                     <ChevronRight className="h-4 w-4 ml-1.5" />
                   </Button>
+                </div>
+
+                {/* OR divider */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center z-10">
+                  <div className="h-10 w-10 rounded-full bg-white border border-slate-200 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.12)] flex items-center justify-center">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                      Or
+                    </span>
+                  </div>
                 </div>
 
                 {/* Curriculum aligned */}
@@ -444,16 +453,8 @@ const ItemGenerator = () => {
                       <div className="mt-2.5 flex flex-wrap gap-2">
                         <Button
                           size="sm"
-                          onClick={() => startGeneration("kb")}
-                          className="rounded-full bg-blue-600 hover:bg-blue-700 text-white"
-                        >
-                          Continue with KB Only
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
                           asChild
-                          className="rounded-full border-gray-200 text-slate-700 hover:bg-slate-50 hover:text-slate-700"
+                          className="rounded-full bg-blue-600 hover:bg-blue-700 text-white"
                         >
                           <Link to={`/manage-book-details?kb=${encodeURIComponent(selected.code)}`}>
                             Add Study / LO
