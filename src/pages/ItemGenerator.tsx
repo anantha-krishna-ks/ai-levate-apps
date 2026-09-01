@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   Sparkles,
   Search,
-  BookOpen,
   Database,
   GraduationCap,
   Target,
@@ -26,6 +25,7 @@ type KnowledgeBaseItem = {
   name: string;
   code: string;
   subject: string;
+  image: string;
   documents: number;
   updated: string;
   bookLinked: boolean;
@@ -39,6 +39,7 @@ const knowledgeBases: KnowledgeBaseItem[] = [
     name: "Cyber Risk",
     code: "C20",
     subject: "Risk Management",
+    image: "/kb-covers/kb-cover-cyber-risk.jpg",
     documents: 12,
     updated: "2 days ago",
     bookLinked: true,
@@ -50,6 +51,7 @@ const knowledgeBases: KnowledgeBaseItem[] = [
     name: "Principles and Practice of Insurance",
     code: "C11",
     subject: "Insurance",
+    image: "/kb-covers/kb-cover-insurance.jpg",
     documents: 24,
     updated: "1 week ago",
     bookLinked: true,
@@ -61,6 +63,7 @@ const knowledgeBases: KnowledgeBaseItem[] = [
     name: "Financial Risk Assessment",
     code: "C31",
     subject: "Finance",
+    image: "/kb-covers/kb-cover-finance.jpg",
     documents: 9,
     updated: "3 days ago",
     bookLinked: true,
@@ -72,6 +75,7 @@ const knowledgeBases: KnowledgeBaseItem[] = [
     name: "Broadcast Journalism Fundamentals",
     code: "BJ01",
     subject: "Journalism",
+    image: "/kb-covers/kb-cover-journalism.jpg",
     documents: 6,
     updated: "5 days ago",
     bookLinked: false,
@@ -104,40 +108,6 @@ const ReadinessChip = ({
   </span>
 );
 
-const LayerRing = ({
-  layers,
-  selected,
-}: {
-  layers: number;
-  selected: boolean;
-}) => {
-  const pct = layers / 4;
-  const r = 17;
-  const c = 2 * Math.PI * r;
-  return (
-    <span className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center">
-      <svg viewBox="0 0 40 40" className="h-10 w-10 -rotate-90" aria-hidden="true">
-        <circle cx="20" cy="20" r={r} fill="none" strokeWidth="3" className="stroke-slate-200" />
-        <circle
-          cx="20"
-          cy="20"
-          r={r}
-          fill="none"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeDasharray={c}
-          strokeDashoffset={c * (1 - pct)}
-          className={selected ? "stroke-blue-600" : "stroke-slate-400 group-hover:stroke-blue-600"}
-          style={{ transition: "stroke-dashoffset 400ms ease" }}
-        />
-      </svg>
-      <BookOpen
-        className={`absolute h-4 w-4 ${selected ? "text-blue-700" : "text-slate-600 group-hover:text-blue-700"}`}
-        aria-hidden="true"
-      />
-    </span>
-  );
-};
 
 
 
@@ -262,66 +232,67 @@ const ItemGenerator = () => {
                         key={kb.id}
                         type="button"
                         onClick={() => setSelectedId(kb.id)}
-                        className={`group relative text-left rounded-2xl bg-white p-4 pt-[18px] overflow-hidden transition-all duration-200 border ${
+                        className={`group relative text-left rounded-2xl bg-white overflow-hidden transition-all duration-200 border ${
                           isSelected
                             ? "border-blue-500 shadow-[0_6px_20px_-10px_rgba(37,99,235,0.45)]"
                             : "border-slate-200 shadow-[0_2px_8px_-4px_rgba(15,23,42,0.12)] hover:border-slate-300 hover:shadow-[0_8px_24px_-16px_rgba(15,23,42,0.35)] hover:-translate-y-0.5"
                         }`}
                       >
-                        {/* top accent rail */}
-                        <span
-                          className={`absolute inset-x-0 top-0 h-[3px] transition-opacity duration-200 ${
-                            isSelected
-                              ? "bg-blue-600 opacity-100"
-                              : "bg-slate-300 opacity-0 group-hover:opacity-100"
-                          }`}
-                        />
-
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex items-start gap-3 min-w-0">
-                            <LayerRing layers={layers} selected={isSelected} />
-                            <div className="min-w-0">
-                              <h3 className="text-sm font-semibold text-slate-900 truncate leading-5">
-                                {kb.name}
-                              </h3>
-                              <p className="text-xs text-slate-600 truncate mt-0.5">
-                                {kb.subject}
-                              </p>
-                            </div>
-                          </div>
-                          <span
-                            className={`relative h-[22px] w-[22px] rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                              isSelected
-                                ? "border-[5px] border-blue-600 shadow-[0_0_0_3px_rgba(37,99,235,0.12)]"
-                                : "border-2 border-slate-300 group-hover:border-slate-400 group-hover:shadow-[0_0_0_3px_rgba(15,23,42,0.05)]"
-                            }`}
-                            aria-hidden="true"
-                          >
+                        {/* Cover image with readability overlay */}
+                        <div className="relative h-32 w-full overflow-hidden">
+                          <img
+                            src={kb.image}
+                            alt=""
+                            loading="lazy"
+                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/40 to-slate-900/10" />
+                          <div className="absolute inset-x-0 top-0 p-3 flex justify-end">
                             <span
-                              className={`rounded-full transition-all duration-300 ${
+                              className={`relative h-[22px] w-[22px] rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 bg-white/90 backdrop-blur-sm ${
                                 isSelected
-                                  ? "h-2 w-2 bg-white scale-100 opacity-100"
-                                  : "h-0 w-0 bg-transparent scale-50 opacity-0"
+                                  ? "border-[5px] border-blue-600 shadow-[0_0_0_3px_rgba(37,99,235,0.12)]"
+                                  : "border-2 border-white/80 group-hover:border-white"
                               }`}
-                            />
-                          </span>
+                              aria-hidden="true"
+                            >
+                              <span
+                                className={`rounded-full transition-all duration-300 ${
+                                  isSelected
+                                    ? "h-2 w-2 bg-white scale-100 opacity-100"
+                                    : "h-0 w-0 bg-transparent scale-50 opacity-0"
+                                }`}
+                              />
+                            </span>
+                          </div>
+                          <div className="absolute inset-x-0 bottom-0 p-3.5">
+                            <p className="text-[11px] font-medium text-blue-100 uppercase tracking-wider truncate">
+                              {kb.subject}
+                            </p>
+                            <h3 className="text-sm font-semibold text-white truncate leading-5 mt-0.5">
+                              {kb.name}
+                            </h3>
+                            <p className="text-[11px] text-slate-200 tabular-nums mt-0.5">
+                              {kb.code} · {layers}/4 layers
+                            </p>
+                          </div>
                         </div>
 
-                        <div className="mt-3.5 flex flex-wrap gap-1.5">
-                          <ReadinessChip label="Knowledge base" ready />
-                          <ReadinessChip label="Book" ready={kb.bookLinked} />
-                          <ReadinessChip label="Study" ready={kb.studyCreated} />
-                          <ReadinessChip label="Learning objectives" ready={kb.loAvailable} />
-                        </div>
+                        <div className="p-4">
+                          <div className="flex flex-wrap gap-1.5">
+                            <ReadinessChip label="Knowledge base" ready />
+                            <ReadinessChip label="Book" ready={kb.bookLinked} />
+                            <ReadinessChip label="Study" ready={kb.studyCreated} />
+                            <ReadinessChip label="Learning objectives" ready={kb.loAvailable} />
+                          </div>
 
-                        <div className="mt-3.5 pt-3 border-t border-dashed border-slate-200 flex items-center justify-between text-xs text-slate-600">
-                          <span className="inline-flex items-center gap-1.5">
-                            <Database className="h-3.5 w-3.5 text-slate-600" aria-hidden="true" />
-                            {kb.documents} documents
-                          </span>
-                          <span className="tabular-nums">
-                            {layers}/4 layers · {kb.updated}
-                          </span>
+                          <div className="mt-3 pt-3 border-t border-dashed border-slate-200 flex items-center justify-between text-xs text-slate-600">
+                            <span className="inline-flex items-center gap-1.5">
+                              <Database className="h-3.5 w-3.5 text-slate-600" aria-hidden="true" />
+                              {kb.documents} documents
+                            </span>
+                            <span className="tabular-nums">{kb.updated}</span>
+                          </div>
                         </div>
 
                       </button>
