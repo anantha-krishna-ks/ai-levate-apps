@@ -108,40 +108,6 @@ const ReadinessChip = ({
   </span>
 );
 
-const LayerRing = ({
-  layers,
-  selected,
-}: {
-  layers: number;
-  selected: boolean;
-}) => {
-  const pct = layers / 4;
-  const r = 17;
-  const c = 2 * Math.PI * r;
-  return (
-    <span className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center">
-      <svg viewBox="0 0 40 40" className="h-10 w-10 -rotate-90" aria-hidden="true">
-        <circle cx="20" cy="20" r={r} fill="none" strokeWidth="3" className="stroke-slate-200" />
-        <circle
-          cx="20"
-          cy="20"
-          r={r}
-          fill="none"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeDasharray={c}
-          strokeDashoffset={c * (1 - pct)}
-          className={selected ? "stroke-blue-600" : "stroke-slate-400 group-hover:stroke-blue-600"}
-          style={{ transition: "stroke-dashoffset 400ms ease" }}
-        />
-      </svg>
-      <BookOpen
-        className={`absolute h-4 w-4 ${selected ? "text-blue-700" : "text-slate-600 group-hover:text-blue-700"}`}
-        aria-hidden="true"
-      />
-    </span>
-  );
-};
 
 
 
