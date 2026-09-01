@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   Sparkles,
   Search,
-  BookOpen,
   Database,
   GraduationCap,
   Target,
