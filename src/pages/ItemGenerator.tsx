@@ -26,6 +26,7 @@ type KnowledgeBaseItem = {
   name: string;
   code: string;
   subject: string;
+  image: string;
   documents: number;
   updated: string;
   bookLinked: boolean;
@@ -39,6 +40,7 @@ const knowledgeBases: KnowledgeBaseItem[] = [
     name: "Cyber Risk",
     code: "C20",
     subject: "Risk Management",
+    image: "/__l5e/assets-v1/d23f06ca-725d-4eb2-8e5c-299673566489/kb-cover-cyber-risk.jpg",
     documents: 12,
     updated: "2 days ago",
     bookLinked: true,
@@ -50,6 +52,7 @@ const knowledgeBases: KnowledgeBaseItem[] = [
     name: "Principles and Practice of Insurance",
     code: "C11",
     subject: "Insurance",
+    image: "/__l5e/assets-v1/5a7f42bf-7ba0-4739-b91c-4892243b6c41/kb-cover-insurance.jpg",
     documents: 24,
     updated: "1 week ago",
     bookLinked: true,
@@ -61,6 +64,7 @@ const knowledgeBases: KnowledgeBaseItem[] = [
     name: "Financial Risk Assessment",
     code: "C31",
     subject: "Finance",
+    image: "/__l5e/assets-v1/bedc67d6-7651-43ad-bf24-dd9202b8cd17/kb-cover-finance.jpg",
     documents: 9,
     updated: "3 days ago",
     bookLinked: true,
@@ -72,6 +76,7 @@ const knowledgeBases: KnowledgeBaseItem[] = [
     name: "Broadcast Journalism Fundamentals",
     code: "BJ01",
     subject: "Journalism",
+    image: "/__l5e/assets-v1/e08317bd-2e48-48bd-880d-aaed5405301e/kb-cover-journalism.jpg",
     documents: 6,
     updated: "5 days ago",
     bookLinked: false,
